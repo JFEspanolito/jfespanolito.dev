@@ -11,6 +11,8 @@
 // <AWS_BUCKET_NAME>
 // <AWS_CDN_DOMAIN>
 
+import { shouldUseFlatConfig } from "eslint/use-at-your-own-risk";
+
 const config = {
   // ======================================================
   // Carga DaisyUI

@@ -1,6 +1,6 @@
 # 🧩 MyNextJFTemplate
 
-**MyNextJFTemplate** es un boilerplate profesional para **Next.js 14+** con autenticación completa, sistema de blog, panel de administración y componentes UI reutilizables.
+**MyNextJFTemplate** es un boilerplate profesional para **Next.js 16+** con autenticación completa, sistema de blog, panel de administración y componentes UI reutilizables.
 Diseñado para acelerar el desarrollo de aplicaciones web modernas, seguras y escalables.
 
 ---
@@ -70,8 +70,8 @@ Diseñado para acelerar el desarrollo de aplicaciones web modernas, seguras y es
 ### 2️⃣ Instalación
 
 ```bash
-git clone https://github.com/JFEspanolito/MyNextJFTemplate.git
-cd MyNextJFTemplate
+git clone https://github.com/JFEspanolito/jfespanolito.com.git
+cd jfespanolito.com
 pnpm install
 ```
 
