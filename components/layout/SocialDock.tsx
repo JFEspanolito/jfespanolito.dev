@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { aboutData } from "@/data/about";
 import StylishDock from "@/components/ui/magicdock";
 import { Mail } from "@/components/icons/mail";
