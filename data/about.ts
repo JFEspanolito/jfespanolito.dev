@@ -36,6 +36,11 @@ export const aboutData = {
           url: "https://github.com/JFEspanolito",
           icon: "github",
         },
+        {
+          name: "Wakatime",
+          url: "https://wakatime.com/@JFEspanolito",
+          icon: "wakaTime",
+        },
       ],
     },
   ],

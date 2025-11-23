@@ -8,6 +8,7 @@ import { Github } from "@/components/icons/github";
 import { Linkedin } from "@/components/icons/linkedin";
 import { Twitter } from "@/components/icons/twitter";
 import { Telegram } from "@/components/icons/telegram";
+import { Wakatime } from "@/components/icons/wakatime";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
@@ -31,6 +32,8 @@ const getIcon = (iconName: string, size: 1 | 2 | 3 = 1) => {
       return <Twitter className={iconClass} />;
     case "telegram":
       return <Telegram className={iconClass} />;
+    case "wakatime":
+      return <Wakatime className={iconClass} />;
     default:
       return <span className="text-xs">?</span>;
   }
@@ -89,8 +92,8 @@ export function AboutMe() {
               text={profile.name}
               baseTextClassName="text-3xl md:text-6xl font-extrabold tracking-tight text-[var(--foreground)] leading-tight m-0"
               textClassName="text-3xl md:text-6xl font-extrabold tracking-tight text-[var(--primary)] leading-tight m-0"
-              spotlightColor="var(--primary-rgb)"
-              spotlightSize={150}
+              spotlightColor="rgba(127, 90, 240, 0.8)"
+              spotlightSize={200}
               animateOnPhone={true}
               className="flex items-center justify-center py-2"
             />

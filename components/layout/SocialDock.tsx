@@ -8,6 +8,7 @@ import { Github } from "@/components/icons/github";
 import { Linkedin } from "@/components/icons/linkedin";
 import { Twitter } from "@/components/icons/twitter";
 import { Telegram } from "@/components/icons/telegram";
+import { Wakatime } from "@/components/icons/wakatime";
 
 const getIcon = (iconName: string, size: 1 | 2 | 3 = 2) => {
   const iconSizes = {
@@ -30,6 +31,8 @@ const getIcon = (iconName: string, size: 1 | 2 | 3 = 2) => {
       return <Twitter className={iconClass} />;
     case "telegram":
       return <Telegram className={iconClass} />;
+    case "wakatime":
+      return <Wakatime className={iconClass} />;
     default:
       return <span className="text-xs">?</span>;
   }
