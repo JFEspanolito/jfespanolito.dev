@@ -104,9 +104,9 @@ export function Experience() {
 
                     <button
                       onClick={flip}
-                      className="text-s text-[var(--text-muted)] hover:text-[var(--secondary-accent)] underline decoration-slate-700 underline-offset-4 mt-6 text-center"
+                      className="text-2xl text-[var(----text-body)] hover:text-[var(--secondary-accent)] underline-offset-4 mt-6 text-center"
                     >
-                      Volver
+                      ↻ Volver
                     </button>
                   </CardFlipBack>,
                 ]}

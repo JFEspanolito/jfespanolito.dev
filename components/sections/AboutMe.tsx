@@ -65,7 +65,10 @@ export function AboutMe() {
         viewport={{ once: true, amount: 0.2 }}
       >
         {/* --- AVATAR --- */}
-        <div className="relative group cursor-pointer" onClick={() => setIsGalleryOpen(true)}>
+        <div
+          className="relative group cursor-pointer"
+          onClick={() => setIsGalleryOpen(true)}
+        >
           <div className="absolute -inset-1 rounded-full bg-linear-to-r from-indigo-500 to-purple-600 blur opacity-40 group-hover:opacity-70 transition duration-500"></div>
           <Avatar className="relative h-40 w-40 border-4 border-[rgba(255,255,255,0.1)]">
             <AvatarImage
@@ -79,158 +82,149 @@ export function AboutMe() {
           </Avatar>
         </div>
 
-      {/* --- LAYOUT --- */}
-      <div className="flex flex-col md:flex-row items-center justify-center gap-3 w-full max-w-5xl px-4">
-        {/* A. Logo (no clickeable) */}
-        <div 
-          className="h-16 w-16 md:h-20 md:w-20 opacity-70"
-        >
-          <img
-            src={profile.logoUrl}
-            alt="JF Logo"
-            className="w-full h-full object-contain"
-          />
+        {/* --- LAYOUT --- */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-3 w-full max-w-5xl px-4">
+          <div className="h-auto md:h-24 flex items-center justify-center min-w-[300px]">
+            <TextSpotlight
+              text={profile.name}
+              baseTextClassName="text-3xl md:text-6xl font-extrabold tracking-tight text-[var(--foreground)] leading-tight m-0"
+              textClassName="text-3xl md:text-6xl font-extrabold tracking-tight text-[var(--primary)] leading-tight m-0"
+              spotlightColor="var(--primary-rgb)"
+              spotlightSize={150}
+              animateOnPhone={true}
+              className="flex items-center justify-center py-2"
+            />
+          </div>
         </div>
 
-        {/* B. Nombre (Spotlight) */}
-        <div className="h-auto md:h-24 flex items-center justify-center min-w-[300px]">
-          <TextSpotlight
-            text={profile.name}
-            baseTextClassName="text-3xl md:text-6xl font-extrabold tracking-tight text-[var(--foreground)] leading-tight m-0"
-            textClassName="text-3xl md:text-6xl font-extrabold tracking-tight text-[var(--primary)] leading-tight m-0"
-            spotlightColor="var(--primary-rgb)"
-            spotlightSize={150}
-            animateOnPhone={true}
-            className="flex items-center justify-center py-2"
-          />
-        </div>
-      </div>
+        {/* --- DESCRIPCIÓN Y ROL --- */}
+        <div className="space-y-6 max-w-2xl px-4">
+          <h1 className="text-3xl font-bold uppercase tracking-[0.3em] text-(--primary)">
+            {profile.role}
+          </h1>
 
-      {/* --- DESCRIPCIÓN Y ROL --- */}
-      <div className="space-y-6 max-w-2xl px-4">
-        <h1 className="text-3xl font-bold uppercase tracking-[0.3em] text-(--primary)">
-          {profile.role}
-        </h1>
-
-        <p className="text-2xl md:text-2xl font-semibold text-(--text-muted)">
-          {profile.headline}
-        </p>
-
-        {profile.description?.map((desc, index) => (
-          <p key={index} className="text-xl text-(--text-body) leading-relaxed font-light">
-            {desc}
+          <p className="text-2xl md:text-2xl font-semibold text-(--text-muted)">
+            {profile.headline}
           </p>
-        )) || <li className="list-none">{profile.description}</li>}
-      </div>
-    </motion.section>
 
-    {/* Modal de galería con ambas imágenes */}
-    <AnimatePresence>
-      {isGalleryOpen && (
-        <motion.div
-          className="fixed inset-0 z-50"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={() => setIsGalleryOpen(false)}
-        >
-          {/* Fondo oscuro */}
-          <div className="absolute inset-0 bg-black/90" />
-          
-          {/* Haz de luz/proyección desde avatar hasta imagen */}
-          <motion.div
-            className="absolute"
-            initial={{ 
-              top: '140px',
-              left: '50%',
-              width: '160px',
-              height: '160px',
-              x: '-50%',
-            }}
-            animate={{ 
-              top: '50%',
-              left: '75%',
-              width: '500px',
-              height: '500px',
-              x: '-50%',
-              y: '-50%',
-            }}
-            exit={{ 
-              top: '140px',
-              left: '50%',
-              width: '160px',
-              height: '160px',
-              x: '-50%',
-              y: '0%',
-            }}
-            transition={{ 
-              duration: 0.6,
-              ease: [0.43, 0.13, 0.23, 0.96]
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Imagen con borde brillante */}
-            <div className="relative w-full h-full">
-              {/* Glow effect */}
-              <div className="absolute -inset-8 bg-linear-to-br from-indigo-500 via-purple-600 to-pink-500 rounded-3xl blur-2xl opacity-60" />
-              
-              {/* Imagen */}
-              <img
-                src={profile.avatarUrl}
-                alt={profile.name}
-                className="relative w-full h-full object-cover rounded-2xl border-4 border-white/20 shadow-2xl"
-              />
-            </div>
-          </motion.div>
+          {profile.description?.map((desc, index) => (
+            <p
+              key={index}
+              className="text-xl text-(--text-body) leading-relaxed font-light"
+            >
+              {desc}
+            </p>
+          )) || <li className="list-none">{profile.description}</li>}
+        </div>
+      </motion.section>
 
-          {/* Proyección de logo a la izquierda */}
+      {/* Modal de galería con ambas imágenes */}
+      <AnimatePresence>
+        {isGalleryOpen && (
           <motion.div
-            className="absolute"
-            initial={{ 
-              top: '250px',
-              left: '25%',
-              width: '80px',
-              height: '80px',
-              x: '-50%',
-            }}
-            animate={{ 
-              top: '50%',
-              left: '25%',
-              width: '400px',
-              height: '400px',
-              x: '-50%',
-              y: '-50%',
-            }}
-            exit={{ 
-              top: '250px',
-              left: '25%',
-              width: '80px',
-              height: '80px',
-              x: '-50%',
-              y: '0%',
-            }}
-            transition={{ 
-              duration: 0.6,
-              ease: [0.43, 0.13, 0.23, 0.96]
-            }}
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsGalleryOpen(false)}
           >
-            {/* Logo con borde brillante */}
-            <div className="relative w-full h-full">
-              {/* Glow effect */}
-              <div className="absolute -inset-8 bg-linear-to-br from-indigo-500 via-purple-600 to-pink-500 rounded-3xl blur-2xl opacity-60" />
-              
-              {/* Logo */}
-              <img
-                src={profile.logoUrl}
-                alt="JF Logo"
-                className="relative w-full h-full object-contain rounded-2xl border-4 border-white/20 shadow-2xl"
-              />
-            </div>
+            {/* Fondo oscuro */}
+            <div className="absolute inset-0 bg-black/90" />
+
+            {/* Proyección de logo a la derecha */}
+            <motion.div
+              className="absolute"
+              initial={{
+                top: "140px",
+                left: "50%",
+                width: "160px",
+                height: "160px",
+                x: "-50%",
+              }}
+              animate={{
+                top: "50%",
+                left: "75%",
+                width: "500px",
+                height: "500px",
+                x: "-50%",
+                y: "-50%",
+              }}
+              exit={{
+                top: "140px",
+                left: "50%",
+                width: "160px",
+                height: "160px",
+                x: "-50%",
+                y: "0%",
+              }}
+              transition={{
+                duration: 0.6,
+                ease: [0.43, 0.13, 0.23, 0.96],
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Imagen con borde brillante */}
+              <div className="relative w-full h-full">
+                {/* Glow effect */}
+                <div className="absolute -inset-8 bg-linear-to-br from-indigo-500 via-purple-600 to-pink-500 rounded-3xl blur-2xl opacity-60" />
+
+                {/* Imagen */}
+                <img
+                  src={profile.avatarUrl}
+                  alt={profile.name}
+                  className="relative w-full h-full object-cover rounded-2xl border-4 border-white/20 shadow-2xl"
+                />
+              </div>
+            </motion.div>
+
+            {/* Proyección de logo a la izquierda */}
+            <motion.div
+              className="absolute"
+              initial={{
+                top: "140px",
+                left: "50%",
+                width: "160px",
+                height: "160px",
+                x: "-50%",
+              }}
+              animate={{
+                top: "50%",
+                left: "25%",
+                width: "400px",
+                height: "400px",
+                x: "-50%",
+                y: "-50%",
+              }}
+              exit={{
+                top: "140px",
+                left: "50%",
+                width: "160px",
+                height: "160px",
+                x: "-50%",
+                y: "0%",
+              }}
+              transition={{
+                duration: 0.6,
+                ease: [0.43, 0.13, 0.23, 0.96],
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Logo con borde brillante */}
+              <div className="relative w-full h-full">
+                {/* Glow effect */}
+                <div className="absolute -inset-8 bg-linear-to-br from-indigo-500 via-purple-600 to-pink-500 rounded-3xl blur-2xl opacity-60" />
+
+                {/* Logo */}
+                <img
+                  src={profile.logoUrl}
+                  alt="JF Logo"
+                  className="relative w-full h-full object-contain rounded-2xl border-4 border-white/20 shadow-2xl"
+                />
+              </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  </>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
