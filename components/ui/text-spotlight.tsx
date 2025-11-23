@@ -6,9 +6,17 @@ import { cn } from "@/libs/utils";
 
 interface TextSpotlightProps extends React.HTMLAttributes<HTMLDivElement> {
   text: string;
+
+  // 1. COLOR DE LUZ (El haz de la linterna) - Formato "R, G, B"
   spotlightColor?: string;
-  spotlightSize?: number;
+
+  // 2. COLOR DE TEXTO ILUMINADO (Cuando la luz pasa por encima)
   textClassName?: string;
+
+  // 3. COLOR DE SOMBRA/BASE (El texto cuando NO tiene luz)
+  baseTextClassName?: string;
+
+  spotlightSize?: number;
   spotlightOpacity?: number;
   spotlightArea?: number;
   animateOnPhone?: boolean;
@@ -33,8 +41,9 @@ const useIsMobile = () => {
 export function TextSpotlight({
   text,
   className,
-  textClassName,
-  spotlightColor = "255, 255, 255",
+  textClassName, // Lo que se ve DENTRO de la luz
+  baseTextClassName, // Lo que se ve FUERA de la luz
+  spotlightColor = "255, 255, 255", // Color del haz
   spotlightSize = 450,
   spotlightOpacity = 1,
   spotlightArea,
@@ -108,12 +117,19 @@ export function TextSpotlight({
   const chars = text.split("");
   const shouldShowMobileReveal = animateOnPhone && isMobile;
 
+  // Valores por defecto si no se pasan props (para que no rompa)
+  const defaultBaseClass = "text-gray-500"; // Color apagado por defecto
+  const defaultLitClass = "text-white font-bold"; // Color encendido por defecto
+
   return (
     <div
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={cn("relative w-full overflow-hidden", className)}
+      className={cn(
+        "relative w-full overflow-hidden cursor-default",
+        className
+      )}
       {...props}
     >
       {shouldShowMobileReveal ? (
@@ -133,7 +149,7 @@ export function TextSpotlight({
                   color: isRevealed ? "inherit" : undefined,
                 }}
                 className={
-                  isRevealed ? "" : "text-gray-600/10 dark:text-white/15"
+                  isRevealed ? "" : cn(defaultBaseClass, baseTextClassName)
                 }
               >
                 {char}
@@ -143,15 +159,18 @@ export function TextSpotlight({
         </p>
       ) : (
         <>
+          {/* CAPA BASE (Sombra / Sin Luz) */}
           <p
             className={cn(
-              "relative z-10 text-gray-800 dark:text-white/15 select-none text-center",
-              textClassName
+              "relative z-10 select-none text-center",
+              defaultBaseClass,
+              baseTextClassName
             )}
           >
             {text}
           </p>
 
+          {/* CAPA SPOTLIGHT (Texto Iluminado + Haz de luz) */}
           <motion.div
             className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none"
             style={{
@@ -160,7 +179,7 @@ export function TextSpotlight({
               opacity: isHovered ? 1 : 0,
             }}
           >
-            <p className={cn("text-gray-900 dark:text-white text-center", textClassName)}>
+            <p className={cn("text-center", defaultLitClass, textClassName)}>
               {text}
             </p>
           </motion.div>

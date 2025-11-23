@@ -28,26 +28,26 @@ function CardFlip({
 
   return (
     <div
-      className={cn("relative w-full", className)}
+      className={cn("relative w-full h-full", className)}
       style={{ perspective: "1000px" }}
       {...props}
     >
       <motion.div
-        className="relative w-full"
+        className="relative w-full h-full"
         initial={false}
         animate={{ rotateY: isFlipped ? -180 : 0 }}
         transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
         style={{ transformStyle: "preserve-3d" }}
       >
         <div
-          className="w-full"
+          className="w-full h-full"
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
             transformStyle: "preserve-3d",
           }}
         >
-          <div className="relative w-full">
+          <div className="relative w-full h-full">
             {!hideDefaultButtons && (
               <button
                 onClick={() => setIsFlipped(true)}

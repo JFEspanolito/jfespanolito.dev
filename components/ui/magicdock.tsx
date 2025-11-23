@@ -8,6 +8,7 @@ import {
   useTransform,
   AnimatePresence,
 } from "framer-motion";
+import { cn } from "@/libs/utils"; // Asegúrate que esta ruta sea correcta en tu proyecto
 
 type SpringOptions = {
   stiffness?: number;
@@ -16,10 +17,6 @@ type SpringOptions = {
   velocity?: number;
   restSpeed?: number;
   restDelta?: number;
-};
-
-const cn = (...classes: (string | undefined | false | null)[]) => {
-  return classes.filter(Boolean).join(" ");
 };
 
 export type DockItemData = {
@@ -34,7 +31,8 @@ export type DockItemData = {
 
 export type MagicDockProps = {
   items: DockItemData[];
-  className?: string;
+  className?: string;      // Controla el estilo del CONTENEDOR (Panel)
+  itemClassName?: string;  // NUEVO: Controla el estilo de los BOTONES (Círculos)
   distance?: number;
   panelHeight?: number;
   baseItemSize?: number;
@@ -55,6 +53,7 @@ type DockItemProps = {
   setHoveredIndex: React.Dispatch<React.SetStateAction<number | null>>;
   hoveredIndex: number | null;
   isTouchDevice: boolean;
+  itemClassName?: string; // Pasamos la prop hacia abajo
 };
 
 function DockItem({
@@ -68,6 +67,7 @@ function DockItem({
   setHoveredIndex,
   hoveredIndex,
   isTouchDevice,
+  itemClassName,
 }: DockItemProps) {
   const ref = useRef<HTMLDivElement>(null);
   const mouseXMotion = useMotionValue(0);
@@ -123,16 +123,8 @@ function DockItem({
   );
   const size = useSpring(targetSize, spring);
 
-  const getBorderStyles = () => {
-    switch (variant) {
-      case "gradient":
-        return "border-transparent group-hover:border-slate-700 dark:border-white/[0.2]";
-      case "tooltip":
-        return "border-white/[0.4] group-hover:border-white";
-      default:
-        return "border-neutral-700";
-    }
-  };
+  // Estilos base por defecto (si no se sobrescriben)
+  const defaultItemStyles = "bg-black border-2 shadow-md border-neutral-700";
 
   return (
     <motion.div
@@ -152,8 +144,11 @@ function DockItem({
     >
       <motion.div
         className={cn(
-          "relative flex h-full w-full items-center justify-center rounded-full bg-black border-2 shadow-md transition-colors duration-300",
-          getBorderStyles()
+          "relative flex h-full w-full items-center justify-center rounded-full transition-colors duration-300",
+          // Aplicamos estilos por defecto SOLO si no hay variante especial
+          // Pero permitimos que itemClassName gane siempre
+          defaultItemStyles,
+          itemClassName // <--- AQUÍ LA MAGIA: Tus clases personalizadas ganan
         )}
         initial={{}}
       >
@@ -198,12 +193,6 @@ function DockItem({
                 variant === "tooltip" ? "-top-12" : "-top-10"
               )}
             >
-              {variant === "tooltip" && (
-                <>
-                  <div className="absolute inset-x-10 -bottom-px z-30 h-px w-[20%] bg-linear-to-r from-transparent via-emerald-500 to-transparent" />
-                  <div className="absolute -bottom-px z-30 h-px w-[40%] bg-linear-to-r from-transparent via-sky-500 to-transparent" />
-                </>
-              )}
               <div className="relative z-30 text-base font-bold text-white">
                 {item.label}
               </div>
@@ -221,6 +210,7 @@ function DockItem({
 export default function MagicDock({
   items,
   className = "",
+  itemClassName = "", // Nueva prop
   spring = { mass: 0.1, stiffness: 150, damping: 12 },
   magnification = 70,
   distance = 150,
@@ -236,15 +226,11 @@ export default function MagicDock({
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(pointer: coarse)");
-
     const handleChange = (e: MediaQueryListEvent) => {
       setIsTouchDevice(e.matches);
     };
-
     setIsTouchDevice(mediaQuery.matches);
-
     mediaQuery.addEventListener("change", handleChange);
-
     return () => {
       mediaQuery.removeEventListener("change", handleChange);
     };
@@ -283,9 +269,10 @@ export default function MagicDock({
             mouseX.current = Infinity;
           }
         }}
+        // Aquí aplicamos el estilo por defecto, PERO permitimos que 'className' lo sobrescriba
         className={cn(
           `fixed bottom-4 left-1/2 transform -translate-x-1/2 flex items-end w-fit gap-4 rounded-2xl border-neutral-700/50 border-2 pb-2 px-4 z-50 ${getBgStyles()}`,
-          className
+          className // <--- AQUÍ LA MAGIA: Tus clases del contenedor ganan
         )}
         style={{ height: panelHeight }}
         role="toolbar"
@@ -304,6 +291,7 @@ export default function MagicDock({
             setHoveredIndex={setHoveredIndex}
             hoveredIndex={hoveredIndex}
             isTouchDevice={isTouchDevice}
+            itemClassName={itemClassName} // Pasamos la personalización de items
           />
         ))}
       </motion.div>

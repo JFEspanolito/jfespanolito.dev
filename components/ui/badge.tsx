@@ -1,0 +1,20 @@
+import * as React from "react";
+import { cn } from "@/libs/utils";
+
+export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+function Badge({ className, ...props }: BadgeProps) {
+  return (
+    <div
+      className={cn(
+        "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+        // Estilos por defecto (si no le pasas otros): Fondo y borde sutil con tu color primario
+        "border-transparent bg-primary/10 text-primary hover:bg-primary/20",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+export { Badge };

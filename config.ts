@@ -9,9 +9,9 @@ const config = {
   // ======================================================
   // 🔧 PROYECTO BASE (reemplaza estos placeholders)
   // ======================================================
-  appName: "<PROJECT_NAME>",
-  appDescription: "<PROJECT_DESCRIPTION>",
-  domainName: "<PROJECT_DOMAIN>", // sin https:// ni slash final
+  appName: "Portafolio",
+  appDescription: "Website que funciona de portafolio personal.",
+  domainName: "jfespanolito.com", // sin https:// ni slash final
 
   // ======================================================
   // 💬 SOPORTE / CONTACTO
