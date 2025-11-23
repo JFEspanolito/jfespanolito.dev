@@ -22,7 +22,7 @@ export function Experience() {
   return (
     <motion.section
       id="experience"
-      className="w-full py-20 bg-[var(--background-contrast)]"
+      className="w-full py-20 bg-(--background-contrast)"
       initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
       whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
@@ -30,7 +30,7 @@ export function Experience() {
     >
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white tracking-tight">
-          Experiencia <span className="text-[var(--primary)]">Profesional</span>
+          Experiencia <span className="text-(--primary)">Profesional</span>
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:grid-flow-row-dense">
@@ -41,31 +41,31 @@ export function Experience() {
                   // --- FRENTE ---
                   <CardFlipFront
                     key="front"
-                    className="h-full flex flex-col justify-between border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.03)] backdrop-blur-sm hover:border-[var(--primary)] transition-colors p-6"
+                    className="h-full flex flex-col justify-between border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.03)] backdrop-blur-sm hover:border-(--primary) transition-colors p-6"
                   >
-                    <CardFlipHeader className="flex-shrink-0">
+                    <CardFlipHeader className="shrink-0">
                       <div className="mb-3">
-                        <span className="text-[var(--primary)] text-x font-mono font-bold bg-[var(--card)] px-2 py-1 rounded-md">
+                        <span className="text-(--secondary-accent) text-x font-mono font-bold bg-(--card) px-2 py-1 rounded-md">
                           {job.period}
                         </span>
                       </div>
-                      <CardFlipTitle className="text-2xl text-[var(----text-body)] leading-snug mb-1">
+                      <CardFlipTitle className="text-2xl text-(----text-body) leading-snug mb-1">
                         {job.role}
                       </CardFlipTitle>
-                      <CardFlipDescription className="text-xl font-medium text-[var(--text-muted)]">
+                      <CardFlipDescription className="text-xl font-medium text-(--text-muted)">
                         <p className="mb-2">{job.company}</p>
                       </CardFlipDescription>
                     </CardFlipHeader>
 
                     <CardFlipContent className="flex-1 my-4">
-                      <p className="text-x text-[var(--text-body)] leading-relaxed mb-4">
+                      <p className="text-x text-(--text-body)] leading-relaxed mb-4">
                         {job.description}
                       </p>
                       <div className="flex flex-wrap gap-2">
                         {job.skills.map((skill) => (
                           <Badge
                             key={skill}
-                            className="bg-[var(--card)] text-[var(--text-muted)] border-0 text-xs"
+                            className="bg-(--ring-color) text-(--secondary-accent) border-0 text-xs"
                           >
                             {skill}
                           </Badge>
@@ -73,10 +73,10 @@ export function Experience() {
                       </div>
                     </CardFlipContent>
 
-                    <CardFlipFooter className="flex-shrink-0 justify-center">
+                    <CardFlipFooter className="shrink-0 justify-center">
                       <button
                         onClick={flip}
-                        className="text-2xl text-[var(----text-body)] hover:text-[var(--secondary-accent)] transition-colors flex items-center gap-1 cursor-pointer animate-pulse"
+                        className="text-2xl text-(----text-body) hover:text-(--secondary-accent) transition-colors flex items-center gap-1 cursor-pointer animate-pulse"
                       >
                         Clic para detalles ↻
                       </button>
@@ -89,11 +89,11 @@ export function Experience() {
                     className="h-full flex flex-col justify-between border-[rgba(255,255,255,0.08)] bg-[#161321] backdrop-blur-sm p-6"
                   >
                     <div className="flex-1">
-                      <h3 className="text-[var(--primary)] font-bold mb-6 text-lg uppercase tracking-wider text-center">
+                      <h3 className="text-(--primary)] font-bold mb-6 text-lg uppercase tracking-wider text-center">
                         Actividades
                       </h3>
 
-                      <ul className="list-disc list-inside text-[var(--text-body)] text-sm space-y-2 text-left w-full px-2">
+                      <ul className="list-disc list-inside text-(--text-body) text-sm space-y-2 text-left w-full px-2">
                         {job.activities?.map((activity) => (
                           <li key={activity} className="leading-relaxed">
                             {activity}
@@ -104,7 +104,7 @@ export function Experience() {
 
                     <button
                       onClick={flip}
-                      className="text-2xl text-[var(----text-body)] hover:text-[var(--secondary-accent)] underline-offset-4 mt-6 text-center"
+                      className="text-2xl text-(----text-body) hover:text-(--secondary-accent) underline-offset-4 mt-6 text-center"
                     >
                       ↻ Volver
                     </button>

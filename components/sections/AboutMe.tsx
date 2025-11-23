@@ -92,8 +92,8 @@ export function AboutMe() {
               text={profile.name}
               baseTextClassName="text-3xl md:text-6xl font-extrabold tracking-tight text-[var(--foreground)] leading-tight m-0"
               textClassName="text-3xl md:text-6xl font-extrabold tracking-tight text-[var(--primary)] leading-tight m-0"
-              spotlightColor="rgba(127, 90, 240, 0.8)"
-              spotlightSize={200}
+              spotlightColor="var(--primary-rgb)"
+              spotlightSize={150}
               animateOnPhone={true}
               className="flex items-center justify-center py-2"
             />
