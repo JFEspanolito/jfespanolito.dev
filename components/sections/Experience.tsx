@@ -103,7 +103,7 @@ export function Experience() {
                   // --- DORSO ---
                   <CardFlipBack
                     key="back"
-                    className="h-full flex flex-col border-[rgba(255,255,255,0.08)] bg-[#161321] backdrop-blur-sm p-6"
+                    className="h-full flex flex-col border-[rgba(255,255,255,0.08)] bg-[#161321] backdrop-blur-sm p-6 pb-4"
                   >
                     <div className="flex-1">
                       <h3 className="text-(--primary)] font-bold mb-6 text-lg uppercase tracking-wider text-center">
@@ -130,13 +130,15 @@ export function Experience() {
                       </div>
                     </div>
 
-                    <button
-                      onClick={flip}
-                      className="text-2xl text-(----text-body) hover:text-(--secondary-accent) underline-offset-4 mt-auto mb-6 text-center"
-                    >
-                      ↻ Volver
-                    </button>
-                  </CardFlipBack>
+                    <div className="-mt-4">
+                      <button
+                        onClick={flip}
+                        className="text-2xl text-(----text-body) hover:text-(--secondary-accent) underline-offset-4 mb-6 text-center w-full"
+                      >
+                        ↻ Volver
+                      </button>
+                    </div>
+                  </CardFlipBack>,
                 ]}
               </CardFlip>
             </div>
