@@ -110,14 +110,32 @@ export function AboutMe() {
             {profile.headline}
           </p>
 
-          {profile.description?.map((desc, index) => (
+          {profile.description.map((parts, i) => (
             <p
-              key={index}
+              key={i}
               className="text-xl text-(--text-body) leading-relaxed font-light"
             >
-              {desc}
+              {parts.map((p, j) => {
+                const style = p.customColor
+                  ? { color: p.customColor }
+                  : undefined;
+
+                if (p.bold) {
+                  return (
+                    <strong key={j} style={style}>
+                      {p.text}
+                    </strong>
+                  );
+                }
+
+                return (
+                  <span key={j} style={style}>
+                    {p.text}
+                  </span>
+                );
+              })}
             </p>
-          )) || <li className="list-none">{profile.description}</li>}
+          ))}
         </div>
       </motion.section>
 
@@ -134,7 +152,7 @@ export function AboutMe() {
             {/* Fondo oscuro */}
             <div className="absolute inset-0 bg-black/90" />
 
-            {/* Proyección de logo a la derecha */}
+            {/* Proyección de selfie a la derecha (desktop) o centro (mobile) */}
             <motion.div
               className="absolute"
               initial={{
@@ -146,7 +164,10 @@ export function AboutMe() {
               }}
               animate={{
                 top: "50%",
-                left: "75%",
+                left:
+                  typeof window !== "undefined" && window.innerWidth >= 768
+                    ? "75%"
+                    : "50%",
                 width: "500px",
                 height: "500px",
                 x: "-50%",
@@ -180,9 +201,9 @@ export function AboutMe() {
               </div>
             </motion.div>
 
-            {/* Proyección de logo a la izquierda */}
+            {/* Proyección de logo a la izquierda - solo desktop */}
             <motion.div
-              className="absolute"
+              className="absolute hidden md:block"
               initial={{
                 top: "140px",
                 left: "50%",

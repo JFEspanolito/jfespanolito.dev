@@ -37,7 +37,7 @@ text-9xl,8rem,128px,1 (128px)
   --primary-rgb: 127, 90, 240; /* #7f5af0 */
   --primary: rgb(var(--primary-rgb));
   --primary-foreground: #ffffff;
-  --secondary-accent: #2cb67d;
+  --secondary-accent: #028337; /* 329961 */
 
   /* --- 4. COMPONENTES --- */
   --card: rgba(var(--primary-rgb), 0.1);
@@ -46,7 +46,7 @@ text-9xl,8rem,128px,1 (128px)
 
   /* --- UTILIDADES --- */
   --radius: 0.75rem;
-  --ring-color: rgba(127, 90, 240, 0.5);
+  --ring-color: rgba(127, 90, 240, 0.308);
 }
 
 /* =====================================================

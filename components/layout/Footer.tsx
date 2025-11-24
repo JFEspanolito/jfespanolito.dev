@@ -10,7 +10,10 @@ export function Footer() {
   return (
     <footer className="w-full border-t border-white/10 bg-[#0a0811]/95 backdrop-blur-md mt-auto">
       <div className="max-w-7xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between" style={{ minHeight: '3rem' }}>
+        <div
+          className="flex items-center justify-between"
+          style={{ minHeight: "3rem" }}
+        >
           {/* Izquierda: GitHub */}
           <a
             href="https://github.com/JFEspanolito/jfespanolito.com"
@@ -22,8 +25,11 @@ export function Footer() {
             <span className="leading-none">Código disponible en GitHub</span>
           </a>
 
-          {/* Centro: Copyright */}
-          <p className="text-md text-white font-light leading-none" style={{ marginBottom: 0 }}>
+          {/* Derecha: Copyright */}
+          <p
+            className="text-md text-white font-light leading-none text-align-right hover:text-(--secondary-accent)"
+            style={{ marginBottom: 0 }}
+          >
             © {year} — Este sitio no reclama derechos exclusivos.
           </p>
         </div>
