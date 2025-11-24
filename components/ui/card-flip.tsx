@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Info, X } from "lucide-react";
@@ -32,22 +33,17 @@ function CardFlip({
   useEffect(() => {
     const calculateMaxHeight = () => {
       if (frontRef.current && backRef.current) {
-        // Usamos scrollHeight para obtener la altura real del contenido
-        const frontHeight = frontRef.current.scrollHeight;
-        const backHeight = backRef.current.scrollHeight;
+        const frontHeight = frontRef.current.offsetHeight;
+        const backHeight = backRef.current.offsetHeight;
         const max = Math.max(frontHeight, backHeight);
         setMaxHeight(max);
       }
     };
-
-    // Calcular inmediatamente y después de un pequeño delay
     calculateMaxHeight();
-    const timeoutId = setTimeout(calculateMaxHeight, 50);
-
+    const timeoutId = setTimeout(calculateMaxHeight, 100);
     const resizeObserver = new ResizeObserver(calculateMaxHeight);
     if (frontRef.current) resizeObserver.observe(frontRef.current);
     if (backRef.current) resizeObserver.observe(backRef.current);
-
     return () => {
       clearTimeout(timeoutId);
       resizeObserver.disconnect();
@@ -55,16 +51,14 @@ function CardFlip({
   }, [front, back]);
 
   return (
-    <div // h-full para heredar la altura del Grid, min-h para evitar colapso inicial
-      className={cn("relative w-full h-full", className)}
+    <div
+      className={cn("relative w-full h-full min-h-[250px]", className)}
       style={{
         perspective: "1000px",
         height: maxHeight ? `${maxHeight}px` : "auto",
-        minHeight: maxHeight ? `${maxHeight}px` : "250px",
       }}
       {...props}
     >
-           {" "}
       <motion.div
         className="relative w-full h-full"
         initial={false}
@@ -72,20 +66,21 @@ function CardFlip({
         transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
         style={{ transformStyle: "preserve-3d" }}
       >
-                {/* CARA FRONTAL */}       {" "}
+        {/* CARA FRONTAL */}
         <div
-          ref={frontRef} // CAMBIO CRUCIAL: Solo w-full y flex-col, h-full lo recibe de CardFlipFront
+          ref={frontRef}
           className="w-full flex flex-col"
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
             transformStyle: "preserve-3d",
             position: maxHeight ? "absolute" : "relative",
+            top: 0,
+            left: 0,
             height: maxHeight ? `${maxHeight}px` : "auto",
+            zIndex: isFlipped ? 0 : 1,
           }}
         >
-                    {/* ELIMINADO: <div className="relative w-full h-full"> */} 
-                   {" "}
           {!hideDefaultButtons && (
             <button
               onClick={() => setIsFlipped(true)}
@@ -97,15 +92,15 @@ function CardFlip({
                 transition: "opacity 0.3s",
               }}
             >
-                              <Info className="w-5 h-5 text-muted-foreground" />
-                           {" "}
+              <Info className="w-5 h-5 text-muted-foreground" />
             </button>
           )}
-                      {front}          {/* ELIMINADO: </div> */}       {" "}
+          {front}
         </div>
-                {/* CARA TRASERA */}       {" "}
+
+        {/* CARA TRASERA */}
         <div
-          ref={backRef} // CAMBIO CRUCIAL: Solo w-full y flex-col, h-full lo recibe de CardFlipBack
+          ref={backRef}
           className="absolute inset-0 w-full flex flex-col"
           style={{
             backfaceVisibility: "hidden",
@@ -113,10 +108,9 @@ function CardFlip({
             transform: "rotateY(180deg)",
             transformStyle: "preserve-3d",
             height: maxHeight ? `${maxHeight}px` : "auto",
+            zIndex: isFlipped ? 1 : 0,
           }}
         >
-                    {/* ELIMINADO: <div className="relative w-full h-full"> */} 
-                   {" "}
           {!hideDefaultButtons && (
             <button
               onClick={() => setIsFlipped(false)}
@@ -128,15 +122,12 @@ function CardFlip({
                 transition: "opacity 0.3s",
               }}
             >
-                              <X className="w-5 h-5 text-muted-foreground" />   
-                       {" "}
+              <X className="w-5 h-5 text-muted-foreground" />
             </button>
           )}
-                      {back}          {/* ELIMINADO: </div> */}       {" "}
+          {back}
         </div>
-             {" "}
       </motion.div>
-         {" "}
     </div>
   );
 }
@@ -146,8 +137,7 @@ function CardFlipFront({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card"
       className={cn(
-        // CLAVE: min-h-full permite crecimiento más allá del maxHeight
-        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm min-h-full",
+        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
         className
       )}
       {...props}
@@ -160,8 +150,7 @@ function CardFlipBack({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card"
       className={cn(
-        // CLAVE: min-h-full permite crecimiento
-        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm min-h-full",
+        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
         className
       )}
       {...props}
