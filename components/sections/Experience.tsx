@@ -22,7 +22,8 @@ export function Experience() {
   return (
     <motion.section
       id="experience"
-      className="w-full py-20 bg-(--background-contrast)"
+      className="w-full py-20 bg-transparent"
+      style={{ backgroundColor: 'rgba(19, 16, 31, 0.6)' }}
       initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
       whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}

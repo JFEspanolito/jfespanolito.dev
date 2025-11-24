@@ -98,7 +98,7 @@ export function Project() {
 
   return (
     <motion.section
-      className="w-full py-20 bg-(--background)"
+      className="w-full py-20"
       initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
       whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
