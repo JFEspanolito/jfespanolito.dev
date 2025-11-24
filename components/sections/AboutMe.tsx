@@ -173,6 +173,7 @@ export function AboutMe() {
         )}
       </AnimatePresence>
 
+      {/* Image shower */}
       <AnimatePresence>
         {isGalleryOpen && (
           <motion.div

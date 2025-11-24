@@ -94,7 +94,7 @@ export function Experience() {
 
                     <CardFlipFooter className="shrink-0 justify-center mt-auto">
                       <span className="text-2xl text-(----text-body) hover:text-(--secondary-accent) transition-colors flex items-center gap-1 animate-pulse">
-                        <p>Clic para detalles ↻</p>
+                        Clic para detalles ↻
                       </span>
                     </CardFlipFooter>
                   </CardFlipFront>,

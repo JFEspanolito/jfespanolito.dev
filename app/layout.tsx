@@ -41,7 +41,7 @@ export default function RootLayout({
         {/* Footer al final */}
         <Footer />
 
-        {/* Aquí va el Dock Flotante, separado del Footer */}
+        {/* Menú Flotante de Botones Social Media */}
         <SocialDock />
       </body>
     </html>

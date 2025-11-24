@@ -126,6 +126,7 @@ export function Certificate() {
                 </TopSecretDescription>
               </TopSecretHeader>
 
+              {/* Añadir Cards en base a data/certificates */}
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 mt-4">
                 {restCards.map((card) => (
                   <div key={card.id} className="h-[400px] w-full">

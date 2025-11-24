@@ -281,6 +281,8 @@ export default function MagicDock({
   const isHovered = useMotionValue(0);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+    
     const mediaQuery = window.matchMedia("(pointer: coarse)");
     const handleChange = (e: MediaQueryListEvent) => {
       setIsTouchDevice(e.matches);

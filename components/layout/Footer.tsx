@@ -1,8 +1,4 @@
-import Link from "next/link";
-import Image from "next/image";
-import { aboutData } from "@/data/about";
 import { Github } from "@/components/icons/github";
-import { SocialDock } from "@/components/layout/SocialDock";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -16,7 +12,7 @@ export function Footer() {
         >
           {/* Izquierda: GitHub */}
           <a
-            href="https://github.com/JFEspanolito/jfespanolito.com"
+            href="https://github.com/JFEspanolito/jfespanolito.dev"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-md text-white hover:text-(--secondary-accent) transition-colors group"
