@@ -139,7 +139,6 @@ export function AboutMe() {
         </div>
       </motion.section>
 
-      {/* Modal de galería con ambas imágenes */}
       <AnimatePresence>
         {isGalleryOpen && (
           <motion.div

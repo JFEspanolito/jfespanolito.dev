@@ -26,7 +26,7 @@ export function Certificate() {
 
   const CardContent = (cert: CertificateItem, index: number) => (
     <div className="flex flex-col h-full rounded-xl bg-slate-900 overflow-hidden">
-      <div className="w-full aspect-[16/9] relative bg-slate-950">
+      <div className="w-full aspect-video relative bg-slate-950">
         <Image
           src={cert.img}
           alt={cert.name}

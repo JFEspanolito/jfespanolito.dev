@@ -5,7 +5,8 @@ export const aboutData = {
     {
       name: "Jorge A. Falcón A.",
       nickname: "JFEspanolito",
-      role: "Líder de Desarrollo RPA & Full Stack .NET",
+      role: "Líder de Desarrollo RPA",
+      callToAction: "¡Hablemos de tus procesos!",
       headline: "Transformo procesos complejos en automatizaciones eficientes.",
       description: [
         [
@@ -30,26 +31,34 @@ export const aboutData = {
           },
         ],
       ],
-      avatarUrl: "/images/JFSelfie.webp",
-      logoUrl: "/images/JFLogo.webp",
-      location: "Ciudad de México, México",
-      social: [
+      contact: [
         {
           name: "LinkedIn",
           url: "https://www.linkedin.com/in/jfespanolito",
           icon: "linkedin",
         },
         {
+          name: "Telegram",
+          url: "https://t.me/jfespanolito",
+          icon: "telegram",
+        },
+        {
+          name: "Email",
+          url: "mailto:contact.jf@passinbox.com?subject=Contacto%20profesional&body=Hola%20Jorge,%0A%0AQuisiera%20hablar%20sobre%20...",
+          icon: "mail",
+        },
+      ],
+      social: [
+        {
           name: "Twitter (x)",
           url: "https://twitter.com/JFEspanolito",
           icon: "twitter",
         },
         {
-          name: "Telegram",
-          url: "https://t.me/jfespanolito",
-          icon: "telegram",
+          name: "Instagram",
+          url: "https://instagram.com/JFEspanolito",
+          icon: "instagram",
         },
-        { name: "Email", url: "mailto:contact.jf@passinbox.com", icon: "mail" },
         {
           name: "GitHub",
           url: "https://github.com/JFEspanolito",
@@ -61,6 +70,9 @@ export const aboutData = {
           icon: "wakaTime",
         },
       ],
+      avatarUrl: "/images/JFSelfie.webp",
+      logoUrl: "/images/JFLogo.webp",
+      location: "Ciudad de México, México",
     },
   ],
   EN: [
@@ -94,23 +106,29 @@ export const aboutData = {
       avatarUrl: "/images/JFSelfie.webp",
       logoUrl: "/images/JFLogo.webp",
       location: "Mexico City, Mexico",
-      social: [
+      contact: [
         {
           name: "LinkedIn",
           url: "https://www.linkedin.com/in/jfespanolito",
           icon: "linkedin",
         },
         {
-          name: "Twitter (x)",
-          url: "https://twitter.com/JFEspanolito",
-          icon: "twitter",
-        },
-        {
           name: "Telegram",
           url: "https://t.me/jfespanolito",
           icon: "telegram",
         },
-        { name: "Email", url: "mailto:contact.jf@passinbox.com", icon: "mail" },
+        {
+          name: "Email",
+          url: "mailto:contact.jf@passinbox.com?subject=Contacto%20profesional&body=Hola%20Jorge,%0A%0AQuisiera%20hablar%20sobre%20...",
+          icon: "mail",
+        },
+      ],
+      social: [
+        {
+          name: "Twitter (x)",
+          url: "https://twitter.com/JFEspanolito",
+          icon: "twitter",
+        },
         {
           name: "GitHub",
           url: "https://github.com/JFEspanolito",

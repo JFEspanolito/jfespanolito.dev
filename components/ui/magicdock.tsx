@@ -8,7 +8,7 @@ import {
   useTransform,
   AnimatePresence,
 } from "framer-motion";
-import { cn } from "@/libs/utils"; // Asegúrate que esta ruta sea correcta en tu proyecto
+import { cn } from "@/libs/utils";
 
 type SpringOptions = {
   stiffness?: number;
@@ -31,8 +31,8 @@ export type DockItemData = {
 
 export type MagicDockProps = {
   items: DockItemData[];
-  className?: string;      // Controla el estilo del CONTENEDOR (Panel)
-  itemClassName?: string;  // NUEVO: Controla el estilo de los BOTONES (Círculos)
+  className?: string;
+  itemClassName?: string;
   distance?: number;
   panelHeight?: number;
   baseItemSize?: number;
@@ -40,6 +40,9 @@ export type MagicDockProps = {
   magnification?: number;
   spring?: SpringOptions;
   variant?: "default" | "gradient" | "tooltip";
+  hoverAnimation?: boolean;
+  hoverDistance?: string;
+  labelPosition?: "top" | "bottom";
 };
 
 type DockItemProps = {
@@ -53,7 +56,10 @@ type DockItemProps = {
   setHoveredIndex: React.Dispatch<React.SetStateAction<number | null>>;
   hoveredIndex: number | null;
   isTouchDevice: boolean;
-  itemClassName?: string; // Pasamos la prop hacia abajo
+  itemClassName?: string;
+  hoverAnimation: boolean;
+  hoverDistance?: string;
+  labelPosition: "top" | "bottom";
 };
 
 function DockItem({
@@ -68,6 +74,9 @@ function DockItem({
   hoveredIndex,
   isTouchDevice,
   itemClassName,
+  hoverAnimation,
+  hoverDistance,
+  labelPosition,
 }: DockItemProps) {
   const ref = useRef<HTMLDivElement>(null);
   const mouseXMotion = useMotionValue(0);
@@ -119,11 +128,10 @@ function DockItem({
   const targetSize = useTransform(
     mouseXMotion,
     [-distance, 0, distance],
-    [baseItemSize, isTouchDevice ? baseItemSize : magnification, baseItemSize]
+    [baseItemSize, isTouchDevice || !hoverAnimation ? baseItemSize : magnification, baseItemSize]
   );
   const size = useSpring(targetSize, spring);
 
-  // Estilos base por defecto (si no se sobrescriben)
   const defaultItemStyles = "bg-black border-2 shadow-md border-neutral-700";
 
   return (
@@ -134,8 +142,8 @@ function DockItem({
         width: size,
         height: size,
       }}
-      onMouseEnter={() => !isTouchDevice && setHoveredIndex(item.id)}
-      onMouseLeave={() => !isTouchDevice && setHoveredIndex(null)}
+      onMouseEnter={() => !isTouchDevice && hoverAnimation && setHoveredIndex(item.id)}
+      onMouseLeave={() => !isTouchDevice && hoverAnimation && setHoveredIndex(null)}
       onMouseMove={handleItemMouseMove}
       onClick={item.onClick}
       tabIndex={0}
@@ -145,12 +153,18 @@ function DockItem({
       <motion.div
         className={cn(
           "relative flex h-full w-full items-center justify-center rounded-full transition-colors duration-300",
-          // Aplicamos estilos por defecto SOLO si no hay variante especial
-          // Pero permitimos que itemClassName gane siempre
           defaultItemStyles,
-          itemClassName // <--- AQUÍ LA MAGIA: Tus clases personalizadas ganan
+          itemClassName
         )}
         initial={{}}
+        animate={{
+          y: hoveredIndex === item.id && hoverDistance ? `-${hoverDistance}` : "0rem",
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 300,
+          damping: 20,
+        }}
       >
         {item.image ? (
           <img
@@ -167,10 +181,10 @@ function DockItem({
         <AnimatePresence>
           {hoveredIndex === item.id && (
             <motion.div
-              initial={{ opacity: 0, y: -8, scale: 0.8 }}
+              initial={{ opacity: 0, y: labelPosition === "top" ? -8 : 8, scale: 0.8 }}
               animate={{
                 opacity: 1,
-                y: -6,
+                y: labelPosition === "top" ? -6 : 6,
                 scale: 1,
                 transition: {
                   type: "spring",
@@ -178,7 +192,7 @@ function DockItem({
                   damping: 10,
                 },
               }}
-              exit={{ opacity: 0, y: -8, scale: 0.8 }}
+              exit={{ opacity: 0, y: labelPosition === "top" ? -8 : 8, scale: 0.8 }}
               style={
                 variant === "tooltip"
                   ? {
@@ -190,7 +204,9 @@ function DockItem({
               }
               className={cn(
                 "absolute z-50 -translate-x-1/2 flex-col items-center justify-center rounded-md bg-black px-4 py-2 text-xs shadow-xl",
-                variant === "tooltip" ? "-top-12" : "-top-10"
+                labelPosition === "top" 
+                  ? (variant === "tooltip" ? "-top-12" : "-top-10")
+                  : (variant === "tooltip" ? "-bottom-12" : "-bottom-10")
               )}
             >
               <div className="relative z-30 text-base font-bold text-white">
@@ -210,7 +226,7 @@ function DockItem({
 export default function MagicDock({
   items,
   className = "",
-  itemClassName = "", // Nueva prop
+  itemClassName = "",
   spring = { mass: 0.1, stiffness: 150, damping: 12 },
   magnification = 70,
   distance = 150,
@@ -218,6 +234,9 @@ export default function MagicDock({
   dockHeight = 256,
   baseItemSize = 50,
   variant = "default",
+  hoverAnimation = true,
+  hoverDistance,
+  labelPosition = "bottom",
 }: MagicDockProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
@@ -258,21 +277,20 @@ export default function MagicDock({
     >
       <motion.div
         onMouseMove={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-          if (!isTouchDevice) {
+          if (!isTouchDevice && hoverAnimation) {
             isHovered.set(1);
             mouseX.current = e.pageX;
           }
         }}
         onMouseLeave={() => {
-          if (!isTouchDevice) {
+          if (!isTouchDevice && hoverAnimation) {
             isHovered.set(0);
             mouseX.current = Infinity;
           }
         }}
-        // Aquí aplicamos el estilo por defecto, PERO permitimos que 'className' lo sobrescriba
         className={cn(
           `fixed bottom-4 left-1/2 transform -translate-x-1/2 flex items-end w-fit gap-4 rounded-2xl border-neutral-700/50 border-2 pb-2 px-4 z-50 ${getBgStyles()}`,
-          className // <--- AQUÍ LA MAGIA: Tus clases del contenedor ganan
+          className
         )}
         style={{ height: panelHeight }}
         role="toolbar"
@@ -291,7 +309,10 @@ export default function MagicDock({
             setHoveredIndex={setHoveredIndex}
             hoveredIndex={hoveredIndex}
             isTouchDevice={isTouchDevice}
-            itemClassName={itemClassName} // Pasamos la personalización de items
+            itemClassName={itemClassName}
+            hoverAnimation={hoverAnimation}
+            hoverDistance={hoverDistance}
+            labelPosition={labelPosition}
           />
         ))}
       </motion.div>

@@ -7,6 +7,7 @@ import { Mail } from "@/components/icons/mail";
 import { Github } from "@/components/icons/github";
 import { Linkedin } from "@/components/icons/linkedin";
 import { Twitter } from "@/components/icons/twitter";
+import { Instagram } from "@/components/icons/instagram";
 import { Telegram } from "@/components/icons/telegram";
 import { Wakatime } from "@/components/icons/wakatime";
 
@@ -27,6 +28,8 @@ const getIcon = (iconName: string, size: 1 | 2 | 3 = 2) => {
       return <Github className={iconClass} />;
     case "linkedin":
       return <Linkedin className={iconClass} />;
+    case "instagram":
+      return <Instagram className={iconClass} />;
     case "twitter":
       return <Twitter className={iconClass} />;
     case "telegram":
@@ -42,28 +45,59 @@ export function SocialDock() {
   const profile = aboutData.ES[0];
   if (!profile) return null;
 
-  const dockItems = profile.social.map((social, index) => ({
+  const dockSocialItems = profile.social.map((social, index) => ({
     id: index,
     icon: getIcon(social.icon, 3),
     label: social.name,
     onClick: () => window.open(social.url, "_blank"),
   }));
 
+  const dockContactItems = profile.contact.map((contact, index) => ({
+    id: index,
+    icon: getIcon(contact.icon, 3),
+    label: contact.name,
+    onClick: () => window.open(contact.url, "_blank"),
+  }));
+
   return (
-    <motion.div
-      className="fixed bottom-0 left-1/2 -translate-x-1/2 translate-y-1 z-50"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.2 }}
-    >
-      <StylishDock
-        items={dockItems}
-        baseItemSize={40}
-        magnification={60}
-        panelHeight={50}
-        className="bg-transparent border-none shadow-none flex items-center"
-        itemClassName="bg-transparent border-none shadow-none"
-      />
-    </motion.div>
+    <>
+      <motion.div
+        className="fixed top-6 left-1/100 z-50"
+        initial={{ opacity: 0, x: 400, y: -20 }}
+        animate={{ opacity: 1, x: 400, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
+        <StylishDock
+          items={dockContactItems}
+          baseItemSize={40}
+          magnification={60}
+          panelHeight={50}
+          className="bg-transparent border-none shadow-none flex items-center"
+          itemClassName="bg-transparent border-none shadow-none"
+          hoverAnimation={true}
+          hoverDistance="0"
+          labelPosition="bottom"
+        />
+      </motion.div>
+
+      <motion.div
+        className="fixed top-6 right-1/100 z-50"
+        initial={{ opacity: 0, x: -400, y: -20 }}
+        animate={{ opacity: 1, x: -400, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
+        <StylishDock
+          items={dockSocialItems}
+          baseItemSize={40}
+          magnification={60}
+          panelHeight={50}
+          className="bg-transparent border-none shadow-none flex items-center"
+          itemClassName="bg-transparent border-none shadow-none"
+          hoverAnimation={true}
+          hoverDistance="0"
+          labelPosition="bottom"
+        />
+      </motion.div>
+    </>
   );
 }
