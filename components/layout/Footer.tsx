@@ -24,12 +24,8 @@ export function Footer() {
             <Github className="w-4 h-4 fill-current group-hover:scale-110 transition-transform" />
             <span className="leading-none">Código disponible en GitHub</span>
           </a>
-
           {/* Derecha: Copyright */}
-          <p
-            className="text-md text-white font-light leading-none text-align-right hover:text-(--secondary-accent)"
-            style={{ marginBottom: 0 }}
-          >
+          <p className="text-md text-white font-light text-right hover:text-(--secondary-accent) m-0">
             © {year} — Este sitio no reclama derechos exclusivos.
           </p>
         </div>
