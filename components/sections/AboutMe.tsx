@@ -11,6 +11,7 @@ import { Telegram } from "@/components/icons/telegram";
 import { Wakatime } from "@/components/icons/wakatime";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const getIcon = (iconName: string, size: 1 | 2 | 3 = 1) => {
   const iconSizes = {
@@ -40,8 +41,8 @@ const getIcon = (iconName: string, size: 1 | 2 | 3 = 1) => {
 };
 
 export function AboutMe() {
-  const lang = "ES";
-  const profile = aboutData[lang]?.[0];
+  const { language } = useLanguage();
+  const profile = aboutData[language]?.[0];
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 

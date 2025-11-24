@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Badge } from "../ui/badge";
 import Card from "../ui/card";
 import { Github } from "@/components/icons/github";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type ProjectItem = (typeof projectsData.ES)[number];
 

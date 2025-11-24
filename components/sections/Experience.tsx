@@ -14,10 +14,11 @@ import {
 } from "@/components/ui/card-flip";
 import { experienceData } from "@/data/resume";
 import { Badge } from "../ui/badge";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function Experience() {
-  const lang = "ES";
-  const jobs = experienceData[lang] || [];
+  const { language, t } = useLanguage();
+  const jobs = experienceData[language] || [];
 
   return (
     <motion.section
