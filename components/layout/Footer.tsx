@@ -1,8 +1,4 @@
-import Link from "next/link";
-import Image from "next/image";
-import { aboutData } from "@/data/about";
 import { Github } from "@/components/icons/github";
-import { SocialDock } from "@/components/layout/SocialDock";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -16,7 +12,7 @@ export function Footer() {
         >
           {/* Izquierda: GitHub */}
           <a
-            href="https://github.com/JFEspanolito/jfespanolito.com"
+            href="https://github.com/JFEspanolito/jfespanolito.dev"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-md text-white hover:text-(--secondary-accent) transition-colors group"
@@ -24,12 +20,8 @@ export function Footer() {
             <Github className="w-4 h-4 fill-current group-hover:scale-110 transition-transform" />
             <span className="leading-none">Código disponible en GitHub</span>
           </a>
-
           {/* Derecha: Copyright */}
-          <p
-            className="text-md text-white font-light leading-none text-align-right hover:text-(--secondary-accent)"
-            style={{ marginBottom: 0 }}
-          >
+          <p className="text-md text-white font-light text-right hover:text-(--secondary-accent) m-0">
             © {year} — Este sitio no reclama derechos exclusivos.
           </p>
         </div>

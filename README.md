@@ -1,207 +1,86 @@
-# MyNextJFTemplate
+## jfespanolito.dev: Portafolio Digital de Alto Rendimiento
 
-Boilerplate minimal para **Next.js 16 (App Router)** con:
+jfespanolito.dev es mi plataforma de presentación profesional. He diseñado este portafolio digital como un showcase directo y conciso de mi trayectoria, experiencia y competencia técnica en el desarrollo web frontend.
 
-- TypeScript
-- Tailwind CSS + DaisyUI
-- Autenticación con NextAuth
-- MongoDB/Mongoose
-- Estructura básica de layout, páginas y API routes
-
-Pensado para servir como plantilla base para nuevos proyectos.
-
-
-## ⚙️ Stack
-
-- **Framework:** Next.js 16 (App Router + Turbopack)
-- **Lenguaje:** TypeScript (`.ts` / `.tsx`)
-- **UI:** Tailwind CSS + DaisyUI
-- **Auth:** NextAuth.js
-- **DB:** MongoDB + Mongoose
-- **Email / Payments (opcional):** Resend, Stripe
+Elegí construirlo como una aplicación Next.js standalone y estática para garantizar la máxima velocidad de carga y rendimiento. Mi objetivo principal fue la optimización de la experiencia de usuario (UX), enfocándome en la accesibilidad inmediata a mis proyectos clave y mi CV. Este sitio es un ejemplo práctico de mi capacidad para entregar soluciones web rápidas y bien estructuradas.
 
 ---
 
-## 📁 Estructura básica
+## 🛠️ Tecnologías Clave
 
-```
-app/
-  api/...           # Rutas API (route.ts)
-  layout.tsx        # Layout global
-  page.tsx          # Home
-  error.tsx         # Error boundary
-  not-found.tsx     # 404
+Este proyecto está construido sobre un stack de desarrollo moderno y escalable, primando el rendimiento y la mantenibilidad.
 
-components/
-  buttons/
-  layout/
-  pagination/
-  sections/
-  ui/
-
-libs/
-  api.ts            # Helpers HTTP
-  gpt.ts            # Utilidades IA (opcional)
-  mongo.ts          # conexión MongoDB (driver)
-  mongoose.ts       # conexión Mongoose
-  next-auth.ts      # config NextAuth
-  resend.ts         # emails
-  seo.tsx           # SEO helpers
-  stripe.ts         # Stripe helpers
-
-models/
-  Lead.ts
-  User.ts
-  plugins/toJSON.ts
-
-config.ts           # Config del proyecto (nombre, dominio, stripe, etc.)
-styles/globals.css  # Estilos globales
-````
-
-Alias de rutas configurado con `@/` (ver `tsconfig.json`).
+| Categoría                        | Herramientas Utilizadas                            | Justificación y Función                                                                                                      |
+| :------------------------------- | :------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------- |
+| **Frontend Principal**           | **Next.js 16 (App Router), React 19**              | Marco de desarrollo principal para rendimiento, _Server Components_ (aunque estáticos) y organización del código.            |
+| **Estilización**                 | **Tailwind CSS**, `clsx`, `tailwind-merge`         | Desarrollo rápido de UI responsiva, clases atómicas y manejo eficiente de conflictos de estilos.                             |
+| **Interactividad y Animación**   | **Framer Motion**, `@headlessui/react`             | Creación de animaciones fluidas y componentes de UI accesibles (botones, _modals_, menús).                                   |
+| **Iconografía**                  | **Heroicons**, **Lucide React**                    | Conjuntos de iconos profesionales para mejorar la usabilidad y estética.                                                     |
+| **Observabilidad**               |  `nextjs-toploader`       | Monitoreo de rendimiento en producción y barra de carga de navegación para mejor UX.                                         |
+| **Comunicaciones y _Marketing_** | `crisp-sdk-web`, `nodemailer`, `resend`            | Integración para chat en vivo y funcionalidad de formulario de contacto/emailing.                                            |
+| **Utilidades de Desarrollo**     | `next-sitemap`, `react-hot-toast`, `react-tooltip` | Generación de Sitemaps, notificaciones de usuario y _tooltips_ interactivos.                                                 |
 
 ---
 
-## ✅ Requisitos
+## 🚀 Despliegue y Acceso
 
-* Node.js **18+**
-* Gestor de paquetes (recomendado: **pnpm**)
-* Instancia de **MongoDB** si vas a usar auth/db
+El sitio web está desplegado y optimizado para la máxima velocidad de carga.
 
----
-
-## 🚀 Uso rápido
-
-Clonar e instalar:
-
-```
-git clone https://github.com/JFEspanolito/MyNextJFTemplate.git
-cd MyNextJFTemplate
-pnpm install
-```
-
-Variables de entorno:
-
-```
-cp .env.example .env.local
-```
-
-Edita `.env.local` con tus valores reales:
-
-```
-NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_SECRET=tu-secret
-MONGODB_URI=tu-uri-mongodb
-
-GOOGLE_CLIENT_ID=...
-GOOGLE_CLIENT_SECRET=...
-
-STRIPE_SECRET_KEY=...
-STRIPE_WEBHOOK_SECRET=...
-RESEND_API_KEY=...
-```
-
-Desarrollo:
-
-```
-pnpm dev
-# http://localhost:3000
-```
-
-Build / producción:
-
-```
-pnpm build
-pnpm start
-```
-
-Lint:
-
-```
-pnpm lint
-```
+**Website Oficial:** `www.jfespanolito.dev/`
 
 ---
 
-## 🧩 Configuración del proyecto
+## ⚙️ Instalación y Ejecución Local
 
-### `config.ts`
+Para clonar y ejecutar el portafolio en su entorno local, siga los siguientes pasos:
 
-Archivo central de configuración (nombre, dominio, marketing, Stripe, AWS, etc.).
-Busca y reemplaza los placeholders:
+1.  **Clonar el repositorio:**
+    `git clone https://github.com/JFEspanolito/jfespanolito.dev.git`
+2.  **Acceder al directorio e instalar dependencias (usando pnpm):**
+    `cd jfespanolito.dev`
+    `pnpm install`
+3.  **Ejecutar el servidor de desarrollo:**
+    `pnpm run dev`
 
-* `<PROJECT_NAME>`
-* `<PROJECT_DESCRIPTION>`
-* `<PROJECT_DOMAIN>`
-* `<PROJECT_SUPPORT_EMAIL>`
-* `<PROJECT_TAGLINE>`
-* `<STRIPE_TEST_PRICE_ID>` / `<STRIPE_PROD_PRICE_ID>` …
-* `<AWS_BUCKET_NAME>` / `<AWS_CDN_DOMAIN>`
-
-Puedes localizar pendientes con:
-
-```
-grep -R "<PROJECT_" . \
-  --exclude-dir=node_modules \
-  --exclude-dir=.next
-```
+El sitio estará accesible en `http://localhost:3000`.
 
 ---
 
-## 🧷 Alias `@/`
+## 📂 Estructura del Proyecto
 
-Alias `@/` apuntando a la raíz del proyecto:
+La organización sigue la convención del App Router de Next.js, con una clara separación entre la lógica de la aplicación y la presentación de la UI.
+
+| Directorio   | Contenido y Propósito                                                                                                                             |
+| :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `app`        | Rutas y _layouts_ principales de Next.js (`layout.tsx`, `page.tsx`).                                                                              |
+| `components` | Módulos reutilizables de React. Incluye subdirectorios para `ui`, `sections`, `layout`, e `icons`.                                                |
+| `data`       | Archivos de configuración y contenido estático (`about.ts`, `projects.ts`, `resume.ts`). **Es la fuente de verdad del contenido del portafolio.** |
+| `libs`       | Funciones y utilidades de _backend_ (e.g., lógica de _emailing_ con Resend/Nodemailer).                                                           |
+| `public`     | Archivos estáticos como imágenes (incluyendo certificados), _favicons_ y otros activos.                                                           |
+| `scripts`    | Scripts auxiliares para procesamiento de activos (ej. conversión de imágenes a `.webp`).                                                          |
+| `styles`     | Hoja de estilos principal (`globals.css`).                                                                                                        |
+| `config.ts`  | **Archivo de configuración centralizada** para datos del sitio (dominio, nombre, metadatos, etc.).                                                |
+
+---
+
+## 💡 Atribución de Componentes UI
+
+Los componentes localizados en el directorio `components/ui` han sido **inspirados y adaptados** a mis requerimientos a partir de la librería de código abierto:
+
+> [ScrollX UI](https://www.scrollxui.dev/docs/components)
+
+---
+
+## 💻 Configuración de Entorno
+
+**Configuración Recomendada para VS Code:**
+
+El proyecto incluye una configuración de anidamiento de archivos (_file nesting_) en el `settings.json` para VS Code. Esta configuración agrupa archivos relacionados (ej. archivos de configuración) bajo su archivo principal (ej. `package.json`), mejorando la **legibilidad del explorador de archivos**.
 
 ```
-{
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./*"]
-    },
-    "moduleResolution": "bundler",
-    "jsx": "preserve",
-    ...
-  }
+"explorer.fileNesting.enabled": true,
+"explorer.fileNesting.patterns": {
+  "package.json": "config.js,.eslintrc.json, next.config.js, package-lock.json, postcss.config.js, tailwind.config.ts, jsconfig.json, next-sitemap.config.js, tailwind.config.js,vercel.json,pnpm-lock.yaml,yarn.lock,tsconfig.json,postcss.config.mjs,next.config.ts,next-env.d.ts,eslint.config.mjs,.stylelintrc.json,config.ts",
+  "README.md": ".gitignore,.env.example, .env.local"
 }
-```
-
-Ejemplos:
-
-```
-import config from "@/config";
-import ClientLayout from "@/components/layout/LayoutClient";
-import { getSEOTags } from "@/libs/seo";
-import "@/styles/globals.css";
-```
-
----
-
-## 🧱 Scripts útiles
-
-```
-pnpm dev      # Desarrollo
-pnpm build    # Build producción
-pnpm start    # Servir build
-pnpm lint     # ESLint
-```
-
----
-
-## 📝 Tree opcional del proyecto
-
-```
-tree -I '.git|.next|node_modules|.env.local' > tree.txt
-```
-
----
-
-## Config recomendada para VSCode
-
-```
-  "explorer.fileNesting.enabled": true,
-  "explorer.fileNesting.patterns": {
-    "package.json": "config.js,.eslintrc.json, next.config.js, package-lock.json, postcss.config.js, tailwind.config.ts, jsconfig.json, next-sitemap.config.js, tailwind.config.js,vercel.json,pnpm-lock.yaml,yarn.lock,tsconfig.json,postcss.config.mjs,next.config.ts,next-env.d.ts,eslint.config.mjs,.stylelintrc.json,config.ts",
-    "README.md": ".gitignore,.env.example, .env.local"
-  }
 ```

@@ -22,7 +22,8 @@ export function Experience() {
   return (
     <motion.section
       id="experience"
-      className="w-full py-20 bg-(--background-contrast)"
+      className="w-full py-20 bg-transparent"
+      style={{ backgroundColor: 'rgba(19, 16, 31, 0.6)' }}
       initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
       whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
@@ -44,7 +45,21 @@ export function Experience() {
                   // --- FRENTE ---
                   <CardFlipFront
                     key="front"
-                    className="h-full flex flex-col border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.03)] backdrop-blur-sm hover:border-(--primary) transition-colors p-6"
+                    onClick={() => {
+                      flip();
+                      // Scroll en móvil
+                      if (window.innerWidth < 768) {
+                        setTimeout(() => {
+                          document
+                            .getElementById(`job-${job.id}`)
+                            ?.scrollIntoView({
+                              behavior: "smooth",
+                              block: "start",
+                            });
+                        }, 100);
+                      }
+                    }}
+                    className="h-full flex flex-col border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.03)] backdrop-blur-sm hover:border-(--primary) transition-colors p-6 cursor-pointer relative"
                   >
                     <CardFlipHeader className="shrink-0">
                       <div className="mb-3">
@@ -78,65 +93,45 @@ export function Experience() {
                     </CardFlipContent>
 
                     <CardFlipFooter className="shrink-0 justify-center mt-auto">
-                      <button
-                        onClick={() => {
-                          flip();
-                          // Scroll en móvil
-                          if (window.innerWidth < 768) {
-                            setTimeout(() => {
-                              document
-                                .getElementById(`job-${job.id}`)
-                                ?.scrollIntoView({
-                                  behavior: "smooth",
-                                  block: "start",
-                                });
-                            }, 100);
-                          }
-                        }}
-                        className="text-2xl text-(----text-body) hover:text-(--secondary-accent) transition-colors flex items-center gap-1 cursor-pointer animate-pulse"
-                      >
-                        <p>Clic para detalles ↻</p>
-                      </button>
+                      <span className="text-2xl text-(----text-body) hover:text-(--secondary-accent) transition-colors flex items-center gap-1 animate-pulse">
+                        Clic para detalles ↻
+                      </span>
                     </CardFlipFooter>
                   </CardFlipFront>,
 
                   // --- DORSO ---
                   <CardFlipBack
                     key="back"
-                    className="h-full flex flex-col border-[rgba(255,255,255,0.08)] bg-[#161321] backdrop-blur-sm p-6"
+                    onClick={flip}
+                    className="h-full flex flex-col border-[rgba(255,255,255,0.08)] bg-[#161321] backdrop-blur-sm p-6 cursor-pointer hover:border-(--secondary-accent) transition-colors relative"
                   >
-                    <div className="flex-1">
-                      <h3 className="text-(--primary)] font-bold mb-6 text-lg uppercase tracking-wider text-center">
-                        Actividades
-                      </h3>
+                    <span className="absolute top-4 right-4 text-2xl text-(--secondary-accent)">
+                      ↻
+                    </span>
 
-                      <ul className="list-disc list-inside text-(--text-body) text-sm space-y-2 text-left w-full px-2">
-                        {job.activities?.map((activity) => (
-                          <li key={activity} className="leading-relaxed">
-                            {activity}
-                          </li>
-                        )) || <li className="list-none">{job.description}</li>}
-                      </ul>
+                    <h3 className="text-(--primary)] font-bold mb-1 text-lg uppercase tracking-wider text-center">
+                      Actividades
+                    </h3>
 
-                      <div className="flex flex-wrap gap-2 mt-6">
-                        {job.skills.map((skill) => (
-                          <Badge
-                            key={skill}
-                            className="bg-(--ring-color) text-(--text-body) border-0 text-x"
-                          >
-                            {skill}
-                          </Badge>
-                        ))}
-                      </div>
+                    <ul className="list-disc list-inside text-(--text-body) text-sm space-y-2 text-left w-full px-2">
+                      {job.activities?.map((activity) => (
+                        <li key={activity} className="leading-relaxed">
+                          {activity}
+                        </li>
+                      )) || <li className="list-none">{job.description}</li>}
+                    </ul>
+
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {job.skills.map((skill) => (
+                        <Badge
+                          key={skill}
+                          className="bg-(--ring-color) text-(--text-body) border-0 text-x"
+                        >
+                          {skill}
+                        </Badge>
+                      ))}
                     </div>
-
-                    <button
-                      onClick={flip}
-                      className="text-2xl text-(----text-body) hover:text-(--secondary-accent) underline-offset-4 mt-auto mb-6 text-center"
-                    >
-                      ↻ Volver
-                    </button>
-                  </CardFlipBack>
+                  </CardFlipBack>,
                 ]}
               </CardFlip>
             </div>

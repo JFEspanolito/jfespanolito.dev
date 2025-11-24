@@ -259,6 +259,8 @@ const TopSecretContent = ({
   }, [finalSize, finalDirection]);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+    
     const updateSize = () => {
       setSheetSize(calculateSize());
     };
@@ -354,6 +356,8 @@ const TopSecretContent = ({
   };
 
   useEffect(() => {
+    if (typeof document === "undefined") return;
+    
     if (isOpen) {
       document.body.style.overflow = "hidden";
       controls.start({
@@ -382,6 +386,8 @@ const TopSecretContent = ({
   }, [isOpen, controls, sheetSize]);
 
   useEffect(() => {
+    if (typeof document === "undefined") return;
+    
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isOpen) {
         onClose();

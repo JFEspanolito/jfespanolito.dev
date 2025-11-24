@@ -168,11 +168,12 @@ export function AboutMe() {
             transition={{ duration: 0.6 }}
           >
             <img src="/navi.webp" alt="Navi" className="w-10 h-10" />
-            ¡Hey, listen!
+            <span>¡Hey, listen!</span>
           </motion.div>
         )}
       </AnimatePresence>
 
+      {/* Image shower */}
       <AnimatePresence>
         {isGalleryOpen && (
           <motion.div

@@ -98,7 +98,7 @@ export function Project() {
 
   return (
     <motion.section
-      className="w-full py-20 bg-(--background)"
+      className="w-full py-20"
       initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
       whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
@@ -108,8 +108,6 @@ export function Project() {
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white tracking-tight">
           Proyectos
         </h2>
-
-        {/* CÓDIGO MODIFICADO AQUÍ */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 mt-8 auto-rows-fr">
           {mainCards.map((card) => (
             <div key={card.id} className="h-full min-h-[520px]">
