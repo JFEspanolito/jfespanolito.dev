@@ -117,7 +117,6 @@ export function TextSpotlight({
   const chars = text.split("");
   const shouldShowMobileReveal = animateOnPhone && isMobile;
 
-  // Valores por defecto si no se pasan props (para que no rompa)
   const defaultBaseClass = "text-gray-500"; // Color apagado por defecto
   const defaultLitClass = "text-white font-bold"; // Color encendido por defecto
 

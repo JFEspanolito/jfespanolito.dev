@@ -43,6 +43,7 @@ export function AboutMe() {
   const lang = "ES";
   const profile = aboutData[lang]?.[0];
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -137,7 +138,44 @@ export function AboutMe() {
             </p>
           ))}
         </div>
+
+        {/* --- Call to Action --- */}
+        {profile.callToAction && (
+          <div className="flex flex-wrap justify-center items-center gap-4 mt-4">
+            <button
+              className="px-6 py-3 bg-(--primary) text-white text-lg font-medium rounded-lg hover:bg-(--secondary-accent) transition-colors duration-300"
+              onClick={() => {
+                setShowAlert(true);
+                setTimeout(() => {
+                  setShowAlert(false);
+                }, 3000);
+              }}
+            >
+              {profile.callToAction}
+            </button>
+          </div>
+        )}
       </motion.section>
+
+      {/* Alerta "¡Hey, listen!" */}
+      <AnimatePresence>
+        {showAlert && (
+          <motion.div
+            className="fixed top-16 left-6 z-50 bg-(--secondary-accent) text-white px-6 py-3 rounded-lg shadow-lg font-bold text-lg flex items-center gap-3"
+            initial={{ opacity: 0, y: -20, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.8 }}
+            transition={{ duration: 0.3 }}
+          >
+            <img
+              src="/navi.webp"
+              alt="Navi"
+              className="w-8 h-8"
+            />
+            ¡Hey, listen!
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <AnimatePresence>
         {isGalleryOpen && (
