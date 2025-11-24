@@ -86,7 +86,7 @@ export function AboutMe() {
         </div>
 
         {/* --- LAYOUT --- */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-3 w-full max-w-5xl px-4">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-3 w-full max-w-6xl px-4">
           <div className="h-auto md:h-24 flex items-center justify-center min-w-[300px]">
             <TextSpotlight
               text={profile.name}

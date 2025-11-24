@@ -83,6 +83,8 @@ function DockItem({
   const isHovered = useMotionValue(0);
   const x = useMotionValue(0);
   const tooltipSpringConfig = { stiffness: 100, damping: 5 };
+  const [isStableHover, setIsStableHover] = useState(false);
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const rotate = useSpring(
     useTransform(x, [-100, 100], [-15, 15]),
@@ -134,6 +136,34 @@ function DockItem({
 
   const defaultItemStyles = "bg-black border-2 shadow-md border-neutral-700";
 
+  const handleMouseEnter = () => {
+    if (isTouchDevice) return;
+
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+
+    setIsStableHover(true);
+    setHoveredIndex(item.id);
+  };
+
+  const handleMouseLeave = () => {
+    if (isTouchDevice) return;
+
+    hoverTimeoutRef.current = setTimeout(() => {
+      setIsStableHover(false);
+      setHoveredIndex(null);
+    }, 100);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+      }
+    };
+  }, []);
+
   return (
     <motion.div
       ref={ref}
@@ -142,8 +172,8 @@ function DockItem({
         width: size,
         height: size,
       }}
-      onMouseEnter={() => !isTouchDevice && hoverAnimation && setHoveredIndex(item.id)}
-      onMouseLeave={() => !isTouchDevice && hoverAnimation && setHoveredIndex(null)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       onMouseMove={handleItemMouseMove}
       onClick={item.onClick}
       tabIndex={0}
@@ -158,12 +188,12 @@ function DockItem({
         )}
         initial={{}}
         animate={{
-          y: hoveredIndex === item.id && hoverDistance ? `-${hoverDistance}` : "0rem",
+          y: isStableHover && hoverDistance && hoverAnimation ? `-${hoverDistance}` : "0rem",
         }}
         transition={{
           type: "spring",
-          stiffness: 300,
-          damping: 20,
+          stiffness: 400,
+          damping: 30,
         }}
       >
         {item.image ? (

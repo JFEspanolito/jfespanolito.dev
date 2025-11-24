@@ -74,7 +74,7 @@ export function SocialDock() {
           panelHeight={50}
           className="bg-transparent border-none shadow-none flex items-center"
           itemClassName="bg-transparent border-none shadow-none"
-          hoverAnimation={true}
+          hoverAnimation={false}
           hoverDistance="0"
           labelPosition="bottom"
         />
@@ -93,7 +93,7 @@ export function SocialDock() {
           panelHeight={50}
           className="bg-transparent border-none shadow-none flex items-center"
           itemClassName="bg-transparent border-none shadow-none"
-          hoverAnimation={true}
+          hoverAnimation={false}
           hoverDistance="0"
           labelPosition="bottom"
         />

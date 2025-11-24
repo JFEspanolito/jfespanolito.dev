@@ -104,7 +104,7 @@ export function Project() {
       transition={{ duration: 0.5, ease: "easeOut" }}
       viewport={{ once: true, amount: 0.1 }}
     >
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white tracking-tight">
           Proyectos
         </h2>
