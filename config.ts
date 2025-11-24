@@ -10,8 +10,9 @@ const config = {
   // 🔧 PROYECTO BASE (reemplaza estos placeholders)
   // ======================================================
   appName: "Portafolio",
-  appDescription: "Website que funciona de portafolio personal.",
-  domainName: "jfespanolito.com", // sin https:// ni slash final
+  appDescription:
+    "Portal personal jfespanolito.dev: CV, trayectoria profesional y proyectos en desarrollo web.",
+  domainName: "jfespanolito.dev", // sin https:// ni slash final
 
   // ======================================================
   // 💬 SOPORTE / CONTACTO
@@ -22,62 +23,23 @@ const config = {
   },
 
   resend: {
-    fromNoReply: `<PROJECT_NAME> <noreply@resend.<PROJECT_DOMAIN>>`,
-    fromAdmin: `Admin at <PROJECT_NAME> <admin@resend.<PROJECT_DOMAIN>>`,
-    supportEmail: "<PROJECT_SUPPORT_EMAIL>",
+    fromNoReply: `contact@jfespanolito.dev`,
+    fromAdmin: `Admin at Portafolio <contact@jfespanolito.dev>`,
+    supportEmail: "contact@jfespanolito.dev",
   },
 
   // ======================================================
   // 📣 MARKETING
   // ======================================================
   marketing: {
-    tagline: "<PROJECT_TAGLINE>", // breve eslogan del proyecto
+    tagline: "Transformo procesos complejos en automatizaciones eficientes.", // breve eslogan del proyecto
     testimonials: {
-      headline: "X users are already building with <PROJECT_NAME>!",
-      subhead: "Short supportive line about social proof.",
+      headline: "Transformo procesos complejos en automatizaciones eficientes.",
+      subhead: "Transformo procesos complejos en automatizaciones eficientes.",
       items: [
         /* objetos como en defaultList */
       ],
     },
-  },
-  // ======================================================
-  // 💰 PLANES / STRIPE
-  // ======================================================
-  stripe: {
-    plans: [
-      {
-        priceId:
-          process.env.NODE_ENV === "development"
-            ? "<STRIPE_TEST_PRICE_ID>"
-            : "<STRIPE_PROD_PRICE_ID>",
-        name: "Starter",
-        description: "Perfect for small projects",
-        price: 79,
-        priceAnchor: 99,
-        features: [
-          { name: "Feature 1" },
-          { name: "Feature 2" },
-          { name: "Feature 3" },
-        ],
-      },
-      {
-        isFeatured: true,
-        priceId:
-          process.env.NODE_ENV === "development"
-            ? "<STRIPE_TEST_PRICE_ID_2>"
-            : "<STRIPE_PROD_PRICE_ID_2>",
-        name: "Advanced",
-        description: "For growing projects",
-        price: 99,
-        priceAnchor: 149,
-        features: [
-          { name: "Feature 1" },
-          { name: "Feature 2" },
-          { name: "Feature 3" },
-          { name: "Priority support" },
-        ],
-      },
-    ],
   },
 };
 

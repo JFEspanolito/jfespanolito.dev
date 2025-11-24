@@ -153,7 +153,7 @@ function DockItem({
     hoverTimeoutRef.current = setTimeout(() => {
       setIsStableHover(false);
       setHoveredIndex(null);
-    }, 50);
+    }, 200);
   };
 
   useEffect(() => {
@@ -171,6 +171,8 @@ function DockItem({
       style={{
         width: size,
         height: size,
+        padding: "8px",
+        margin: "-8px",
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -222,7 +224,12 @@ function DockItem({
                   damping: 15,
                 },
               }}
-              exit={{ opacity: 0, y: labelPosition === "top" ? -8 : 8, scale: 0.8 }}
+              exit={{ 
+                opacity: 0, 
+                y: labelPosition === "top" ? -8 : 8, 
+                scale: 0.8,
+                transition: { duration: 0.15 }
+              }}
               style={
                 variant === "tooltip"
                   ? {

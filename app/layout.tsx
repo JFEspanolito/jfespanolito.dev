@@ -5,7 +5,6 @@ import { aboutData } from "@/data/about";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { SocialDock } from "@/components/layout/SocialDock";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,8 +34,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-(--background) text-(--foreground)`}
       >
-        <SpeedInsights />
-
         {/* Contenido de la página */}
         {children}
 
