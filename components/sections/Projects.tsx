@@ -3,73 +3,60 @@
 import { projectsData } from "@/data/projects";
 import { motion } from "framer-motion";
 import { Badge } from "../ui/badge";
-import Image from "next/image";
 import Card from "../ui/card";
-import config from "@/config";
 import { Github } from "@/components/icons/github";
 
-export function Project() {
-  const mainCards = projectsData.ES.slice(0, 4).map((project, index) => ({
-    id: index + 1,
-    content: (
-      <div className="relative w-full h-full overflow-hidden flex flex-col">
-        {/* Imagen - mitad superior */}
-        <div className="h-1/2 w-full overflow-hidden relative bg-slate-950">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
+type ProjectItem = (typeof projectsData.ES)[number];
+
+const CardContent = (project: ProjectItem) => {
+  const hasLink = !!project.link?.trim();
+  const hasGithub = !!project.github?.trim();
+  const techList = project.tech ?? []; // evita crash si falta tech
+
+  return (
+    <div className="flex flex-col h-full overflow-hidden rounded-2xl bg-slate-900">
+      <div className="w-full aspect-[16/9] relative bg-slate-950 overflow-hidden">
+        <img
+          src={project.image || "/fallback.webp"} // evita crash si falta image
+          alt={project.title}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      </div>
+
+      <div className="p-4 flex flex-col flex-1 bg-linear-to-b from-slate-900 to-slate-800">
+        <h3 className="text-sm sm:text-lg font-bold mb-2 text-(--text-muted)">
+          {project.title}
+        </h3>
+
+        <p className="text-xs sm:text-sm text-gray-300 mb-3 flex-1">
+          {project.description}
+        </p>
+
+        <div className="flex flex-wrap gap-2 mb-3">
+          {techList.map((tech) => (
+            <Badge
+              key={tech}
+              className="bg-(--ring-color) text-(--text-body) border-0 text-x"
+            >
+              {tech}
+            </Badge>
+          ))}
         </div>
 
-        {/* Textos - mitad inferior */}
-        <div className="h-1/2 w-full bg-linear-to-b from-slate-900 to-slate-800 p-4 flex flex-col justify-between">
-          <div>
-            <h3 className="text-sm sm:text-lg font-bold mb-2 text-(--text-muted)">
-              {project.title}
-            </h3>
-            <p className="text-xs sm:text-sm text-gray-300 mb-3">
-              {project.description}
-            </p>
-            <div className="flex flex-wrap gap-2 mb-3">
-              {project.tech.map((tech) => (
-                <Badge
-                  key={tech}
-                  className="bg-(--ring-color) text-(--text-body) border-0 text-x"
-                >
-                  {tech}
-                </Badge>
-              ))}
-            </div>
-          </div>
-
-          {/* Botones de enlace */}
+        {(hasLink || hasGithub) && (
           <div className="flex gap-2 mt-2">
-            {project.link && (
+            {hasLink && (
               <a
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 px-3 py-2 bg-(--primary) text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-(--secondary-accent) transition-colors duration-300 text-center flex items-center justify-center gap-1"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  />
-                </svg>
                 Visitar
               </a>
             )}
-            {project.github && (
+
+            {hasGithub && (
               <a
                 href={project.github}
                 target="_blank"
@@ -81,9 +68,16 @@ export function Project() {
               </a>
             )}
           </div>
-        </div>
+        )}
       </div>
-    ),
+    </div>
+  );
+};
+
+export function Project() {
+  const mainCards = projectsData.ES.slice(0, 4).map((project, index) => ({
+    id: index + 1,
+    content: CardContent(project),
   }));
 
   return (
@@ -94,14 +88,14 @@ export function Project() {
       transition={{ duration: 0.5, ease: "easeOut" }}
       viewport={{ once: true, amount: 0.1 }}
     >
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white tracking-tight">
           Proyectos
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-8 auto-rows-fr">
           {mainCards.map((card) => (
-            <div key={card.id} className="h-[500px] w-full">
+            <div key={card.id} className="h-full min-h-[520px]">
               <Card content={card.content} />
             </div>
           ))}
