@@ -9,29 +9,41 @@ import { Github } from "@/components/icons/github";
 type ProjectItem = (typeof projectsData.ES)[number];
 
 const CardContent = (project: ProjectItem) => {
-  const hasLink = !!project.link?.trim();
+  const techList = project.tech ?? [];
+  const links = Array.isArray(project.link) ? project.link : [];
   const hasGithub = !!project.github?.trim();
-  const techList = project.tech ?? []; // evita crash si falta tech
 
   return (
     <div className="flex flex-col h-full overflow-hidden rounded-2xl bg-slate-900">
-      <div className="w-full aspect-[16/9] relative bg-slate-950 overflow-hidden">
+      {/* Imagen */}
+      <div className="w-full aspect-video relative bg-slate-950 overflow-hidden">
         <img
-          src={project.image || "/fallback.webp"} // evita crash si falta image
+          src={project.image || "/fallback.webp"}
           alt={project.title}
           className="absolute inset-0 w-full h-full object-cover"
         />
       </div>
 
+      {/* Contenido */}
       <div className="p-4 flex flex-col flex-1 bg-linear-to-b from-slate-900 to-slate-800">
+        {/* Título */}
         <h3 className="text-sm sm:text-lg font-bold mb-2 text-(--text-muted)">
           {project.title}
         </h3>
 
-        <p className="text-xs sm:text-sm text-gray-300 mb-3 flex-1">
+        {/* Status */}
+        {project.status && (
+          <span className="text-xs font-semibold text-(--secondary-accent) tracking-wide mb-3">
+            {project.status}
+          </span>
+        )}
+
+        {/* Descripción */}
+        <p className="text-xs sm:text-sm text-gray-300 mb-4 flex-1">
           {project.description}
         </p>
 
+        {/* TECNOLOGÍAS */}
         <div className="flex flex-wrap gap-2 mb-3">
           {techList.map((tech) => (
             <Badge
@@ -43,25 +55,29 @@ const CardContent = (project: ProjectItem) => {
           ))}
         </div>
 
-        {(hasLink || hasGithub) && (
-          <div className="flex gap-2 mt-2">
-            {hasLink && (
+        {/* BOTONES */}
+        {(links.length > 0 || hasGithub) && (
+          <div className="flex flex-col gap-2 mt-2">
+            {/* links dinámicos */}
+            {links.map((lnk, index) => (
               <a
-                href={project.link}
+                key={index}
+                href={lnk.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 px-3 py-2 bg-(--primary) text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-(--secondary-accent) transition-colors duration-300 text-center flex items-center justify-center gap-1"
+                className="w-full px-3 py-2 bg-(--primary) text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-(--secondary-accent) transition-colors duration-300 text-center flex items-center justify-center gap-1"
               >
-                Visitar
+                {lnk.label}
               </a>
-            )}
+            ))}
 
+            {/* GitHub */}
             {hasGithub && (
               <a
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 px-3 py-2 bg-gray-700 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-gray-600 transition-colors duration-300 text-center flex items-center justify-center gap-1"
+                className="w-full px-3 py-2 bg-gray-700 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-gray-600 transition-colors duration-300 text-center flex items-center justify-center gap-1"
               >
                 <Github className="h-4 w-4" />
                 GitHub
