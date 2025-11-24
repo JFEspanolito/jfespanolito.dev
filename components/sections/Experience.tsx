@@ -35,12 +35,11 @@ export function Experience() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 auto-rows-fr">
           {jobs.map((job) => (
-            <div
-              key={job.id}
-              className="flex h-full"
-              id={`job-${job.id}`}
-            >
-              <CardFlip className="flex w-full h-full" hideDefaultButtons={true}>
+            <div key={job.id} className="flex h-full" id={`job-${job.id}`}>
+              <CardFlip
+                className="flex w-full h-full"
+                hideDefaultButtons={true}
+              >
                 {({ flip }) => [
                   // --- FRENTE ---
                   <CardFlipFront
@@ -119,7 +118,7 @@ export function Experience() {
                         )) || <li className="list-none">{job.description}</li>}
                       </ul>
 
-                      <div className="flex flex-wrap gap-2 mt-6 mb-4">
+                      <div className="flex flex-wrap gap-2 mt-6">
                         {job.skills.map((skill) => (
                           <Badge
                             key={skill}
@@ -133,11 +132,11 @@ export function Experience() {
 
                     <button
                       onClick={flip}
-                      className="text-2xl text-(----text-body) hover:text-(--secondary-accent) underline-offset-4 mt-auto mb-2 text-center"
+                      className="text-2xl text-(----text-body) hover:text-(--secondary-accent) underline-offset-4 mt-auto mb-6 text-center"
                     >
-                      <p>↻ Volver</p>
+                      ↻ Volver
                     </button>
-                  </CardFlipBack>,
+                  </CardFlipBack>
                 ]}
               </CardFlip>
             </div>

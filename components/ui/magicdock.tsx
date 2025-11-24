@@ -153,7 +153,7 @@ function DockItem({
     hoverTimeoutRef.current = setTimeout(() => {
       setIsStableHover(false);
       setHoveredIndex(null);
-    }, 100);
+    }, 50);
   };
 
   useEffect(() => {
@@ -218,8 +218,8 @@ function DockItem({
                 scale: 1,
                 transition: {
                   type: "spring",
-                  stiffness: 260,
-                  damping: 10,
+                  stiffness: 400,
+                  damping: 15,
                 },
               }}
               exit={{ opacity: 0, y: labelPosition === "top" ? -8 : 8, scale: 0.8 }}
