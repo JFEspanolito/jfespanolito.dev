@@ -104,12 +104,13 @@ export function Project() {
       transition={{ duration: 0.5, ease: "easeOut" }}
       viewport={{ once: true, amount: 0.1 }}
     >
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white tracking-tight">
           Proyectos
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-8 auto-rows-fr">
+        {/* CÓDIGO MODIFICADO AQUÍ */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 mt-8 auto-rows-fr">
           {mainCards.map((card) => (
             <div key={card.id} className="h-full min-h-[520px]">
               <Card content={card.content} />

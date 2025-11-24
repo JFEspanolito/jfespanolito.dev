@@ -44,7 +44,7 @@ export const aboutData = {
         },
         {
           name: "Email",
-          url: "mailto:contact.jf@passinbox.com?subject=Contacto%20profesional&body=Hola%20Jorge,%0A%0AQuisiera%20hablar%20sobre%20...",
+          url: "mailto:contact@jfespanolito.dev?subject=Contacto%20profesional&body=Hola%20Jorge,%0A%0AQuisiera%20hablar%20sobre%20...",
           icon: "mail",
         },
       ],

@@ -46,14 +46,14 @@ export function SocialDock() {
   if (!profile) return null;
 
   const dockSocialItems = profile.social.map((social, index) => ({
-    id: index,
+    id: index + 1000,
     icon: getIcon(social.icon, 3),
     label: social.name,
     onClick: () => window.open(social.url, "_blank"),
   }));
 
   const dockContactItems = profile.contact.map((contact, index) => ({
-    id: index,
+    id: index + 2000,
     icon: getIcon(contact.icon, 3),
     label: contact.name,
     onClick: () => window.open(contact.url, "_blank"),
@@ -61,43 +61,68 @@ export function SocialDock() {
 
   return (
     <>
-      <motion.div
-        className="fixed top-6 left-1/100 z-50"
-        initial={{ opacity: 0, x: 400, y: -20 }}
-        animate={{ opacity: 1, x: 400, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-      >
-        <StylishDock
-          items={dockContactItems}
-          baseItemSize={40}
-          magnification={60}
-          panelHeight={50}
-          className="bg-transparent border-none shadow-none flex items-center"
-          itemClassName="bg-transparent border-none shadow-none"
-          hoverAnimation={true}
-          hoverDistance="0"
-          labelPosition="bottom"
-        />
-      </motion.div>
+      {/* Desktop */}
+      <div className="hidden md:block">
+        <motion.div
+          className="fixed top-6 left-1/100 z-50"
+          initial={{ opacity: 0, x: 400, y: -20 }}
+          animate={{ opacity: 1, x: 400, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <StylishDock
+            items={dockContactItems}
+            baseItemSize={40}
+            magnification={60}
+            panelHeight={50}
+            className="bg-transparent border-none shadow-none flex items-center"
+            itemClassName="bg-transparent border-none shadow-none"
+            hoverAnimation={false}
+            hoverDistance="0"
+            labelPosition="bottom"
+          />
+        </motion.div>
 
-      <motion.div
-        className="fixed top-6 right-1/100 z-50"
-        initial={{ opacity: 0, x: -400, y: -20 }}
-        animate={{ opacity: 1, x: -400, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-      >
-        <StylishDock
-          items={dockSocialItems}
-          baseItemSize={40}
-          magnification={60}
-          panelHeight={50}
-          className="bg-transparent border-none shadow-none flex items-center"
-          itemClassName="bg-transparent border-none shadow-none"
-          hoverAnimation={true}
-          hoverDistance="0"
-          labelPosition="bottom"
-        />
-      </motion.div>
+        <motion.div
+          className="fixed top-6 right-1/100 z-50"
+          initial={{ opacity: 0, x: -400, y: -20 }}
+          animate={{ opacity: 1, x: -400, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <StylishDock
+            items={dockSocialItems}
+            baseItemSize={40}
+            magnification={60}
+            panelHeight={50}
+            className="bg-transparent border-none shadow-none flex items-center"
+            itemClassName="bg-transparent border-none shadow-none"
+            hoverAnimation={false}
+            hoverDistance="0"
+            labelPosition="bottom"
+          />
+        </motion.div>
+      </div>
+
+      {/* Mobile */}
+      <div className="block md:hidden">
+        <motion.div
+          className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+        >
+          <StylishDock
+            items={[...dockContactItems, ...dockSocialItems]}
+            baseItemSize={34}
+            magnification={34}
+            panelHeight={46}
+            distance={120}
+            className="bg-black/60 backdrop-blur-md border-neutral-700/40"
+            itemClassName="bg-transparent border-none shadow-none"
+            hoverAnimation={false}
+            labelPosition="top"
+          />
+        </motion.div>
+      </div>
     </>
   );
 }

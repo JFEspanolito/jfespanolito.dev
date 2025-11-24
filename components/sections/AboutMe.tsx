@@ -43,6 +43,7 @@ export function AboutMe() {
   const lang = "ES";
   const profile = aboutData[lang]?.[0];
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -86,7 +87,7 @@ export function AboutMe() {
         </div>
 
         {/* --- LAYOUT --- */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-3 w-full max-w-5xl px-4">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-3 w-full max-w-6xl px-4">
           <div className="h-auto md:h-24 flex items-center justify-center min-w-[300px]">
             <TextSpotlight
               text={profile.name}
@@ -137,7 +138,40 @@ export function AboutMe() {
             </p>
           ))}
         </div>
+
+        {/* --- Call to Action --- */}
+        {profile.callToAction && (
+          <div className="flex flex-wrap justify-center items-center gap-4 mt-4">
+            <button
+              className="px-6 py-3 bg-(--primary) text-white text-lg font-medium rounded-lg hover:bg-(--secondary-accent) transition-colors duration-300"
+              onClick={() => {
+                setShowAlert(true);
+                setTimeout(() => {
+                  setShowAlert(false);
+                }, 3000);
+              }}
+            >
+              {profile.callToAction}
+            </button>
+          </div>
+        )}
       </motion.section>
+
+      {/* Alerta "¡Hey, listen!" */}
+      <AnimatePresence>
+        {showAlert && (
+          <motion.div
+            className="fixed top-16 left-6 z-50 bg-transparent text-(--secondary-accent) px-3 py-2 rounded-lg shadow-lg font-bold text-lg flex items-center gap-2"
+            initial={{ opacity: 0, x: 300, y: -20, scale: 1 }}
+            animate={{ opacity: 1, x: 300, y: -5, scale: 1 }}
+            exit={{ opacity: 0, y: 0, scale: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            <img src="/navi.webp" alt="Navi" className="w-10 h-10" />
+            ¡Hey, listen!
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <AnimatePresence>
         {isGalleryOpen && (

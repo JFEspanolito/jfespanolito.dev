@@ -143,7 +143,6 @@ const TopSecretOverlay = forwardRef<HTMLDivElement, TopSecretOverlayProps>(
       [onOpenChange]
     );
 
-    // Filtrar props de HTML que conflictúan con Framer Motion
     const {
       onDrag,
       onDragStart,
@@ -227,7 +226,6 @@ const TopSecretContent = ({
 }: TopSecretContentProps) => {
   const { isOpen, onOpenChange, contentProps } = useTopSecretContext();
   
-  // Usar props del context si no se pasan directamente
   const finalSize = size ?? contentProps.size;
   const finalDirection = direction ?? contentProps.direction;
   
@@ -271,7 +269,6 @@ const TopSecretContent = ({
     return () => window.removeEventListener("resize", updateSize);
   }, [calculateSize]);
 
-  // Calcular posiciones iniciales y animaciones según dirección
   const getInitialPosition = () => {
     switch (finalDirection) {
       case "top":
