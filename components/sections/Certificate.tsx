@@ -17,85 +17,54 @@ import {
 import { useState } from "react";
 import ButtonBasic from "@/components/buttons/ButtonBasic";
 
+type CertificateItem = (typeof certificatesData.ES)[number];
+
 export function Certificate() {
   const lang = "ES";
-  const totalCertificates = certificatesData.ES.length;
-  const mainCards = certificatesData.ES.slice(0, 4).map((cert, index) => ({
-    id: index + 1,
-    content: (
-      <div className="relative w-full h-full overflow-hidden flex flex-col">
-        {/* Imagen - mitad superior */}
-        <div className="h-1/2 w-full overflow-hidden relative bg-slate-950">
-          <Image
-            src={cert.img}
-            alt={cert.name}
-            fill
-            className="object-cover"
-            quality={95}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            priority={index < 2}
-          />
-        </div>
+  const list = certificatesData[lang];
+  const totalCertificates = list.length;
 
-        {/* Textos - mitad inferior */}
-        <div className="h-1/2 w-full bg-linear-to-b from-slate-900 to-slate-800 p-4 flex flex-col justify-center overflow-y-auto">
-          <h3 className="text-sm sm:text-lg font-bold mb-2 text-(--text-muted)">
-            {cert.name}
-          </h3>
-          <p className="text-xs sm:text-sm text-gray-300">
-            {cert.resume}
-          </p>
-          {cert.date && (
-            <p className="text-xs text-(--secondary-accent) mt-2">
-              {new Date(cert.date).toLocaleDateString("es-ES", {
-                year: "numeric",
-                month: "long",
-              })}
-            </p>
-          )}
-        </div>
+  const CardContent = (cert: CertificateItem, index: number) => (
+    <div className="flex flex-col h-full rounded-xl bg-slate-900 overflow-hidden">
+      <div className="w-full aspect-[16/9] relative bg-slate-950">
+        <Image
+          src={cert.img}
+          alt={cert.name}
+          fill
+          className="object-cover"
+          quality={95}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          loading={index === 0 ? "eager" : "lazy"}
+          priority={index === 0}
+        />
       </div>
-    ),
-  }));
-  const restCards = certificatesData.ES.slice(5, totalCertificates).map(
-    (cert, index) => ({
-      id: index + 1,
-      content: (
-        <div className="relative w-full h-full overflow-hidden flex flex-col">
-          {/* Imagen - mitad superior */}
-          <div className="h-1/2 w-full overflow-hidden relative bg-slate-950">
-            <Image
-              src={cert.img}
-              alt={cert.name}
-              fill
-              className="object-cover"
-              quality={95}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              priority={index < 2}
-            />
-          </div>
 
-          {/* Textos - mitad inferior */}
-          <div className="h-1/2 w-full bg-linear-to-b from-slate-900 to-slate-800 p-4 flex flex-col justify-center overflow-y-auto">
-            <h3 className="text-sm sm:text-lg font-bold mb-2 text-(--text-muted)">
-              {cert.name}
-            </h3>
-            <p className="text-xs sm:text-sm text-gray-300">
-              {cert.resume}
-            </p>
-            {cert.date && (
-              <p className="text-xs text-(--secondary-accent) mt-2">
-                {new Date(cert.date).toLocaleDateString("es-ES", {
-                  year: "numeric",
-                  month: "long",
-                })}
-              </p>
-            )}
-          </div>
-        </div>
-      ),
-    })
+      <div className="p-4 flex flex-col flex-1">
+        <h3 className="text-sm sm:text-lg font-bold mb-2 text-(--text-muted)">
+          {cert.name}
+        </h3>
+        <p className="text-xs sm:text-sm text-gray-300 flex-1">{cert.resume}</p>
+        {cert.date && (
+          <p className="text-xs text-(--secondary-accent) mt-3">
+            {new Date(cert.date).toLocaleDateString("es-ES", {
+              year: "numeric",
+              month: "long",
+            })}
+          </p>
+        )}
+      </div>
+    </div>
   );
+
+  const mainCards = list.slice(0, 4).map((cert, index) => ({
+    id: index + 1,
+    content: CardContent(cert, index),
+  }));
+
+  const restCards = list.slice(4, totalCertificates).map((cert, index) => ({
+    id: index + 1,
+    content: CardContent(cert, index),
+  }));
 
   return (
     <motion.section

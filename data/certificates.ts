@@ -1033,4 +1033,4 @@ export const certificatesData = {
       date: "2012",
     },
   ],
-};
+} as const;

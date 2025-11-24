@@ -87,14 +87,14 @@ export function Project() {
   }));
 
   return (
-    <>
-      <motion.section
-        className="flex flex-col items-center justify-center text-center py-20 space-y-10"
-        initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
-        whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.2 }}
-      >
+    <motion.section
+      className="w-full py-20 bg-(--background)"
+      initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
+      whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.1 }}
+    >
+      <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white tracking-tight">
           Proyectos
         </h2>
@@ -106,7 +106,7 @@ export function Project() {
             </div>
           ))}
         </div>
-      </motion.section>
-    </>
+      </div>
+    </motion.section>
   );
 }
