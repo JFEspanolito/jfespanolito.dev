@@ -1,10 +1,3 @@
-// Actualizar los siguientes campos:
-// <PROJECT_NAME>
-// <PROJECT_DESCRIPTION>
-// <PROJECT_DOMAIN>
-// <PROJECT_SUPPORT_EMAIL>
-// <PROJECT_TAGLINE>
-
 const config = {
   // ======================================================
   // 🔧 PROYECTO BASE (reemplaza estos placeholders)
