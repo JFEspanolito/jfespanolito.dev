@@ -32,16 +32,17 @@ function CardFlip({
   useEffect(() => {
     const calculateMaxHeight = () => {
       if (frontRef.current && backRef.current) {
-        // Usamos offsetHeight para obtener la altura del contenido renderizado
-        const frontHeight = frontRef.current.offsetHeight;
-        const backHeight = backRef.current.offsetHeight;
+        // Usamos scrollHeight para obtener la altura real del contenido
+        const frontHeight = frontRef.current.scrollHeight;
+        const backHeight = backRef.current.scrollHeight;
         const max = Math.max(frontHeight, backHeight);
         setMaxHeight(max);
       }
     };
 
+    // Calcular inmediatamente y después de un pequeño delay
     calculateMaxHeight();
-    const timeoutId = setTimeout(calculateMaxHeight, 100);
+    const timeoutId = setTimeout(calculateMaxHeight, 50);
 
     const resizeObserver = new ResizeObserver(calculateMaxHeight);
     if (frontRef.current) resizeObserver.observe(frontRef.current);
@@ -55,10 +56,11 @@ function CardFlip({
 
   return (
     <div // h-full para heredar la altura del Grid, min-h para evitar colapso inicial
-      className={cn("relative w-full h-full min-h-[250px]", className)}
+      className={cn("relative w-full h-full", className)}
       style={{
-        perspective: "1000px", // Altura establecida por el cálculo de React
+        perspective: "1000px",
         height: maxHeight ? `${maxHeight}px` : "auto",
+        minHeight: maxHeight ? `${maxHeight}px` : "250px",
       }}
       {...props}
     >

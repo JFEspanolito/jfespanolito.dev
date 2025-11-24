@@ -161,17 +161,13 @@ export function AboutMe() {
       <AnimatePresence>
         {showAlert && (
           <motion.div
-            className="fixed top-16 left-6 z-50 bg-(--secondary-accent) text-white px-6 py-3 rounded-lg shadow-lg font-bold text-lg flex items-center gap-3"
-            initial={{ opacity: 0, y: -20, scale: 0.8 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.8 }}
-            transition={{ duration: 0.3 }}
+            className="fixed top-16 left-6 z-50 bg-transparent text-(--secondary-accent) px-3 py-2 rounded-lg shadow-lg font-bold text-lg flex items-center gap-2"
+            initial={{ opacity: 0, x: 300, y: -20, scale: 1 }}
+            animate={{ opacity: 1, x: 300, y: -5, scale: 1 }}
+            exit={{ opacity: 0, y: 0, scale: 1 }}
+            transition={{ duration: 0.6 }}
           >
-            <img
-              src="/navi.webp"
-              alt="Navi"
-              className="w-8 h-8"
-            />
+            <img src="/navi.webp" alt="Navi" className="w-10 h-10" />
             ¡Hey, listen!
           </motion.div>
         )}
