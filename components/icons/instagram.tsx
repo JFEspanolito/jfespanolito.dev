@@ -103,4 +103,3 @@ const Instagram = (props: SVGProps<SVGSVGElement>) => (
 );
 
 export { Instagram };
-export default Instagram;

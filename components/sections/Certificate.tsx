@@ -18,7 +18,9 @@ import { useState } from "react";
 import ButtonBasic from "@/components/buttons/ButtonBasic";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-type CertificateItem = (typeof certificatesData.ES)[number] | (typeof certificatesData.EN)[number];
+type CertificateItem =
+  | (typeof certificatesData.ES)[number]
+  | (typeof certificatesData.EN)[number];
 
 export function Certificate() {
   const { language, t } = useLanguage();
@@ -47,10 +49,17 @@ export function Certificate() {
         <p className="text-xs sm:text-sm text-gray-300 flex-1">{cert.resume}</p>
         {cert.date && (
           <p className="text-xs text-(--secondary-accent) mt-3">
-            {new Date(cert.date).toLocaleDateString("es-ES", {
-              year: "numeric",
-              month: "long",
-            })}
+            {(() => {
+              const date = new Date(cert.date);
+              const opts: Intl.DateTimeFormatOptions = { year: "numeric", month: "long" };
+              let formatted = date.toLocaleDateString(
+                language === "EN" ? "en-US" : "es-ES",
+                opts
+              );
+              formatted = formatted.replace(" de ", " ");
+              // Capitalize first letter
+              return formatted.charAt(0).toUpperCase() + formatted.slice(1);
+            })()}
           </p>
         )}
       </div>
@@ -71,7 +80,7 @@ export function Certificate() {
     <motion.section
       id="experience"
       className="w-full py-20 bg-transparent"
-      style={{ backgroundColor: 'rgba(19, 16, 31, 0.6)' }}
+      style={{ backgroundColor: "rgba(19, 16, 31, 0.6)" }}
       initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
       whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
@@ -79,7 +88,7 @@ export function Certificate() {
     >
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white tracking-tight">
-          {t('certificates')} ({totalCertificates})
+          {t("certificates")} ({totalCertificates})
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
@@ -94,7 +103,7 @@ export function Certificate() {
           <TopSecret size="100" direction="bottom">
             <TopSecretTrigger asChild>
               <ButtonBasic
-                title={`${t('seeMore')} (${totalCertificates - 4})`}
+                title={`${t("seeMore")} (${totalCertificates - 4})`}
                 typeButton={1}
                 size={2}
               />
@@ -121,9 +130,9 @@ export function Certificate() {
               </TopSecretClose>
 
               <TopSecretHeader>
-                <TopSecretTitle>{t('allCertificates')}</TopSecretTitle>
+                <TopSecretTitle>{t("allCertificates")}</TopSecretTitle>
                 <TopSecretDescription>
-                  {totalCertificates - 4} {t('certificates').toLowerCase()}
+                  {totalCertificates - 4} {t("certificates").toLowerCase()}
                 </TopSecretDescription>
               </TopSecretHeader>
 
