@@ -78,6 +78,7 @@ export const aboutData = {
   EN: [
     {
       name: "Jorge A. Falcón A.",
+      nickname: "JFEspanolito",
       role: "RPA Development Lead",
       callToAction: "Let's talk about your processes!",
       headline: "Transforming complex processes into efficient automations.",
@@ -86,7 +87,7 @@ export const aboutData = {
           {
             text: `Systems Engineer with ${yearsOfExperience} years of experience in automation and technical leadership. `,
             bold: true,
-            customColor: "",
+            customColor: "var(--secondary-accent)",
           },
           {
             text: `Expert in UiPath and end-to-end RPA architecture design. Experienced in team leadership and operating Centers of Excellence (CoE).
