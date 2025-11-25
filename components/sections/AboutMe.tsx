@@ -11,7 +11,6 @@ import { Telegram } from "@/components/icons/telegram";
 import { Wakatime } from "@/components/icons/wakatime";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { useLanguage } from "@/contexts/LanguageContext";
 
 const getIcon = (iconName: string, size: 1 | 2 | 3 = 1) => {
   const iconSizes = {
@@ -41,8 +40,8 @@ const getIcon = (iconName: string, size: 1 | 2 | 3 = 1) => {
 };
 
 export function AboutMe() {
-  const { language } = useLanguage();
-  const profile = aboutData[language]?.[0];
+  const lang = "ES";
+  const profile = aboutData[lang]?.[0];
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
@@ -82,7 +81,7 @@ export function AboutMe() {
               className="object-cover"
             />
             <AvatarFallback className="text-3xl font-bold bg-slate-800 text-slate-200">
-              {profile.name.split(' ').map(n => n[0]).join('')}
+              {profile.nickname}
             </AvatarFallback>
           </Avatar>
         </div>
@@ -161,16 +160,31 @@ export function AboutMe() {
       {/* Alerta "¡Hey, listen!" */}
       <AnimatePresence>
         {showAlert && (
-          <motion.div
-            className="fixed top-16 left-6 z-50 bg-transparent text-(--secondary-accent) px-3 py-2 rounded-lg shadow-lg font-bold text-lg flex items-center gap-2"
-            initial={{ opacity: 0, x: 300, y: -20, scale: 1 }}
-            animate={{ opacity: 1, x: 300, y: -5, scale: 1 }}
-            exit={{ opacity: 0, y: 0, scale: 1 }}
-            transition={{ duration: 0.6 }}
-          >
-            <img src="/navi.webp" alt="Navi" className="w-10 h-10" />
-            <span>¡Hey, listen!</span>
-          </motion.div>
+          <>
+            {/* Desktop Mode */}
+            <motion.div
+              className="hidden md:flex fixed top-16 left-6 z-50 bg-transparent text-(--secondary-accent) px-3 py-2 rounded-lg shadow-lg font-bold text-lg items-center gap-2"
+              initial={{ opacity: 0, x: 300, y: -20, scale: 1 }}
+              animate={{ opacity: 1, x: 300, y: -5, scale: 1 }}
+              exit={{ opacity: 0, y: 0, scale: 1 }}
+              transition={{ duration: 0.6 }}
+            >
+              <img src="/navi.webp" alt="Navi" className="w-10 h-10" />
+              <span>¡Hey, listen!</span>
+            </motion.div>
+
+            {/* Mobile Mode */}
+            <motion.div
+              className="flex md:hidden fixed left-1/2 -translate-x-1/2 bottom-20 z-50 bg-transparent text-(--secondary-accent) px-3 py-2 rounded-lg shadow-lg font-bold text-lg items-center gap-2"
+              initial={{ opacity: 0, y: 20, scale: 1 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 1 }}
+              transition={{ duration: 0.6 }}
+            >
+              <img src="/navi.webp" alt="Navi" className="w-10 h-10" />
+              <span>¡Hey, listen!</span>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
 
