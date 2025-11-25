@@ -20,8 +20,10 @@ const getIcon = (iconName: string, size: 1 | 2 | 3 = 2) => {
 
   const sizeClass = iconSizes[size] || iconSizes[2];
   const iconClass = `${sizeClass} fill-current text-white`;
+  
+  const normalizedIcon = iconName.toLowerCase().trim();
 
-  switch (iconName.toLowerCase()) {
+  switch (normalizedIcon) {
     case "mail":
       return <Mail className={iconClass} />;
     case "github":
@@ -37,7 +39,10 @@ const getIcon = (iconName: string, size: 1 | 2 | 3 = 2) => {
     case "wakatime":
       return <Wakatime className={iconClass} />;
     default:
-      return <span className="text-xs">?</span>;
+      if (typeof window !== 'undefined') {
+        console.warn(`Icon not found: "${iconName}" (normalized: "${normalizedIcon}")`);
+      }
+      return <Wakatime className={iconClass} />; 
   }
 };
 

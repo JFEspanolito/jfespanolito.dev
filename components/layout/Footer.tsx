@@ -1,6 +1,10 @@
+"use client";
+
 import { Github } from "@/components/icons/github";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function Footer() {
+  const { t } = useLanguage();
   const year = new Date().getFullYear();
 
   return (
@@ -18,11 +22,11 @@ export function Footer() {
             className="flex items-center gap-2 text-md text-white hover:text-(--secondary-accent) transition-colors group"
           >
             <Github className="w-4 h-4 fill-current group-hover:scale-110 transition-transform" />
-            <span className="leading-none">Código disponible en GitHub</span>
+            <span className="leading-none">{t('codeAvailable')}</span>
           </a>
           {/* Derecha: Copyright */}
           <p className="text-md text-white font-light text-right hover:text-(--secondary-accent) m-0">
-            © {year} — Este sitio no reclama derechos exclusivos.
+            © {year} — {t('rights')}
           </p>
         </div>
       </div>

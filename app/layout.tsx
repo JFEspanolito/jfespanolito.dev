@@ -5,6 +5,8 @@ import { aboutData } from "@/data/about";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { SocialDock } from "@/components/layout/SocialDock";
+import { LanguageProvider } from "@/contexts/LanguageContext";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,14 +37,19 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-(--background) text-(--foreground)`}
       >
-        {/* Contenido de la página */}
-        {children}
+        <LanguageProvider>
+          {/* Selector de idioma */}
+          <LanguageSwitcher />
 
-        {/* Footer al final */}
-        <Footer />
+          {/* Contenido de la página */}
+          {children}
 
-        {/* Menú Flotante de Botones Social Media */}
-        <SocialDock />
+          {/* Footer al final */}
+          <Footer />
+
+          {/* Menú Flotante de Botones Social Media */}
+          <SocialDock />
+        </LanguageProvider>
       </body>
     </html>
   );

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Badge } from "../ui/badge";
 import Card from "../ui/card";
 import { Github } from "@/components/icons/github";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type ProjectItem = (typeof projectsData.ES)[number];
 
@@ -91,7 +92,8 @@ const CardContent = (project: ProjectItem) => {
 };
 
 export function Project() {
-  const mainCards = projectsData.ES.slice(0, 4).map((project, index) => ({
+  const { language, t } = useLanguage();
+  const mainCards = projectsData[language].slice(0, 4).map((project, index) => ({
     id: index + 1,
     content: CardContent(project),
   }));
@@ -106,7 +108,7 @@ export function Project() {
     >
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white tracking-tight">
-          Proyectos
+          {t('projects')}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 mt-8 auto-rows-fr">
           {mainCards.map((card) => (

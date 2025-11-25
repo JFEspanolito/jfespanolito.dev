@@ -11,7 +11,7 @@ export const projectsData = {
       link: [
         {
           url: "https://echoesbeasts.com",
-          label: "Visítala"
+          label: "Visítala",
         },
         // {
         //   url: "https://kickstarter.com/project/echoesbeasts",
@@ -29,11 +29,12 @@ export const projectsData = {
       status: "In Development",
       description:
         "Web platform and proprietary tactical-narrative RPG system. Players embody hunters from the Order of Echoes to face ancestral beasts. Features digital tools for character creation, dynamic bestiary, and campaign management.",
-      tech: ["Next.js 14", "MongoDB", "Tailwind CSS", "NextAuth"],
-            link: [
+      tech: ["HTML", "CSS", "JavaScript"],
+      // tech: ["Next.js 14", "MongoDB", "Tailwind CSS", "NextAuth"],
+      link: [
         {
           url: "https://echoesbeasts.com",
-          label: "Visit it"
+          label: "Visit it",
         },
         // {
         //   url: "https://kickstarter.com/project/echoesbeasts",

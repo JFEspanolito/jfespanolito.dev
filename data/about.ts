@@ -77,15 +77,17 @@ export const aboutData = {
   ],
   EN: [
     {
-      name: "Jorge Alejandro Falcón",
-      role: "RPA Development Lead & Full Stack .NET",
+      name: "Jorge A. Falcón A.",
+      nickname: "JFEspanolito",
+      role: "RPA Development Lead",
+      callToAction: "Let's talk about your processes!",
       headline: "Transforming complex processes into efficient automations.",
       description: [
         [
           {
             text: `Systems Engineer with ${yearsOfExperience} years of experience in automation and technical leadership. `,
             bold: true,
-            customColor: "",
+            customColor: "var(--secondary-accent)",
           },
           {
             text: `Expert in UiPath and end-to-end RPA architecture design. Experienced in team leadership and operating Centers of Excellence (CoE).
@@ -103,8 +105,6 @@ export const aboutData = {
           },
         ],
       ],
-      avatarUrl: "/images/JFSelfie.webp",
-      logoUrl: "/images/JFLogo.webp",
       location: "Mexico City, Mexico",
       contact: [
         {
@@ -119,7 +119,7 @@ export const aboutData = {
         },
         {
           name: "Email",
-          url: "mailto:contact.jf@passinbox.com?subject=Contacto%20profesional&body=Hola%20Jorge,%0A%0AQuisiera%20hablar%20sobre%20...",
+          url: "mailto:contact@jfespanolito.dev?subject=Contacto%20profesional&body=Hola%20Jorge,%0A%0AQuisiera%20hablar%20sobre%20...",
           icon: "mail",
         },
       ],
@@ -128,6 +128,11 @@ export const aboutData = {
           name: "Twitter (x)",
           url: "https://twitter.com/JFEspanolito",
           icon: "twitter",
+        },
+        {
+          name: "Instagram",
+          url: "https://instagram.com/JFEspanolito",
+          icon: "instagram",
         },
         {
           name: "GitHub",
@@ -140,6 +145,8 @@ export const aboutData = {
           icon: "wakaTime",
         },
       ],
+      avatarUrl: "/images/JFSelfie.webp",
+      logoUrl: "/images/JFLogo.webp",
     },
   ],
 };
