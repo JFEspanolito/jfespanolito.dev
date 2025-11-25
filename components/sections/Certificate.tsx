@@ -16,12 +16,13 @@ import {
 } from "@/components/ui/top-secret";
 import { useState } from "react";
 import ButtonBasic from "@/components/buttons/ButtonBasic";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-type CertificateItem = (typeof certificatesData.ES)[number];
+type CertificateItem = (typeof certificatesData.ES)[number] | (typeof certificatesData.EN)[number];
 
 export function Certificate() {
-  const lang = "ES";
-  const list = certificatesData[lang];
+  const { language, t } = useLanguage();
+  const list = certificatesData[language];
   const totalCertificates = list.length;
 
   const CardContent = (cert: CertificateItem, index: number) => (
@@ -78,7 +79,7 @@ export function Certificate() {
     >
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white tracking-tight">
-          Certificados ({totalCertificates})
+          {t('certificates')} ({totalCertificates})
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
@@ -93,7 +94,7 @@ export function Certificate() {
           <TopSecret size="100" direction="bottom">
             <TopSecretTrigger asChild>
               <ButtonBasic
-                title={`Ver más (${totalCertificates - 4})`}
+                title={`${t('seeMore')} (${totalCertificates - 4})`}
                 typeButton={1}
                 size={2}
               />
@@ -120,9 +121,9 @@ export function Certificate() {
               </TopSecretClose>
 
               <TopSecretHeader>
-                <TopSecretTitle>Todos los Certificados</TopSecretTitle>
+                <TopSecretTitle>{t('allCertificates')}</TopSecretTitle>
                 <TopSecretDescription>
-                  {totalCertificates - 4} certificados
+                  {totalCertificates - 4} {t('certificates').toLowerCase()}
                 </TopSecretDescription>
               </TopSecretHeader>
 

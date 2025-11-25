@@ -82,7 +82,7 @@ export function AboutMe() {
               className="object-cover"
             />
             <AvatarFallback className="text-3xl font-bold bg-slate-800 text-slate-200">
-              {profile.nickname}
+              {profile.name.split(' ').map(n => n[0]).join('')}
             </AvatarFallback>
           </Avatar>
         </div>

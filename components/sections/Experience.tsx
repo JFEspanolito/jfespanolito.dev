@@ -32,7 +32,15 @@ export function Experience() {
     >
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white tracking-tight">
-          Experiencia <span className="text-(--primary)">Profesional</span>
+          {language === 'ES' ? (
+            <>
+              {t('experience')} <span className="text-(--primary)">{t('professional')}</span>
+            </>
+          ) : (
+            <>
+              <span className="text-(--primary)">{t('professional')}</span> {t('experience')}
+            </>
+          )}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 auto-rows-fr">
@@ -95,7 +103,7 @@ export function Experience() {
 
                     <CardFlipFooter className="shrink-0 justify-center mt-auto">
                       <span className="text-2xl text-(----text-body) hover:text-(--secondary-accent) transition-colors flex items-center gap-1 animate-pulse">
-                        Clic para detalles ↻
+                        {t('clickForDetails')} ↻
                       </span>
                     </CardFlipFooter>
                   </CardFlipFront>,
@@ -111,7 +119,7 @@ export function Experience() {
                     </span>
 
                     <h3 className="text-(--primary)] font-bold mb-1 text-lg uppercase tracking-wider text-center">
-                      Actividades
+                      {t('activities')}
                     </h3>
 
                     <ul className="list-disc list-inside text-(--text-body) text-sm space-y-2 text-left w-full px-2">
