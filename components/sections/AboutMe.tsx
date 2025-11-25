@@ -40,6 +40,9 @@ const getIcon = (iconName: string, size: 1 | 2 | 3 = 1) => {
   }
 };
 
+const heyListenAudio =
+  typeof window !== "undefined" ? new Audio("/audio/hey_listen.webm") : null;
+
 export function AboutMe() {
   const { language } = useLanguage();
   const profile = aboutData[language]?.[0];
@@ -74,7 +77,7 @@ export function AboutMe() {
           className="relative group cursor-pointer"
           onClick={() => setIsGalleryOpen(true)}
         >
-          <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 blur opacity-40 group-hover:opacity-70 transition duration-500"></div>
+          <div className="absolute -inset-1 rounded-full bg-linear-to-r from-indigo-500 to-purple-600 blur opacity-40 group-hover:opacity-70 transition duration-500"></div>
           <Avatar className="relative h-40 w-40 border-4 border-[rgba(255,255,255,0.1)]">
             <AvatarImage
               src={profile.avatarUrl}
@@ -92,8 +95,8 @@ export function AboutMe() {
           <div className="h-auto md:h-24 flex items-center justify-center min-w-[300px]">
             <TextSpotlight
               text={profile.name}
-              baseTextClassName="text-3xl md:text-6xl font-extrabold tracking-tight text-[var(--foreground)] leading-tight m-0"
-              textClassName="text-3xl md:text-6xl font-extrabold tracking-tight text-[var(--primary)] leading-tight m-0"
+              baseTextClassName="text-3xl md:text-6xl font-extrabold tracking-tight text-(--foreground] leading-tight m-0"
+              textClassName="text-3xl md:text-6xl font-extrabold tracking-tight text-(--primary) leading-tight m-0"
               spotlightColor="var(--primary-rgb)"
               spotlightSize={150}
               animateOnPhone={true}
@@ -104,18 +107,18 @@ export function AboutMe() {
 
         {/* --- DESCRIPCIÓN Y ROL --- */}
         <div className="space-y-6 max-w-2xl px-4">
-          <h1 className="text-3xl font-bold uppercase tracking-[0.3em] text-[var(--primary)]">
+          <h1 className="text-3xl font-bold uppercase tracking-[0.3em] text-(--primary)">
             {profile.role}
           </h1>
 
-          <p className="text-2xl md:text-2xl font-semibold text-[var(--text-muted)]">
+          <p className="text-2xl md:text-2xl font-semibold text-(--text-muted)">
             {profile.headline}
           </p>
 
           {profile.description.map((parts, i) => (
             <p
               key={i}
-              className="text-xl text-[var(--text-body)] leading-relaxed font-light"
+              className="text-xl text-(--text-body) leading-relaxed font-light"
             >
               {parts.map((p, j) => {
                 const style = p.customColor
@@ -144,9 +147,17 @@ export function AboutMe() {
         {profile.callToAction && (
           <div className="flex flex-wrap justify-center items-center gap-4 mt-4">
             <button
-              className="px-6 py-3 bg-[var(--primary)] text-white text-lg font-medium rounded-lg hover:bg-[var(--secondary-accent)] transition-colors duration-300"
+              className="px-6 py-3 bg-(--primary) text-white text-lg font-medium rounded-lg hover:bg-(--secondary-accent) transition-colors duration-300"
               onClick={() => {
                 setShowAlert(true);
+                
+                // Audio
+                if (heyListenAudio) {
+                  heyListenAudio.pause();
+                  heyListenAudio.currentTime = 0;
+                  heyListenAudio.loop = false;
+                  heyListenAudio.play().catch(() => {});
+                }
                 setTimeout(() => {
                   setShowAlert(false);
                 }, 3000);
@@ -164,26 +175,26 @@ export function AboutMe() {
           <>
             {/* Desktop Mode */}
             <motion.div
-              className="hidden md:flex fixed top-16 left-6 z-50 bg-transparent text-[var(--secondary-accent)] px-3 py-2 rounded-lg shadow-lg font-bold text-lg items-center gap-2"
+              className="hidden md:flex fixed top-16 left-6 z-50 bg-transparent text-(--secondary-accent] px-3 py-2 rounded-lg shadow-lg font-bold text-lg items-center gap-2"
               initial={{ opacity: 0, x: 300, y: -20, scale: 1 }}
               animate={{ opacity: 1, x: 300, y: -5, scale: 1 }}
               exit={{ opacity: 0, y: 0, scale: 1 }}
               transition={{ duration: 0.6 }}
             >
               <img src="/navi.webp" alt="Navi" className="w-10 h-10" />
-              <span>¡Hey, listen!</span>
+              <span>¡Hey, listen and clic here!</span>
             </motion.div>
 
             {/* Mobile Mode */}
             <motion.div
-              className="flex md:hidden fixed left-1/2 -translate-x-1/2 bottom-20 z-50 bg-transparent text-[var(--secondary-accent)] px-3 py-2 rounded-lg shadow-lg font-bold text-lg items-center gap-2"
+              className="flex md:hidden fixed left-1/2 -ml-4 -translate-x-1/2 bottom-20 z-50 bg-transparent text-(--secondary-accent] px-3 py-2 rounded-lg shadow-lg font-bold text-lg items-center gap-2"
               initial={{ opacity: 0, y: 20, scale: 1 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 1 }}
               transition={{ duration: 0.6 }}
             >
               <img src="/navi.webp" alt="Navi" className="w-10 h-10" />
-              <span>¡Hey, listen!</span>
+              <span className="whitespace-nowrap">¡Hey, listen and clic here!</span>
             </motion.div>
           </>
         )}
@@ -240,7 +251,7 @@ export function AboutMe() {
               {/* Imagen con borde brillante */}
               <div className="relative w-full h-full">
                 {/* Glow effect */}
-                <div className="absolute -inset-8 bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-500 rounded-3xl blur-2xl opacity-60" />
+                <div className="absolute -inset-8 bg-linear-to-br from-indigo-500 via-purple-600 to-pink-500 rounded-3xl blur-2xl opacity-60" />
 
                 {/* Imagen */}
                 <img
@@ -286,7 +297,7 @@ export function AboutMe() {
               {/* Logo con borde brillante */}
               <div className="relative w-full h-full">
                 {/* Glow effect */}
-                <div className="absolute -inset-8 bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-500 rounded-3xl blur-2xl opacity-60" />
+                <div className="absolute -inset-8 bg-linear-to-br from-indigo-500 via-purple-600 to-pink-500 rounded-3xl blur-2xl opacity-60" />
 
                 {/* Logo */}
                 <img

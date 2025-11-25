@@ -19,11 +19,50 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: config.appName + " - " + aboutData.ES[0].nickname,
+  title: config.appName,
   description: config.appDescription,
+  keywords: config.keywords,
+  authors: [{ name: config.author }],
+  creator: config.author,
+  publisher: config.author,
+  robots: "index, follow",
   icons: {
     icon: "/favicon.ico",
+    apple: "/favicon.ico",
+    shortcut: "/favicon.ico",
   },
+  manifest: "/site.webmanifest",
+  openGraph: {
+    title: config.appName + " " + config.author,
+    description: config.appDescription,
+    url: config.siteUrl,
+    type: "website",
+    locale: config.language?.replace("-", "_") ?? "es_MX",
+    siteName: config.appName,
+    images: [
+      {
+        url: "/og/og-default.webp",
+        width: 1200,
+        height: 630,
+        alt: `${config.appName} – OpenGraph`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: config.twitter ?? "@Espanolito",
+    creator: config.twitter ?? "@Espanolito",
+    title: config.appName,
+    description: config.appDescription,
+    images: ["/og/twitter-card.webp"],
+  },
+  alternates: {
+    languages: {
+      "es-MX": config.siteUrl,
+      "en-US": `${config.siteUrl}/en`,
+    },
+  },
+  metadataBase: new URL(config.siteUrl),
 };
 
 export default function RootLayout({
