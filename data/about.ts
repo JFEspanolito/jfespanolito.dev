@@ -49,16 +49,16 @@ export const aboutData = {
         },
       ],
       social: [
-        {
-          name: "Twitter (x)",
-          url: "https://twitter.com/JFEspanolito",
-          icon: "twitter",
-        },
-        {
-          name: "Instagram",
-          url: "https://instagram.com/JFEspanolito",
-          icon: "instagram",
-        },
+        // {
+        //   name: "Twitter (x)",
+        //   url: "https://twitter.com/JFEspanolito",
+        //   icon: "twitter",
+        // },
+        // {
+        //   name: "Instagram",
+        //   url: "https://instagram.com/JFEspanolito",
+        //   icon: "instagram",
+        // },
         {
           name: "GitHub",
           url: "https://github.com/JFEspanolito",
@@ -124,16 +124,16 @@ export const aboutData = {
         },
       ],
       social: [
-        {
-          name: "Twitter (x)",
-          url: "https://twitter.com/JFEspanolito",
-          icon: "twitter",
-        },
-        {
-          name: "Instagram",
-          url: "https://instagram.com/JFEspanolito",
-          icon: "instagram",
-        },
+        // {
+        //   name: "Twitter (x)",
+        //   url: "https://twitter.com/JFEspanolito",
+        //   icon: "twitter",
+        // },
+        // {
+        //   name: "Instagram",
+        //   url: "https://instagram.com/JFEspanolito",
+        //   icon: "instagram",
+        // },
         {
           name: "GitHub",
           url: "https://github.com/JFEspanolito",
