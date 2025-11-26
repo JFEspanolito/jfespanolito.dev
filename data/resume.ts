@@ -6,7 +6,7 @@ export const experienceData = {
       role: "Líder de Equipo de Desarrollo RPA",
       period: "2021 – Presente",
       description:
-        "Lidero la dirección técnica RPA, diseñando y desplegando más de 35 automatizaciones en UiPath para procesos críticos. Mejoré la eficiencia de más de 15 usuarios (reduciendo 1 a 3 horas diarias de trabajo manual por operador) y generé más de 3M MXN anuales en ahorros/ingresos. Consolidé el Centro de Excelencia RPA, asegurando gobernanza, monitoreo y escalabilidad.",
+        "Lidero la dirección técnica RPA, diseñando y desplegando más de 35 automatizaciones en UiPath para procesos críticos. Mejoré la eficiencia de más de 15 usuarios (reduciendo 1 a 3 horas diarias de trabajo manual por operador) y generé más de $3MDP anuales en ahorros/ingresos. Consolidé el Centro de Excelencia RPA, asegurando gobernanza, monitoreo y escalabilidad.",
       activities: [
         "Gestión integral de proyectos RPA: identificación de procesos candidatos, definición tecnológica y cronograma.",
         "Diseño, desarrollo y mantenimiento de flujos automatizados en QA y Producción.",
@@ -125,7 +125,7 @@ export const experienceData = {
       role: "RPA Development Team Lead",
       period: "2021 – Present",
       description:
-        "Lead RPA technical direction, designing and deploying over 35 UiPath automations for critical processes. Improved efficiency for 15+ users (reducing 1–3 hours of manual work per operator daily) and generated 3M+ MXN annually in savings/revenue. Consolidated the RPA Center of Excellence, ensuring governance, monitoring, and scalability.",
+        "Lead RPA technical direction, designing and deploying over 35 UiPath automations for critical processes. Improved efficiency for 15+ users (reducing 1–3 hours of manual work per operator daily) and generated ~165k USD annually in savings/revenue. Consolidated the RPA Center of Excellence, ensuring governance, monitoring, and scalability.",
       activities: [
         "Full lifecycle management of RPA projects: candidate identification, tech definition and scheduling.",
         "Design, development and maintenance of automated workflows in QA and Production.",

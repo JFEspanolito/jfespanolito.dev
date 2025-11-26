@@ -150,7 +150,7 @@ export function AboutMe() {
               className="px-6 py-3 bg-(--primary) text-white text-lg font-medium rounded-lg hover:bg-(--secondary-accent) transition-colors duration-300"
               onClick={() => {
                 setShowAlert(true);
-                
+
                 // Audio
                 if (heyListenAudio) {
                   heyListenAudio.pause();
@@ -182,7 +182,16 @@ export function AboutMe() {
               transition={{ duration: 0.6 }}
             >
               <img src="/navi.webp" alt="Navi" className="w-10 h-10" />
-              <span>¡Hey, listen and clic here!</span>
+              {language === "ES" && (
+                <span className="whitespace-nowrap">
+                  ¡Hey, Listen! Haz clic aquí para contactarme.
+                </span>
+              )}
+              {language === "EN" && (
+                <span className="whitespace-nowrap">
+                  ¡Hey, Listen! Click here to contact me.
+                </span>
+              )}
             </motion.div>
 
             {/* Mobile Mode */}
@@ -194,7 +203,16 @@ export function AboutMe() {
               transition={{ duration: 0.6 }}
             >
               <img src="/navi.webp" alt="Navi" className="w-10 h-10" />
-              <span className="whitespace-nowrap">¡Hey, listen and clic here!</span>
+              {language === "ES" && (
+                <span className="whitespace-nowrap">
+                  ¡Hey, Listen! Haz clic aquí para contactarme.
+                </span>
+              )}
+              {language === "EN" && (
+                <span className="whitespace-nowrap">
+                  ¡Hey, Listen! Click here to contact me.
+                </span>
+              )}
             </motion.div>
           </>
         )}
