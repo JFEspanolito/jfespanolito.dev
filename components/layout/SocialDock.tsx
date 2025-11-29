@@ -19,8 +19,8 @@ const getIcon = (iconName: string, size: 1 | 2 | 3 = 2) => {
   };
 
   const sizeClass = iconSizes[size] || iconSizes[2];
-  const iconClass = `${sizeClass} fill-current text-white`;
-  
+  const iconClass = `${sizeClass} fill-current text-white transform transition-transform duration-150 group-hover:scale-125`;
+
   const normalizedIcon = iconName.toLowerCase().trim();
 
   switch (normalizedIcon) {
@@ -39,10 +39,12 @@ const getIcon = (iconName: string, size: 1 | 2 | 3 = 2) => {
     case "wakatime":
       return <Wakatime className={iconClass} />;
     default:
-      if (typeof window !== 'undefined') {
-        console.warn(`Icon not found: "${iconName}" (normalized: "${normalizedIcon}")`);
+      if (typeof window !== "undefined") {
+        console.warn(
+          `Icon not found: "${iconName}" (normalized: "${normalizedIcon}")`
+        );
       }
-      return <Wakatime className={iconClass} />; 
+      return <Wakatime className={iconClass} />;
   }
 };
 
@@ -80,7 +82,7 @@ export function SocialDock() {
             magnification={60}
             panelHeight={50}
             className="bg-transparent border-none shadow-none flex items-center"
-            itemClassName="bg-transparent border-none shadow-none"
+            itemClassName="group bg-transparent border-none shadow-none"
             hoverAnimation={false}
             hoverDistance="0"
             labelPosition="bottom"
@@ -99,7 +101,7 @@ export function SocialDock() {
             magnification={60}
             panelHeight={50}
             className="bg-transparent border-none shadow-none flex items-center"
-            itemClassName="bg-transparent border-none shadow-none"
+            itemClassName="group bg-transparent border-none shadow-none"
             hoverAnimation={false}
             hoverDistance="0"
             labelPosition="bottom"
@@ -122,7 +124,7 @@ export function SocialDock() {
             panelHeight={46}
             distance={120}
             className="bg-black/60 backdrop-blur-md border-neutral-700/40"
-            itemClassName="bg-transparent border-none shadow-none"
+            itemClassName="group bg-transparent border-none shadow-none"
             hoverAnimation={false}
             labelPosition="top"
           />

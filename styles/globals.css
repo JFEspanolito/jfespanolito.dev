@@ -1,21 +1,125 @@
 @import "tailwindcss";
 
 /* =====================================================
-Tamaños
-Clase Tailwind,Tamaño (rem),Tamaño (px),Line Height (Interlineado)
-text-xs,0.75rem,12px,1rem (16px)
-text-sm,0.875rem,14px,1.25rem (20px)
-text-base,1rem,16px,1.5rem (24px)
-text-lg,1.125rem,18px,1.75rem (28px)
-text-xl,1.25rem,20px,1.75rem (28px)
-text-2xl,1.5rem,24px,2rem (32px)
-text-3xl,1.875rem,30px,2.25rem (36px)
-text-4xl,2.25rem,36px,2.5rem (40px)
-text-5xl,3rem,48px,1 (48px)
-text-6xl,3.75rem,60px,1 (60px)
-text-7xl,4.5rem,72px,1 (72px)
-text-8xl,6rem,96px,1 (96px)
-text-9xl,8rem,128px,1 (128px)
+Margin (m)
+m-0            => margin: 0;
+m-1            => margin: 0.25rem (4px);
+m-2            => margin: 0.5rem (8px);
+m-3            => margin: 0.75rem (12px);
+m-4            => margin: 1rem (16px);
+mt-4           => margin-top: 1rem;
+mr-4           => margin-right: 1rem;
+mb-4           => margin-bottom: 1rem;
+ml-4           => margin-left: 1rem;
+mx-4           => margin-left/right: 1rem;
+my-4           => margin-top/bottom: 1rem;
+===================================================== */
+
+/* =====================================================
+Padding (p)
+p-0            => padding: 0;
+p-1            => 0.25rem (4px);
+p-2            => 0.5rem (8px);
+p-3            => 0.75rem (12px);
+p-4            => 1rem (16px);
+px-4           => padding-left/right: 1rem;
+py-4           => padding-top/bottom: 1rem;
+===================================================== */
+
+/* =====================================================
+Texto (size)
+Clase Tailwind, Tamaño (rem), Tamaño (px), Line Height (Interlineado)
+text-xs        => 0.75rem,12px,1rem (16px)
+text-sm        => 0.875rem,14px,1.25rem (20px)
+text-base      => 1rem,16px,1.5rem (24px)
+text-lg        => 1.125rem,18px,1.75rem (28px)
+text-xl        => 1.25rem,20px,1.75rem (28px)
+text-2xl       => 1.5rem,24px,2rem (32px)
+text-3xl       => 1.875rem,30px,2.25rem (36px)
+text-4xl       => 2.25rem,36px,2.5rem (40px)
+text-5xl       => 3rem,48px,1 (48px)
+text-6xl       => 3.75rem,60px,1 (60px)
+text-7xl       => 4.5rem,72px,1 (72px)
+text-8xl       => 6rem,96px,1 (96px)
+text-9xl       => 8rem,128px,1 (128px)
+===================================================== */
+
+/* =====================================================
+Color de texto (text-<color>-<shade>)
+“shade” es el nivel de intensidad del color dentro de una familia de color.
+text-white
+text-black
+text-gray-900
+text-gray-700
+text-gray-600
+text-gray-400
+text-blue-500
+text-red-600
+===================================================== */
+
+/* =====================================================
+Color de fondo (bg-<color>-<shade>)
+bg-white
+bg-black
+bg-gray-100
+bg-gray-200
+bg-blue-600
+bg-red-500
+===================================================== */
+
+/* =====================================================
+Bordes
+border            => border: 1px solid …
+border-0
+border-2
+border-gray-300
+rounded           => 4px
+rounded-md        => 6px
+rounded-lg        => 8px
+rounded-xl        => 12px
+rounded-full
+===================================================== */
+
+/* =====================================================
+Display y layout
+flex
+inline-flex
+block
+inline-block
+hidden
+===================================================== */
+
+/* =====================================================
+Flexbox helpers
+items-center
+justify-center
+justify-between
+flex-col
+flex-wrap
+gap-2 / gap-4 / gap-6
+===================================================== */
+
+/* =====================================================
+Anchuras / Alturas
+w-full
+w-auto
+h-full
+h-screen
+max-w-screen-md
+max-w-screen-lg
+===================================================== */
+
+/* =====================================================
+Otros esenciales
+cursor-pointer
+overflow-hidden
+overflow-auto
+truncate
+transition
+duration-200
+shadow-sm
+shadow
+shadow-lg
 ===================================================== */
 
 /* =====================================================
@@ -23,9 +127,9 @@ text-9xl,8rem,128px,1 (128px)
 ===================================================== */
 :root {
   /* --- 1. COLORES BASE (LIENZO) --- */
-  --background: #0a0811; /* Tu Obsidiana */
-  --background-contrast: #13101f; /* Tu Obsidiana Iluminada */
-  --foreground: #ffffff; /* Títulos: Blanco Puro */
+  --background: #0a0811;
+  --background-contrast: #13101f;
+  --foreground: #ffffff;
 
   /* --- 2. TEXTOS DE CUERPO (LA CORRECCIÓN) --- */
   --text-body: #e2e8f0;
@@ -37,7 +141,7 @@ text-9xl,8rem,128px,1 (128px)
   --primary-rgb: 127, 90, 240; /* #7f5af0 */
   --primary: rgb(var(--primary-rgb));
   --primary-foreground: #ffffff;
-  --secondary-accent: #028337; /* 329961 */
+  --secondary-accent: #028337;
 
   /* --- 4. COMPONENTES --- */
   --card: rgba(var(--primary-rgb), 0.1);
