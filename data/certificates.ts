@@ -2,25 +2,18 @@ export const certificatesData = {
   ES: [
     // ===== Principales ===== Se ven en la portada.
     {
-      name: "Diploma Recibir Feedback",
-      url: "https://platzi.com/p/jfespanolito/curso/2482-recibir-feedback/diploma/detalle/",
-      img: "/certificates/diploma_recibir_feedback.webp",
-      resume: "Certificación sobre cómo recibir feedback.",
-      date: "2025-02-01",
+      name: "Diploma ChatGPT 2.0",
+      url: "https://platzi.com/p/jfespanolito/curso/12319-chatgpt/diploma/detalle/",
+      img: "/certificates/diploma-chatgpt-2.webp",
+      resume: "Certificado del curso ChatGPT.",
+      date: "2025-12-04",
     },
     {
-      name: "Diploma Dar Feedback",
-      url: "https://platzi.com/p/jfespanolito/curso/2480-dar-feedback/diploma/detalle/",
-      img: "/certificates/diploma_dar_feedback.webp",
-      resume: "Certificación en técnicas para dar feedback.",
-      date: "2025-01-30",
-    },
-    {
-      name: "Orchestrator for RPA Developers (v2019.4)",
-      url: "https://academy.uipath.com/",
-      img: "/certificates/orchestrator_for_rpa_developers_v2019_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp",
-      resume: "Certificación en uso de Orchestrator para desarrolladores.",
-      date: "2019-07-23",
+      name: "Curso de Automatizaciones con n8n",
+      url: "https://platzi.com/p/jfespanolito/curso/12245-n8n-lowcode/diploma/detalle/",
+      img: "/certificates/diploma_n8n_lowcode.webp",
+      resume: "Certificación del curso de Automatizaciones con n8n.",
+      date: "2025-09-14",
     },
     {
       name: "Curso de Prompt Engineering",
@@ -28,6 +21,13 @@ export const certificatesData = {
       img: "/certificates/diploma_prompt_engineering.webp",
       resume: "Certificación del curso de Prompt Engineering.",
       date: "2025-07-12",
+    },
+    {
+      name: "Diploma Recibir Feedback",
+      url: "https://platzi.com/p/jfespanolito/curso/2482-recibir-feedback/diploma/detalle/",
+      img: "/certificates/diploma_recibir_feedback.webp",
+      resume: "Certificación sobre cómo recibir feedback.",
+      date: "2025-02-01",
     },
 
     // ===== Resto ===== Se ven en el modal.
@@ -55,13 +55,6 @@ export const certificatesData = {
       date: "2025-09-15",
     },
     {
-      name: "Curso de Automatizaciones con n8n",
-      url: "https://platzi.com/p/jfespanolito/curso/12245-n8n-lowcode/diploma/detalle/",
-      img: "/certificates/diploma_n8n_lowcode.webp",
-      resume: "Certificación del curso de Automatizaciones con n8n.",
-      date: "2025-09-14",
-    },
-    {
       name: "Fundamentos de Ingeniería de Software",
       url: "https://platzi.com/p/jfespanolito/curso/11997-ingenieria/diploma/detalle/",
       img: "/certificates/diploma_ingenieria.webp",
@@ -74,6 +67,13 @@ export const certificatesData = {
       img: "/certificates/diploma_fundamentos_csharp.webp",
       resume: "Certificación en fundamentos de C# con .NET Core 2.1.",
       date: "2025-07-27",
+    },
+    {
+      name: "Orchestrator for RPA Developers (v2019.4)",
+      url: "https://academy.uipath.com/",
+      img: "/certificates/orchestrator_for_rpa_developers_v2019_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp",
+      resume: "Certificación en uso de Orchestrator para desarrolladores.",
+      date: "2019-07-23",
     },
     {
       name: "Diploma ChatGPT",
@@ -95,6 +95,13 @@ export const certificatesData = {
       img: "/certificates/email_automation_with_studio_v2018_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp",
       resume: "Certificación en automatización de correos con UiPath Studio.",
       date: "2025-03-27",
+    },
+    {
+      name: "Diploma Dar Feedback",
+      url: "https://platzi.com/p/jfespanolito/curso/2480-dar-feedback/diploma/detalle/",
+      img: "/certificates/diploma_dar_feedback.webp",
+      resume: "Certificación en técnicas para dar feedback.",
+      date: "2025-01-30",
     },
     {
       name: "Control Flow in Studio (v2021.10)",
@@ -523,25 +530,18 @@ export const certificatesData = {
   EN: [
     // ===== Main ===== Shown on the cover.
     {
-      name: "Receiving Feedback Certificate",
-      url: "https://platzi.com/p/jfespanolito/curso/2482-recibir-feedback/diploma/detalle/",
-      img: "/certificates/diploma_recibir_feedback.webp",
-      resume: "Certification on how to receive feedback effectively.",
-      date: "2025-02-01",
+      name: "ChatGPT Diploma 2.0",
+      url: "https://platzi.com/p/jfespanolito/curso/12319-chatgpt/diploma/detalle/",
+      img: "/certificates/diploma-chatgpt-2.webp",
+      resume: "ChatGPT course certificate.",
+      date: "2025-12-04",
     },
     {
-      name: "Giving Feedback Certificate",
-      url: "https://platzi.com/p/jfespanolito/curso/2480-dar-feedback/diploma/detalle/",
-      img: "/certificates/diploma_dar_feedback.webp",
-      resume: "Certification in techniques for giving feedback.",
-      date: "2025-01-30",
-    },
-    {
-      name: "Orchestrator for RPA Developers (v2019.4)",
-      url: "https://academy.uipath.com/",
-      img: "/certificates/orchestrator_for_rpa_developers_v2019_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp",
-      resume: "Certification in using UiPath Orchestrator for developers.",
-      date: "2019-07-23",
+      name: "n8n Automations Course",
+      url: "https://platzi.com/p/jfespanolito/curso/12245-n8n-lowcode/diploma/detalle/",
+      img: "/certificates/diploma_n8n_lowcode.webp",
+      resume: "Certification for the n8n Automations course.",
+      date: "2025-09-14",
     },
     {
       name: "Prompt Engineering Course",
@@ -549,6 +549,13 @@ export const certificatesData = {
       img: "/certificates/diploma_prompt_engineering.webp",
       resume: "Prompt Engineering course certification.",
       date: "2025-07-12",
+    },
+    {
+      name: "Receiving Feedback Certificate",
+      url: "https://platzi.com/p/jfespanolito/curso/2482-recibir-feedback/diploma/detalle/",
+      img: "/certificates/diploma_recibir_feedback.webp",
+      resume: "Certification on how to receive feedback effectively.",
+      date: "2025-02-01",
     },
 
     // ===== Rest ===== Shown in the modal.
@@ -574,13 +581,6 @@ export const certificatesData = {
       date: "2025-09-15",
     },
     {
-      name: "n8n Automations Course",
-      url: "https://platzi.com/p/jfespanolito/curso/12245-n8n-lowcode/diploma/detalle/",
-      img: "/certificates/diploma_n8n_lowcode.webp",
-      resume: "Certification for the n8n Automations course.",
-      date: "2025-09-14",
-    },
-    {
       name: "Software Engineering Fundamentals",
       url: "https://platzi.com/p/jfespanolito/curso/11997-ingenieria/diploma/detalle/",
       img: "/certificates/diploma_ingenieria.webp",
@@ -593,6 +593,13 @@ export const certificatesData = {
       img: "/certificates/diploma_fundamentos_csharp.webp",
       resume: "Certification in C# fundamentals with .NET Core 2.1.",
       date: "2025-07-27",
+    },
+    {
+      name: "Orchestrator for RPA Developers (v2019.4)",
+      url: "https://academy.uipath.com/",
+      img: "/certificates/orchestrator_for_rpa_developers_v2019_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp",
+      resume: "Certification in using UiPath Orchestrator for developers.",
+      date: "2019-07-23",
     },
     {
       name: "ChatGPT Diploma",
@@ -614,6 +621,13 @@ export const certificatesData = {
       img: "/certificates/email_automation_with_studio_v2018_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp",
       resume: "Certification in email automation using UiPath Studio.",
       date: "2025-03-27",
+    },
+    {
+      name: "Giving Feedback Certificate",
+      url: "https://platzi.com/p/jfespanolito/curso/2480-dar-feedback/diploma/detalle/",
+      img: "/certificates/diploma_dar_feedback.webp",
+      resume: "Certification in techniques for giving feedback.",
+      date: "2025-01-30",
     },
     {
       name: "Control Flow in Studio (v2021.10)",
