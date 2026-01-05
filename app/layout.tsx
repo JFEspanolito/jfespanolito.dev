@@ -76,6 +76,7 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-(--background) text-(--foreground)`}
       >
+        <Oneko />
         <LanguageProvider>
           {/* Selector de idioma */}
           <LanguageSwitcher />
@@ -85,7 +86,6 @@ export default function RootLayout({
 
           {/* Footer al final */}
           <Footer />
-          <Oneko />
 
           {/* Menú Flotante de Botones Social Media */}
           <SocialDock />
