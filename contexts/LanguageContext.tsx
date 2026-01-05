@@ -25,7 +25,7 @@ const translations = {
     seeMore: "Ver más",
     allCertificates: "Todos los Certificados",
     codeAvailable: "Código disponible en GitHub",
-    rights: "Este sitio no reclama derechos exclusivos.",
+    rights: "El código fuente de este sitio es público y puede consultarse y reutilizarse. La información personal y profesional presentada no está autorizada para copia ni redistribución.",
   },
   EN: {
     experience: "Experience",
@@ -37,7 +37,7 @@ const translations = {
     seeMore: "See more",
     allCertificates: "All Certificates",
     codeAvailable: "Code available on GitHub",
-    rights: "This site claims no exclusive rights.",
+    rights: "The source code of this site is public and may be viewed and reused. The personal and professional information presented is not authorized for copying or redistribution.",
   },
 };
 

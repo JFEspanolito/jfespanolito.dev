@@ -25,7 +25,7 @@ export const aboutData = {
         [
           {
             text: `Desarrollo proyectos propios que combinan tecnología, diseño de sistemas y creatividad (actualmente, el juego de rol "Ecos de las Bestias").
-         Interesado en IA generativa, aprendizaje autodidacta y diseño de experiencias lúdicas que integran ingeniería y storytelling.`,
+         Interesado en Tecnologías de IA, aprendizaje autodidacta y diseño de experiencias lúdicas que integran ingeniería y storytelling.`,
             bold: false,
             customColor: "",
           },
@@ -99,7 +99,7 @@ export const aboutData = {
         [
           {
             text: `I develop personal projects that combine technology, systems design, and creativity (currently the tabletop RPG “Echoes of the Beasts”).
-         Interested in generative AI, self-directed learning, and designing playful experiences that integrate engineering, storytelling, and user behavior.`,
+         Interested in AI technologies, self-directed learning, and designing playful experiences that integrate engineering, storytelling, and user behavior.`,
             bold: false,
             customColor: "",
           },

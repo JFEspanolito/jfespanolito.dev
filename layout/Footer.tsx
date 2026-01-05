@@ -25,7 +25,7 @@ export function Footer() {
             <span className="leading-none">{t('codeAvailable')}</span>
           </a>
           {/* Derecha: Copyright */}
-          <p className="text-md text-white font-light text-right hover:text-(--secondary-accent) m-0">
+          <p className="w-1/2 text-md text-white font-light text-right hover:text-(--secondary-accent) m-0">
             © {year} — {t('rights')}
           </p>
         </div>
