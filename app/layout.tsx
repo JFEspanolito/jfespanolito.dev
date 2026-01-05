@@ -1,12 +1,12 @@
 import config from "@/config";
 import "@/styles/globals.css";
 import type { Metadata } from "next";
-import { aboutData } from "@/data/about";
+import Oneko from "@/components/ui/oneko";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Footer } from "@/components/layout/Footer";
-import { SocialDock } from "@/components/layout/SocialDock";
+import { Footer } from "@/layout/Footer";
+import { SocialDock } from "@/layout/SocialDock";
 import { LanguageProvider } from "@/contexts/LanguageContext";
-import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
+import { LanguageSwitcher } from "@/layout/LanguageSwitcher";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -85,6 +85,7 @@ export default function RootLayout({
 
           {/* Footer al final */}
           <Footer />
+          <Oneko />
 
           {/* Menú Flotante de Botones Social Media */}
           <SocialDock />
