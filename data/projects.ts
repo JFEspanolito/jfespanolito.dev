@@ -1,48 +1,40 @@
 export const projectsData = {
+  Version: "1.0.2",
+  Build: "202601271049",
   ES: [
     {
       id: 1,
-      title: "Ecos de las Bestias",
-      status: "En Desarrollo",
+      title: "jfespanolito - Portafolio",
+      status: "Completado",
       description:
-        "Plataforma web y sistema de rol táctico-narrativo propio. Los jugadores encarnan a cazadores de la Orden de los Ecos para enfrentar bestias ancestrales. Cuenta con herramientas digitales para creación de personajes, bestiario dinámico y gestión de campañas.",
-      tech: ["HTML", "CSS", "JavaScript"],
-      // tech: ["Next.js 14", "MongoDB", "Tailwind CSS", "NextAuth"],
+        "Sitio web personal que muestra mis proyectos, habilidades y experiencia. Diseñado para ser responsive y accesible.",
+      tech: ["HTML", "CSS", "JavaScript", "Next.js", "Tailwind CSS", "NextAuth", "TypeScript"],
       link: [
         {
-          url: "https://echoesbeasts.com",
+          url: "https://jfespanolito.dev",
           label: "Visítala",
         },
-        // {
-        //   url: "https://kickstarter.com/project/echoesbeasts",
-        //   label: "Kickstarter"
-        // }
       ],
-      github: "https://github.com/JFEspanolito/EchoesBeasts",
-      image: "https://echoesbeasts.com/web/ArtFiles/EcosBestias_Banner.webp",
+      github: "https://github.com/JFEspanolito/jfespanolito.dev",
+      image: "",
     },
   ],
   EN: [
     {
       id: 1,
-      title: "Echoes of Beasts",
-      status: "In Development",
+      title: "jfespanolito - Portfolio",
+      status: "Complete",
       description:
-        "Web platform and proprietary tactical-narrative RPG system. Players embody hunters from the Order of Echoes to face ancestral beasts. Features digital tools for character creation, dynamic bestiary, and campaign management.",
-      tech: ["HTML", "CSS", "JavaScript"],
-      // tech: ["Next.js 14", "MongoDB", "Tailwind CSS", "NextAuth"],
+        "Personal website showcasing my projects, skills, and experience. Designed to be responsive and accessible.",
+      tech: ["HTML", "CSS", "JavaScript", "Next.js", "Tailwind CSS", "NextAuth", "TypeScript"],
       link: [
         {
-          url: "https://echoesbeasts.com",
+          url: "https://jfespanolito.dev",
           label: "Visit it",
         },
-        // {
-        //   url: "https://kickstarter.com/project/echoesbeasts",
-        //   label: "Kickstarter"
-        // }
       ],
-      github: "https://github.com/JFEspanolito/EchoesBeasts",
-      image: "https://echoesbeasts.com/web/ArtFiles/EcosBestias_Banner.webp",
+      github: "https://github.com/JFEspanolito/jfespanolito.dev",
+      image: "",
     },
   ],
 };

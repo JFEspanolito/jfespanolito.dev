@@ -18,7 +18,6 @@ export default function Home() {
       
       {/* Sección 4: Certificaciones - Fondo Contrast (#13101f) */}
       <Certificate />
-
     </main>
   );
 }
