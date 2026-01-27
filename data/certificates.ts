@@ -2,11 +2,11 @@ export const certificatesData = {
   ES: [
     // ===== Principales ===== Se ven en la portada.
     {
-      name: "Diploma ChatGPT 2.0",
-      url: "https://platzi.com/p/jfespanolito/curso/12319-chatgpt/diploma/detalle/",
-      img: "/certificates/diploma-chatgpt-2.webp",
-      resume: "Certificado del curso ChatGPT.",
-      date: "2025-12-04",
+      name: "Claude Code in Action",
+      url: "https://verify.skilljar.com/c/kvkeneaxect8",
+      img: "/certificates/certificate-claude-code-in-action.webp",
+      resume: "Certificado del curso Claude Code in Action.",
+      date: "2026-01-27",
     },
     {
       name: "Curso de Automatizaciones con n8n",
@@ -32,6 +32,13 @@ export const certificatesData = {
 
     // ===== Resto ===== Se ven en el modal.
     {
+      name: "Diploma ChatGPT 2.0",
+      url: "https://platzi.com/p/jfespanolito/curso/12319-chatgpt/diploma/detalle/",
+      img: "/certificates/diploma-chatgpt-2.webp",
+      resume: "Certificado del curso ChatGPT.",
+      date: "2025-12-04",
+    },
+    {
       name: "Test Cloud Licensing and Pricing Sales Enablement for Partners",
       url: "https://academy.uipath.com/",
       img: "/certificates/test_cloud_licensing_and_pricing_sales_enablement_for_partners_jorge_alejandro_falcon_alvarez_en_us_diploma.webp",
@@ -42,16 +49,14 @@ export const certificatesData = {
       name: "Pricing Updates: Unified Pricing Agent and Maestro Updates for Partners",
       url: "https://academy.uipath.com/",
       img: "/certificates/pricing_updates_unified_pricing_agent_and_maestro_updates_for_partners_jorge_alejandro_falcon_alvarez_en_us_diploma.webp",
-      resume:
-        "Certificación de actualizaciones unificadas de pricing para partners.",
+      resume: "Certificación de actualizaciones unificadas de pricing para partners.",
       date: "2025-09-15",
     },
     {
       name: "Pricing and Licensing Updates for Partners (2025.4)",
       url: "https://academy.uipath.com/",
       img: "/certificates/pricing_and_licensing_updates_for_partners_2025_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp",
-      resume:
-        "Certificación de actualización de precios y licencias para partners.",
+      resume: "Certificación de actualización de precios y licencias para partners.",
       date: "2025-09-15",
     },
     {
@@ -107,8 +112,7 @@ export const certificatesData = {
       name: "Control Flow in Studio (v2021.10)",
       url: "https://academy.uipath.com/",
       img: "/certificates/control_flow_in_studio_v2021_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp",
-      resume:
-        "Certificación en control de flujo para automatizaciones en Studio.",
+      resume: "Certificación en control de flujo para automatizaciones en Studio.",
       date: "2023-03-30",
     },
     {
@@ -143,8 +147,7 @@ export const certificatesData = {
       name: "Document Understanding (Learning Path)",
       url: "",
       img: "/certificates/learningpath_certificate_document_understanding.webp",
-      resume:
-        "Certificado del Learning Path de UiPath enfocado en Document Understanding.",
+      resume: "Certificado del Learning Path de UiPath enfocado en Document Understanding.",
       date: "2023-03-29",
     },
     {
@@ -165,8 +168,7 @@ export const certificatesData = {
       name: "Get Started with RPA Development (v2020.10)",
       url: "https://academy.uipath.com/",
       img: "/certificates/get_started_with_rpa_development_v2020_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp",
-      resume:
-        "Certificado de inicio en desarrollo RPA con UiPath (versión 2020.10).",
+      resume: "Certificado de inicio en desarrollo RPA con UiPath (versión 2020.10).",
       date: "2022-05-13",
     },
     {
@@ -208,16 +210,14 @@ export const certificatesData = {
       name: "UiPath Automation Hub for Citizen Developers (Learning Path)",
       url: "",
       img: "/certificates/LearningPath_Certificate_08262021204721830.webp",
-      resume:
-        "Certificado de finalización del Learning Path de UiPath: Automation Hub for Citizen Developers.",
+      resume: "Certificado de finalización del Learning Path de UiPath: Automation Hub for Citizen Developers.",
       date: "2021-08-26",
     },
     {
       name: "UiPath Task Mining (Learning Path)",
       url: "",
       img: "/certificates/LearningPath_Certificate_08262021214622805.webp",
-      resume:
-        "Certificado de finalización del Learning Path de UiPath: Task Mining.",
+      resume: "Certificado de finalización del Learning Path de UiPath: Task Mining.",
       date: "2021-08-26",
     },
     {
@@ -413,8 +413,7 @@ export const certificatesData = {
       name: "Variables, Arguments and Control Flow in Studio (v2019.4)",
       url: "https://academy.uipath.com/",
       img: "/certificates/variables_arguments_and_control_flow_in_studio_v2019_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp",
-      resume:
-        "Certificación en variables, argumentos y control de flujo en Studio.",
+      resume: "Certificación en variables, argumentos y control de flujo en Studio.",
       date: "2019-09-12",
     },
     {
@@ -435,8 +434,7 @@ export const certificatesData = {
       name: "Curso sobre Metodología de Implementación de RPA",
       url: "https://academy.uipath.com/",
       img: "/certificates/curso_sobre_metodologia_de_implementacion_de_rpa.webp",
-      resume:
-        "Certificación en metodología de implementación de proyectos RPA.",
+      resume: "Certificación en metodología de implementación de proyectos RPA.",
       date: "2019-10-01",
     },
     {
@@ -450,8 +448,7 @@ export const certificatesData = {
       name: "Level 2 Orchestrator Training (2018.3)",
       url: "https://academy.uipath.com/",
       img: "/certificates/level_2_orchestrator_2018_3_training.webp",
-      resume:
-        "Certificado complementario de entrenamiento Orchestrator nivel 2.",
+      resume: "Certificado complementario de entrenamiento Orchestrator nivel 2.",
       date: "2019-08-12",
     },
     {
@@ -472,8 +469,7 @@ export const certificatesData = {
       name: "UiPath RPA Platform Updates (18.4)",
       url: "https://academy.uipath.com/",
       img: "/certificates/uipath_rpa_platform_18_4_updates_v_18_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp",
-      resume:
-        "Certificación sobre actualizaciones de la plataforma UiPath 18.4.",
+      resume: "Certificación sobre actualizaciones de la plataforma UiPath 18.4.",
       date: "2019-07-23",
     },
     {
@@ -530,11 +526,11 @@ export const certificatesData = {
   EN: [
     // ===== Main ===== Shown on the cover.
     {
-      name: "ChatGPT Diploma 2.0",
-      url: "https://platzi.com/p/jfespanolito/curso/12319-chatgpt/diploma/detalle/",
-      img: "/certificates/diploma-chatgpt-2.webp",
-      resume: "ChatGPT course certificate.",
-      date: "2025-12-04",
+      name: "Claude Code in Action",
+      url: "https://verify.skilljar.com/c/kvkeneaxect8",
+      img: "/certificates/certificate-claude-code-in-action.webp",
+      resume: "Certification for Claude Code in Action.",
+      date: "2026-01-27",
     },
     {
       name: "n8n Automations Course",
@@ -559,6 +555,13 @@ export const certificatesData = {
     },
 
     // ===== Rest ===== Shown in the modal.
+    {
+      name: "ChatGPT Diploma 2.0",
+      url: "https://platzi.com/p/jfespanolito/curso/12319-chatgpt/diploma/detalle/",
+      img: "/certificates/diploma-chatgpt-2.webp",
+      resume: "ChatGPT course certificate.",
+      date: "2025-12-04",
+    },
     {
       name: "Test Cloud Licensing and Pricing Sales Enablement for Partners",
       url: "https://academy.uipath.com/",
@@ -668,8 +671,7 @@ export const certificatesData = {
       name: "Document Understanding (Learning Path)",
       url: "",
       img: "/certificates/learningpath_certificate_document_understanding.webp",
-      resume:
-        "Completion certificate for the UiPath Document Understanding Learning Path.",
+      resume: "Completion certificate for the UiPath Document Understanding Learning Path.",
       date: "2023-03-29",
     },
     {
@@ -690,8 +692,7 @@ export const certificatesData = {
       name: "Get Started with RPA Development (v2020.10)",
       url: "https://academy.uipath.com/",
       img: "/certificates/get_started_with_rpa_development_v2020_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp",
-      resume:
-        "Getting started certificate for RPA development with UiPath (v2020.10).",
+      resume: "Getting started certificate for RPA development with UiPath (v2020.10).",
       date: "2022-05-13",
     },
     {
@@ -733,8 +734,7 @@ export const certificatesData = {
       name: "UiPath Automation Hub for Citizen Developers (Learning Path)",
       url: "",
       img: "/certificates/LearningPath_Certificate_08262021204721830.webp",
-      resume:
-        "Completion certificate for UiPath Automation Hub for Citizen Developers Learning Path.",
+      resume: "Completion certificate for UiPath Automation Hub for Citizen Developers Learning Path.",
       date: "2021-08-26",
     },
     {
@@ -937,8 +937,7 @@ export const certificatesData = {
       name: "Variables, Arguments and Control Flow in Studio (v2019.4)",
       url: "https://academy.uipath.com/",
       img: "/certificates/variables_arguments_and_control_flow_in_studio_v2019_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp",
-      resume:
-        "Certification in variables, arguments, and control flow in Studio.",
+      resume: "Certification in variables, arguments, and control flow in Studio.",
       date: "2019-09-12",
     },
     {
