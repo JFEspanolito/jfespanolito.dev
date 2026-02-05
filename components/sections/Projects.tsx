@@ -7,12 +7,13 @@ import Card from "../ui/card";
 import { Github } from "@/components/icons/github";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-type ProjectItem = (typeof projectsData.ES)[number];
+type ProjectItem = (typeof projectsData.ES)[number] & { github?: string | null };
 
 const CardContent = (project: ProjectItem) => {
   const techList = project.tech ?? [];
   const links = Array.isArray(project.link) ? project.link : [];
-  const hasGithub = !!project.github?.trim();
+  const githubUrl = project.github?.trim() || "";
+  const hasGithub = githubUrl.length > 0;
 
   return (
     <div className="flex flex-col h-full overflow-hidden rounded-2xl bg-slate-900">
@@ -75,7 +76,7 @@ const CardContent = (project: ProjectItem) => {
             {/* GitHub */}
             {hasGithub && (
               <a
-                href={project.github}
+                href={githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full px-3 py-2 bg-gray-700 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-gray-600 transition-colors duration-300 text-center flex items-center justify-center gap-1"
