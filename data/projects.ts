@@ -16,7 +16,7 @@ export const projectsData = {
         },
       ],
       github: "https://github.com/JFEspanolito/jfespanolito.dev",
-      image: "",
+      image: "projects/ecosbanner.webp",
     },
   ],
   EN: [
@@ -34,7 +34,7 @@ export const projectsData = {
         },
       ],
       github: "https://github.com/JFEspanolito/jfespanolito.dev",
-      image: "",
+      image: "projects/ecosbanner.webp",
     },
   ],
 };

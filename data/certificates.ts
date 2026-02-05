@@ -2,18 +2,25 @@ export const certificatesData = {
   ES: [
     // ===== Principales ===== Se ven en la portada.
     {
+      name: "Claude Introducción a MCP Advance",
+      url: "https://verify.skilljar.com/c/kvkeneaxect8",
+      img: "/certificates/certificate-MCP-advance.webp",
+      resume: "Certificado del curso Claude Introdución a MCP Advance.",
+      date: "2026-02-05",
+    },
+    {
+      name: "Claude Introducción a MCP",
+      url: "https://verify.skilljar.com/c/kvkeneaxect8",
+      img: "/certificates/certificate-MCP-Server.webp",
+      resume: "Certificado del curso Claude Introdución a MCP.",
+      date: "2026-02-05",
+    },
+    {
       name: "Claude Code in Action",
       url: "https://verify.skilljar.com/c/kvkeneaxect8",
       img: "/certificates/certificate-claude-code-in-action.webp",
       resume: "Certificado del curso Claude Code in Action.",
       date: "2026-01-27",
-    },
-    {
-      name: "Curso de Automatizaciones con n8n",
-      url: "https://platzi.com/p/jfespanolito/curso/12245-n8n-lowcode/diploma/detalle/",
-      img: "/certificates/diploma_n8n_lowcode.webp",
-      resume: "Certificación del curso de Automatizaciones con n8n.",
-      date: "2025-09-14",
     },
     {
       name: "Curso de Prompt Engineering",
@@ -22,6 +29,15 @@ export const certificatesData = {
       resume: "Certificación del curso de Prompt Engineering.",
       date: "2025-07-12",
     },
+
+    // ===== Resto ===== Se ven en el modal.
+    {
+      name: "Curso de Automatizaciones con n8n",
+      url: "https://platzi.com/p/jfespanolito/curso/12245-n8n-lowcode/diploma/detalle/",
+      img: "/certificates/diploma_n8n_lowcode.webp",
+      resume: "Certificación del curso de Automatizaciones con n8n.",
+      date: "2025-09-14",
+    },
     {
       name: "Diploma Recibir Feedback",
       url: "https://platzi.com/p/jfespanolito/curso/2482-recibir-feedback/diploma/detalle/",
@@ -29,8 +45,6 @@ export const certificatesData = {
       resume: "Certificación sobre cómo recibir feedback.",
       date: "2025-02-01",
     },
-
-    // ===== Resto ===== Se ven en el modal.
     {
       name: "Diploma ChatGPT 2.0",
       url: "https://platzi.com/p/jfespanolito/curso/12319-chatgpt/diploma/detalle/",
@@ -526,18 +540,25 @@ export const certificatesData = {
   EN: [
     // ===== Main ===== Shown on the cover.
     {
+      name: "Claude Introduction to MCP Advance",
+      url: "https://verify.skilljar.com/c/kvkeneaxect8",
+      img: "/certificates/certificate-MCP-advance.webp",
+      resume: "Certificate for the Claude Introduction to MCP Advance course.",
+      date: "2026-02-05",
+    },
+    {
+      name: "Claude Introduction to MCP",
+      url: "https://verify.skilljar.com/c/kvkeneaxect8",
+      img: "/certificates/certificate-MCP-Server.webp",
+      resume: "Certificate for the Claude Introduction to MCP course.",
+      date: "2026-02-05",
+    },
+    {
       name: "Claude Code in Action",
       url: "https://verify.skilljar.com/c/kvkeneaxect8",
       img: "/certificates/certificate-claude-code-in-action.webp",
       resume: "Certification for Claude Code in Action.",
       date: "2026-01-27",
-    },
-    {
-      name: "n8n Automations Course",
-      url: "https://platzi.com/p/jfespanolito/curso/12245-n8n-lowcode/diploma/detalle/",
-      img: "/certificates/diploma_n8n_lowcode.webp",
-      resume: "Certification for the n8n Automations course.",
-      date: "2025-09-14",
     },
     {
       name: "Prompt Engineering Course",
@@ -546,6 +567,15 @@ export const certificatesData = {
       resume: "Prompt Engineering course certification.",
       date: "2025-07-12",
     },
+
+    // ===== Rest ===== Shown in the modal.
+    {
+      name: "n8n Automations Course",
+      url: "https://platzi.com/p/jfespanolito/curso/12245-n8n-lowcode/diploma/detalle/",
+      img: "/certificates/diploma_n8n_lowcode.webp",
+      resume: "Certification for the n8n Automations course.",
+      date: "2025-09-14",
+    },
     {
       name: "Receiving Feedback Certificate",
       url: "https://platzi.com/p/jfespanolito/curso/2482-recibir-feedback/diploma/detalle/",
@@ -553,8 +583,6 @@ export const certificatesData = {
       resume: "Certification on how to receive feedback effectively.",
       date: "2025-02-01",
     },
-
-    // ===== Rest ===== Shown in the modal.
     {
       name: "ChatGPT Diploma 2.0",
       url: "https://platzi.com/p/jfespanolito/curso/12319-chatgpt/diploma/detalle/",
