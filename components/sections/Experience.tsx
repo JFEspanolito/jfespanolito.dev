@@ -24,7 +24,7 @@ export function Experience() {
     <motion.section
       id="experience"
       className="w-full py-20 bg-transparent"
-      style={{ backgroundColor: 'rgba(19, 16, 31, 0.6)' }}
+      style={{ backgroundColor: "rgba(19, 16, 31, 0.6)" }}
       initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
       whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
@@ -32,13 +32,13 @@ export function Experience() {
     >
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white tracking-tight">
-          {language === 'ES' ? (
+          {language === "ES" ? (
             <>
-              {t('experience')} <span className="text-(--primary)">{t('professional')}</span>
+              {t("experience")} <span className="text-(--primary)">{t("professional")}</span>
             </>
           ) : (
             <>
-              <span className="text-(--primary)">{t('professional')}</span> {t('experience')}
+              <span className="text-(--primary)">{t("professional")}</span> {t("experience")}
             </>
           )}
         </h2>
@@ -46,10 +46,7 @@ export function Experience() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 auto-rows-fr">
           {jobs.map((job) => (
             <div key={job.id} className="flex h-full" id={`job-${job.id}`}>
-              <CardFlip
-                className="flex w-full h-full"
-                hideDefaultButtons={true}
-              >
+              <CardFlip className="flex w-full h-full" hideDefaultButtons={true}>
                 {({ flip }) => [
                   // --- FRENTE ---
                   <CardFlipFront
@@ -59,12 +56,10 @@ export function Experience() {
                       // Scroll en móvil
                       if (window.innerWidth < 768) {
                         setTimeout(() => {
-                          document
-                            .getElementById(`job-${job.id}`)
-                            ?.scrollIntoView({
-                              behavior: "smooth",
-                              block: "start",
-                            });
+                          document.getElementById(`job-${job.id}`)?.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                          });
                         }, 100);
                       }
                     }}
@@ -76,25 +71,18 @@ export function Experience() {
                           {job.period}
                         </span>
                       </div>
-                      <CardFlipTitle className="text-2xl text-(----text-body) leading-snug mb-1">
-                        {job.role}
-                      </CardFlipTitle>
+                      <CardFlipTitle className="text-2xl text-(----text-body) leading-snug mb-1">{job.role}</CardFlipTitle>
                       <CardFlipDescription className="text-xl font-medium text-(--text-muted)">
                         <p className="mb-2">{job.company}</p>
                       </CardFlipDescription>
                     </CardFlipHeader>
 
                     <CardFlipContent className="flex-1 my-4">
-                      <p className="text-x text-(--text-body)] leading-relaxed mb-4">
-                        {job.description}
-                      </p>
+                      <p className="text-x text-(--text-body)] leading-relaxed mb-4">{job.description}</p>
 
                       <div className="flex flex-wrap gap-2 mt-6 mb-4">
                         {job.topskills.map((topSkill) => (
-                          <Badge
-                            key={topSkill}
-                            className="bg-(--ring-color) text-(--text-body) border-0 text-x"
-                          >
+                          <Badge key={topSkill} className="bg-(--ring-color) text-(--text-body) border-0 text-x">
                             {topSkill}
                           </Badge>
                         ))}
@@ -103,7 +91,7 @@ export function Experience() {
 
                     <CardFlipFooter className="shrink-0 justify-center mt-auto">
                       <span className="text-2xl text-(----text-body) hover:text-(--secondary-accent) transition-colors flex items-center gap-1 animate-pulse">
-                        {t('clickForDetails')} ↻
+                        {t("clickForDetails")} ↻
                       </span>
                     </CardFlipFooter>
                   </CardFlipFront>,
@@ -114,13 +102,9 @@ export function Experience() {
                     onClick={flip}
                     className="h-full flex flex-col border-[rgba(255,255,255,0.08)] bg-[#161321] backdrop-blur-sm p-6 cursor-pointer hover:border-(--secondary-accent) transition-colors relative"
                   >
-                    <span className="absolute top-4 right-4 text-2xl text-(--secondary-accent)">
-                      ↻
-                    </span>
+                    <span className="absolute top-4 right-4 text-2xl text-(--secondary-accent)">↻</span>
 
-                    <h3 className="text-(--primary)] font-bold mb-1 text-lg uppercase tracking-wider text-center">
-                      {t('activities')}
-                    </h3>
+                    <h3 className="text-(--primary)] font-bold mb-1 text-lg uppercase tracking-wider text-center">{t("activities")}</h3>
 
                     <ul className="list-disc list-inside text-(--text-body) text-sm space-y-2 text-left w-full px-2">
                       {job.activities?.map((activity) => (
@@ -132,10 +116,7 @@ export function Experience() {
 
                     <div className="flex flex-wrap gap-2 mt-2">
                       {job.skills.map((skill) => (
-                        <Badge
-                          key={skill}
-                          className="bg-(--ring-color) text-(--text-body) border-0 text-x"
-                        >
+                        <Badge key={skill} className="bg-(--ring-color) text-(--text-body) border-0 text-x">
                           {skill}
                         </Badge>
                       ))}
@@ -145,6 +126,32 @@ export function Experience() {
               </CardFlip>
             </div>
           ))}
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 auto-rows-fr">
+          {language === "ES" ? (
+            <div className="flex justify-center mt-12 md:col-span-2">
+              <a
+                href="/cv/ES_CV_JAFA.pdf"
+                download
+                className="px-6 py-3 bg-(--primary) text-white text-lg font-medium rounded-lg hover:bg-(--secondary-accent) transition-colors duration-300 inline-flex items-center justify-center"
+                aria-label="Descargar CV en Español"
+              >
+                Descargar CV Español
+              </a>
+            </div>
+          ) : (
+            <div className="flex justify-center mt-12 md:col-span-2">
+              <a
+                href="/cv/EN_CV_JAFA.pdf"
+                download
+                className="px-6 py-3 bg-(--primary) text-white text-lg font-medium rounded-lg hover:bg-(--secondary-accent) transition-colors duration-300 inline-flex items-center justify-center"
+                aria-label="Download CV in English"
+              >
+                Download English CV
+              </a>
+            </div>
+          )}
         </div>
       </div>
     </motion.section>
