@@ -16,10 +16,10 @@ export const certificatesData = {
       date: "2026-02-05",
     },
     {
-      name: "Claude Code in Action",
-      url: "https://verify.skilljar.com/c/kvkeneaxect8",
-      img: "/certificates/certificate-claude-code-in-action.webp",
-      resume: "Certificado del curso Claude Code in Action.",
+      name: "Curso de Workflows Profesionales con n8n",
+      url: "https://platzi.com/p/jfespanolito/curso/12250-n8n-profesional/diploma/detalle/ ",
+      img: "/certificates/diploma-n8n-profesional.webp",
+      resume: "Certificado del Curso de Workflows Profesionales con n8n",
       date: "2026-01-27",
     },
     {
@@ -31,6 +31,13 @@ export const certificatesData = {
     },
 
     // ===== Resto ===== Se ven en el modal.
+    {
+      name: "Claude Code in Action",
+      url: "https://verify.skilljar.com/c/kvkeneaxect8",
+      img: "/certificates/certificate-claude-code-in-action.webp",
+      resume: "Certificado del curso Claude Code in Action.",
+      date: "2026-01-27",
+    },
     {
       name: "Curso de Automatizaciones con n8n",
       url: "https://platzi.com/p/jfespanolito/curso/12245-n8n-lowcode/diploma/detalle/",
@@ -554,10 +561,10 @@ export const certificatesData = {
       date: "2026-02-05",
     },
     {
-      name: "Claude Code in Action",
-      url: "https://verify.skilljar.com/c/kvkeneaxect8",
-      img: "/certificates/certificate-claude-code-in-action.webp",
-      resume: "Certification for Claude Code in Action.",
+      name: "Professional Workflows Course with n8n",
+      url: "https://platzi.com/p/jfespanolito/curso/12250-n8n-profesional/diploma/detalle/ ",
+      img: "/certificates/diploma-n8n-profesional.webp",
+      resume: "Certificate for the Professional Workflows Course with n8n.",
       date: "2026-01-27",
     },
     {
@@ -569,6 +576,13 @@ export const certificatesData = {
     },
 
     // ===== Rest ===== Shown in the modal.
+    {
+      name: "Claude Code in Action",
+      url: "https://verify.skilljar.com/c/kvkeneaxect8",
+      img: "/certificates/certificate-claude-code-in-action.webp",
+      resume: "Certification for Claude Code in Action.",
+      date: "2026-01-27",
+    },
     {
       name: "n8n Automations Course",
       url: "https://platzi.com/p/jfespanolito/curso/12245-n8n-lowcode/diploma/detalle/",
