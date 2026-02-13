@@ -24,7 +24,6 @@ const issuerLabel = lang === "en" ? "Issuer" : "Entidad";
 const totalCertLabel = lang === "en" ? "Total Certifications" : "Total Certificaciones";
 
 const totalCertifications = certificates?.length ?? 0;
-const architectCount = certificates?.filter((item) => /architect|arquitect/i.test(item.name)).length ?? 0;
 
 function formatDate(value: string) {
   try {
@@ -50,6 +49,7 @@ function issuerFromUrl(url: string) {
 
 <section id="Certificados" class="h-full min-h-0 w-full snap-start overflow-y-auto no-scrollbar">
   <div class="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16">
+    {/* Titulo */}
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
       <div class="col-span-2 p-8 rounded-3xl relative overflow-hidden group">
         <h2
@@ -64,6 +64,7 @@ function issuerFromUrl(url: string) {
       </div>
     </div>
 
+    {/* Certificado Principal */}
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-16">
       <div class="col-span-1 group"></div>
       <div class="col-span-2 experience-card p-8 rounded-3xl relative overflow-hidden group">
@@ -91,7 +92,7 @@ function issuerFromUrl(url: string) {
                   <div>
                     <p class="text-base uppercase font-bold tracking-widest mb-1 text-[var(--color-purple)]">{issuerLabel}</p>
                     <a
-                      class="font-bold underline ml-6 text-[var(--color-red)] inline-block max-w-full truncate align-middle"
+                      class="underline ml-6 text-[var(--color-red)] inline-block max-w-full truncate align-middle"
                       href={featured.url}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -111,62 +112,76 @@ function issuerFromUrl(url: string) {
       <div class="col-span-1 group"></div>
     </div>
 
+    {/* Certificados list */}
     <div class="max-h-[34rem] overflow-y-auto no-scrollbar pr-1">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {
           restCertificates.map((cert) => (
             <div class="experience-card p-2 rounded-2xl group overflow-hidden">
-              <div class="flex items-center gap-4 min-w-0 w-full">
-                <button
-                  type="button"
-                  class="w-12 h-12 rounded-xl bg-[var(--bg-dark)] flex items-center justify-center border border-white/5 group-hover:border-[var(--color-resaltar)]/50 transition-colors overflow-hidden shrink-0 cursor-zoom-in"
-                  data-cert-preview
-                  data-preview-src={cert.img.src}
-                  data-preview-alt={cert.name}
-                  aria-label={`Ver certificado: ${cert.name}`}
-                >
-                  <Image src={cert.img} alt={cert.name} width={48} height={48} class="w-full h-full object-cover" />
-                </button>
-                <div class="min-w-0 w-full grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-x-4 gap-y-2 items-start">
-                  <div class="min-w-0">
-                    <h4 class="text-lg md:text-xl font-bold text-[var(--text-use)] group-hover:text-[var(--color-resaltar)] transition-colors truncate">
-                      {cert.name}
-                    </h4>
+              <a
+                href={cert.url || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-block max-w-full cursor-pointer align-middle "
+              >
+                <div class="flex items-center gap-4 min-w-0 w-full">
+                  {/* <button
+                    type="button"
+                    class="w-12 h-12 rounded-xl bg-[var(--bg-dark)] flex items-center justify-center border border-white/5 group-hover:border-[var(--color-resaltar)]/50 transition-colors overflow-hidden shrink-0 cursor-zoom-in"
+                    data-cert-preview
+                    data-preview-src={cert.img.src}
+                    data-preview-alt={cert.name}
+                    aria-label={`Ver certificado: ${cert.name}`}
+                  >
+                    <Image src={cert.img} alt={cert.name} width={48} height={48} class="w-full h-full object-cover" />
+                  </button> */}
+                  <div class="w-12 h-12 rounded-xl bg-[var(--bg-dark)] flex items-center justify-center border border-white/5">
+                    <Image src={cert.img} alt={cert.name} width={48} height={48} class="w-full h-full object-cover" />
                   </div>
 
-                  <div class="min-w-0 md:text-right">
+                  <div class="min-w-0 w-full grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-x-4 gap-y-2 items-start">
+                    <div class="min-w-0">
+                      <h4 class="text-lg md:text-xl font-bold text-[var(--color-blue)] group-hover:text-[var(--color-resaltar)] transition-colors truncate">
+                        {cert.name}
+                      </h4>
+                    </div>
+
+                    {/* <div class="min-w-0 md:text-right">
                     <p class="text-sm uppercase tracking-wide text-[var(--color-resaltar)] font-bold whitespace-nowrap">
                       {formatDate(cert.date)}
                     </p>
-                  </div>
+                  </div> */}
 
-                  <div class="min-w-0">
+                    {/* <div class="min-w-0">
                     <p class="text-sm md:text-base leading-relaxed border-l-2 border-[var(--color-resaltar)] pl-4 line-clamp-2">
                       {cert.resume}
                     </p>
-                  </div>
+                  </div> */}
 
-                  <div class="min-w-0 md:text-right">
+                    {/* <div class="min-w-0 md:text-right">
                     <a
                       href={cert.url || "#"}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="inline-block max-w-full cursor-pointer align-middle"
+                      class="inline-block max-w-full cursor-pointer align-middle "
                     >
-                      <p class="text-sm uppercase tracking-widest text-[var(--color-red)] truncate max-w-[12rem] md:max-w-[14rem]">
+                      <p class="text-sm uppercase tracking-widest underline text-[var(--color-red)] truncate max-w-[12rem] md:max-w-[14rem]">
                         {issuerFromUrl(cert.url)}
                       </p>
                     </a>
+                  </div> */}
                   </div>
                 </div>
-              </div>
+              </a>
             </div>
-          ))
+            )
+          )
         }
       </div>
     </div>
   </div>
 
+  {/* Modal de vista ampliada de certificado*/}
   <div
     id="cert-lightbox"
     class="fixed inset-0 z-[120] hidden items-center justify-center bg-[var(--bg-dark)]/90 p-4 md:p-8"
@@ -194,11 +209,12 @@ function issuerFromUrl(url: string) {
 
 <script>
   const lightbox = document.getElementById("cert-lightbox");
-  const lightboxImg = document.getElementById("cert-lightbox-image") as HTMLImageElement | null;
+  /** @type {HTMLImageElement | null} */
+  const lightboxImg = document.getElementById("cert-lightbox-image");
   const closeBtn = document.getElementById("cert-lightbox-close");
   const previewButtons = document.querySelectorAll("[data-cert-preview]");
 
-  function openLightbox(src: string | null, alt: string | null) {
+  function openLightbox(src, alt) {
     if (!lightbox || !lightboxImg || !src) return;
     lightboxImg.src = src;
     lightboxImg.alt = alt || "Certificate preview";

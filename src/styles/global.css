@@ -137,3 +137,14 @@ body {
 /* .animate-fade-out-delay {
   animation: fadeOut 5s forwards;
 } */
+
+  .cta {
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 12px 26px;
+    background: var(--color-blue);
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 12px 20px rgba(47, 109, 246, 0.25);
+  }

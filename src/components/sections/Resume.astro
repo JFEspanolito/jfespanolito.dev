@@ -1,14 +1,108 @@
 ---
+import { Image } from "astro:assets";
+import { aboutData } from "@/data/about";
+import { projectsData } from "@/data/projects";
+import { experienceData } from "@/data/experience";
+import { certificatesData } from "@/data/certificates";
 
+const cookieLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
+const localLang = typeof Astro.locals.lang === "string" ? Astro.locals.lang.toLowerCase() : undefined;
+
+const lang: "es" | "en" =
+  cookieLang === "en" || cookieLang === "es" ? cookieLang : Astro.url.pathname.startsWith("/en") ? "en" : localLang === "en" ? "en" : "es";
+
+let projects = null;
+let experiences = null;
+let profileInfo = null;
+let certificates = null;
+
+if (lang === "en") {
+  profileInfo = aboutData.EN[0];
+  projects = projectsData.EN;
+  experiences = experienceData.EN;
+  certificates = certificatesData.EN;
+} else {
+  profileInfo = aboutData.ES[0];
+  projects = projectsData.ES;
+  experiences = experienceData.ES;
+  certificates = certificatesData.ES;
+}
+
+// Lógica para KPIs dinámicos
+const totalRobots = "35+";
+const impactValue = lang === "en" ? "+$165k USD" : "+$3MDP";
+const yearsExp = new Date().getFullYear() - 2012;
+const topSkills = experiences[0].topskills.slice(0, 5);
+const recentCerts = certificates.slice(0, 3);
 ---
 
 <section id="Resumen" class="h-full min-h-0 w-full snap-start flex flex-col py-10 px-4 md:px-6 lg:px-8 overflow-hidden">
-  <div class="relative w-full max-w-7xl mx-auto h-full min-h-0">
-    <h2 class="text-4xl font-bold mb-6 text-[var(--color-green)]">Sección 1: Resumen</h2>
+  <div class="relative w-full max-w-7xl mx-auto h-full flex flex-col justify-center">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-4 flex flex-col gap-4">
+        <h2 class="text-5xl md:text-6xl font-black text-[var(--color-blue)] uppercase leading-none">
+          {aboutData.name}
+        </h2>
+        <h3 class="text-xl md:text-2xl font-medium text-[var(--color-green)]">
+          {profileInfo.role}
+        </h3>
+        <p class="text-gray-400 text-lg leading-tight max-w-sm">
+          {profileInfo.headline}
+        </p>
+      </div>
+
+      <div class="lg:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center">
+          <span class="text-3xl font-bold text-[var(--color-resaltar)]">{impactValue}</span>
+          <span class="text-xs uppercase tracking-wider text-gray-500">{lang === "en" ? "Annual Impact" : "Impacto Anual"}</span>
+        </div>
+
+        <div class="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center">
+          <span class="text-3xl font-bold text-[var(--color-resaltar)]">{totalRobots}</span>
+          <span class="text-xs uppercase tracking-wider text-gray-500">{lang === "en" ? "Live Robots" : "Robots en Producción"}</span>
+        </div>
+
+        <div class="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center">
+          <span class="text-3xl font-bold text-[var(--color-resaltar)]">+{yearsExp}</span>
+          <span class="text-xs uppercase tracking-wider text-gray-500">{lang === "en" ? "Years Exp." : "Años Exp."}</span>
+        </div>
+
+        <div class="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center">
+          <span class="text-3xl font-bold text-[var(--color-resaltar)]">CoE</span>
+          <span class="text-xs uppercase tracking-wider text-gray-500">{lang === "en" ? "Architect" : "Arquitecto"}</span>
+        </div>
+
+        <div class="col-span-2 md:col-span-4 mt-4 p-6 rounded-2xl border border-[var(--color-blue)]/30 bg-[var(--color-blue)]/5">
+          <h4 class="text-sm font-bold uppercase mb-4 text-[var(--color-blue)] tracking-widest">
+            {lang === "en" ? "Strategic Stack" : "Stack Tecnológico Estratégico"}
+          </h4>
+          <div class="flex flex-wrap gap-2">
+            {
+              topSkills.map((skill) => (
+                <span class="px-3 py-1 bg-white/10 rounded-full text-sm font-medium border border-white/5">{skill}</span>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="col-span-2 md:col-span-4 mt-2">
+          <div class="flex items-center gap-4 overflow-x-auto pb-2 scrollbar-hide">
+            {
+              recentCerts.map((cert) => (
+                <div class="flex-shrink-0 flex items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
+                  <div class="w-1 h-1 bg-[var(--color-green)] rounded-full" />
+                  <span class="text-xs whitespace-nowrap">{cert.name}</span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   {/* Flecha de scroll */}
-  <div class="absolute bottom-8 right-12">
+  <div class="absolute bottom-8 right-12 hidden md:block">
     <div class="flex flex-col items-center gap-2 text-[var(--color-green)] opacity-70">
       <span class="text-xs font-medium uppercase tracking-widest">Scroll</span>
       <svg

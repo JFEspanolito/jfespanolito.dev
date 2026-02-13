@@ -24,11 +24,11 @@ const FlipCard: React.FC<Props> = ({ experience }) => {
             </div>
             <div className="flex justify-between items-start">
               <p className="font-semibold text-base md:text-base mt-1 text-[var(--color-blue)]">{experience.company}</p>
-              <span className="bg-purple-100 px-2.5 md:px-4 py-1 md:py-1.5 rounded-full text-[10px] md:text-xs font-bold tracking-wide shrink-0 ml-2 text-[var(--color-red)]">
+              <span className="bg-[var(--bg-use)] text-[var(--color-red)] text-[11px] px-2.5 md:px-4 py-1 md:py-1.5 rounded-full  font-bold tracking-wide shrink-0 ml-2">
                 {experience.period}
               </span>
             </div>
-            <p className="mt-2.5 md:mt-3 text-xs md:text-base leading-relaxed line-clamp-3 text-[var(--text-use)] ">
+            <p className="mt-2.5 md:mt-3 text-base md:text-base leading-relaxed line-clamp-3 text-[var(--text-use)] ">
               {experience.description}
             </p>
           </div>
@@ -37,8 +37,7 @@ const FlipCard: React.FC<Props> = ({ experience }) => {
             {experience.topskills.slice(0, 4).map((skill: string) => (
               <span
                 key={skill}
-                className="bg-white text-[var(--color-red)] border border-gray-200 px-2 md:px-3 py-1 rounded-md text-[9px] md:text-[10px] font-bold uppercase tracking-tighter"
-              >
+                className="text-[11px] md:text-[14px] bg-[var(--bg-use)] text-[var(--color-red)] px-2 md:px-3 py-1 rounded font-medium">
                 {skill}
               </span>
             ))}
@@ -52,14 +51,15 @@ const FlipCard: React.FC<Props> = ({ experience }) => {
           </h4>
           <ul className="flex-1 space-y-2 pr-1 overflow-hidden">
             {experience.activities.map((act: string, i: number) => (
-              <li key={i} className="text-sm md:text-base flex gap-2 md:gap-3">
-                <span className="text-[var(--text-use)] font-bold">{act}</span>
+              <li key={i} className="text-base flex gap-2 md:gap-3">
+                <span className="text-[var(--color-green)]">-</span>
+                <span className="text-[var(--text-use)]">{act}</span>
               </li>
             ))}
           </ul>
           <div className="mt-3 md:mt-4 flex flex-wrap gap-1.5">
             {experience.skills.slice(0, 10).map((s: string) => (
-              <span key={s} className="text-[9px] bg-white text-[var(--color-red)] px-2 py-1 rounded font-medium">
+              <span key={s} className="text-[11px] md:text-[14px] bg-[var(--bg-use)] text-[var(--color-red)] px-2 md:px-3 py-1 rounded font-medium">
                 {s}
               </span>
             ))}

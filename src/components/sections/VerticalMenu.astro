@@ -1,5 +1,6 @@
 ---
 import { aboutData } from "@/data/about";
+import { Image } from "astro:assets";
 import bgRight from "@/assets/images/bg_right.webp";
 
 const cookieLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
@@ -224,17 +225,6 @@ const getImageSrc = (img: string | { src: string }) => (typeof img === "string" 
   .menu-link:hover {
     color: var(--color-green);
     transform: translateY(-1px);
-  }
-
-  .cta {
-    font-family: "Manrope", Arial, sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    padding: 12px 26px;
-    background: var(--color-blue);
-    border-radius: 999px;
-    text-decoration: none;
-    box-shadow: 0 12px 20px rgba(47, 109, 246, 0.25);
   }
 
   .footnote {
