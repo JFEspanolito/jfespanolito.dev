@@ -1,0 +1,15 @@
+---
+// Importamos la config y componentes necesarios
+import logoImg from "@/assets/images/JFLogo.webp";
+import { configProject as configProject } from "@/data/configProject";
+
+const year = new Date().getFullYear();
+const supportEmail = configProject?.support?.email || null;
+const faviconUrl = logoImg;
+---
+
+<footer class="relative flex items-center justify-center font-sans bg-background text-foreground text-[var(--color-green)]">
+  <div class="w-full max-w-7xl mx-auto px-8 py-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between mt-10">
+    <p class="text-base opacity-80 text-center md:text-right">{configProject.copyright}</p>
+  </div>
+</footer>

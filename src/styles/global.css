@@ -1,0 +1,140 @@
+/* src/styles/global.css */
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  /* Light mode color */
+  --bg-light: #f8fafc;
+  --text-light: #0f172a;
+
+  /* Dark mode color */
+  --bg-dark: #1b1f2f;
+  --text-dark: #f8fafc;
+
+  --bg-use: var(--bg-light);
+  --text-use: var(--text-light);
+
+  --color-resaltar: #10b981;
+  --color-purple: #8b5cf6;
+  --color-green: #10b981;
+  --color-blue: #6366f1;
+  --color-red: #ff443a;
+  --color-slate-blue: #94a3b8;
+
+  --color-card-bg: #24293e;
+}
+
+:root {
+  scroll-padding-top: 80px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-use: var(--bg-dark);
+    --text-use: var(--text-dark);
+  }
+}
+
+body {
+  background-color: var(--bg-use);
+  background-image:
+    linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  color: var(--text-use);
+  font-family: var(--font-sans);
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+
+  /* Ocultar scrollbar pero permitir scroll funcional */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .mini-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-card-bg) var(--bg-dark);
+  }
+
+  .mini-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .mini-scrollbar::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+    border-radius: 999px;
+  }
+
+  .mini-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-card-bg);
+    border-radius: 999px;
+  }
+
+  .mini-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--color-blue);
+  }
+
+  .timeline-line {
+    background: linear-gradient(
+      180deg,
+      rgba(99, 102, 241, 0) 0%,
+      rgba(99, 102, 241, 1) 15%,
+      rgba(16, 185, 129, 1) 50%,
+      rgba(139, 92, 246, 1) 85%,
+      rgba(139, 92, 246, 0) 100%
+    );
+    box-shadow: 0 0 8px rgba(99, 102, 241, 0.4);
+  }
+
+  .experience-card {
+    background: var(--color-card-bg);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+  }
+
+  .experience-card:hover {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
+    border-color: rgba(99, 102, 241, 0.3);
+  }
+
+  .btn-gradient {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* .animate-fade-out-delay {
+  animation: fadeOut 5s forwards;
+} */
