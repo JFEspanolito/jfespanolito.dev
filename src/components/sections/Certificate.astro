@@ -19,17 +19,13 @@ const featured = certificates?.[0] ?? null;
 const restCertificates = certificates?.slice(1) ?? [];
 
 const title = lang === "en" ? "Certificates" : "Certificados";
-const overviewTitle = lang === "en" ? "Credential Overview" : "Resumen de Credenciales";
+const overviewTitle = lang === "en" ? "Certificates" : "Certificados";
 const overviewText =
   lang === "en"
     ? "A comprehensive repository of professional certifications, technical validations, and industry-recognized achievements."
     : "Un repositorio integral de certificaciones profesionales, validaciones técnicas y logros reconocidos por la industria.";
-const featuredLabel = lang === "en" ? "Featured Achievement" : "Logro Destacado";
 const issuerLabel = lang === "en" ? "Issuer" : "Entidad";
-const statusLabel = lang === "en" ? "Status" : "Estado";
-const verifiedLabel = lang === "en" ? "Verified" : "Verificado";
 const totalCertLabel = lang === "en" ? "Total Certifications" : "Total Certificaciones";
-const architectLabel = lang === "en" ? "Architect Level" : "Nivel Arquitecto";
 
 const totalCertifications = certificates?.length ?? 0;
 const architectCount = certificates?.filter((item) => /architect|arquitect/i.test(item.name)).length ?? 0;
@@ -57,91 +53,95 @@ function issuerFromUrl(url: string) {
 ---
 
 <section id="Certificados" class="h-full min-h-0 w-full snap-start overflow-y-auto">
-  <div class="sticky top-0 z-10 bg-[var(--bg-dark)]/80 backdrop-blur-md border-b border-white/5 px-8 py-4 flex justify-between items-center md:hidden">
+  <div
+    class="sticky top-0 z-10 bg-[var(--bg-dark)]/80 backdrop-blur-md border-b border-white/5 px-8 py-4 flex justify-between items-center md:hidden"
+  >
     <span class="font-bold text-lg text-[var(--text-use)] uppercase tracking-wide">{title}</span>
-    <button class="text-[var(--text-use)]" type="button" aria-label="menu">
-      <span class="material-symbols-outlined">menu</span>
-    </button>
   </div>
 
-  <div class="max-w-6xl mx-auto px-6 py-12 md:px-12 md:py-16">
-    <div class="mb-12">
-      <h2 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-resaltar)] to-[var(--color-green)] mb-4">
-        {overviewTitle}
-      </h2>
-      <div class="h-1 w-24 bg-gradient-to-r from-[var(--color-resaltar)] to-[var(--color-green)] rounded-full mb-6"></div>
-      <p class="text-[var(--color-blue)] text-lg max-w-2xl leading-relaxed">{overviewText}</p>
+  <div class="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
+      <div class="col-span-2 p-8 rounded-3xl relative overflow-hidden group">
+        <h2
+          class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-resaltar)] to-[var(--color-green)] mb-4"
+        >
+          {overviewTitle}
+        </h2>
+        <p class="text-[var(--color-blue)] text-lg max-w-2xl leading-relaxed">{overviewText}</p>
+      </div>
+      <div class="experience-card p-6 rounded-3xl flex flex-col justify-center text-center">
+        <span class="text-4xl font-bold text-[var(--color-resaltar)] mb-1">{totalCertifications}+</span>
+        <span class="text-[10px] uppercase tracking-[0.2em] text-[var(--color-blue)] font-black">{totalCertLabel}</span>
+      </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
-      <div class="lg:col-span-2 experience-card p-8 rounded-3xl relative overflow-hidden group">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-16">
+      <div class="col-span-1 group"></div>
+      <div class="col-span-2 experience-card p-8 rounded-3xl relative overflow-hidden group">
         {
           featured && (
             <div class="relative z-10">
-              <span class="text-[10px] py-1 px-3 rounded-full bg-[var(--color-green)]/10 text-[var(--color-green)] border border-[var(--color-green)]/30 uppercase tracking-widest mb-4 inline-block">
-                {featuredLabel}
-              </span>
-
               <div class="mb-5 rounded-2xl overflow-hidden border border-white/10 bg-black/10">
                 <Image src={featured.img} alt={featured.name} class="w-full h-auto" width={900} height={520} />
               </div>
-
-              <h3 class="text-2xl md:text-3xl font-bold text-[var(--text-use)] mb-4">{featured.name}</h3>
-              <p class="text-[var(--color-blue)] text-sm mb-6 max-w-2xl leading-relaxed border-l-2 border-[var(--color-resaltar)] pl-4">
-                {featured.resume}
-              </p>
-              <div class="flex items-center gap-6">
-                <div>
-                  <p class="text-[10px] uppercase tracking-widest text-[var(--color-blue)] mb-1">{issuerLabel}</p>
-                  <p class="text-[var(--text-use)] font-bold">{issuerFromUrl(featured.url)}</p>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="md:col-span-2">
+                  <h3 class="text-2xl md:text-3xl font-bold text-[var(--color-blue)] mb-4">{featured.name}</h3>
+                  <p class="text-base mb-6 max-w-2xl leading-relaxed border-l-2 border-[var(--color-resaltar)] pl-4">{featured.resume}</p>
                 </div>
-                <div class="h-8 w-px bg-white/10"></div>
                 <div>
-                  <p class="text-[10px] uppercase tracking-widest text-[var(--color-blue)] mb-1">{statusLabel}</p>
-                  <p class="text-[var(--color-green)] font-bold flex items-center gap-1">
-                    <span class="material-symbols-outlined text-sm">verified</span>
-                    {verifiedLabel}
-                  </p>
+                  <div>
+                    <p class="text-base uppercase font-bold tracking-widest mb-1 text-[var(--color-purple)]">{issuerLabel}</p>
+                    <a
+                      class="font-bold underline ml-6 text-[var(--color-red)]"
+                      href={featured.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {issuerFromUrl(featured.url)}
+                    </a>
+                    <p class="text-base mt-10 uppercase tracking-wide text-[var(--color-resaltar)] font-bold">
+                      {formatDate(featured.date)}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           )
         }
       </div>
+      <div class="col-span-1 group"></div>
+    </div>
 
-      <div class="grid grid-rows-2 gap-6">
-        <div class="experience-card p-6 rounded-3xl flex flex-col justify-center text-center">
-          <span class="text-4xl font-bold text-[var(--color-resaltar)] mb-1">{totalCertifications}+</span>
-          <span class="text-[10px] uppercase tracking-[0.2em] text-[var(--color-blue)] font-black">{totalCertLabel}</span>
-        </div>
-        <div class="experience-card p-6 rounded-3xl flex flex-col justify-center text-center">
-          <span class="text-4xl font-bold text-[var(--color-green)] mb-1">{architectCount}</span>
-          <span class="text-[10px] uppercase tracking-[0.2em] text-[var(--color-blue)] font-black">{architectLabel}</span>
-        </div>
+    <div class="max-h-[34rem] overflow-y-auto no-scrollbar pr-1">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {
+          restCertificates.map((cert) => (
+            <div class="experience-card p-5 rounded-2xl flex items-center justify-between group">
+              <div class="flex items-center gap-4 min-w-0">
+                <div class="w-12 h-12 rounded-xl bg-[var(--bg-dark)] flex items-center justify-center border border-white/5 group-hover:border-[var(--color-resaltar)]/50 transition-colors overflow-hidden shrink-0">
+                  <Image src={cert.img} alt={cert.name} width={48} height={48} class="w-full h-full object-cover" />
+                </div>
+                <div class="min-w-0 grid grid-cols-1 md:grid-cols-3 gap-2">
+                  <div class="col-span-2 ">
+                    <h4 class="text-2xl font-bold text-[var(--text-use)] group-hover:text-[var(--color-resaltar)] transition-colors truncate">
+                      {cert.name}
+                    </h4>
+                  </div>
+                  <div class="col-span-1 ml-16 row-span-2">
+                    <p class="text-base mt-4 uppercase tracking-wide text-[var(--color-resaltar)] font-bold">{formatDate(cert.date)}</p>
+                  </div>
+                  <div class="col-span-2">
+                    <a href={cert.url || "#"} target="_blank" rel="noopener noreferrer" class="cursor-pointer mt-4">
+                      <p class="text-base uppercase tracking-widest truncate text-[var(--color-red)]">{issuerFromUrl(cert.url)}</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))
+        }
       </div>
     </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      {
-        restCertificates.map((cert) => (
-          <a href={cert.url || "#"} target="_blank" rel="noopener noreferrer" class="experience-card p-5 rounded-2xl flex items-center justify-between group cursor-pointer">
-            <div class="flex items-center gap-4 min-w-0">
-              <div class="w-12 h-12 rounded-xl bg-[var(--bg-dark)] flex items-center justify-center border border-white/5 group-hover:border-[var(--color-resaltar)]/50 transition-colors overflow-hidden shrink-0">
-                <Image src={cert.img} alt={cert.name} width={48} height={48} class="w-full h-full object-cover" />
-              </div>
-              <div class="min-w-0">
-                <h4 class="text-sm font-bold text-[var(--text-use)] group-hover:text-[var(--color-resaltar)] transition-colors truncate">{cert.name}</h4>
-                <p class="text-xs text-[var(--color-blue)] uppercase tracking-widest truncate">{issuerFromUrl(cert.url)}</p>
-              </div>
-            </div>
-            <div class="text-right pl-3 shrink-0">
-              <p class="text-[10px] text-[var(--color-blue)] uppercase">{formatDate(cert.date)}</p>
-              <p class="text-[10px] text-[var(--color-green)] font-bold uppercase tracking-tighter">{verifiedLabel}</p>
-            </div>
-          </a>
-        ))
-      }
-    </div>
   </div>
-
 </section>
