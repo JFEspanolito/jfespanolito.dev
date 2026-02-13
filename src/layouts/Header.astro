@@ -7,8 +7,16 @@ import LanguageSwitch from "@/components/ui/LanguageSwitch";
 
 const contactLinks = ((aboutInfo as any).contact ?? []) as Array<{ name: string; url: string; icon: any }>;
 const socialLinks = ((aboutInfo as any).social ?? []) as Array<{ name: string; url: string; icon: any }>;
+const queryLang = Astro.url.searchParams.get("lang")?.trim().toLowerCase();
 const rawLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
-const currentLang: "en" | "es" = rawLang === "en" || rawLang === "es" ? rawLang : Astro.url.pathname.startsWith("/en") ? "en" : "es";
+const currentLang: "en" | "es" =
+  queryLang === "en" || queryLang === "es"
+    ? queryLang
+    : rawLang === "en" || rawLang === "es"
+      ? rawLang
+      : Astro.url.pathname.startsWith("/en")
+        ? "en"
+        : "es";
 const navItems =
   currentLang === "en"
     ? [

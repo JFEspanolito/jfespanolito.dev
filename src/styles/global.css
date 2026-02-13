@@ -39,8 +39,7 @@
 body {
   background-color: var(--bg-use);
   background-image:
-    linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
   color: var(--text-use);
   font-family: var(--font-sans);

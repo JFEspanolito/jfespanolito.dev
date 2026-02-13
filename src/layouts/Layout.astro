@@ -10,13 +10,25 @@ import Header from "./Header.astro";
 import Footer from "./Footer.astro";
 import VerticalMenu from "@/components/sections/VerticalMenu.astro";
 
+const queryLang = Astro.url.searchParams.get("lang")?.trim().toLowerCase();
 const rawLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
+
 const lang: "en" | "es" =
-  rawLang === "en" || rawLang === "es"
-    ? rawLang
-    : Astro.url.pathname.startsWith("/en")
-      ? "en"
-      : "es";
+  queryLang === "en" || queryLang === "es"
+    ? queryLang
+    : rawLang === "en" || rawLang === "es"
+      ? rawLang
+      : Astro.url.pathname.startsWith("/en")
+        ? "en"
+        : "es";
+
+if (queryLang === "en" || queryLang === "es") {
+  Astro.cookies.set("lang", queryLang, {
+    path: "/",
+    maxAge: 60 * 60 * 24 * 365,
+    sameSite: "lax",
+  });
+}
 
 Astro.locals.lang = lang;
 
