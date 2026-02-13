@@ -20,7 +20,7 @@ export default function LanguageSwitch({ initialLang = "es" }: LanguageSwitchPro
   };
 
   return (
-    <div className="inline-flex items-center p-1 rounded-full border border-[var(--color-blue)]/40 bg-[var(--color-card-bg)]/80 shadow-[0_0_12px_rgba(99,102,241,0.15)]">
+    <div className="inline-flex items-center p-1 rounded-full border border-[var(--color-blue)]/40 bg-[var(--color-card-bg)]/80 shadow-[0_0_12px_rgba(99,102,241,0.15)] mr-6">
       <button
         type="button"
         onClick={() => setLanguage("es")}

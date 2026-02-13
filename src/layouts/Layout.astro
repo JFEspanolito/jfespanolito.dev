@@ -73,7 +73,7 @@ const finalTitle = title ? `${title} | ${config.appName}` : config.appName;
         <VerticalMenu />
       </aside>
 
-      <div class="flex-1 h-full min-h-0 overflow-y-scroll snap-y snap-proximity scroll-smooth py-6 px-4 md:pl-[360px] lg:pl-[380px] md:pr-8 no-scrollbar">
+      <div class="flex-1 h-full min-h-0 overflow-y-scroll snap-y snap-mandatory scroll-smooth py-6 px-4 md:pl-[360px] lg:pl-[380px] md:pr-8 no-scrollbar">
         <slot />
       </div>
     </main>

@@ -1,14 +1,23 @@
 ---
 import { aboutData } from "@/data/about";
 
-const lang = Astro.locals.lang ?? "es";
-const key = lang.toUpperCase() as "ES" | "EN";
-const profile = aboutData[key][0];
+const cookieLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
+const localLang = typeof Astro.locals.lang === "string" ? Astro.locals.lang.toLowerCase() : undefined;
+
+const lang: "es" | "en" =
+  cookieLang === "en" || cookieLang === "es" ? cookieLang : Astro.url.pathname.startsWith("/en") ? "en" : localLang === "en" ? "en" : "es";
+
+let profile = null;
+if (lang === "en") {
+  profile = aboutData.EN[0];
+} else {
+  profile = aboutData.ES[0];
+}
 ---
 
 <section id="Bio" class="h-full min-h-0 w-full snap-start flex flex-col py-10 px-4 md:px-6 lg:px-8 overflow-hidden">
-  <div class="relative w-full max-w-7xl mx-auto h-full min-h-0">
-    <h2 class="text-4xl font-bold mb-8">Biografía</h2>
+  <div class="relative w-full max-w-7xl mx-auto h-full min-h-0 text-[var(--color-green)]">
+    {lang === "en" ? <h2 class="text-4xl font-bold mb-6">Biography</h2> : <h2 class="text-4xl font-bold mb-6">Biografía</h2>}
     <!-- <h1 class="text-3xl md:text-7xl font-bold text-white mb-8">
       {aboutData.name}
     </h1> -->

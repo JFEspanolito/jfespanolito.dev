@@ -5,13 +5,7 @@ const cookieLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
 const localLang = typeof Astro.locals.lang === "string" ? Astro.locals.lang.toLowerCase() : undefined;
 
 const lang: "es" | "en" =
-  cookieLang === "en" || cookieLang === "es"
-    ? cookieLang
-    : Astro.url.pathname.startsWith("/en")
-      ? "en"
-      : localLang === "en"
-        ? "en"
-        : "es";
+  cookieLang === "en" || cookieLang === "es" ? cookieLang : Astro.url.pathname.startsWith("/en") ? "en" : localLang === "en" ? "en" : "es";
 
 let profileInfo = null;
 if (lang === "en") {
@@ -23,25 +17,25 @@ if (lang === "en") {
 const navItems =
   lang === "en"
     ? [
-        { label: "Home", href: "#Resumen" },
-        { label: "Bio", href: "#Bio" },
-        { label: "Experience", href: "#Experiencia" },
-        { label: "Projects", href: "#Proyectos" },
-        { label: "Certificates", href: "#Certificados" },
+        { label: "🕹️ Home", href: "#Resumen" },
+        { label: "📜 Bio", href: "#Bio" },
+        { label: "💼 Experience", href: "#Experiencia" },
+        { label: "🛠️ Projects", href: "#Proyectos" },
+        { label: "🏅 Certificates", href: "#Certificados" },
       ]
     : [
-        { label: "Inicio", href: "#Resumen" },
-        { label: "Bio", href: "#Bio" },
-        { label: "Experiencia", href: "#Experiencia" },
-        { label: "Proyectos", href: "#Proyectos" },
-        { label: "Certificados", href: "#Certificados" },
+        { label: "🕹️ Inicio", href: "#Resumen" },
+        { label: "📜 Bio", href: "#Bio" },
+        { label: "💼 Experiencia", href: "#Experiencia" },
+        { label: "🛠️ Proyectos", href: "#Proyectos" },
+        { label: "🏅 Certificados", href: "#Certificados" },
       ];
 
 const getImageSrc = (img: string | { src: string }) => (typeof img === "string" ? img : img.src);
 ---
 
 <section id="vertical-menu" class="vertical-menu" aria-label="Profile navigation">
-  <div class="avatar-ring">
+  <div class="avatar-ring mb-6">
     <img class="avatar" src={getImageSrc(aboutData.avatarUrl)} alt={`${aboutData.name} portrait`} loading="lazy" />
   </div>
 
@@ -187,6 +181,8 @@ const getImageSrc = (img: string | { src: string }) => (typeof img === "string" 
     flex-direction: column;
     gap: 14px;
     margin-top: 6px;
+    text-align: left;
+    align-items: flex-start;
   }
 
   .menu-link {

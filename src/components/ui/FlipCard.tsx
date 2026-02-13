@@ -14,7 +14,7 @@ const FlipCard: React.FC<Props> = ({ experience }) => {
     >
       <div className={`relative w-full h-full transition-transform duration-700 transform-style-3d ${isFlipped ? "rotate-y-180" : ""}`}>
         {/* FRENTE */}
-        <div className="absolute w-full h-full backface-hidden bg-[var(--color-card-bg)] rounded-2xl p-4 md:p-6 shadow-lg flex flex-col justify-between border border-[var(--color-resaltar)] overflow-y-auto mini-scrollbar">
+        <div className="absolute w-full h-full backface-hidden bg-[var(--color-card-bg)] rounded-2xl p-4 md:p-6 shadow-lg flex flex-col justify-between border border-[var(--color-resaltar)] overflow-hidden">
           <div>
             <div className="flex justify-between items-start">
               <h3 className="text-lg md:text-xl font-bold leading-tight pr-2 text-[var(--color-purple)]">{experience.role}</h3>
@@ -44,11 +44,11 @@ const FlipCard: React.FC<Props> = ({ experience }) => {
         </div>
 
         {/* ATRÁS */}
-        <div className="absolute w-full h-full backface-hidden rotate-y-180 bg-[var(--color-card-bg)] rounded-2xl p-4 md:p-6 shadow-xl border border-[var(--color-resaltar)] flex flex-col overflow-y-auto mini-scrollbar">
+        <div className="absolute w-full h-full backface-hidden rotate-y-180 bg-[var(--color-card-bg)] rounded-2xl p-4 md:p-6 shadow-xl border border-[var(--color-resaltar)] flex flex-col overflow-hidden">
           <h4 className="text-purple-600 font-bold uppercase text-[10px] md:text-xs mb-3 md:mb-4 tracking-widest border-b border-purple-100 pb-2">
             Actividades Técnicas
           </h4>
-          <ul className="flex-1 overflow-y-auto mini-scrollbar space-y-2 pr-1">
+          <ul className="flex-1 space-y-2 pr-1 overflow-hidden">
             {experience.activities.map((act: string, i: number) => (
               <li key={i} className="text-sm md:text-base flex gap-2 md:gap-3">
                 <span className="text-purple-500 font-bold">›</span> {act}
