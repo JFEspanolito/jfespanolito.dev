@@ -20,10 +20,6 @@ const restCertificates = certificates?.slice(1) ?? [];
 
 const title = lang === "en" ? "Certificates" : "Certificados";
 const overviewTitle = lang === "en" ? "Certificates" : "Certificados";
-const overviewText =
-  lang === "en"
-    ? "A comprehensive repository of professional certifications, technical validations, and industry-recognized achievements."
-    : "Un repositorio integral de certificaciones profesionales, validaciones técnicas y logros reconocidos por la industria.";
 const issuerLabel = lang === "en" ? "Issuer" : "Entidad";
 const totalCertLabel = lang === "en" ? "Total Certifications" : "Total Certificaciones";
 
@@ -52,13 +48,7 @@ function issuerFromUrl(url: string) {
 }
 ---
 
-<section id="Certificados" class="h-full min-h-0 w-full snap-start overflow-y-auto">
-  <div
-    class="sticky top-0 z-10 bg-[var(--bg-dark)]/80 backdrop-blur-md border-b border-white/5 px-8 py-4 flex justify-between items-center md:hidden"
-  >
-    <span class="font-bold text-lg text-[var(--text-use)] uppercase tracking-wide">{title}</span>
-  </div>
-
+<section id="Certificados" class="h-full min-h-0 w-full snap-start overflow-y-auto no-scrollbar">
   <div class="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
       <div class="col-span-2 p-8 rounded-3xl relative overflow-hidden group">
@@ -67,7 +57,6 @@ function issuerFromUrl(url: string) {
         >
           {overviewTitle}
         </h2>
-        <p class="text-[var(--color-blue)] text-lg max-w-2xl leading-relaxed">{overviewText}</p>
       </div>
       <div class="experience-card p-6 rounded-3xl flex flex-col justify-center text-center">
         <span class="text-4xl font-bold text-[var(--color-resaltar)] mb-1">{totalCertifications}+</span>
@@ -81,19 +70,28 @@ function issuerFromUrl(url: string) {
         {
           featured && (
             <div class="relative z-10">
-              <div class="mb-5 rounded-2xl overflow-hidden border border-white/10 bg-black/10">
+              <button
+                type="button"
+                class="mb-5 w-full rounded-2xl overflow-hidden border border-white/10 bg-black/10 cursor-zoom-in"
+                data-cert-preview
+                data-preview-src={featured.img.src}
+                data-preview-alt={featured.name}
+                aria-label={`Ver certificado: ${featured.name}`}
+              >
                 <Image src={featured.img} alt={featured.name} class="w-full h-auto" width={900} height={520} />
-              </div>
+              </button>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="md:col-span-2">
-                  <h3 class="text-2xl md:text-3xl font-bold text-[var(--color-blue)] mb-4">{featured.name}</h3>
-                  <p class="text-base mb-6 max-w-2xl leading-relaxed border-l-2 border-[var(--color-resaltar)] pl-4">{featured.resume}</p>
+                  <h3 class="text-2xl md:text-3xl font-bold text-[var(--color-blue)] mb-4 break-words leading-tight">{featured.name}</h3>
+                  <p class="text-base mb-6 max-w-2xl leading-relaxed border-l-2 border-[var(--color-resaltar)] pl-4 break-words">
+                    {featured.resume}
+                  </p>
                 </div>
                 <div>
                   <div>
                     <p class="text-base uppercase font-bold tracking-widest mb-1 text-[var(--color-purple)]">{issuerLabel}</p>
                     <a
-                      class="font-bold underline ml-6 text-[var(--color-red)]"
+                      class="font-bold underline ml-6 text-[var(--color-red)] inline-block max-w-full truncate align-middle"
                       href={featured.url}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -117,23 +115,47 @@ function issuerFromUrl(url: string) {
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {
           restCertificates.map((cert) => (
-            <div class="experience-card p-5 rounded-2xl flex items-center justify-between group">
-              <div class="flex items-center gap-4 min-w-0">
-                <div class="w-12 h-12 rounded-xl bg-[var(--bg-dark)] flex items-center justify-center border border-white/5 group-hover:border-[var(--color-resaltar)]/50 transition-colors overflow-hidden shrink-0">
+            <div class="experience-card p-2 rounded-2xl group overflow-hidden">
+              <div class="flex items-center gap-4 min-w-0 w-full">
+                <button
+                  type="button"
+                  class="w-12 h-12 rounded-xl bg-[var(--bg-dark)] flex items-center justify-center border border-white/5 group-hover:border-[var(--color-resaltar)]/50 transition-colors overflow-hidden shrink-0 cursor-zoom-in"
+                  data-cert-preview
+                  data-preview-src={cert.img.src}
+                  data-preview-alt={cert.name}
+                  aria-label={`Ver certificado: ${cert.name}`}
+                >
                   <Image src={cert.img} alt={cert.name} width={48} height={48} class="w-full h-full object-cover" />
-                </div>
-                <div class="min-w-0 grid grid-cols-1 md:grid-cols-3 gap-2">
-                  <div class="col-span-2 ">
-                    <h4 class="text-2xl font-bold text-[var(--text-use)] group-hover:text-[var(--color-resaltar)] transition-colors truncate">
+                </button>
+                <div class="min-w-0 w-full grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-x-4 gap-y-2 items-start">
+                  <div class="min-w-0">
+                    <h4 class="text-lg md:text-xl font-bold text-[var(--text-use)] group-hover:text-[var(--color-resaltar)] transition-colors truncate">
                       {cert.name}
                     </h4>
                   </div>
-                  <div class="col-span-1 ml-16 row-span-2">
-                    <p class="text-base mt-4 uppercase tracking-wide text-[var(--color-resaltar)] font-bold">{formatDate(cert.date)}</p>
+
+                  <div class="min-w-0 md:text-right">
+                    <p class="text-sm uppercase tracking-wide text-[var(--color-resaltar)] font-bold whitespace-nowrap">
+                      {formatDate(cert.date)}
+                    </p>
                   </div>
-                  <div class="col-span-2">
-                    <a href={cert.url || "#"} target="_blank" rel="noopener noreferrer" class="cursor-pointer mt-4">
-                      <p class="text-base uppercase tracking-widest truncate text-[var(--color-red)]">{issuerFromUrl(cert.url)}</p>
+
+                  <div class="min-w-0">
+                    <p class="text-sm md:text-base leading-relaxed border-l-2 border-[var(--color-resaltar)] pl-4 line-clamp-2">
+                      {cert.resume}
+                    </p>
+                  </div>
+
+                  <div class="min-w-0 md:text-right">
+                    <a
+                      href={cert.url || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-block max-w-full cursor-pointer align-middle"
+                    >
+                      <p class="text-sm uppercase tracking-widest text-[var(--color-red)] truncate max-w-[12rem] md:max-w-[14rem]">
+                        {issuerFromUrl(cert.url)}
+                      </p>
                     </a>
                   </div>
                 </div>
@@ -144,4 +166,67 @@ function issuerFromUrl(url: string) {
       </div>
     </div>
   </div>
+
+  <div
+    id="cert-lightbox"
+    class="fixed inset-0 z-[120] hidden items-center justify-center bg-[var(--bg-dark)]/90 p-4 md:p-8"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Vista ampliada de certificado"
+  >
+    <button
+      id="cert-lightbox-close"
+      type="button"
+      class="absolute top-4 right-4 md:top-6 md:right-6 h-10 w-10 rounded-full border border-white/20 text-[var(--text-use)] hover:border-[var(--color-resaltar)]"
+      aria-label="Cerrar"
+    >
+      ✕
+    </button>
+
+    <img
+      id="cert-lightbox-image"
+      src=""
+      alt=""
+      class="max-h-[90vh] max-w-[95vw] w-auto h-auto rounded-xl border border-white/15 shadow-2xl"
+    />
+  </div>
 </section>
+
+<script>
+  const lightbox = document.getElementById("cert-lightbox");
+  const lightboxImg = document.getElementById("cert-lightbox-image") as HTMLImageElement | null;
+  const closeBtn = document.getElementById("cert-lightbox-close");
+  const previewButtons = document.querySelectorAll("[data-cert-preview]");
+
+  function openLightbox(src: string | null, alt: string | null) {
+    if (!lightbox || !lightboxImg || !src) return;
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || "Certificate preview";
+    lightbox.classList.remove("hidden");
+    lightbox.classList.add("flex");
+  }
+
+  function closeLightbox() {
+    if (!lightbox || !lightboxImg) return;
+    lightbox.classList.add("hidden");
+    lightbox.classList.remove("flex");
+    lightboxImg.src = "";
+    lightboxImg.alt = "";
+  }
+
+  previewButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      openLightbox(button.getAttribute("data-preview-src"), button.getAttribute("data-preview-alt"));
+    });
+  });
+
+  closeBtn?.addEventListener("click", closeLightbox);
+
+  lightbox?.addEventListener("click", (event) => {
+    if (event.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeLightbox();
+  });
+</script>

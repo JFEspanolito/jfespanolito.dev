@@ -1,5 +1,6 @@
 ---
 import { aboutData } from "@/data/about";
+import bgRight from "@/assets/images/bg_right.webp";
 
 const cookieLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
 const localLang = typeof Astro.locals.lang === "string" ? Astro.locals.lang.toLowerCase() : undefined;
@@ -34,7 +35,7 @@ const navItems =
 const getImageSrc = (img: string | { src: string }) => (typeof img === "string" ? img : img.src);
 ---
 
-<section id="vertical-menu" class="vertical-menu" aria-label="Profile navigation">
+<section id="vertical-menu" class="vertical-menu" aria-label="Profile navigation" style={`--menu-hover-bg: url('${bgRight.src}')`}>
   <div class="avatar-ring mb-6">
     <img class="avatar" src={getImageSrc(aboutData.avatarUrl)} alt={`${aboutData.name} portrait`} loading="lazy" />
   </div>
@@ -111,9 +112,35 @@ const getImageSrc = (img: string | { src: string }) => (typeof img === "string" 
     gap: 20px;
     box-shadow: var(--menu-shadow);
     border: 1px solid rgba(35, 44, 63, 0.08);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
 
     /* Evita que se encoja si el contenido crece */
     flex-shrink: 0;
+  }
+
+  .vertical-menu::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--menu-hover-bg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .vertical-menu:hover::before {
+    opacity: 0.6;
+  }
+
+  .vertical-menu > * {
+    position: relative;
+    z-index: 1;
   }
 
   .avatar-ring {
