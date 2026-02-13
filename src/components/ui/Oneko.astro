@@ -10,7 +10,7 @@ import onekoVaporwave from "@/assets/onekoAssets/oneko-vaporwave.gif";
 
 <div
   id="oneko-container"
-  style="touch-action:none; width:40px; height:40px;"
+  style="width:40px; height:40px; cursor:pointer;"
   data-oneko-classic={onekoClassic.src}
   data-oneko-dog={onekoDog.src}
   data-oneko-maia={onekoMaia.src}
@@ -22,86 +22,8 @@ import onekoVaporwave from "@/assets/onekoAssets/oneko-vaporwave.gif";
 
 <script is:inline>
   (() => {
-    const STORAGE_KEY = "oneko:bedPosition";
-    const SIZE = { w: 40, h: 40 };
-    const preferred = { x: 1514, y: 6 };
     const container = document.getElementById("oneko-container");
     if (!container) return;
-
-    function clamp(x, y) {
-      const maxX = Math.max(0, window.innerWidth - SIZE.w);
-      const maxY = Math.max(0, window.innerHeight - SIZE.h);
-      return {
-        x: Math.min(Math.max(0, x), maxX),
-        y: Math.min(Math.max(0, y), maxY),
-      };
-    }
-
-    function applyPosition(pos) {
-      container.style.left = `${pos.x}px`;
-      container.style.top = `${pos.y}px`;
-    }
-
-    function getInitialPosition() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (raw) {
-          const parsed = JSON.parse(raw);
-          if (typeof parsed?.x === "number" && typeof parsed?.y === "number") {
-            return clamp(parsed.x, parsed.y);
-          }
-        }
-      } catch {}
-
-      const visible =
-        preferred.x >= 0 && preferred.y >= 0 && preferred.x + SIZE.w <= window.innerWidth && preferred.y + SIZE.h <= window.innerHeight;
-
-      if (visible) return preferred;
-
-      return {
-        x: Math.max(0, window.innerWidth - SIZE.w),
-        y: Math.max(0, window.innerHeight - SIZE.h),
-      };
-    }
-
-    let pos = getInitialPosition();
-    applyPosition(pos);
-
-    let dragging = false;
-    let start = { sx: 0, sy: 0, px: 0, py: 0 };
-
-    function onPointerDown(e) {
-      if (e.button !== 0) return;
-      container.setPointerCapture(e.pointerId);
-      dragging = true;
-      start = { sx: e.clientX, sy: e.clientY, px: pos.x, py: pos.y };
-      container.style.cursor = "grabbing";
-    }
-
-    function onPointerMove(e) {
-      if (!dragging) return;
-      const dx = e.clientX - start.sx;
-      const dy = e.clientY - start.sy;
-      pos = clamp(start.px + dx, start.py + dy);
-      applyPosition(pos);
-    }
-
-    function onPointerUp(e) {
-      if (!dragging) return;
-      dragging = false;
-      try {
-        container.releasePointerCapture(e.pointerId);
-      } catch {}
-      container.style.cursor = "grab";
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(pos));
-      } catch {}
-    }
-
-    container.addEventListener("pointerdown", onPointerDown);
-    container.addEventListener("pointermove", onPointerMove);
-    container.addEventListener("pointerup", onPointerUp);
-    container.addEventListener("pointercancel", onPointerUp);
 
     container.addEventListener("click", (e) => {
       if (e.button !== 0) return;
@@ -112,14 +34,6 @@ import onekoVaporwave from "@/assets/onekoAssets/oneko-vaporwave.gif";
       e.preventDefault();
       window.dispatchEvent(new Event("oneko:picker"));
     });
-
-    window.addEventListener("resize", () => {
-      pos = clamp(pos.x, pos.y);
-      applyPosition(pos);
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(pos));
-      } catch {}
-    });
   })();
 </script>
 
@@ -128,7 +42,6 @@ import onekoVaporwave from "@/assets/onekoAssets/oneko-vaporwave.gif";
   // oneko.js: https://github.com/adryd325/oneko.js
 
   (async function oneko() {
-    console.log("[oneko] script loaded");
     const nekoEl = document.createElement("div");
     const bedEl = document.getElementById("oneko-container");
     const variantAssetMap = {
@@ -176,6 +89,17 @@ import onekoVaporwave from "@/assets/onekoAssets/oneko-vaporwave.gif";
     let bedTargetX = null;
     let bedTargetY = null;
     let ignoreMouse = false;
+
+    function getBedCenter() {
+      if (!bedEl) return null;
+      const rect = bedEl.getBoundingClientRect();
+      if (rect.width <= 0 || rect.height <= 0) return null;
+      let x = rect.left + rect.width / 2;
+      let y = rect.top + rect.height / 2;
+      x = Math.min(Math.max(16, x), window.innerWidth - 16);
+      y = Math.min(Math.max(16, y), window.innerHeight - 16);
+      return { x, y };
+    }
 
     async function loadVariants() {
       variants = [
@@ -339,6 +263,7 @@ import onekoVaporwave from "@/assets/onekoAssets/oneko-vaporwave.gif";
       nekoEl.style.width = "32px";
       nekoEl.style.height = "32px";
       nekoEl.style.position = "fixed";
+      nekoEl.style.cursor = "grab";
       // nekoEl.style.pointerEvents = "none";
       nekoEl.style.backgroundImage = `url('${getVariantSrc(variant)}')`;
       nekoEl.style.imageRendering = "pixelated";
@@ -374,6 +299,7 @@ import onekoVaporwave from "@/assets/onekoAssets/oneko-vaporwave.gif";
       nekoEl.addEventListener("mousedown", (e) => {
         if (e.button !== 0) return;
         grabbing = true;
+        nekoEl.style.cursor = "grabbing";
         let startX = e.clientX;
         let startY = e.clientY;
         let startNekoX = nekoPosX;
@@ -414,6 +340,7 @@ import onekoVaporwave from "@/assets/onekoAssets/oneko-vaporwave.gif";
 
         const mouseup = () => {
           grabbing = false;
+          nekoEl.style.cursor = "grab";
           nudge = true;
           resetIdleAnimation();
           window.removeEventListener("mousemove", mousemove);
@@ -580,52 +507,29 @@ import onekoVaporwave from "@/assets/onekoAssets/oneko-vaporwave.gif";
     // Initialize neko position from the draggable bed saved by the React component
     // This runs once on load so the cat starts at the bed's position.
     (function initFromBed() {
-      try {
-        const raw = localStorage.getItem("oneko:bedPosition");
-        if (raw) {
-          const parsed = JSON.parse(raw);
-          if (typeof parsed.x === "number" && typeof parsed.y === "number") {
-            // The React component stores the bed's top-left coordinates; neko uses a center coordinate offset of 16px
-            let x = parsed.x + 16;
-            let y = parsed.y + 16;
-            x = Math.min(Math.max(16, x), window.innerWidth - 16);
-            y = Math.min(Math.max(16, y), window.innerHeight - 16);
-            nekoPosX = x;
-            nekoPosY = y;
-          }
-        }
-      } catch (e) {
-        // ignore parsing errors
+      const bedCenter = getBedCenter();
+      if (bedCenter) {
+        nekoPosX = bedCenter.x;
+        nekoPosY = bedCenter.y;
       }
     })();
 
     function goToBed() {
-      try {
-        const raw = localStorage.getItem("oneko:bedPosition");
-        if (!raw) return;
-        const parsed = JSON.parse(raw);
-        if (typeof parsed.x === "number" && typeof parsed.y === "number") {
-          let bx = parsed.x + 16;
-          let by = parsed.y + 16;
-          bx = Math.min(Math.max(16, bx), window.innerWidth - 16);
-          by = Math.min(Math.max(16, by), window.innerHeight - 16);
-          // Use a dedicated bed target so mouse movements don't override it
-          bedTargetX = bx;
-          bedTargetY = by;
-          // set mousePos to bed target so movement follows a straight path
-          mousePosX = bx;
-          mousePosY = by;
-          console.log("[oneko] goToBed -> bedTarget", { bedTargetX, bedTargetY });
-          ignoreMouse = true;
-          console.log("[oneko] ignoreMouse = true");
-          returningToBed = true;
-          forceSleep = false;
-          nudge = false;
-          idleTime = 0;
-        }
-      } catch (e) {
-        // ignore
-      }
+      const bedCenter = getBedCenter();
+      if (!bedCenter) return;
+      const bx = bedCenter.x;
+      const by = bedCenter.y;
+      bedTargetX = bx;
+      bedTargetY = by;
+      mousePosX = bx;
+      mousePosY = by;
+      console.log("[oneko] goToBed -> bedTarget", { bedTargetX, bedTargetY });
+      ignoreMouse = true;
+      console.log("[oneko] ignoreMouse = true");
+      returningToBed = true;
+      forceSleep = false;
+      nudge = false;
+      idleTime = 0;
     }
 
     function arriveAtBed() {
@@ -656,13 +560,11 @@ import onekoVaporwave from "@/assets/onekoAssets/oneko-vaporwave.gif";
           create();
           window.onekoShown = true;
           window.onekoAtBed = false;
-          // initialize mouse position from click so the cat will follow immediately
-          if (typeof cx === "number" && typeof cy === "number") {
-            mousePosX = cx;
-            mousePosY = cy;
-            ignoreMouse = false;
-            console.log("[oneko] initialized mousePos from click", { mousePosX, mousePosY });
-          }
+          // keep initial target at bed so first click starts from bed position
+          ignoreMouse = false;
+          mousePosX = nekoPosX;
+          mousePosY = nekoPosY;
+          console.log("[oneko] first click -> start from bed position", { mousePosX, mousePosY });
           return;
         }
 
