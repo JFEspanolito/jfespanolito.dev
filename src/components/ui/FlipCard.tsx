@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import experienceBanner from "../../assets/experienceBanner.webp";
 
 interface Props {
   experience: any;
@@ -14,7 +15,7 @@ const FlipCard: React.FC<Props> = ({ experience }) => {
     >
       <div className={`relative w-full h-full transition-transform duration-700 transform-style-3d ${isFlipped ? "rotate-y-180" : ""}`}>
         {/* FRONT */}
-        <div className="absolute w-full h-full backface-hidden bg-[var(--color-card-bg)] rounded-2xl p-4 md:p-6 shadow-lg flex flex-col justify-between border border-[var(--color-resaltar)] overflow-hidden">
+        <div className="absolute w-full h-full backface-hidden bg-[var(--color-card-bg)] rounded-2xl p-4 md:p-6 shadow-lg flex flex-col justify-between border border-[var(--color-resaltar)] overflow-hidden z-10">
           <div>
             <div className="flex justify-between items-start">
               <h3 className="text-lg md:text-xl font-bold leading-tight pr-2 text-[var(--color-purple)]">{experience.role}</h3>
@@ -28,6 +29,12 @@ const FlipCard: React.FC<Props> = ({ experience }) => {
                 {experience.period}
               </span>
             </div>
+            {/* Background image layer */}
+            <img
+              className="absolute inset-0 w-full h-full rounded-2xl opacity-8 pointer-events-none z-100"
+              src={experienceBanner.src}
+              alt="background"
+            />
             <p className="mt-2.5 md:mt-3 text-base md:text-base leading-relaxed line-clamp-3 text-[var(--text-use)] ">
               {experience.description}
             </p>
@@ -37,7 +44,8 @@ const FlipCard: React.FC<Props> = ({ experience }) => {
             {experience.topskills.slice(0, 4).map((skill: string) => (
               <span
                 key={skill}
-                className="text-[11px] md:text-[14px] bg-[var(--bg-use)] text-[var(--color-red)] px-2 md:px-3 py-1 rounded font-medium">
+                className="text-[11px] md:text-[14px] bg-[var(--bg-use)] text-[var(--color-red)] px-2 md:px-3 py-1 rounded font-medium"
+              >
                 {skill}
               </span>
             ))}
@@ -45,7 +53,7 @@ const FlipCard: React.FC<Props> = ({ experience }) => {
         </div>
 
         {/* BACK */}
-        <div className="absolute w-full h-full backface-hidden rotate-y-180 bg-[var(--color-card-bg)] rounded-2xl p-4 md:p-6 shadow-xl border border-[var(--color-resaltar)] flex flex-col overflow-hidden">
+        <div className="absolute w-full h-full backface-hidden rotate-y-180 bg-[var(--color-card-bg)] rounded-2xl p-4 md:p-6 shadow-xl border border-[var(--color-resaltar)] flex flex-col overflow-hidden z-10">
           <h4 className="text-purple-600 font-bold uppercase text-[10px] md:text-xs mb-3 md:mb-4 tracking-widest border-b border-purple-100 pb-2">
             Actividades Técnicas
           </h4>
@@ -59,7 +67,10 @@ const FlipCard: React.FC<Props> = ({ experience }) => {
           </ul>
           <div className="mt-3 md:mt-4 flex flex-wrap gap-1.5">
             {experience.skills.slice(0, 10).map((s: string) => (
-              <span key={s} className="text-[11px] md:text-[14px] bg-[var(--bg-use)] text-[var(--color-red)] px-2 md:px-3 py-1 rounded font-medium">
+              <span
+                key={s}
+                className="text-[11px] md:text-[14px] bg-[var(--bg-use)] text-[var(--color-red)] px-2 md:px-3 py-1 rounded font-medium"
+              >
                 {s}
               </span>
             ))}

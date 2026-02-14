@@ -33,12 +33,12 @@ const navItems =
         { label: "Logros · Certificados", href: "#Certificados" },
       ];
 
-const getImageSrc = (img: string | { src: string }) => (typeof img === "string" ? img : img.src);
+
 ---
 
 <section id="vertical-menu" class="vertical-menu" aria-label="Profile navigation" style={`--menu-hover-bg: url('${bgRight.src}')`}>
   <div class="avatar-ring mb-6">
-    <img class="avatar" src={getImageSrc(aboutData.avatarUrl)} alt={`${aboutData.name} portrait`} loading="lazy" />
+    <Image class="avatar" src={aboutData.avatarUrl} alt={`${aboutData.name} portrait`} loading="lazy" width={120} height={120} />
   </div>
 
   <div class="identity mt-2 mb-10">
