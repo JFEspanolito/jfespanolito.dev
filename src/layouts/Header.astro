@@ -5,6 +5,7 @@ import { configProject as config } from "@/data/configProject";
 import { aboutData as aboutInfo } from "@/data/about";
 import LanguageSwitch from "@/components/ui/LanguageSwitch";
 import Oneko from "@/components/ui/Oneko.astro";
+import hangingImage from "@/assets/hanging.svg";
 
 const contactLinks = ((aboutInfo as any).contact ?? []) as Array<{ name: string; url: string; icon: any }>;
 const socialLinks = ((aboutInfo as any).social ?? []) as Array<{ name: string; url: string; icon: any }>;
@@ -121,6 +122,12 @@ const navItems =
           }
         </div>
       </div>
+    </div>
+
+    <div id="bannerClic" class="absolute hidden md:right-170 top-full mt-2 flex flex-col items-center group">
+      <Image src={hangingImage} alt="Hanging" class="w-16 h-16 md:w-64 md:h-24" />
+
+      <span class="absolute top-3/5 -translate-y-1/2 text-sm md:text-base font-semibold text-[var(--text-use)]"> Clic here </span>
     </div>
   </div>
 

@@ -43,26 +43,13 @@ const recentCerts = certificates.slice(0, 4);
 <section id="Resumen" class="h-full min-h-0 w-full snap-start flex flex-col py-10 px-4 md:px-6 lg:px-8 overflow-hidden">
   <div class="relative w-full max-w-7xl mx-auto h-full flex flex-col justify-center">
     <div class="items-center">
-      <!-- 
-      grid grid-cols-1 lg:grid-cols-12 gap-8
-      <div class="lg:col-span-4 flex flex-col gap-4">
-        <h2 class="text-5xl md:text-6xl font-black text-[var(--color-blue)] uppercase leading-none">
-          {aboutData.name}
-        </h2>
-        <h3 class="text-xl md:text-2xl font-medium text-[var(--color-green)]">
-          {profileInfo.role}
-        </h3>
-        <p class="text-gray-400 text-lg leading-tight max-w-sm">
-          {profileInfo.headline}
-        </p>
-      </div> -->
       <div class="lg:col-span-4 flex flex-col gap-4 items-center justify-center text-center">
         <a id="cta-audio-trigger" role="button" tabindex="0" class="cursor-pointer">
           <h2 class="text-4xl md:text-6xl font-black text-[var(--color-purple)] uppercase leading-none mb-10">
             {profileInfo.callToAction}
           </h2>
         </a>
-        <audio id="cta-audio" src={heyListenAudio} preload="auto" />
+        <audio id="cta-audio" src={heyListenAudio} preload="auto"></audio>
       </div>
       <div class="lg:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-4">
         <div
