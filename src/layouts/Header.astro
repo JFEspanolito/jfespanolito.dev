@@ -7,14 +7,31 @@ import LanguageSwitch from "@/components/ui/LanguageSwitch";
 import Oneko from "@/components/ui/Oneko.astro";
 import hangingImage from "@/assets/hanging.svg";
 
-const contactLinks = ((aboutInfo as any).contact ?? []) as Array<{ name: string; url: string; icon: any }>;
-const socialLinks = ((aboutInfo as any).social ?? []) as Array<{ name: string; url: string; icon: any }>;
+const contactLinks = ((aboutInfo as any).contact ?? []) as Array<{
+  name: string;
+  url: string;
+  icon: any;
+}>;
+const socialLinks = ((aboutInfo as any).social ?? []) as Array<{
+  name: string;
+  url: string;
+  icon: any;
+}>;
 
 const cookieLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
-const localLang = typeof Astro.locals.lang === "string" ? Astro.locals.lang.toLowerCase() : undefined;
+const localLang =
+  typeof Astro.locals.lang === "string"
+    ? Astro.locals.lang.toLowerCase()
+    : undefined;
 
 const lang: "es" | "en" =
-  cookieLang === "en" || cookieLang === "es" ? cookieLang : Astro.url.pathname.startsWith("/en") ? "en" : localLang === "en" ? "en" : "es";
+  cookieLang === "en" || cookieLang === "es"
+    ? cookieLang
+    : Astro.url.pathname.startsWith("/en")
+      ? "en"
+      : localLang === "en"
+        ? "en"
+        : "es";
 
 let aboutLan = null;
 if (lang === "en") {
@@ -47,16 +64,34 @@ const navItems =
 >
   <div class="container mx-auto max-w-7xl px-4">
     <div class="flex items-center justify-between h-12">
-      <a href="/" class="flex items-center gap-3" title={`${aboutLan.callToAction}`}>
-        <Image src={logoImg} alt={`${config.appName} logo`} class="w-6 h-6" width={24} height={24} loading="eager" decoding="async" />
-        <span class="hidden sm:inline font-semibold text-x text-[var(--color-green)]">{config.appName}</span>
+      <a
+        href="/"
+        class="flex items-center gap-3"
+        title={`${aboutLan.callToAction}`}
+      >
+        <Image
+          src={logoImg}
+          alt={`${config.appName} logo`}
+          class="w-6 h-6"
+          width={24}
+          height={24}
+          loading="eager"
+          decoding="async"
+        />
+        <span class="sm:inline font-semibold text-x text-[var(--color-green)]"
+          >{config.appName}</span
+        >
       </a>
 
       <div class="ml-auto flex items-center justify-end gap-2">
-        <div class="hidden md:flex items-center gap-2 border-r border-[var(--color-resaltar)] mr-4 ml-4">
+        <div
+          class="hidden md:flex items-center gap-2 border-r border-[var(--color-resaltar)] mr-4 ml-4"
+        >
           <Oneko client:load />
         </div>
-        <div class="hidden md:flex items-center gap-2 border-r border-[var(--color-resaltar)] mr-4 ml-4">
+        <div
+          class="hidden md:flex items-center gap-2 border-r border-[var(--color-resaltar)] mr-4 ml-4"
+        >
           <LanguageSwitch client:load initialLang={lang} />
           <button
             id="mobile-menu-btn"
@@ -66,13 +101,25 @@ const navItems =
             aria-controls="mobile-menu-panel"
             aria-label="Abrir menú"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              class="w-5 h-5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
           </button>
         </div>
 
-        <div class="hidden md:flex items-center gap-2 border-r border-[var(--color-resaltar)] pr-4 mr-4 ml-4">
+        <div
+          class="hidden md:flex items-center gap-2 border-r border-[var(--color-resaltar)] pr-4 mr-4 ml-4"
+        >
           {
             contactLinks.map((contact) => (
               <a
@@ -97,7 +144,9 @@ const navItems =
           }
         </div>
 
-        <div class="hidden md:flex items-center gap-2 border-r border-[var(--color-resaltar)] pr-4 mr-4 ml-4">
+        <div
+          class="hidden md:flex items-center gap-2 border-r border-[var(--color-resaltar)] pr-4 mr-4 ml-4"
+        >
           {
             socialLinks.map((contact) => (
               <a
@@ -124,9 +173,18 @@ const navItems =
       </div>
     </div>
 
-    <div id="bannerClic" class="absolute hidden md:right-170 top-full mt-2 flex flex-col items-center group">
-      <Image src={hangingImage} alt="Hanging" class="w-16 h-16 md:w-64 md:h-32" />
-      <span class="absolute top-3/5 -translate-y-1/2 text-sm md:text-base font-semibold text-[var(--text-use)]">
+    <div
+      id="bannerClic"
+      class="absolute hidden md:right-170 top-full mt-2 flex flex-col items-center group"
+    >
+      <Image
+        src={hangingImage}
+        alt="Hanging"
+        class="w-16 h-16 md:w-64 md:h-32"
+      />
+      <span
+        class="absolute top-3/5 -translate-y-1/2 text-sm md:text-base font-semibold text-[var(--text-use)]"
+      >
         {lang === "es" ? "Escríbeme" : "Write me"}
       </span>
     </div>
@@ -139,7 +197,10 @@ const navItems =
     <nav class="flex flex-col gap-2" aria-label="Mobile navigation">
       {
         navItems.map((item) => (
-          <a class="menu-link rounded-md px-3 py-2 text-base text-[var(--text-use)] hover:bg-white/5" href={item.href}>
+          <a
+            class="menu-link rounded-md px-3 py-2 text-base text-[var(--text-use)] hover:bg-white/5"
+            href={item.href}
+          >
             {item.label}
           </a>
         ))

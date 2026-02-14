@@ -2,10 +2,19 @@
 import { projectsData } from "@/data/projects";
 
 const cookieLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
-const localLang = typeof Astro.locals.lang === "string" ? Astro.locals.lang.toLowerCase() : undefined;
+const localLang =
+  typeof Astro.locals.lang === "string"
+    ? Astro.locals.lang.toLowerCase()
+    : undefined;
 
 const lang: "es" | "en" =
-  cookieLang === "en" || cookieLang === "es" ? cookieLang : Astro.url.pathname.startsWith("/en") ? "en" : localLang === "en" ? "en" : "es";
+  cookieLang === "en" || cookieLang === "es"
+    ? cookieLang
+    : Astro.url.pathname.startsWith("/en")
+      ? "en"
+      : localLang === "en"
+        ? "en"
+        : "es";
 
 let projects = null;
 if (lang === "en") {
@@ -19,9 +28,17 @@ const modalSkillsLabel = lang === "en" ? "Skills" : "Habilidades";
 const closeLabel = lang === "en" ? "Close" : "Cerrar";
 
 const projectsForModal = projects.map((project) => {
-  const links = (project.link ?? []).map((item: { label: string; url: string }) => ({ label: item.label, url: item.url }));
+  const links = (project.link ?? []).map(
+    (item: { label: string; url: string }) => ({
+      label: item.label,
+      url: item.url,
+    }),
+  );
   const githubLink =
-    links.find((item: { label: string; url: string }) => /github/i.test(item.label) || /github\.com/i.test(item.url))?.url ??
+    links.find(
+      (item: { label: string; url: string }) =>
+        /github/i.test(item.label) || /github\.com/i.test(item.url),
+    )?.url ??
     ((project as any).github as string | undefined) ??
     "";
 
@@ -39,25 +56,37 @@ const projectsForModal = projects.map((project) => {
 });
 ---
 
-<section id="Proyectos" class="h-full min-h-0 w-full snap-start flex flex-col py-10 px-4 md:px-6 lg:px-8 overflow-hidden">
+<section
+  id="Proyectos"
+  class="min-h-full w-full snap-start flex flex-col py-10 px-4 md:px-6 lg:px-8"
+>
   <div class="relative w-full max-w-7xl mx-auto text-[var(--color-green)]">
     {
       lang === "en" ? (
         <h2 class="text-4xl font-bold mb-6">Side Quest · Personal Projects</h2>
       ) : (
-        <h2 class="text-4xl font-bold mb-6">Side Quest · Proyectos Personales</h2>
+        <h2 class="text-4xl font-bold mb-6">
+          Side Quest · Proyectos Personales
+        </h2>
       )
     }
   </div>
 
-  <div class="relative w-full max-w-7xl mx-auto flex-1 min-h-0 text-[var(--text-use)] overflow-y-auto no-scrollbar pb-6">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[minmax(180px,auto)]">
+  <div
+    class="relative w-full max-w-7xl mx-auto flex-1 min-h-0 text-[var(--text-use)] overflow-y-auto no-scrollbar pb-6"
+  >
+    <div
+      class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[minmax(180px,auto)]"
+    >
       {
         projects.map((project, index) => {
           const links = project.link ?? [];
           const visitLink = links[0]?.url ?? "";
           const githubLink =
-            links.find((item) => /github/i.test(item.label) || /github\.com/i.test(item.url))?.url ??
+            links.find(
+              (item) =>
+                /github/i.test(item.label) || /github\.com/i.test(item.url),
+            )?.url ??
             ((project as any).github as string | undefined) ??
             "";
           const isFeatured = index === 0;
@@ -66,7 +95,9 @@ const projectsForModal = projects.map((project) => {
             <article
               class:list={[
                 "relative overflow-hidden rounded-2xl border border-white/10 bg-[var(--bg-dark)]/50 hover:scale-[1.02] transition-transform",
-                isFeatured ? "md:col-span-8 md:row-span-2" : "md:col-span-4 md:row-span-1",
+                isFeatured
+                  ? "md:col-span-8 md:row-span-2"
+                  : "md:col-span-4 md:row-span-1",
               ]}
             >
               <div
@@ -75,12 +106,12 @@ const projectsForModal = projects.map((project) => {
               />
 
               <div class="relative z-10 h-full p-5 md:p-6 flex flex-col justify-between gap-4 ">
-                <div class="flex items-start justify-between gap-3 ">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-2">
                   <span class="shrink-0 text-xs uppercase tracking-widest font-semibold bg-[var(--bg-use)] text-[var(--color-red)] border border-[var(--color-red)]/30 rounded-full px-3 py-1">
                     {project.status}
                   </span>
 
-                  <div class="flex items-center gap-2">
+                  <div class="flex flex-wrap items-center gap-2 justify-end ml-auto">
                     {visitLink && (
                       <a
                         class="cta text-[var(--text-use)] hover:scale-[1.10] transition-transform border border-white/40"
@@ -88,7 +119,8 @@ const projectsForModal = projects.map((project) => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        {links[0]?.label ?? (lang === "en" ? "Visit" : "Visítala")}
+                        {links[0]?.label ??
+                          (lang === "en" ? "Visit" : "Visítala")}
                       </a>
                     )}
 
@@ -125,7 +157,9 @@ const projectsForModal = projects.map((project) => {
                 <p
                   class:list={[
                     "text-[var(--text-use)] leading-relaxed",
-                    isFeatured ? "text-base md:text-lg line-clamp-4" : "text-sm line-clamp-3",
+                    isFeatured
+                      ? "text-base md:text-lg line-clamp-4"
+                      : "text-sm line-clamp-3",
                   ]}
                 >
                   {project.description}
@@ -146,10 +180,16 @@ const projectsForModal = projects.map((project) => {
     aria-modal="true"
     aria-label="Project details"
   >
-    <div class="w-full max-w-3xl rounded-2xl border border-[var(--color-resaltar)]/40 bg-[var(--bg-dark)] p-6 md:p-8 shadow-xl">
+    <div
+      class="w-full max-w-3xl rounded-2xl border border-[var(--color-resaltar)]/40 bg-[var(--bg-dark)] p-6 md:p-8 shadow-xl"
+    >
       <div class="flex items-start justify-between gap-4 mb-4">
         <div class="min-w-0">
-          <h3 id="project-modal-title" class="text-2xl md:text-3xl font-bold text-[var(--text-use)]"></h3>
+          <h3
+            id="project-modal-title"
+            class="text-2xl md:text-3xl font-bold text-[var(--text-use)]"
+          >
+          </h3>
           <p
             id="project-modal-status"
             class="mt-2 inline-flex text-xs uppercase tracking-widest font-semibold text-[var(--color-red)] bg-[var(--color-red)]/10 border border-[var(--color-red)]/30 rounded-full px-3 py-1"
@@ -165,14 +205,25 @@ const projectsForModal = projects.map((project) => {
         >
       </div>
 
-      <div class="mb-5 rounded-xl overflow-hidden border border-white/10 bg-black/10">
-        <img id="project-modal-image" src="" alt="" class="w-full h-auto max-h-[320px] object-cover" />
+      <div
+        class="mb-5 rounded-xl overflow-hidden border border-white/10 bg-black/10"
+      >
+        <img
+          id="project-modal-image"
+          src=""
+          alt=""
+          class="w-full h-auto max-h-[320px] object-cover"
+        />
       </div>
 
       <p id="project-modal-description" class="text-base leading-relaxed"></p>
 
       <div class="mt-5">
-        <p class="text-xs uppercase tracking-widest font-semibold mb-2 text-[var(--color-blue)]">{modalSkillsLabel}</p>
+        <p
+          class="text-xs uppercase tracking-widest font-semibold mb-2 text-[var(--color-blue)]"
+        >
+          {modalSkillsLabel}
+        </p>
         <div id="project-modal-skills" class="flex flex-wrap gap-2"></div>
       </div>
 
@@ -182,7 +233,9 @@ const projectsForModal = projects.map((project) => {
 </section>
 
 <script define:vars={{ projectsForModal, detailsLabel, closeLabel }}>
-  const projectsMap = new Map(projectsForModal.map((project) => [String(project.id), project]));
+  const projectsMap = new Map(
+    projectsForModal.map((project) => [String(project.id), project]),
+  );
 
   const modal = document.getElementById("project-details-modal");
   const closeBtn = document.getElementById("project-modal-close");
@@ -201,7 +254,17 @@ const projectsForModal = projects.map((project) => {
 
   function openProjectModal(projectId) {
     const project = projectsMap.get(String(projectId));
-    if (!project || !modal || !titleEl || !statusEl || !imageEl || !descriptionEl || !skillsEl || !actionsEl) return;
+    if (
+      !project ||
+      !modal ||
+      !titleEl ||
+      !statusEl ||
+      !imageEl ||
+      !descriptionEl ||
+      !skillsEl ||
+      !actionsEl
+    )
+      return;
 
     titleEl.textContent = project.title || "Project";
     statusEl.textContent = project.status || "";
