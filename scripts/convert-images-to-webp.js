@@ -2,45 +2,40 @@
 // Usage: node scripts/convert-images-to-webp.js
 // Requires: npm i sharp glob
 
-const fs = require('fs');
-const path = require('path');
-const glob = require('glob');
-const sharp = require('sharp');
+import path from 'path';
+import { sync as globSync } from 'glob';
+import sharp from 'sharp';
 
-// 1. PATTERN actualizado para incluir jpg 
+// Include svg as well
 const PATTERN = '**/*.{png,jpg,jpeg}';
 
 (async () => {
   try {
-    const files = glob.sync(PATTERN, { nodir: true, ignore: ['**/node_modules/**', 'dist/**', '.next/**'] });
-    
+    const files = globSync(PATTERN, { nodir: true, ignore: ['**/node_modules/**', 'dist/**', '.next/**'] });
 
     for (const file of files) {
-      // 2. Regex actualizada para reemplazar cualquier extensión de origen
-      const out = file.replace(/\.(png|jpg|jpeg)$/i, '.webp');
-      
+      // Replace any of the source extensions with .webp
+      const out = file.replace(/\.(png|jpg|jpeg|svg)$/i, '.webp');
+
       try {
         const extension = path.extname(file).toLowerCase();
 
         let conversion;
 
-        // 3. Lógica de conversión condicional
         if (extension === '.svg') {
-          // Usar 'lossless' para SVGs para mantener la nitidez
+          // Use lossless for SVGs to keep sharpness
           conversion = sharp(file).webp({ lossless: true });
         } else {
-          // Usar 'quality' para fotos/imágenes rasterizadas (png, jpg)
+          // Use quality for raster images (png, jpg)
           conversion = sharp(file).webp({ quality: 80 });
         }
 
         await conversion.toFile(out);
-        } catch (err) {
+      } catch (err) {
         console.error(`Failed convert ${file}:`, err?.message || String(err));
       }
     }
-
-    
-    } catch (err) {
+  } catch (err) {
     console.error('Error during conversion:', err?.message || String(err));
     process.exit(1);
   }
