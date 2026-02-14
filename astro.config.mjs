@@ -5,7 +5,7 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import partytown from '@astrojs/partytown';
-import node from '@astrojs/node';
+import vercel from '@astrojs/vercel';
 
 // Tailwind v4 (Vite Plugin)
 import tailwindcss from '@tailwindcss/vite';
@@ -14,7 +14,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://jfespanolito.dev', 
   output: 'server',
-  adapter: node({ mode: 'standalone' }),
+  adapter: vercel(),
 
   integrations: [
     react(),
