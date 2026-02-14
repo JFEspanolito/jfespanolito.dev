@@ -1,4 +1,7 @@
-const images = import.meta.glob<{ default: ImageMetadata }>("../assets/projects/*.{jpeg,jpg,png,gif,webp}", { eager: true });
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/projects/*.{jpeg,jpg,png,gif,webp}",
+  { eager: true },
+);
 
 export const projectsData = {
   ES: [
@@ -65,10 +68,10 @@ export const projectsData = {
         "Diseño UX/UI",
       ],
       link: [
-        // {
-        //   url: "https://echoesbeasts.com",
-        //   label: "Visítala",
-        // },
+        {
+          url: "https://ochomx-com.vercel.app",
+          label: "Visítala",
+        },
         //github: "https://github.com/JFEspanolito/EchoesBeasts",
         // {
         //   url: "https://kickstarter.com/project/echoesbeasts",
@@ -143,10 +146,10 @@ export const projectsData = {
         "Diseño UX/UI",
       ],
       link: [
-        // {
-        //   url: "https://echoesbeasts.com",
-        //   label: "Visítala",
-        // },
+        {
+          url: "https://ochomx-com.vercel.app",
+          label: "Visítala",
+        },
         //github: "https://github.com/JFEspanolito/EchoesBeasts",
         // {
         //   url: "https://kickstarter.com/project/echoesbeasts",
