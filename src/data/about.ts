@@ -2,6 +2,9 @@ export const yearsOfExperience = new Date().getFullYear() - 2012;
 const images = import.meta.glob<{ default: ImageMetadata }>("../assets/images/*.{jpeg,jpg,png,gif,webp}", { eager: true });
 const socialImg = import.meta.glob<{ default: ImageMetadata }>("../assets/logos/*.svg", { eager: true });
 
+import avatar from "../assets/images/JFSelfie.webp";
+import logo from "../assets/images/JFLogo.webp";
+
 export const aboutData = {
   name: "Jorge A. Falcón A.",
   nickname: "JFEspanolito",
@@ -45,8 +48,8 @@ export const aboutData = {
       icon: socialImg["../assets/logos/wakatime.svg"].default,
     },
   ],
-  avatarUrl: images["../assets/images/JFSelfie.webp"].default,
-  logoUrl: images["../assets/images/JFLogo.webp"].default,
+  avatarUrl: avatar,
+  logoUrl: logo,
   ES: [
     {
       role: "Líder de Desarrollo RPA",
