@@ -47,6 +47,35 @@ export const projectsData = {
         // }
       ],
       image: images["/src/assets/projects/ecosbanner.webp"].default,
+      imgBgPos: "background-size: 120%; background-position: 50% 120%;",
+    },
+    {
+      id: 1,
+      title: "Heladería Ocho MX",
+      status: "En Desarrollo",
+      description:
+        "Portal web para la heladería artesanal Ocho MX. Permite a los clientes explorar el menú, realizar cotizaciones para eventos y conocer la historia de la marca.",
+      skills: [
+        // Tecnología
+        "Astro 5",
+        "TypeScript",
+        "Tailwind CSS",
+
+        // Producto
+        "Diseño UX/UI",
+      ],
+      link: [
+        // {
+        //   url: "https://echoesbeasts.com",
+        //   label: "Visítala",
+        // },
+        //github: "https://github.com/JFEspanolito/EchoesBeasts",
+        // {
+        //   url: "https://kickstarter.com/project/echoesbeasts",
+        //   label: "Kickstarter"
+        // }
+      ],
+      image: images["/src/assets/projects/ochoBanner.webp"].default,
       imgBgPos: "background-position: 50% 130%;",
     },
   ],

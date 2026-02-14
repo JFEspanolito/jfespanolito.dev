@@ -18,8 +18,7 @@ if (lang === "en") {
 const featured = certificates?.[0] ?? null;
 const restCertificates = certificates?.slice(1) ?? [];
 
-const title = lang === "en" ? "Certificates" : "Certificados";
-const overviewTitle = lang === "en" ? "Certificates" : "Certificados";
+const title = lang === "en" ? "Achievements · Certificates" : "Logros · Certificados";
 const issuerLabel = lang === "en" ? "Issuer" : "Entidad";
 const totalCertLabel = lang === "en" ? "Total Certifications" : "Total Certificaciones";
 
@@ -53,12 +52,12 @@ function issuerFromUrl(url: string) {
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
       <div class="col-span-2 p-8 rounded-3xl relative overflow-hidden group">
         <h2
-          class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-resaltar)] to-[var(--color-green)] mb-4"
+          class="text-4xl md:text-5xl font-bold text-[var(--color-green)] py-2 mb-4"
         >
-          {overviewTitle}
+          {title}
         </h2>
       </div>
-      <div class="experience-card p-6 rounded-3xl flex flex-col justify-center text-center">
+      <div class="experience-card p-6 rounded-3xl flex flex-col justify-center text-center max-w-[12rem]">
         <span class="text-4xl font-bold text-[var(--color-resaltar)] mb-1">{totalCertifications}+</span>
         <span class="text-[10px] uppercase tracking-[0.2em] text-[var(--color-blue)] font-black">{totalCertLabel}</span>
       </div>
@@ -174,8 +173,7 @@ function issuerFromUrl(url: string) {
                 </div>
               </a>
             </div>
-            )
-          )
+          ))
         }
       </div>
     </div>
@@ -209,12 +207,11 @@ function issuerFromUrl(url: string) {
 
 <script>
   const lightbox = document.getElementById("cert-lightbox");
-  /** @type {HTMLImageElement | null} */
-  const lightboxImg = document.getElementById("cert-lightbox-image");
+  const lightboxImg = document.getElementById("cert-lightbox-image") as HTMLImageElement | null;
   const closeBtn = document.getElementById("cert-lightbox-close");
   const previewButtons = document.querySelectorAll("[data-cert-preview]");
 
-  function openLightbox(src, alt) {
+  function openLightbox(src: string | null, alt: string | null) {
     if (!lightbox || !lightboxImg || !src) return;
     lightboxImg.src = src;
     lightboxImg.alt = alt || "Certificate preview";

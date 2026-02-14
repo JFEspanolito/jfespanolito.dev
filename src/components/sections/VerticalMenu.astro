@@ -19,18 +19,18 @@ if (lang === "en") {
 const navItems =
   lang === "en"
     ? [
-        { label: "🕹️ Home", href: "#Resumen" },
-        { label: "📜 Bio", href: "#Bio" },
-        { label: "💼 Experience", href: "#Experiencia" },
-        { label: "🛠️ Projects", href: "#Proyectos" },
-        { label: "🏅 Certificates", href: "#Certificados" },
+        { label: "Home", href: "#Resumen" },
+        { label: "Bio", href: "#Bio" },
+        { label: "XP · Experience", href: "#Experiencia" },
+        { label: "Side Quest · Personal Projects", href: "#Proyectos" },
+        { label: "Achievements · Certifications", href: "#Certificados" },
       ]
     : [
-        { label: "🕹️ Inicio", href: "#Resumen" },
-        { label: "📜 Bio", href: "#Bio" },
-        { label: "💼 Experiencia", href: "#Experiencia" },
-        { label: "🛠️ Proyectos", href: "#Proyectos" },
-        { label: "🏅 Certificados", href: "#Certificados" },
+        { label: "Inicio", href: "#Resumen" },
+        { label: "Bio", href: "#Bio" },
+        { label: "XP · Experiencia", href: "#Experiencia" },
+        { label: "Side Quest · Proyectos Personales", href: "#Proyectos" },
+        { label: "Logros · Certificados", href: "#Certificados" },
       ];
 
 const getImageSrc = (img: string | { src: string }) => (typeof img === "string" ? img : img.src);
@@ -41,7 +41,7 @@ const getImageSrc = (img: string | { src: string }) => (typeof img === "string" 
     <img class="avatar" src={getImageSrc(aboutData.avatarUrl)} alt={`${aboutData.name} portrait`} loading="lazy" />
   </div>
 
-  <div class="identity mt-2">
+  <div class="identity mt-2 mb-10">
     <h1 class="name">{aboutData.name}</h1>
     <p class="role">{profileInfo.role}</p>
     <p class="headline">{profileInfo.headline}</p>
@@ -57,7 +57,7 @@ const getImageSrc = (img: string | { src: string }) => (typeof img === "string" 
     }
   </nav>
 
-  <a class="cta" href={lang === "en" ? "src/assets/cv/EN_CV_JAFA.pdf" : "src/assets/cv/ES_CV_JAFA.pdf"}>
+  <a class="cta mt-20" href={lang === "en" ? "src/assets/cv/EN_CV_JAFA.pdf" : "src/assets/cv/ES_CV_JAFA.pdf"} target="_blank">
     {lang === "en" ? "Download Resume" : "Descargar Resumen"}
   </a>
 </section>
@@ -182,7 +182,7 @@ const getImageSrc = (img: string | { src: string }) => (typeof img === "string" 
   .name {
     font-family: "Crimson Text", "Times New Roman", serif;
     font-size: 28px;
-    color: var(--color-red);
+    color: var(--color-green);
     font-weight: 600;
     letter-spacing: 0.4px;
     margin: 0;
@@ -216,6 +216,7 @@ const getImageSrc = (img: string | { src: string }) => (typeof img === "string" 
   .menu-link {
     font-family: "Manrope", Arial, sans-serif;
     font-size: 16px;
+    font-weight: bold;
     text-decoration: none;
     transition:
       transform 0.2s ease,

@@ -15,6 +15,7 @@ export default function LanguageSwitch({ initialLang = "es" }: LanguageSwitchPro
     localStorage.setItem("lang", next);
     document.cookie = `lang=${next}; path=/; max-age=31536000; samesite=lax`;
     const url = new URL(window.location.href);
+      url.hash = "";
     url.searchParams.set("lang", next);
     window.location.assign(url.toString());
   };

@@ -40,7 +40,7 @@ const projectsForModal = projects.map((project) => {
 
 <section id="Proyectos" class="h-full min-h-0 w-full snap-start flex flex-col py-10 px-4 md:px-6 lg:px-8 overflow-hidden">
   <div class="relative w-full max-w-7xl mx-auto text-[var(--color-green)]">
-    {lang === "en" ? <h2 class="text-4xl font-bold mb-6">Projects</h2> : <h2 class="text-4xl font-bold mb-6">Proyectos</h2>}
+    {lang === "en" ? <h2 class="text-4xl font-bold mb-6">Side Quest · Personal Projects</h2> : <h2 class="text-4xl font-bold mb-6">Side Quest · Proyectos Personales</h2>}
   </div>
 
   <div class="relative w-full max-w-7xl mx-auto flex-1 min-h-0 text-[var(--text-use)] overflow-y-auto no-scrollbar pb-6">
@@ -67,16 +67,16 @@ const projectsForModal = projects.map((project) => {
                 style={`background-image: url('${project.image?.src ?? ""}'); ${project.imgBgPos ?? "background-position: 50% 130%;"}`}
               />
 
-              <div class="relative z-10 h-full p-5 md:p-6 flex flex-col justify-between gap-4">
-                <div class="flex items-start justify-between gap-3">
-                  <span class="shrink-0 text-xs uppercase tracking-widest font-semibold text-[var(--color-red)] bg-[var(--color-red)]/10 border border-[var(--color-red)]/30 rounded-full px-3 py-1">
+              <div class="relative z-10 h-full p-5 md:p-6 flex flex-col justify-between gap-4 ">
+                <div class="flex items-start justify-between gap-3 ">
+                  <span class="shrink-0 text-xs uppercase tracking-widest font-semibold bg-[var(--bg-use)] text-[var(--color-red)] border border-[var(--color-red)]/30 rounded-full px-3 py-1">
                     {project.status}
                   </span>
 
                   <div class="flex items-center gap-2">
                     {visitLink && (
                       <a
-                        class="cta text-[var(--text-use)] hover:scale-[1.10] transition-transform"
+                        class="cta text-[var(--text-use)] hover:scale-[1.10] transition-transform border border-white/40"
                         href={visitLink}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -87,7 +87,7 @@ const projectsForModal = projects.map((project) => {
 
                     {githubLink && (
                       <a
-                        class="cta text-[var(--text-use)] hover:scale-[1.10] transition-transform"
+                        class="cta text-[var(--text-use)] hover:scale-[1.10] transition-transform border border-white/40"
                         href={githubLink}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -98,7 +98,7 @@ const projectsForModal = projects.map((project) => {
 
                     <button
                       type="button"
-                      class="cta text-[var(--text-use)] hover:scale-[1.10] transition-transform"
+                      class="cta text-[var(--text-use)] hover:scale-[1.10] transition-transform border border-white/40"
                       data-project-details={String(project.id)}
                     >
                       {detailsLabel}
@@ -108,7 +108,7 @@ const projectsForModal = projects.map((project) => {
 
                 <h3
                   class:list={[
-                    "font-bold leading-tight text-[var(--text-use)] break-words",
+                    "font-bold leading-tight text-[var(--color-green)] break-words",
                     isFeatured ? "text-3xl md:text-5xl" : "text-xl md:text-2xl",
                   ]}
                 >
@@ -170,27 +170,6 @@ const projectsForModal = projects.map((project) => {
       </div>
 
       <div id="project-modal-actions" class="mt-6 flex flex-wrap gap-2"></div>
-    </div>
-  </div>
-
-  {/* Flecha de scroll */}
-  <div class="absolute bottom-8 right-12">
-    <div class="flex flex-col items-center gap-2 text-[var(--color-resaltar)] opacity-70">
-      <span class="text-xs font-medium uppercase tracking-widest">Scroll</span>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="var(--color-resaltar)"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="animate-bounce"
-      >
-        <path d="M7 13l5 5 5-5M7 6l5 5 5-5"></path>
-      </svg>
     </div>
   </div>
 </section>
