@@ -10,23 +10,20 @@ export const projectsData = {
         "Plataforma web y sistema de rol táctico-narrativo propio. Los jugadores encarnan a cazadores de la Orden de los Ecos para enfrentar bestias ancestrales. Cuenta con herramientas digitales para creación de personajes, bestiario dinámico y gestión de campañas.",
       skills: [
         // Tecnología
-        "Next.js 14",
         "TypeScript",
         "Tailwind CSS",
 
         // Ingeniería base
         "Desarrollo Full-Stack",
-        "Diseño de Sistemas",
         "Diseño de Motores de Reglas",
 
         // Diseño de juegos
-        "Diseño de Juego",
         "Diseño de Combate y Progresión",
         "Balance y Diseño Matemático",
 
         // Mundo y narrativa
         "Diseño Narrativo",
-        "Construcción de Mundos (Worldbuilding)",
+        "Construcción de Mundos",
         "Diseño de Criaturas y Lore",
 
         // Producto
@@ -35,6 +32,7 @@ export const projectsData = {
         // Herramientas
         "Herramientas y Automatización",
       ],
+      topskills: ["Next.js 14", "Diseño de Juego", "Diseño de Sistemas"],
       link: [
         {
           url: "https://echoesbeasts.com",
@@ -50,17 +48,19 @@ export const projectsData = {
       imgBgPos: "background-size: 120%; background-position: 50% 120%;",
     },
     {
-      id: 1,
+      id: 2,
       title: "Heladería Ocho MX",
       status: "En Desarrollo",
       description:
         "Portal web para la heladería artesanal Ocho MX. Permite a los clientes explorar el menú, realizar cotizaciones para eventos y conocer la historia de la marca.",
       skills: [
         // Tecnología
-        "Astro 5",
         "TypeScript",
         "Tailwind CSS",
-
+      ],
+      topskills: [
+        // Tecnología
+        "Astro 5",
         // Producto
         "Diseño UX/UI",
       ],
@@ -88,24 +88,21 @@ export const projectsData = {
         "Web platform and proprietary tactical-narrative RPG system. Players embody hunters from the Order of Echoes to face ancestral beasts. Features digital tools for character creation, dynamic bestiary, and campaign management.",
       skills: [
         // Tech
-        "Next.js 14",
         "TypeScript",
         "Tailwind CSS",
 
         // Core engineering
         "Full-Stack Development",
-        "Systems Design",
         "Rules Engine Design",
 
         // Game design
-        "Game Design / Diseño de Juego",
-        "Combat & Progression Design / Combate y Progresión",
-        "Balance & Math Design / Balance y Diseño Matemático",
+        "Combat & Progression Design",
+        "Balance & Math Design",
 
         // Mundo y narrativa
-        "Narrative Design / Diseño Narrativo",
+        "Narrative Design",
         "Worldbuilding",
-        "Creature & Lore Design / Criaturas y Lore",
+        "Creature & Lore Design",
 
         // Producto
         "UX/UI Design",
@@ -113,6 +110,7 @@ export const projectsData = {
         // Tooling
         "Tooling & Automation",
       ],
+      topskills: ["Next.js 14", "Game Design", "Systems Design"],
       link: [
         {
           url: "https://echoesbeasts.com",
@@ -125,6 +123,37 @@ export const projectsData = {
       ],
       //github: "https://github.com/JFEspanolito/EchoesBeasts",
       image: images["/src/assets/projects/ecosbanner.webp"].default,
+      imgBgPos: "background-position: 50% 130%;",
+    },
+    {
+      id: 2,
+      title: "Heladería Ocho MX",
+      status: "In Development",
+      description:
+        "Web portal for the artisanal ice cream shop Ocho MX. Allows customers to explore the menu, request quotes for events, and learn about the brand's history.",
+      skills: [
+        // Tecnología
+        "TypeScript",
+        "Tailwind CSS",
+      ],
+      topskills: [
+        // Tecnología
+        "Astro 5",
+        // Producto
+        "Diseño UX/UI",
+      ],
+      link: [
+        // {
+        //   url: "https://echoesbeasts.com",
+        //   label: "Visítala",
+        // },
+        //github: "https://github.com/JFEspanolito/EchoesBeasts",
+        // {
+        //   url: "https://kickstarter.com/project/echoesbeasts",
+        //   label: "Kickstarter"
+        // }
+      ],
+      image: images["/src/assets/projects/ochoBanner.webp"].default,
       imgBgPos: "background-position: 50% 130%;",
     },
   ],

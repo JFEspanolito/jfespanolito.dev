@@ -32,6 +32,7 @@ const projectsForModal = projects.map((project) => {
     description: project.description,
     image: project.image?.src ?? "",
     skills: project.skills ?? [],
+    topskills: project.topskills ?? [],
     links,
     github: githubLink,
   };
@@ -40,7 +41,13 @@ const projectsForModal = projects.map((project) => {
 
 <section id="Proyectos" class="h-full min-h-0 w-full snap-start flex flex-col py-10 px-4 md:px-6 lg:px-8 overflow-hidden">
   <div class="relative w-full max-w-7xl mx-auto text-[var(--color-green)]">
-    {lang === "en" ? <h2 class="text-4xl font-bold mb-6">Side Quest · Personal Projects</h2> : <h2 class="text-4xl font-bold mb-6">Side Quest · Proyectos Personales</h2>}
+    {
+      lang === "en" ? (
+        <h2 class="text-4xl font-bold mb-6">Side Quest · Personal Projects</h2>
+      ) : (
+        <h2 class="text-4xl font-bold mb-6">Side Quest · Proyectos Personales</h2>
+      )
+    }
   </div>
 
   <div class="relative w-full max-w-7xl mx-auto flex-1 min-h-0 text-[var(--text-use)] overflow-y-auto no-scrollbar pb-6">
@@ -203,6 +210,14 @@ const projectsForModal = projects.map((project) => {
     descriptionEl.textContent = project.description || "";
 
     skillsEl.innerHTML = "";
+    (project.topskills || []).forEach((topskill) => {
+      const chip = document.createElement("span");
+      chip.className =
+        "px-3 py-1 rounded-lg border border-[var(--color-purple)]/30 bg-[var(--color-purple)]/10 text-xs font-semibold text-[var(--color-resaltar)]";
+      chip.textContent = topskill;
+      skillsEl.appendChild(chip);
+    });
+
     (project.skills || []).forEach((skill) => {
       const chip = document.createElement("span");
       chip.className =

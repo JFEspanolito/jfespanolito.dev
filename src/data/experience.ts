@@ -35,13 +35,7 @@ export const experienceData = {
         "VB.NET",
         "Windows Server",
       ],
-      topskills: [
-        "UiPath Suite (Studio, Orchestrator, Assistant, Insights)",
-        "IA Generativa y Modelos de Lenguaje",
-        "SQL Server",
-        "Python",
-        "C#",
-      ],
+      topskills: ["UiPath Suite (Studio, Orchestrator, Assistant, Insights)", "IA - Modelos de Lenguaje", "n8n", "Python"],
     },
 
     {
@@ -59,13 +53,7 @@ export const experienceData = {
         "Gestión de proyectos y capacitación técnica para clientes.",
       ],
       skills: ["Excel Macros", "GitHub", "IIS", "Office 365", "Trello"],
-      topskills: [
-        "UiPath Suite (Studio, Orchestrator)",
-        "Bizagi",
-        "SQL Server",
-        "Jira",
-        "Windows Server",
-      ],
+      topskills: ["UiPath Suite (Studio, Orchestrator)", "Bizagi", "SQL Server", "Jira", "Windows Server"],
     },
 
     {
@@ -84,13 +72,7 @@ export const experienceData = {
         "Desarrollo de la herramienta DIUSSSTD (Windows Forms) para búsqueda entre 385 manuales, gestión de RFC, recordatorios, base de conocimiento, chat interno y scripts de envío masivo, reduciendo 90% de penalizaciones por retrasos en ejecuciones nocturnas.",
       ],
       skills: ["Bash / Batch / Shell Script", "Cisco VPN", "VMware"],
-      topskills: [
-        ".NET Framework (C#)",
-        "SQL Server",
-        "IIS",
-        "Windows Server",
-        "Unix",
-      ],
+      topskills: [".NET Framework (C#)", "SQL Server", "IIS", "Windows Server", "Unix"],
     },
 
     {
@@ -108,13 +90,7 @@ export const experienceData = {
         "Diseño de interfaces interactivas y optimización de rendimiento front-end.",
       ],
       skills: ["Excel Macros", "HTML5", "Telerik", "Web Services"],
-      topskills: [
-        ".NET Framework (C#)",
-        "SQL Server",
-        "ASP.NET",
-        "BizTalk",
-        "WCF",
-      ],
+      topskills: [".NET Framework (C#)", "SQL Server", "ASP.NET", "BizTalk", "WCF"],
     },
   ],
 
@@ -154,13 +130,7 @@ export const experienceData = {
         "VB.NET",
         "Windows Server",
       ],
-      topskills: [
-        "UiPath Suite (Studio, Orchestrator, Assistant, Insights)",
-        "Generative AI & Language Models",
-        "SQL Server",
-        "Python",
-        "C#",
-      ],
+      topskills: ["UiPath Suite (Studio, Orchestrator, Assistant, Insights)", "AI & Language Models", "n8n", "Python"],
     },
 
     {
@@ -178,13 +148,7 @@ export const experienceData = {
         "Project management and technical training for clients.",
       ],
       skills: ["Excel Macros", "GitHub", "IIS", "Office 365", "Trello"],
-      topskills: [
-        "UiPath Suite (Studio, Orchestrator)",
-        "Bizagi",
-        "SQL Server",
-        "Jira",
-        "Windows Server",
-      ],
+      topskills: ["UiPath Suite (Studio, Orchestrator)", "Bizagi", "SQL Server", "Jira", "Windows Server"],
     },
 
     {
@@ -203,13 +167,7 @@ export const experienceData = {
         "Development of DIUSSSTD (Windows Forms) for unified search across 385 manuals, RFC management, reminders, knowledge base, internal chat, and mass-transfer scripting, reducing 90% of penalties for nightly execution delays.",
       ],
       skills: ["Bash / Batch / Shell Script", "Cisco VPN", "VMware"],
-      topskills: [
-        ".NET Framework (C#)",
-        "SQL Server",
-        "IIS",
-        "Windows Server",
-        "Unix",
-      ],
+      topskills: [".NET Framework (C#)", "SQL Server", "IIS", "Windows Server", "Unix"],
     },
 
     {
@@ -227,13 +185,7 @@ export const experienceData = {
         "Interactive UI design and front-end optimization.",
       ],
       skills: ["Excel Macros", "HTML5", "Telerik", "Web Services"],
-      topskills: [
-        ".NET Framework (C#)",
-        "SQL Server",
-        "ASP.NET",
-        "BizTalk",
-        "WCF",
-      ],
+      topskills: [".NET Framework (C#)", "SQL Server", "ASP.NET", "BizTalk", "WCF"],
     },
   ],
 };
