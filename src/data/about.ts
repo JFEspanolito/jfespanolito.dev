@@ -1,6 +1,6 @@
 export const yearsOfExperience = new Date().getFullYear() - 2012;
-const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/images/*.{jpeg,jpg,png,gif,webp}", { eager: true });
-const socialImg = import.meta.glob<{ default: ImageMetadata }>("/src/assets/logos/*.svg", { eager: true });
+const images = import.meta.glob<{ default: ImageMetadata }>("../assets/images/*.{jpeg,jpg,png,gif,webp}", { eager: true });
+const socialImg = import.meta.glob<{ default: ImageMetadata }>("../assets/logos/*.svg", { eager: true });
 
 export const aboutData = {
   name: "Jorge A. Falcón A.",
@@ -10,17 +10,17 @@ export const aboutData = {
     {
       name: "LinkedIn",
       url: "https://www.linkedin.com/in/jfespanolito",
-      icon: socialImg["/src/assets/logos/linkedin.svg"].default,
+      icon: socialImg["../assets/logos/linkedin.svg"].default,
     },
     {
       name: "Telegram",
       url: "https://t.me/jfespanolito",
-      icon: socialImg["/src/assets/logos/telegram.svg"].default,
+      icon: socialImg["../assets/logos/telegram.svg"].default,
     },
     {
       name: "Email",
       url: "mailto:contact@jfespanolito.dev?subject=Contacto%20profesional&body=Hola%20Jorge,%0A%0AQuisiera%20hablar%20sobre%20...",
-      icon: socialImg["/src/assets/logos/mail.svg"].default,
+      icon: socialImg["../assets/logos/mail.svg"].default,
     },
   ],
   social: [
@@ -37,16 +37,16 @@ export const aboutData = {
     {
       name: "GitHub",
       url: "https://github.com/JFEspanolito",
-      icon: socialImg["/src/assets/logos/github.svg"].default,
+      icon: socialImg["../assets/logos/github.svg"].default,
     },
     {
       name: "Wakatime",
       url: "https://wakatime.com/@JFEspanolito",
-      icon: socialImg["/src/assets/logos/wakatime.svg"].default,
+      icon: socialImg["../assets/logos/wakatime.svg"].default,
     },
   ],
-  avatarUrl: images["/src/assets/images/JFSelfie.webp"].default,
-  logoUrl: images["/src/assets/images/JFLogo.webp"].default,
+  avatarUrl: images["../assets/images/JFSelfie.webp"].default,
+  logoUrl: images["../assets/images/JFLogo.webp"].default,
   ES: [
     {
       role: "Líder de Desarrollo RPA",

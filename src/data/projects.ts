@@ -1,4 +1,4 @@
-const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/projects/*.{jpeg,jpg,png,gif,webp}", { eager: true });
+const images = import.meta.glob<{ default: ImageMetadata }>("../assets/projects/*.{jpeg,jpg,png,gif,webp}", { eager: true });
 
 export const projectsData = {
   ES: [
@@ -44,7 +44,7 @@ export const projectsData = {
         //   label: "Kickstarter"
         // }
       ],
-      image: images["/src/assets/projects/ecosbanner.webp"].default,
+      image: images["../assets/projects/ecosbanner.webp"].default,
       imgBgPos: "background-size: 120%; background-position: 50% 120%;",
     },
     {
@@ -75,7 +75,7 @@ export const projectsData = {
         //   label: "Kickstarter"
         // }
       ],
-      image: images["/src/assets/projects/ochoBanner.webp"].default,
+      image: images["../assets/projects/ochoBanner.webp"].default,
       imgBgPos: "background-position: 50% 130%;",
     },
   ],
@@ -122,7 +122,7 @@ export const projectsData = {
         // }
       ],
       //github: "https://github.com/JFEspanolito/EchoesBeasts",
-      image: images["/src/assets/projects/ecosbanner.webp"].default,
+      image: images["../assets/projects/ecosbanner.webp"].default,
       imgBgPos: "background-position: 50% 130%;",
     },
     {
@@ -153,7 +153,7 @@ export const projectsData = {
         //   label: "Kickstarter"
         // }
       ],
-      image: images["/src/assets/projects/ochoBanner.webp"].default,
+      image: images["../assets/projects/ochoBanner.webp"].default,
       imgBgPos: "background-position: 50% 130%;",
     },
   ],
