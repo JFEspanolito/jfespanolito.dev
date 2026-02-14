@@ -132,6 +132,7 @@ const recentCerts = certificates.slice(0, 4);
     audio.currentTime = 0;
     audio.loop = false;
     void audio.play();
+    window.dispatchEvent(new CustomEvent("show-header-banner-click"));
   };
 
   trigger?.addEventListener("click", playAudio);

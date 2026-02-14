@@ -125,9 +125,10 @@ const navItems =
     </div>
 
     <div id="bannerClic" class="absolute hidden md:right-170 top-full mt-2 flex flex-col items-center group">
-      <Image src={hangingImage} alt="Hanging" class="w-16 h-16 md:w-64 md:h-24" />
-
-      <span class="absolute top-3/5 -translate-y-1/2 text-sm md:text-base font-semibold text-[var(--text-use)]"> Clic here </span>
+      <Image src={hangingImage} alt="Hanging" class="w-16 h-16 md:w-64 md:h-32" />
+      <span class="absolute top-3/5 -translate-y-1/2 text-sm md:text-base font-semibold text-[var(--text-use)]">
+        {lang === "es" ? "Escríbeme" : "Write me"}
+      </span>
     </div>
   </div>
 
@@ -149,6 +150,8 @@ const navItems =
   <script>
     const menuBtn = document.querySelector("#mobile-menu-btn");
     const menuPanel = document.querySelector("#mobile-menu-panel");
+    const bannerClic = document.querySelector("#bannerClic");
+    let bannerTimer: ReturnType<typeof setTimeout> | null = null;
 
     if (menuBtn && menuPanel) {
       menuBtn.addEventListener("click", () => {
@@ -165,5 +168,14 @@ const navItems =
         menuBtn.setAttribute("aria-expanded", "false");
       });
     }
+
+    window.addEventListener("show-header-banner-click", () => {
+      if (!(bannerClic instanceof HTMLElement)) return;
+      bannerClic.classList.remove("hidden");
+      if (bannerTimer) clearTimeout(bannerTimer);
+      bannerTimer = setTimeout(() => {
+        bannerClic.classList.add("hidden");
+      }, 8000);
+    });
   </script>
 </header>
