@@ -14,7 +14,9 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://jfespanolito.dev', 
   output: 'server',
-  adapter: vercel(),
+  adapter: vercel({
+    imageService: true,
+  }),
 
   integrations: [
     react(),
