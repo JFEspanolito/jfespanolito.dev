@@ -88,10 +88,10 @@ const recentCerts = certificates.slice(0, 4);
         </div>
 
         <div
-          class="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center items-center hover:scale-125 transition-transform"
+          class="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center text-center items-center hover:scale-125 transition-transform"
         >
-          <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2">CoE</span>
-          <span class="text-xs uppercase tracking-wider text-[var(--color-green)]">{lang === "en" ? "Architect" : "Arquitecto"}</span>
+          <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2"> {profileInfo.sc}</span>
+          <span class="text-x uppercase tracking-wider text-[var(--color-green)]">{profileInfo.Major}</span>
         </div>
 
         <div

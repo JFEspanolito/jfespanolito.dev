@@ -50,6 +50,8 @@ export const aboutData = {
   ES: [
     {
       role: "Líder de Desarrollo RPA",
+      sc: "ISC",
+      Major: "Ingenieria en Sistemas Computacionales",
       callToAction: "¡Hablemos de tus procesos!",
       headline: "Transformo procesos complejos en automatizaciones eficientes.",
       description: [
@@ -87,6 +89,8 @@ export const aboutData = {
       name: "Jorge A. Falcón A.",
       nickname: "JFEspanolito",
       role: "RPA Development Lead",
+      sc: "CSE",
+      Major: "Computer Systems Engineering",
       callToAction: "Let's talk about your processes!",
       headline: "Transforming complex processes into efficient automations.",
       description: [
