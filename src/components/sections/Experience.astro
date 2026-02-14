@@ -1,0 +1,68 @@
+---
+import { experienceData } from "@/data/experience";
+import FlipCard from "@/components/ui/FlipCard";
+
+const cookieLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
+const localLang = typeof Astro.locals.lang === "string" ? Astro.locals.lang.toLowerCase() : undefined;
+
+const lang: "es" | "en" =
+  cookieLang === "en" || cookieLang === "es" ? cookieLang : Astro.url.pathname.startsWith("/en") ? "en" : localLang === "en" ? "en" : "es";
+
+let experiences = null;
+if (lang === "en") {
+  experiences = experienceData.EN;
+} else {
+  experiences = experienceData.ES;
+}
+const nodeIcons = ["🤖", "💼", "💻", "⚙️"];
+---
+
+<section id="Experiencia" class="min-h-screen w-full snap-start flex flex-col py-10 px-4 md:px-6 lg:px-8">
+  <div class="relative w-full max-w-7xl mx-auto text-[var(--color-green)]">
+    {lang === "en" ? <h2 class="text-4xl font-bold mb-6">XP · Experience</h2> : <h2 class="text-4xl font-bold mb-6">XP · Experiencia</h2>}
+    {/* LÍNEA VERTICAL (Móvil) */}
+    <div class="absolute left-5 top-0 w-[2px] h-full bg-white/20 z-0 md:hidden"></div>
+
+    {/* LÍNEA VERTICAL (Desktop centrada) */}
+    <div class="absolute left-1/2 -translate-x-1/2 top-0 w-[2px] h-full bg-white/20 z-0 hidden md:block"></div>
+
+    <div id="experience-content" data-experience-scroll class="relative z-10 w-full flex flex-col gap-12 py-10">
+      {
+        experiences.map((exp, index) => {
+          const isLeft = index % 2 !== 0;
+
+          return (
+            <div class="group grid grid-cols-[auto_minmax(0,1fr)] md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-start gap-4 md:gap-0 w-full min-w-0">
+              {/* NODO */}
+              <div class="col-start-1 md:col-start-2 row-start-1 relative flex items-center justify-center w-10 md:w-12 h-10 md:h-12">
+                <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white border-2 border-white/30 flex items-center justify-center z-20 group-hover:border-[var(--color-resaltar)] transition-colors shadow-sm">
+                  <span class="text-base md:text-lg">{nodeIcons[index] ?? "•"}</span>
+                </div>
+
+                {/* CONECTOR HORIZONTAL (solo desktop) */}
+                <div
+                  class:list={[
+                    "hidden md:block absolute top-1/2 -translate-y-1/2 h-[2px] bg-white/20 z-10",
+                    isLeft ? "right-1/2 w-8 lg:w-12" : "left-1/2 w-8 lg:w-12",
+                  ]}
+                />
+              </div>
+
+              {/* TARJETA */}
+              <div
+                class:list={[
+                  "col-start-2 row-start-1 md:row-start-1 ml-2 md:ml-0 w-full min-w-0",
+                  isLeft
+                    ? "md:col-start-1 md:pr-10 lg:pr-14 md:justify-self-end"
+                    : "md:col-start-3 md:pl-10 lg:pl-14 md:justify-self-start",
+                ]}
+              >
+                <FlipCard client:load experience={exp} />
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

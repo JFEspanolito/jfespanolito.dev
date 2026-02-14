@@ -1,0 +1,83 @@
+---
+// Importando Estilos
+import "@/styles/global.css";
+
+// Importando Datos
+import { configProject as config } from "@/data/configProject";
+
+// Importando Componentes
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+import VerticalMenu from "@/components/sections/VerticalMenu.astro";
+
+const queryLang = Astro.url.searchParams.get("lang")?.trim().toLowerCase();
+const rawLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
+
+const lang: "en" | "es" =
+  queryLang === "en" || queryLang === "es"
+    ? queryLang
+    : rawLang === "en" || rawLang === "es"
+      ? rawLang
+      : Astro.url.pathname.startsWith("/en")
+        ? "en"
+        : "es";
+
+if (queryLang === "en" || queryLang === "es") {
+  Astro.cookies.set("lang", queryLang, {
+    path: "/",
+    maxAge: 60 * 60 * 24 * 365,
+    sameSite: "lax",
+  });
+}
+
+Astro.locals.lang = lang;
+
+// Propiedades
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
+// Lógica para que el título sea "Página | AppName" o solo "AppName"
+const finalTitle = title ? `${title} | ${config.appName}` : config.appName;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    {/* Aquí usamos tu variable calculada */}
+    <title>{finalTitle}</title>
+
+    {/* Meta tags globales desde tu config */}
+    <meta name="description" content={config.appDescription} />
+    <meta name="theme-color" content={config.themeColor} />
+    <meta name="generator" content={Astro.generator} />
+
+    {/* Open Graph (Redes Sociales) */}
+    <meta property="og:site_name" content={config.appName} />
+    <meta property="og:title" content={finalTitle} />
+    <meta property="og:description" content={config.appDescription} />
+    <meta property="og:image" content={config.siteUrl + config.images.ogDefault} />
+  </head>
+
+  <body class="antialiased bg-[var(--background)] text-[var(--foreground)] h-screen flex flex-col overflow-hidden">
+    <Header />
+
+    <main class="flex-1 flex overflow-hidden min-h-0 w-full">
+      <aside class="hidden md:flex fixed left-40 top-12 h-[calc(100vh-3rem)] z-30 items-center pl-4 lg:pl-6">
+        <VerticalMenu />
+      </aside>
+
+      <div class="flex-1 h-full min-h-0 overflow-y-scroll snap-y snap-mandatory scroll-smooth py-6 px-4 md:pl-[360px] lg:pl-[380px] md:pr-8 no-scrollbar">
+        <slot />
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>

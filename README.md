@@ -1,165 +1,240 @@
-## [jfespanolito.dev](https://jfespanolito.dev/): Portafolio Digital
+# Template_FrontEnd_Astro_JF
 
-Portafolio de Jorge A. Falcón (“Espanolito”). Automatización end-to-end (UiPath), desarrollo de software y front-end con enfoque práctico.
-Construido en Next.js como app estática para carga rápida y buen rendimiento. Priorizo UX y accesibilidad a proyectos clave y CV; el sitio es muestra de cómo estructuro, optimizo y entrego.
+Template minimal basado en Astro 5.x y React 19.x.
+Migra la robustez de una arquitectura empresarial de Next.js hacia la agilidad de las Islas de Astro, manteniendo separación clara de lógica de negocio mediante DDD (Domain-Driven Design).
 
-Qué vas a encontrar:
-- Proyectos reales con notas de arquitectura y trade-offs.
-- RPA, tooling y front-end orientados a mantenibilidad.
-- Experimentos donde cruzo tecnología, diseño e ideas propias.
+### ⚙️ Stack
 
-
----
-
-## 🛠️ Tecnologías Clave
-
-Este proyecto está construido sobre un stack de desarrollo moderno y escalable, primando el rendimiento y la mantenibilidad.
-
-| Categoría                        | Herramientas Utilizadas                            | Justificación y Función                                                                                           |
-| :------------------------------- | :------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------- |
-| **Frontend Principal**           | **Next.js 16 (App Router), React 19**              | Marco de desarrollo principal para rendimiento, _Server Components_ (aunque estáticos) y organización del código. |
-| **Estilización**                 | **Tailwind CSS**, `clsx`, `tailwind-merge`         | Desarrollo rápido de UI responsiva, clases atómicas y manejo eficiente de conflictos de estilos.                  |
-| **Interactividad y Animación**   | **Framer Motion**, `@headlessui/react`             | Creación de animaciones fluidas y componentes de UI accesibles (botones, _modals_, menús).                        |
-| **Iconografía**                  | **Heroicons**, **Lucide React**                    | Conjuntos de iconos profesionales para mejorar la usabilidad y estética.                                          |
-| **Observabilidad**               | `nextjs-toploader`                                 | Monitoreo de rendimiento en producción y barra de carga de navegación para mejor UX.                              |
-| **Comunicaciones y _Marketing_** | `crisp-sdk-web`, `nodemailer`, `resend`            | Integración para chat en vivo y funcionalidad de formulario de contacto/emailing.                                 |
-| **Utilidades de Desarrollo**     | `next-sitemap`, `react-hot-toast`, `react-tooltip` | Generación de Sitemaps, notificaciones de usuario y _tooltips_ interactivos.                                      |
+| Área          | Tecnología                       |
+| ------------- | -------------------------------- |
+| Framework     | Astro 5.x (SSG / SSR)            |
+| UI Runtime    | React 19.x (Islas)               |
+| Estilos       | Tailwind CSS 4.x + DaisyUI       |
+| Arquitectura  | DDD (Core / Hexagonal)           |
+| Analíticas    | GA / Clarity + Partytown         |
+| UX / UI Utils | Framer Motion, Lucide, Hot Toast |
 
 ---
 
-## 🚀 Despliegue y Acceso
-
-El sitio web está desplegado y optimizado para la máxima velocidad de carga.
-
-**Website Oficial:** [jfespanolito.dev](https://jfespanolito.dev/)
-
----
-
-## ⚙️ Instalación y Ejecución Local
-
-Para clonar y ejecutar el portafolio en su entorno local, siga los siguientes pasos:
-
-1.  **Clonar el repositorio:**
-    `git clone https://github.com/JFEspanolito/jfespanolito.dev.git`
-2.  **Acceder al directorio e instalar dependencias (usando pnpm):**
-    `cd jfespanolito.dev`
-    `pnpm install`
-3.  **Ejecutar el servidor de desarrollo:**
-    `pnpm run dev`
-
-El sitio estará accesible en `http://localhost:3000`.
-
----
-
-## 📂 Estructura del Proyecto
-
-La organización sigue la convención del App Router de Next.js, con una clara separación entre la lógica de la aplicación y la presentación de la UI.
-
-| Directorio   | Contenido y Propósito                                                                                                                             |
-| :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `app`        | Rutas y _layouts_ principales de Next.js (`layout.tsx`, `page.tsx`).                                                                              |
-| `components` | Módulos reutilizables de React. Incluye subdirectorios para `ui`, `sections`, `layout`, e `icons`.                                                |
-| `data`       | Archivos de configuración y contenido estático (`about.ts`, `projects.ts`, `resume.ts`). **Es la fuente de verdad del contenido del portafolio.** |
-| `libs`       | Funciones y utilidades de _backend_ (e.g., lógica de _emailing_ con Resend/Nodemailer).                                                           |
-| `public`     | Archivos estáticos como imágenes (incluyendo certificados), _favicons_ y otros activos.                                                           |
-| `scripts`    | Scripts auxiliares para procesamiento de activos (ej. conversión de imágenes a `.webp`).                                                          |
-| `styles`     | Hoja de estilos principal (`globals.css`).                                                                                                        |
-| `config.ts`  | **Archivo de configuración centralizada** para datos del sitio (dominio, nombre, metadatos, etc.).                                                |
-
----
-
-## 💡 Atribución de Componentes UI
-
-Los componentes del directorio `components/ui` están inspirados y adaptados a partir de:
-
-**ScrollX UI**
-[Componentes de ScrollX UI](https://www.scrollxui.dev/docs/components)
-
-<details>
-  <summary> Modificaciones realizadas </summary>
-
-- **top-secret:**
-  - Soporta apertura y cierre desde top, bottom, left y right.
-  - Tamaños configurables por porcentaje de viewport: 50 / 80 / 100.
-  - Drag-to-close adaptado a la dirección (vertical u horizontal).
-  - Animaciones con spring/tween según estado y dirección.
-  - Overlay con cierre por clic externo y tecla Escape.
-  - Control controlado/no controlado (open, onOpenChange, defaultOpen).
-  - Override de size y direction desde Root o Content.
-  - Scroll interno independiente con bloqueo de scroll del body.
-- **text-spotlight:**
-  - Spotlight radial que sigue el mouse y revela el texto mediante máscara.
-  - Modo móvil opcional: revelado progresivo por caracteres al entrar en viewport (IntersectionObserver + requestAnimationFrame).
-  - Personalización separada de estilos: texto apagado (baseTextClassName) vs texto iluminado (textClassName).
-  - Parámetros del haz: color RGB, tamaño y opacidad (spotlightColor, spotlightSize, spotlightOpacity).
-  - Comportamiento hover: el texto iluminado solo aparece al pasar el cursor (opacity toggle).
-- **magic-dock:**
-  - Permite personalizar estilos del item con `itemClassName`.
-  - Opción `hoverAnimation` para activar/desactivar magnificación y expansión por hover.
-  - Soporta desplazamiento del ícono al hover con `hoverDistance`.
-  - Tooltip configurable arriba/abajo con `labelPosition`.
-  - Hover “estable” con delay (evita flicker) antes de limpiar `hoveredIndex`.
-  - Estilo de borde fijo (ya no cambia por `variant`); `variant` afecta principalmente el fondo del dock y el comportamiento tooltip.
-  - Tooltip simplificado (sin líneas/gradientes decorativas del `variant="tooltip"` original) y con transición de salida explícita.
-  - Dock anclado con `fixed bottom-4` y `z-50` (siempre encima) en lugar de `absolute bottom-2`.
-  - Área clickeable ampliada por item (padding + margen negativo) sin alterar el tamaño visual.
-  - Guard SSR para `matchMedia` en detección de touch device.
-- **card:**
-  - Simplificado a un solo componente (`Card`) en lugar de un sistema compuesto (CardHeader, CardContent, CardFooter, etc.).
-  - API reducida: recibe `content` explícito en lugar de props arbitrarios (`React.ComponentProps<"div">`).
-  - Eliminados `data-slot` y semántica interna orientada a layouts complejos.
-  - Enfocado a contenedor visual genérico (overlay full con `absolute inset-0`).
-  - Sin estilos de tema (`bg-card`, `text-card-foreground`, `border`, `shadow`).
-  - Bordes más grandes por defecto (`rounded-2xl / sm:rounded-3xl` vs `rounded-xl`).
-  - No impone estructura interna ni spacing (sin `flex`, `gap`, `px`, `py`).
-  - Cambio de helper `cn` importado desde `@/libs/utils`.
-- **card-flip:**
-  - Soporta `children` como render-prop: permite recibir `{ flip, isFlipped }` para controlar el volteo desde el contenido.
-  - Opción `hideDefaultButtons` para ocultar los botones Info/X integrados.
-  - Calcula y fija la altura máxima entre front/back (ResizeObserver + medición) para evitar “saltos” al voltear.
-  - Fuerza layout estable con `min-h-[250px]` y `h-full` en el contenedor.
-  - Cambia el transform del reverso a `rotateY(180deg)` (en lugar de `-180deg`) manteniendo la misma animación de giro.
-  - Maneja z-index/posición para asegurar que la cara activa quede arriba (front/back alternan `zIndex` y `position`).
-  - Import de `cn` desde `@/libs/utils` en lugar de `@/lib/utils`.
-- **avatar:**
-
-  - Eliminado Radix UI (`@radix-ui/react-avatar`); implementación 100% custom.
-  - Eliminado soporte de variantes (`close-friends`, `normal`, `none`) y anillos decorativos.
-  - API simplificada: `Avatar` es solo un contenedor `div`.
-  - `AvatarImage` usa `<img>` directo en lugar de `AvatarPrimitive.Image`.
-  - `AvatarFallback` es un contenedor visual simple (sin lógica de fallback automática).
-  - Menos estilos por defecto: sin bordes, sombras ni gradientes.
-  - Tamaño base reducido (`h-10 w-10` en lugar de `h-12 / h-14`).
-  - Sin dependencia de estados internos ni comportamiento controlado por Radix.
-  - Cambio de helper `cn` importado desde `@/libs/utils`.
-
-  </details>
-
-**Oneko**
-[Oneko Pet Selector by kyrie25](https://github.com/kyrie25/spicetify-oneko)
-[Oneko Original by adryd325](https://github.com/adryd325/oneko.js)
-
-<details>
-  <summary> Modificaciones realizadas </summary>
-
-- Cuenta con una "cama" drag and drop para el Pet.
-- Clic izquierdo para mostrar el Pet.
-- Clic derecho para cambiar el estilo del Pet.
-- Clic izquierdo para guardar el Pet.
-</details>
-
----
-
-## 💻 Configuración de Entorno
-
-**Configuración Recomendada para VS Code:**
-
-El proyecto incluye una configuración de anidamiento de archivos (_file nesting_) en el `settings.json` para VS Code. Esta configuración agrupa archivos relacionados (ej. archivos de configuración) bajo su archivo principal (ej. `package.json`), mejorando la **legibilidad del explorador de archivos**.
+### 🚀 Estructura del Proyecto
 
 ```
-"explorer.fileNesting.enabled": true,
-"explorer.fileNesting.patterns": {
-  "package.json": "config.js,.eslintrc.json, next.config.js, package-lock.json, postcss.config.js, tailwind.config.ts, jsconfig.json, next-sitemap.config.js, tailwind.config.js,vercel.json,pnpm-lock.yaml,yarn.lock,tsconfig.json,postcss.config.mjs,next.config.ts,next-env.d.ts,eslint.config.mjs,.stylelintrc.json,config.ts",
-  "README.md": ".gitignore,.env.example, .env.local"
+/
+├── ../
+│   ├── components/
+│   │   ├── analytics/      # Isla de React para GA/Clarity
+│   │   ├── buttons/        # Componentes atómicos (ButtonBasic.astro)
+│   │   ├── layout/         # Header y Footer globales
+│   │   └── ui/             # Componentes de UI complejos
+│   ├── data/               # Configuración estática (configProject.ts)
+│   ├── env.d.ts            # Tipos para import.meta.env
+│   ├── i18n/               # Diccionarios multiidioma
+│   ├── layouts/            # Plantilla maestra (Layout.astro)
+│   ├── libs/               # Utilidades (cn, client-side utils)
+│   ├── pages/              # Enrutado por archivos
+│   └── styles/             # CSS global (Tailwind 4 @theme)
+├── public/                 # Assets estáticos
+├── astro.config.mjs        # Integraciones (Vite + React)
+└── tsconfig.json           # TypeScript estricto
+```
+
+### 🧞 Comandos
+
+Todos desde la raíz usando pnpm:
+
+| Comando           | Acción                                  |
+| ----------------- | --------------------------------------- |
+| `pnpm install`    | Instala dependencias                    |
+| `pnpm dev`        | Servidor de desarrollo (localhost:4321) |
+| `pnpm build`      | Build de producción en `./dist/`        |
+| `pnpm preview`    | Previsualiza el build                   |
+| `pnpm astro sync` | Regenera tipos de Astro                 |
+
+Si deseas utilizar 
+```
+pnpm add -D vitest
+```
+Recuerda que debes configurar package.json
+```
+"scripts": {
+  "test": "vitest"
 }
+```
+
+### 🧠 Arquitectura CORE (DDD)
+
+Separación estricta de responsabilidades:
+
+- **Domain**: Entidades y contratos (sin dependencias externas).
+- **Application**: Casos de uso (lógica pura).
+- **Infrastructure**: Persistencia (MongoDB) y servicios externos (Stripe, APIs).
+
+### 🧩 Variables de Entorno
+
+- Las variables accesibles desde cliente deben usar prefijo `PUBLIC_`.
+- Copiar `.env.example` a `.env.local`.
+- Acceso vía `import.meta.env.PUBLIC_VARIABLE_NAME`.
+- `../env.d.ts` garantiza tipado y autocompletado.
+
+### 🛠️ Scripts útiles
+
+Generar árbol de directorios (Windows):
+
+```
+winget install GerdHoffmann.Tree
+& "C:\Program Files (x86)\GnuWin32\bin\tree.exe" -I 'node_modules|.next|dist|.astro|.vscode' > tree.txt
+```
+
+Scripts de mantenimiento ubicados en la carpeta `scripts/`.
+
+### 1. `convert_pdf_to_jpg.js`
+
+Convierte la primera página de un PDF a imagen JPG.
+
+**Requisitos:**
+
+1.  **Ghostscript:**
+    - Descarga: [Ghostscript Releases](https://github.com/ArtifexSoftware/ghostpdl-downloads/releases)
+    - Busca el instalador (ej: `gs10060w64.exe`).
+    - ⚠️ **Importante:** Marca la casilla "Add to PATH" durante la instalación.
+    - Verificar versión: `gswin64c -version`
+
+**Uso:**
+
+```
+node scripts/convert_pdf_to_jpg.js
+```
+
+### 2. `convert-images-to-webp.js`
+
+Convierte imágenes `.png`, `.jpg`, `.jpeg` y `.svg` a formato moderno `.webp` en las mismas ubicaciones. Conserva los originales.
+
+**Dependencias:**
+
+```
+npm i sharp glob
+```
+
+**Uso:**
+
+```
+node scripts/convert-images-to-webp.js
+```
+
+### 3. `convert-audio-to-webm.js`
+
+Convierte archivos de audio (`.mp3`, `.wav`, `.m4a`, `.aac`, `.ogg`) a `.webm` (codec Opus). Conserva los originales.
+
+**Requisitos:**
+
+- **FFmpeg:** Debe estar instalado y agregado a las variables de entorno (PATH).
+- (Opcional) `npm i glob`
+- **Uso:**
+
+```
+node scripts/convert-audio-to-webm.js
+```
+
+### 4. `normalize-names.js`
+
+Normaliza nombres de archivos y carpetas (elimina acentos, espacios por guiones bajos, pasa a minúsculas).
+
+**Flujo de trabajo recomendado:**
+
+- Navega a la carpeta que quieres normalizar.
+- Ejecuta el script apuntando a su ubicación.
+
+**Uso:**
+
+```
+# 1. Ir a la carpeta objetivo
+cd "ruta/a/tu/carpeta/public/certificates"
+
+# 2. Ejecutar script (ajusta la ruta según donde estés)
+node "../../scripts/normalize-names.js" -r
+```
+
+**Modo prueba (Simulacro - No cambia nada, solo muestra logs):**
+
+```
+node "../../scripts/normalize-names.js" --dry
+```
+
+### 💻 VSCode recomendado
+
+Configuración sugerida para ocultar ruido visual y mejorar la legibilidad.
+VSCode Setting JSon
+
+```
+AppData\Roaming\Code\User\settings.json
+```
+
+File Nesting & Exclusions:
+
+```
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "package.json": ",.eslintrc.json, next.config.js, package-lock.json, postcss.config.js, tailwind.config.ts, jsconfig.json, next-sitemap.config.js, tailwind.config.js,vercel.json,pnpm-lock.yaml,yarn.lock,tsconfig.json,postcss.config.mjs,next.config.ts,next-env.d.ts,eslint.config.mjs,.stylelintrc.json,config.ts,next-auth.d.ts,.dockerignore,Dockerfile,vite.config.ts,pnpm-workspace.yaml,astro.config.mjs,tailwind.config.mjs",
+    "README.md": "tree.txt,llms.txt, AI_ARCHITECTURE.md, .cursorrules, .llmignore,.gitignore,.env.example,.env.local,.env*,config.js,configApi.js,config.ts,configApi.ts,llms.md",
+  },
+  "files.exclude": {
+    ".astro": true,
+    ".next": true,
+    ".vscode": true,
+    "**/.agent": true,
+    "**/.claude": true,
+    "**/.codex": true,
+    "**/.cursor": true,
+    "**/.gemini": true,
+    "**/.opencode": true,
+    "dist": true,
+    "node_modules": true
+  },
+```
+
+Colores de interfaz (High Contrast Selection):
+
+```
+"workbench.colorCustomizations": {
+    //Selector Color
+    "editor.selectionBackground": "#ffd54f80",
+    "editor.selectionForeground": "#000000",
+    "editor.inactiveSelectionBackground": "#ffecb340",
+
+    "editor.selectionHighlightBackground": "#00000000",
+    "editor.wordHighlightBackground": "#00000000",
+    "editor.wordHighlightStrongBackground": "#00000000",
+
+    // Apagar barras amarillas de resultados de búsqueda
+    "editor.rangeHighlightBackground": "#00000000",
+
+    // Colores personalizados para búsqueda (amarillo transparente)
+    "editor.findMatchBackground": "#ffeb3b99",
+    "editor.findMatchHighlightBackground": "#ffeb3b55",
+    "editor.findRangeHighlightBackground": "#ffeb3b33",
+    "editor.findMatchBorder": "#ffeb3b",
+    "editor.findMatchHighlightBorder": "#ffeb3b"
+},
+```
+
+### 💻 Claude Skills
+Skills recomendadas para Claude.
+
+```
+npx claude-code-templates@latest --skill=analytics/google-analytics --yes
+npx claude-code-templates@latest --skill=business-marketing/seo-optimizer --yes
+npx claude-code-templates@latest --skill=creative-design/frontend-design --yes
+npx claude-code-templates@latest --skill=creative-design/ui-design-system --yes
+npx claude-code-templates@latest --skill=creative-design/web-design-guidelines --yes
+npx claude-code-templates@latest --skill=development/senior-frontend --yes
+npx claude-code-templates@latest --skill=development/senior-frontend --yes
+npx claude-code-templates@latest --skill=development/senior-architect --yes
+npx claude-code-templates@latest --skill=development/code-reviewer --yes
+npx claude-code-templates@latest --skill=railway/database --yes
+npx claude-code-templates@latest --skill=security/api-security-best-practices --yes
+npx claude-code-templates@latest --skill=security/vulnerability-scanner --yes
+npx claude-code-templates@latest --skill=security/top-web-vulnerabilities --yes
+npx claude-code-templates@latest --skill=security/html-injection-testing --yes
+npx claude-code-templates@latest --skill=sentry/find-bugs --yes
+npx claude-code-templates@latest --skill=sentry/find-bugs --yes
 ```

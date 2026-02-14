@@ -1,0 +1,181 @@
+---
+import { Image } from "astro:assets";
+import logoImg from "@/assets/images/JFLogo.webp";
+import { configProject as config } from "@/data/configProject";
+import { aboutData as aboutInfo } from "@/data/about";
+import LanguageSwitch from "@/components/ui/LanguageSwitch";
+import Oneko from "@/components/ui/Oneko.astro";
+import hangingImage from "@/assets/hanging.svg";
+
+const contactLinks = ((aboutInfo as any).contact ?? []) as Array<{ name: string; url: string; icon: any }>;
+const socialLinks = ((aboutInfo as any).social ?? []) as Array<{ name: string; url: string; icon: any }>;
+
+const cookieLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
+const localLang = typeof Astro.locals.lang === "string" ? Astro.locals.lang.toLowerCase() : undefined;
+
+const lang: "es" | "en" =
+  cookieLang === "en" || cookieLang === "es" ? cookieLang : Astro.url.pathname.startsWith("/en") ? "en" : localLang === "en" ? "en" : "es";
+
+let aboutLan = null;
+if (lang === "en") {
+  aboutLan = aboutInfo.EN[0];
+} else {
+  aboutLan = aboutInfo.ES[0];
+}
+
+const navItems =
+  lang === "en"
+    ? [
+        { label: "Home", href: "#Resumen" },
+        { label: "Bio", href: "#Bio" },
+        { label: "Experience", href: "#Experiencia" },
+        { label: "Projects", href: "#Proyectos" },
+        { label: "Certificates", href: "#Certificados" },
+      ]
+    : [
+        { label: "Inicio", href: "#Resumen" },
+        { label: "Bio", href: "#Bio" },
+        { label: "Experiencia", href: "#Experiencia" },
+        { label: "Proyectos", href: "#Proyectos" },
+        { label: "Certificados", href: "#Certificados" },
+      ];
+---
+
+<header
+  id="main-header"
+  class="sticky top-0 z-40 w-full bg-[var(--bg-dark)]/90 backdrop-blur-sm border-b border-[var(--color-resaltar)] text-2xl"
+>
+  <div class="container mx-auto max-w-7xl px-4">
+    <div class="flex items-center justify-between h-12">
+      <a href="/" class="flex items-center gap-3" title={`${aboutLan.callToAction}`}>
+        <Image src={logoImg} alt={`${config.appName} logo`} class="w-6 h-6" width={24} height={24} loading="eager" decoding="async" />
+        <span class="hidden sm:inline font-semibold text-x text-[var(--color-green)]">{config.appName}</span>
+      </a>
+
+      <div class="ml-auto flex items-center justify-end gap-2">
+        <div class="hidden md:flex items-center gap-2 border-r border-[var(--color-resaltar)] mr-4 ml-4">
+          <Oneko client:load />
+        </div>
+        <div class="hidden md:flex items-center gap-2 border-r border-[var(--color-resaltar)] mr-4 ml-4">
+          <LanguageSwitch client:load initialLang={lang} />
+          <button
+            id="mobile-menu-btn"
+            type="button"
+            class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-md border border-[var(--color-resaltar)]/40 text-[var(--color-resaltar)]"
+            aria-expanded="false"
+            aria-controls="mobile-menu-panel"
+            aria-label="Abrir menú"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+
+        <div class="hidden md:flex items-center gap-2 border-r border-[var(--color-resaltar)] pr-4 mr-4 ml-4">
+          {
+            contactLinks.map((contact) => (
+              <a
+                class="scale-80 hover:scale-120 p-2 rounded-md"
+                href={contact.url}
+                title={`${contact.name}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${contact.name}`}
+              >
+                <Image
+                  class="w-8 h-8"
+                  src={contact.icon}
+                  alt={`${contact.name} icon`}
+                  width={32}
+                  height={32}
+                  loading="eager"
+                  decoding="async"
+                />
+              </a>
+            ))
+          }
+        </div>
+
+        <div class="hidden md:flex items-center gap-2 border-r border-[var(--color-resaltar)] pr-4 mr-4 ml-4">
+          {
+            socialLinks.map((contact) => (
+              <a
+                class="scale-80 hover:scale-120 p-2 rounded-md"
+                href={contact.url}
+                title={`${contact.name}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${contact.name}`}
+              >
+                <Image
+                  class="w-8 h-8"
+                  src={contact.icon}
+                  alt={`${contact.name} icon`}
+                  width={32}
+                  height={32}
+                  loading="eager"
+                  decoding="async"
+                />
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <div id="bannerClic" class="absolute hidden md:right-170 top-full mt-2 flex flex-col items-center group">
+      <Image src={hangingImage} alt="Hanging" class="w-16 h-16 md:w-64 md:h-32" />
+      <span class="absolute top-3/5 -translate-y-1/2 text-sm md:text-base font-semibold text-[var(--text-use)]">
+        {lang === "es" ? "Escríbeme" : "Write me"}
+      </span>
+    </div>
+  </div>
+
+  <div
+    id="mobile-menu-panel"
+    class="md:hidden hidden border-t border-[var(--color-resaltar)]/20 bg-[var(--bg-dark)]/95 backdrop-blur px-4 py-3"
+  >
+    <nav class="flex flex-col gap-2" aria-label="Mobile navigation">
+      {
+        navItems.map((item) => (
+          <a class="menu-link rounded-md px-3 py-2 text-base text-[var(--text-use)] hover:bg-white/5" href={item.href}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+
+  <script>
+    const menuBtn = document.querySelector("#mobile-menu-btn");
+    const menuPanel = document.querySelector("#mobile-menu-panel");
+    const bannerClic = document.querySelector("#bannerClic");
+    let bannerTimer: ReturnType<typeof setTimeout> | null = null;
+
+    if (menuBtn && menuPanel) {
+      menuBtn.addEventListener("click", () => {
+        const isOpen = !menuPanel.classList.contains("hidden");
+        menuPanel.classList.toggle("hidden", isOpen);
+        menuBtn.setAttribute("aria-expanded", String(!isOpen));
+      });
+
+      menuPanel.addEventListener("click", (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        if (!target.closest('a[href^="#"]')) return;
+        menuPanel.classList.add("hidden");
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    }
+
+    window.addEventListener("show-header-banner-click", () => {
+      if (!(bannerClic instanceof HTMLElement)) return;
+      bannerClic.classList.remove("hidden");
+      if (bannerTimer) clearTimeout(bannerTimer);
+      bannerTimer = setTimeout(() => {
+        bannerClic.classList.add("hidden");
+      }, 8000);
+    });
+  </script>
+</header>

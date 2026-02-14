@@ -1,0 +1,145 @@
+---
+import { Image } from "astro:assets";
+import { aboutData, yearsOfExperience } from "@/data/about";
+import { projectsData } from "@/data/projects";
+import { experienceData } from "@/data/experience";
+import { certificatesData } from "@/data/certificates";
+import techBanner from "@/assets/techBanner.webp";
+import heyListenAudio from "@/assets/audio/hey_listen.webm";
+
+const cookieLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
+const localLang = typeof Astro.locals.lang === "string" ? Astro.locals.lang.toLowerCase() : undefined;
+
+const lang: "es" | "en" =
+  cookieLang === "en" || cookieLang === "es" ? cookieLang : Astro.url.pathname.startsWith("/en") ? "en" : localLang === "en" ? "en" : "es";
+
+let projects = null;
+let experiences = null;
+let profileInfo = null;
+let certificates = null;
+
+if (lang === "en") {
+  profileInfo = aboutData.EN[0];
+  projects = projectsData.EN;
+  experiences = experienceData.EN;
+  certificates = certificatesData.EN;
+} else {
+  profileInfo = aboutData.ES[0];
+  projects = projectsData.ES;
+  experiences = experienceData.ES;
+  certificates = certificatesData.ES;
+}
+
+// Lógica para KPIs dinámicos
+const totalRobots = "35+";
+const impactValue = lang === "en" ? "+$165k USD" : "+$3MDP";
+const lastJob = experiences[0];
+const lastJobSkills = lastJob.topskills.slice(0, 5);
+const projectSkills = projects.flatMap((p) => p.topskills);
+const topSkills = [...new Set([...lastJobSkills, ...projectSkills])];
+const recentCerts = certificates.slice(0, 4);
+---
+
+<section id="Resumen" class="h-full min-h-0 w-full snap-start flex flex-col py-10 px-4 md:px-6 lg:px-8 overflow-hidden">
+  <div class="relative w-full max-w-7xl mx-auto h-full flex flex-col justify-center">
+    <div class="items-center">
+      <div class="lg:col-span-4 flex flex-col gap-4 items-center justify-center text-center">
+        <a id="cta-audio-trigger" role="button" tabindex="0" class="cursor-pointer">
+          <h2 class="text-4xl md:text-6xl font-black text-[var(--color-purple)] uppercase leading-none mb-10">
+            {profileInfo.callToAction}
+          </h2>
+        </a>
+        <audio id="cta-audio" src={heyListenAudio} preload="auto"></audio>
+      </div>
+      <div class="lg:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div
+          class="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center items-center hover:scale-125 transition-transform"
+        >
+          <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2">{impactValue}</span>
+          <span class="text-xs uppercase tracking-wider text-[var(--color-green)]">{lang === "en" ? "Annual Impact" : "Impacto Anual"}</span
+          >
+        </div>
+
+        <div
+          class="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center items-center hover:scale-125 transition-transform"
+        >
+          <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2">{totalRobots}</span>
+          <span class="text-xs uppercase tracking-wider text-[var(--color-green)]">{lang === "en" ? "Live Robots" : "Robots en Prod"}</span>
+        </div>
+
+        <div
+          class="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center items-center hover:scale-125 transition-transform"
+        >
+          <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2">+{yearsOfExperience}</span>
+          <span class="text-xs uppercase tracking-wider text-[var(--color-green)]">{lang === "en" ? "Years Exp." : "Años Exp."}</span>
+        </div>
+
+        <div
+          class="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center text-center items-center hover:scale-125 transition-transform"
+        >
+          <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2"> {profileInfo.sc}</span>
+          <span class="text-x uppercase tracking-wider text-[var(--color-green)]">{profileInfo.Major}</span>
+        </div>
+
+        <div
+          class="relative overflow-hidden col-span-2 md:col-span-4 mt-4 p-6 rounded-2xl border border-[var(--color-blue)]/30 bg-[var(--color-blue)]/5 items-center justify-center text-center p-4 rounded-lg"
+        >
+          <div
+            class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15 pointer-events-none"
+            style={`background-image: url(${techBanner.src});`}
+          >
+          </div>
+          <div class="relative z-10">
+            <h4 class="text-xl font-bold uppercase mb-4 text-[var(--color-purple)] tracking-widest items-center justify-center">
+              {lang === "en" ? "Strategic Stack" : "Stack Tecnológico"}
+            </h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {
+                topSkills.map((skill) => (
+                  <div class="mb-2">
+                    <span class="px-3 py-1 bg-white/10 rounded-full text-sm font-medium border border-white/5">{skill}</span>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-2 md:col-span-4 flex justify-center">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-80 gap-y-6">
+            {
+              recentCerts.map((cert) => (
+                <div class="flex items-center gap-2 hover:text-[var(--color-purple)] transition-opacity">
+                  <div class="w-1 h-1 bg-[var(--color-green)] rounded-full flex-shrink-0" />
+                  <span class="text-base text-[var(--text-use)] hover:text-[var(--color-purple)] whitespace-nowrap">{cert.name}</span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const trigger = document.getElementById("cta-audio-trigger");
+  const audio = document.getElementById("cta-audio");
+
+  const playAudio = () => {
+    if (!(audio instanceof HTMLAudioElement)) return;
+    audio.pause();
+    audio.currentTime = 0;
+    audio.loop = false;
+    void audio.play();
+    window.dispatchEvent(new CustomEvent("show-header-banner-click"));
+  };
+
+  trigger?.addEventListener("click", playAudio);
+  trigger?.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      playAudio();
+    }
+  });
+</script>

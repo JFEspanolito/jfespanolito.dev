@@ -1,0 +1,25 @@
+---
+// Importamos la config y componentes necesarios
+import { Image } from "astro:assets";
+import logoImg from "@/assets/images/JFLogo.webp";
+import githubLogo from "@/assets/logos/github.svg";
+import { configProject as configProject } from "@/data/configProject";
+
+const year = new Date().getFullYear();
+const supportEmail = configProject?.support?.email || null;
+const faviconUrl = logoImg;
+---
+
+<footer class="flex items-center justify-center font-sans text-[var(--color-green)]">
+  <a
+    class="scale-80 hover:scale-120 p-2 rounded-md"
+    href="https://github.com/JFEspanolito/jfespanolito.dev"
+    title="GitHub"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="GitHub"
+  >
+    <Image class="w-8 h-8" src={githubLogo} alt="GitHub icon" width={32} height={32} loading="eager" decoding="async" />
+  </a>
+  <p class="text-base opacity-80 text-center md:text-right">{configProject.copyright}</p>
+</footer>
