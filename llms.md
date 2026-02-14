@@ -35,7 +35,7 @@ Designed for SaaS, portfolios, and complex web apps using DDD (Domain-Driven Des
 ## 3. Directory Structure Map
 
 ```
-src/
+../
 ├─ pages/                  -> Astro Routes (browser entry points)
 ├─ components/
 │  ├─ pages/              -> React Views (full-page logic/state)
@@ -72,7 +72,7 @@ scripts/                  -> DevOps scripts (audio/image + filename normalizatio
 - No `tailwind.config.js`
 - Theme extensions live in:
 
-`src/styles/global.css`
+`../styles/global.css`
 
 ```
 @theme {
@@ -94,9 +94,9 @@ Avoids Windows/Linux build conflicts.
 
 Routing Strategy
 
-Route layer: src/pages/xxx.astro
+Route layer: ../pages/xxx.astro
 
-View logic: src/components/pages/XxxPage.tsx
+View logic: ../components/pages/XxxPage.tsx
 
 Astro handles routing. React handles state.
 
@@ -105,7 +105,7 @@ Astro handles routing. React handles state.
 
 Integrations + Vite configuration.
 
-`src/env.d.ts`
+`../env.d.ts`
 
 Registry for environment variable types.
 

@@ -1,4 +1,4 @@
-Aquí tienes una propuesta de `README.md` adaptada para un boilerplate en **Astro** 🚀. He ajustado las rutas para que sigan la estructura de directorios estándar de Astro (usando la carpeta `src/`) y manteniendo la lógica de **DDD** que hemos construido.
+Aquí tienes una propuesta de `README.md` adaptada para un boilerplate en **Astro** 🚀. He ajustado las rutas para que sigan la estructura de directorios estándar de Astro (usando la carpeta `../`) y manteniendo la lógica de **DDD** que hemos construido.
 
 ---
 
@@ -8,28 +8,28 @@ Este repositorio es una base sólida para proyectos que requieren una separació
 
 ## 📁 Estructura del Proyecto
 
-La lógica central reside en `/src/core/`, manteniéndose independiente de los frameworks.
+La lógica central reside en `/../core/`, manteniéndose independiente de los frameworks.
 
-### 🏗️ Capas del Core (`/src/core/`)
+### 🏗️ Capas del Core (`/../core/`)
 
 - **Domain 🧠**: Contiene las reglas esenciales.
-- `src/core/creature/domain/Creature.ts`: Entidad con validaciones de negocio.
-- `src/core/creature/domain/CreatureRepository.ts`: Contrato (interfaz) para persistencia.
-- `src/core/creature/domain/CreatureSchema.ts`: Esquema de **Zod** para contratos de datos.
+- `../core/creature/domain/Creature.ts`: Entidad con validaciones de negocio.
+- `../core/creature/domain/CreatureRepository.ts`: Contrato (interfaz) para persistencia.
+- `../core/creature/domain/CreatureSchema.ts`: Esquema de **Zod** para contratos de datos.
 
 - **Application 🎬**: Orquestadores de casos de uso.
-- `src/core/creature/application/UploadCreature.ts`: Proceso para validar y guardar.
+- `../core/creature/application/UploadCreature.ts`: Proceso para validar y guardar.
 
 - **Infrastructure 🛠️**: Implementaciones técnicas.
-- `src/core/creature/infrastructure/MongoRepository.ts`: Conexión real con la base de datos.
+- `../core/creature/infrastructure/MongoRepository.ts`: Conexión real con la base de datos.
 
 ---
 
 ## 🛣️ Rutas de la API (Endpoints)
 
-En Astro, las APIs se definen dentro de `src/pages/api/`. Estas rutas actúan como puentes hacia el `core`.
+En Astro, las APIs se definen dentro de `../pages/api/`. Estas rutas actúan como puentes hacia el `core`.
 
-### `src/pages/api/creature.ts`
+### `../pages/api/creature.ts`
 
 Este archivo maneja las peticiones para el sistema de criaturas (Upload & Community View).
 

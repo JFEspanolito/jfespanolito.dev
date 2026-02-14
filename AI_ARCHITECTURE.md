@@ -16,18 +16,18 @@ High-performance boilerplate based on Astro 5 + React 19, optimized for speed, S
 
 Strict separation between client-side branding and server-side secrets via a **Dual-Config Pattern**.
 
-### A. Client / UI Config (`src/data/configProject.ts`)
+### A. Client / UI Config (`../data/configProject.ts`)
 
 - **Purpose:** Public values, SEO metadata, branding, UI text.
 - **Security:** Safe for client bundles.
 - **Usage:** Imported in Layouts, SEO components, UI blocks.
 - **Environment:** Uses `import.meta.env.PUBLIC_*` for browser-exposed variables.
 
-### B. Server / API Config (`src/env.d.ts`)
+### B. Server / API Config (`../env.d.ts`)
 
 - **Purpose:** Strict typing for all environment variables (Secrets, API Keys).
 - **Security:** Variables without `PUBLIC_` are server-only.
-- **Validation:** Every env var must be registered in `src/env.d.ts` for autocomplete and type safety.
+- **Validation:** Every env var must be registered in `../env.d.ts` for autocomplete and type safety.
 
 ---
 
@@ -35,13 +35,13 @@ Strict separation between client-side branding and server-side secrets via a **D
 
 Route definition is separated from view logic (Next.js–friendly migration pattern).
 
-### Routes (`src/pages/*.astro`)
+### Routes (`../pages/*.astro`)
 
 - Define URL structure.
 - Handle SSR / SSG.
 - Manage SEO.
 
-### Views (`src/components/pages/*.tsx`)
+### Views (`../components/pages/*.tsx`)
 
 - Page UI + React logic.
 - Imported by Astro pages as interactive islands.
@@ -57,7 +57,7 @@ Route definition is separated from view logic (Next.js–friendly migration patt
 
 Core logic lives in a framework-agnostic `core/` directory (when applicable), following DDD.
 
-### Database (`src/libs/db.ts`)
+### Database (`../libs/db.ts`)
 
 - Singleton pattern for Mongoose/MongoDB.
 - Prevents connection exhaustion in serverless environments.
@@ -80,7 +80,7 @@ Core logic lives in a framework-agnostic `core/` directory (when applicable), fo
 
 All tokens, colors (e.g. Cyberpunk themes), and variables live in:
 
-`src/styles/global.css`
+`../styles/global.css`
 
 ```
 @theme {

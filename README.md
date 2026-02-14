@@ -20,7 +20,7 @@ Migra la robustez de una arquitectura empresarial de Next.js hacia la agilidad d
 
 ```
 /
-├── src/
+├── ../
 │   ├── components/
 │   │   ├── analytics/      # Isla de React para GA/Clarity
 │   │   ├── buttons/        # Componentes atómicos (ButtonBasic.astro)
@@ -74,7 +74,7 @@ Separación estricta de responsabilidades:
 - Las variables accesibles desde cliente deben usar prefijo `PUBLIC_`.
 - Copiar `.env.example` a `.env.local`.
 - Acceso vía `import.meta.env.PUBLIC_VARIABLE_NAME`.
-- `src/env.d.ts` garantiza tipado y autocompletado.
+- `../env.d.ts` garantiza tipado y autocompletado.
 
 ### 🛠️ Scripts útiles
 

@@ -32,8 +32,6 @@ const navItems =
         { label: "Side Quest · Proyectos Personales", href: "#Proyectos" },
         { label: "Logros · Certificados", href: "#Certificados" },
       ];
-
-
 ---
 
 <section id="vertical-menu" class="vertical-menu" aria-label="Profile navigation" style={`--menu-hover-bg: url('${bgRight.src}')`}>
@@ -57,7 +55,7 @@ const navItems =
     }
   </nav>
 
-  <a class="cta mt-20" href={lang === "en" ? "src/assets/cv/EN_CV_JAFA.pdf" : "src/assets/cv/ES_CV_JAFA.pdf"} target="_blank">
+  <a class="cta mt-20" href={lang === "en" ? "../assets/cv/EN_CV_JAFA.pdf" : "../assets/cv/ES_CV_JAFA.pdf"} target="_blank">
     {lang === "en" ? "Download Resume" : "Descargar Resumen"}
   </a>
 </section>

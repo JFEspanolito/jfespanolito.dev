@@ -1,4 +1,4 @@
-// src/i18n/ui.ts
+// ../i18n/ui.ts
 
 // 1. Definimos los idiomas disponibles
 export const languages = {

@@ -1,4 +1,4 @@
-// src/data/configProject.ts
+// ../data/configProject.ts
 export const configProject = {
   // ======================================================
   // 🧩 PROYECTO (metadata / web)
