@@ -39,7 +39,8 @@
 body {
   background-color: var(--bg-use);
   background-image:
-    linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
   color: var(--text-use);
   font-family: var(--font-sans);
@@ -140,11 +141,20 @@ body {
 
 .cta {
   font-family: "Manrope", Arial, sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
-  padding: 12px 26px;
+  padding: 8px 16px;
   background: var(--color-blue);
   border-radius: 999px;
   text-decoration: none;
   box-shadow: 0 12px 20px rgba(47, 109, 246, 0.25);
+  display: inline-block;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .cta {
+    font-size: 13px;
+    padding: 12px 26px;
+  }
 }

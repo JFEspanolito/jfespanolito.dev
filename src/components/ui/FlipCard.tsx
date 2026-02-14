@@ -10,13 +10,13 @@ const FlipCard: React.FC<Props> = ({ experience }) => {
 
   return (
     <div
-      className="group perspective-1000 w-full max-w-[600px] h-[200px] md:h-[400px] cursor-pointer"
+      className="group perspective-1000 w-full max-w-[600px] h-[300px] md:h-[400px] cursor-pointer"
       onClick={() => setIsFlipped(!isFlipped)}
     >
       <div className={`relative w-full h-full transition-transform duration-700 transform-style-3d ${isFlipped ? "rotate-y-180" : ""}`}>
         {/* FRONT */}
         <div className="absolute w-full h-full backface-hidden bg-[var(--color-card-bg)] rounded-2xl p-4 md:p-6 shadow-lg flex flex-col justify-between border border-[var(--color-resaltar)] overflow-hidden z-10">
-          <div>
+          <div className="flex-1 overflow-y-auto no-scrollbar">
             <div className="flex justify-between items-start">
               <h3 className="text-lg md:text-xl font-bold leading-tight pr-2 text-[var(--color-purple)]">{experience.role}</h3>
               <span className="ml-auto text-right text-[10px] md:text-xs font-medium tracking-wide opacity-80 select-none text-[var(--color-resaltar)]">
@@ -35,7 +35,7 @@ const FlipCard: React.FC<Props> = ({ experience }) => {
               src={experienceBanner.src}
               alt="background"
             />
-            <p className="mt-2.5 md:mt-3 text-base md:text-base leading-relaxed line-clamp-3 text-[var(--text-use)] ">
+            <p className="mt-2.5 md:mt-3 text-base md:text-base leading-relaxed text-[var(--text-use)] ">
               {experience.description}
             </p>
           </div>
@@ -57,7 +57,7 @@ const FlipCard: React.FC<Props> = ({ experience }) => {
           <h4 className="text-purple-600 font-bold uppercase text-[10px] md:text-xs mb-3 md:mb-4 tracking-widest border-b border-purple-100 pb-2">
             Actividades Técnicas
           </h4>
-          <ul className="flex-1 space-y-2 pr-1 overflow-hidden">
+          <ul className="flex-1 space-y-2 pr-1 overflow-y-auto no-scrollbar">
             {experience.activities.map((act: string, i: number) => (
               <li key={i} className="text-base flex gap-2 md:gap-3">
                 <span className="text-[var(--color-green)]">-</span>
