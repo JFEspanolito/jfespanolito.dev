@@ -19,10 +19,19 @@ const socialLinks = ((aboutInfo as any).social ?? []) as Array<{
 }>;
 
 const cookieLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
-const localLang = typeof Astro.locals.lang === "string" ? Astro.locals.lang.toLowerCase() : undefined;
+const localLang =
+  typeof Astro.locals.lang === "string"
+    ? Astro.locals.lang.toLowerCase()
+    : undefined;
 
 const lang: "es" | "en" =
-  cookieLang === "en" || cookieLang === "es" ? cookieLang : Astro.url.pathname.startsWith("/en") ? "en" : localLang === "en" ? "en" : "es";
+  cookieLang === "en" || cookieLang === "es"
+    ? cookieLang
+    : Astro.url.pathname.startsWith("/en")
+      ? "en"
+      : localLang === "en"
+        ? "en"
+        : "es";
 
 let aboutLan = null;
 if (lang === "en") {
@@ -55,33 +64,63 @@ const navItems =
 >
   <div class="container mx-auto max-w-7xl px-4">
     <div class="flex items-center justify-between h-12">
-      <a href="/" class="flex items-center gap-3" title={`${aboutLan.callToAction}`}>
-        <Image src={logoImg} alt={`${config.appName} logo`} class="w-6 h-6" width={24} height={24} loading="eager" decoding="async" />
-        <span class="sm:inline font-semibold text-x text-[var(--color-green)]">{config.appName}</span>
+      <a
+        href="/"
+        class="flex items-center gap-3"
+        title={`${aboutLan.callToAction}`}
+      >
+        <Image
+          src={logoImg}
+          alt={`${config.appName} logo`}
+          class="w-6 h-6"
+          width={24}
+          height={24}
+          loading="eager"
+          decoding="async"
+        />
+        <span class="sm:inline font-semibold text-x text-[var(--color-green)]"
+          >{config.appName}</span
+        >
       </a>
 
       <div class="ml-auto flex items-center justify-end gap-2">
-        <div class="hidden md:flex items-center gap-2 border-r border-[var(--color-resaltar)] mr-4 ml-4">
+        <div
+          class="hidden md:flex items-center gap-2 border-r border-[var(--color-resaltar)] mr-4 ml-4"
+        >
           <Oneko client:load />
         </div>
-        <div class="hidden md:flex items-center gap-2 border-r border-[var(--color-resaltar)] mr-4 ml-4">
+        <div
+          class="hidden md:flex items-center gap-2 border-r border-[var(--color-resaltar)] mr-4 ml-4"
+        >
           <LanguageSwitch client:load initialLang={lang} />
         </div>
 
         <button
           id="mobile-menu-btn"
           type="button"
-          class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-md border border-[var(--color-resaltar)]/40 text-[var(--color-resaltar)]"
+          class="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-md border border-[var(--color-resaltar)]/40 text-[var(--color-resaltar)] hover:bg-white/5 active:scale-95 transition-all"
           aria-expanded="false"
           aria-controls="mobile-menu-panel"
           aria-label="Abrir menú"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
 
-        <div class="hidden md:flex items-center gap-2 border-r border-[var(--color-resaltar)] pr-4 mr-4 ml-4">
+        <div
+          class="hidden md:flex items-center gap-2 border-r border-[var(--color-resaltar)] pr-4 mr-4 ml-4"
+        >
           {
             contactLinks.map((contact) => (
               <a
@@ -106,7 +145,9 @@ const navItems =
           }
         </div>
 
-        <div class="hidden md:flex items-center gap-2 border-r border-[var(--color-resaltar)] pr-4 mr-4 ml-4">
+        <div
+          class="hidden md:flex items-center gap-2 border-r border-[var(--color-resaltar)] pr-4 mr-4 ml-4"
+        >
           {
             socialLinks.map((contact) => (
               <a
@@ -133,9 +174,18 @@ const navItems =
       </div>
     </div>
 
-    <div id="bannerClic" class="absolute hidden md:right-170 top-full mt-2 flex flex-col items-center group">
-      <Image src={hangingImage} alt="Hanging" class="w-16 h-16 md:w-64 md:h-32" />
-      <span class="absolute top-3/5 -translate-y-1/2 text-sm md:text-base font-semibold text-[var(--text-use)]">
+    <div
+      id="bannerClic"
+      class="absolute hidden md:right-170 top-full mt-2 flex flex-col items-center group"
+    >
+      <Image
+        src={hangingImage}
+        alt="Hanging"
+        class="w-16 h-16 md:w-64 md:h-32"
+      />
+      <span
+        class="absolute top-3/5 -translate-y-1/2 text-sm md:text-base font-semibold text-[var(--text-use)]"
+      >
         {lang === "es" ? "Escríbeme" : "Write me"}
       </span>
     </div>
@@ -143,21 +193,30 @@ const navItems =
 
   <div
     id="mobile-menu-panel"
-    class="md:hidden hidden border-t border-[var(--color-resaltar)]/20 bg-[var(--bg-dark)]/95 backdrop-blur px-4 py-3"
+    class="md:hidden hidden border-t border-[var(--color-resaltar)]/20 bg-[var(--bg-dark)]/98 backdrop-blur-md px-4 py-6 shadow-2xl max-h-[calc(100vh-4rem)] overflow-y-auto"
   >
     <nav class="flex flex-col gap-2" aria-label="Mobile navigation">
-      <div class="flex items-center justify-between mb-2 pb-2 border-b border-[var(--color-resaltar)]/10">
-        <span class="text-sm font-medium text-[var(--text-use)]/60">Idioma / Language</span>
+      <div
+        class="flex items-center justify-between mb-2 pb-2 border-b border-[var(--color-resaltar)]/10"
+      >
+        <span class="text-sm font-medium text-[var(--text-use)]/60"
+          >Idioma / Language</span
+        >
         <LanguageSwitch client:load initialLang={lang} />
       </div>
       {
         navItems.map((item) => (
-          <a class="menu-link rounded-md px-3 py-2 text-base text-[var(--text-use)] hover:bg-white/5" href={item.href}>
+          <a
+            class="menu-link rounded-md px-3 py-2 text-base text-[var(--text-use)] hover:bg-white/5"
+            href={item.href}
+          >
             {item.label}
           </a>
         ))
       }
-      <div class="mt-4 pt-4 border-t border-[var(--color-resaltar)]/10 flex flex-wrap gap-4 justify-center">
+      <div
+        class="mt-4 pt-4 border-t border-[var(--color-resaltar)]/10 flex flex-wrap gap-4 justify-center"
+      >
         {
           contactLinks.map((contact) => (
             <a
@@ -168,7 +227,13 @@ const navItems =
               rel="noopener noreferrer"
               aria-label={`${contact.name}`}
             >
-              <Image class="w-6 h-6" src={contact.icon} alt={`${contact.name} icon`} width={24} height={24} />
+              <Image
+                class="w-6 h-6"
+                src={contact.icon}
+                alt={`${contact.name} icon`}
+                width={24}
+                height={24}
+              />
             </a>
           ))
         }
@@ -182,43 +247,123 @@ const navItems =
               rel="noopener noreferrer"
               aria-label={`${contact.name}`}
             >
-              <Image class="w-6 h-6" src={contact.icon} alt={`${contact.name} icon`} width={24} height={24} />
+              <Image
+                class="w-6 h-6"
+                src={contact.icon}
+                alt={`${contact.name} icon`}
+                width={24}
+                height={24}
+              />
             </a>
           ))
         }
       </div>
     </nav>
   </div>
-
   <script>
-    const menuBtn = document.querySelector("#mobile-menu-btn");
-    const menuPanel = document.querySelector("#mobile-menu-panel");
-    const bannerClic = document.querySelector("#bannerClic");
-    let bannerTimer: ReturnType<typeof setTimeout> | null = null;
+    let isMenuListenerAdded = false;
 
-    if (menuBtn && menuPanel) {
-      menuBtn.addEventListener("click", () => {
-        const isOpen = !menuPanel.classList.contains("hidden");
-        menuPanel.classList.toggle("hidden", isOpen);
-        menuBtn.setAttribute("aria-expanded", String(!isOpen));
+    function initMenu() {
+      const menuBtn = document.querySelector("#mobile-menu-btn");
+      const menuPanel = document.querySelector("#mobile-menu-panel");
+
+      if (!menuBtn || !menuPanel) return;
+
+      const toggleMenu = (e: Event) => {
+        e.stopPropagation();
+        const isHidden = menuPanel.classList.toggle("hidden");
+        menuBtn.setAttribute("aria-expanded", String(!isHidden));
+      };
+
+      menuBtn.removeEventListener("click", toggleMenu);
+      menuBtn.addEventListener("click", toggleMenu);
+
+      const navLinks = menuPanel.querySelectorAll("a");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          const href = link.getAttribute("href");
+
+          if (href && href.startsWith("#")) {
+            e.preventDefault();
+            const targetId = href.substring(1);
+            const targetEl = document.getElementById(targetId);
+
+            if (targetEl) {
+              const container = document.getElementById(
+                "main-scroll-container",
+              );
+
+              if (container) {
+                // Precise scroll using the container
+                container.scrollTo({
+                  top: targetEl.offsetTop,
+                  behavior: "smooth",
+                });
+              } else {
+                // Fallback
+                targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+              }
+
+              // Reset internal scrollable areas for specific sections
+              setTimeout(() => {
+                const internal = targetEl.querySelector(
+                  ".overflow-y-auto, [data-experience-scroll], #experience-content",
+                );
+                if (internal && internal instanceof HTMLElement) {
+                  internal.scrollTo({ top: 0, behavior: "smooth" });
+                }
+              }, 400);
+
+              // Update URL without jump
+              history.pushState(null, "", href);
+            }
+          }
+
+          menuPanel.classList.add("hidden");
+          menuBtn.setAttribute("aria-expanded", "false");
+        });
       });
 
-      menuPanel.addEventListener("click", (event) => {
-        const target = event.target;
-        if (!(target instanceof Element)) return;
-        if (!target.closest('a[href^="#"]')) return;
-        menuPanel.classList.add("hidden");
-        menuBtn.setAttribute("aria-expanded", "false");
-      });
+      if (!isMenuListenerAdded) {
+        document.addEventListener("click", (event: MouseEvent) => {
+          const target = event.target as Node;
+          const isClickInsideMenu = menuPanel.contains(target);
+          const isClickOnButton = menuBtn.contains(target);
+
+          if (
+            !isClickInsideMenu &&
+            !isClickOnButton &&
+            !menuPanel.classList.contains("hidden")
+          ) {
+            menuPanel.classList.add("hidden");
+            menuBtn.setAttribute("aria-expanded", "false");
+          }
+        });
+        isMenuListenerAdded = true;
+      }
     }
 
-    window.addEventListener("show-header-banner-click", () => {
-      if (!(bannerClic instanceof HTMLElement)) return;
-      bannerClic.classList.remove("hidden");
-      if (bannerTimer) clearTimeout(bannerTimer);
-      bannerTimer = setTimeout(() => {
-        bannerClic.classList.add("hidden");
-      }, 8000);
-    });
+    initMenu();
+    document.addEventListener("astro:page-load", initMenu);
+
+    function initBanner() {
+      const bannerClic = document.querySelector("#bannerClic");
+      let bannerTimer: ReturnType<typeof setTimeout> | null = null;
+
+      const handleBanner = () => {
+        if (!(bannerClic instanceof HTMLElement)) return;
+        bannerClic.classList.remove("hidden");
+        if (bannerTimer) clearTimeout(bannerTimer);
+        bannerTimer = setTimeout(() => {
+          bannerClic.classList.add("hidden");
+        }, 8000);
+      };
+
+      window.removeEventListener("show-header-banner-click", handleBanner);
+      window.addEventListener("show-header-banner-click", handleBanner);
+    }
+
+    initBanner();
+    document.addEventListener("astro:page-load", initBanner);
   </script>
 </header>

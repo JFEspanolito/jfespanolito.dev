@@ -3,19 +3,10 @@ import { Image } from "astro:assets";
 import { certificatesData } from "@/data/certificates";
 
 const cookieLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
-const localLang =
-  typeof Astro.locals.lang === "string"
-    ? Astro.locals.lang.toLowerCase()
-    : undefined;
+const localLang = typeof Astro.locals.lang === "string" ? Astro.locals.lang.toLowerCase() : undefined;
 
 const lang: "es" | "en" =
-  cookieLang === "en" || cookieLang === "es"
-    ? cookieLang
-    : Astro.url.pathname.startsWith("/en")
-      ? "en"
-      : localLang === "en"
-        ? "en"
-        : "es";
+  cookieLang === "en" || cookieLang === "es" ? cookieLang : Astro.url.pathname.startsWith("/en") ? "en" : localLang === "en" ? "en" : "es";
 
 let certificates = null;
 if (lang === "en") {
@@ -27,23 +18,18 @@ if (lang === "en") {
 const featured = certificates?.[0] ?? null;
 const restCertificates = certificates?.slice(1) ?? [];
 
-const title =
-  lang === "en" ? "Achievements · Certificates" : "Logros · Certificados";
+const title = lang === "en" ? "Achievements · Certificates" : "Logros · Certificados";
 const issuerLabel = lang === "en" ? "Issuer" : "Entidad";
-const totalCertLabel =
-  lang === "en" ? "Total Certifications" : "Total Certificaciones";
+const totalCertLabel = lang === "en" ? "Total Certifications" : "Total Certificaciones";
 
 const totalCertifications = certificates?.length ?? 0;
 
 function formatDate(value: string) {
   try {
-    return new Date(value).toLocaleDateString(
-      lang === "en" ? "en-US" : "es-MX",
-      {
-        year: "numeric",
-        month: "short",
-      },
-    );
+    return new Date(value).toLocaleDateString(lang === "en" ? "en-US" : "es-MX", {
+      year: "numeric",
+      month: "short",
+    });
   } catch {
     return value;
   }
@@ -60,39 +46,27 @@ function issuerFromUrl(url: string) {
 }
 ---
 
-<section
-  id="Certificados"
-  class="min-h-full w-full snap-start overflow-y-auto no-scrollbar"
->
+<section id="Certificados" class="min-h-full w-full overflow-y-auto no-scrollbar">
   <div class="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16">
     {/* Titulo */}
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6 md:mb-12">
       <div class="col-span-2 p-8 rounded-3xl relative overflow-hidden group">
-        <h2
-          class="text-4xl md:text-5xl font-bold text-[var(--color-green)] py-2 mb-4"
-        >
+        <h2 class="text-4xl md:text-5xl font-bold text-[var(--color-green)] py-2">
           {title}
         </h2>
       </div>
       <div
-        class="experience-card p-6 rounded-3xl flex flex-col justify-center text-center max-w-[12rem]"
+        class="experience-card p-6 rounded-3xl flex flex-col items-center justify-center text-center max-w-[12rem] mx-auto lg:mx-0 lg:justify-self-end"
       >
-        <span class="text-4xl font-bold text-[var(--color-resaltar)] mb-1"
-          >{totalCertifications}+</span
-        >
-        <span
-          class="text-[10px] uppercase tracking-[0.2em] text-[var(--color-blue)] font-black"
-          >{totalCertLabel}</span
-        >
+        <span class="text-4xl font-bold text-[var(--color-resaltar)] mb-1">{totalCertifications}+</span>
+        <span class="text-[10px] uppercase tracking-[0.2em] text-[var(--color-blue)] font-black">{totalCertLabel}</span>
       </div>
     </div>
 
     {/* Certificado Principal */}
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-16">
       <div class="col-span-1 group"></div>
-      <div
-        class="col-span-2 experience-card p-8 rounded-3xl relative overflow-hidden group"
-      >
+      <div class="col-span-2 experience-card p-8 rounded-3xl relative overflow-hidden group">
         {
           featured && (
             <div class="relative z-10">
@@ -104,28 +78,18 @@ function issuerFromUrl(url: string) {
                 data-preview-alt={featured.name}
                 aria-label={`Ver certificado: ${featured.name}`}
               >
-                <Image
-                  src={featured.img}
-                  alt={featured.name}
-                  class="w-full h-auto"
-                  width={900}
-                  height={520}
-                />
+                <Image src={featured.img} alt={featured.name} class="w-full h-auto" width={900} height={520} />
               </button>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="md:col-span-2">
-                  <h3 class="text-2xl md:text-3xl font-bold text-[var(--color-blue)] mb-4 break-words leading-tight">
-                    {featured.name}
-                  </h3>
+                  <h3 class="text-2xl md:text-3xl font-bold text-[var(--color-blue)] mb-4 break-words leading-tight">{featured.name}</h3>
                   <p class="text-base mb-6 max-w-2xl leading-relaxed border-l-2 border-[var(--color-resaltar)] pl-4 break-words">
                     {featured.resume}
                   </p>
                 </div>
                 <div>
                   <div>
-                    <p class="text-base uppercase font-bold tracking-widest mb-1 text-[var(--color-purple)]">
-                      {issuerLabel}
-                    </p>
+                    <p class="text-base uppercase font-bold tracking-widest mb-1 text-[var(--color-purple)]">{issuerLabel}</p>
                     <a
                       class="underline ml-6 text-[var(--color-red)] inline-block max-w-full truncate align-middle"
                       href={featured.url}
@@ -160,24 +124,8 @@ function issuerFromUrl(url: string) {
                 class="inline-block max-w-full cursor-pointer align-middle "
               >
                 <div class="flex items-center gap-4 min-w-0 w-full">
-                  {/* <button
-                    type="button"
-                    class="w-12 h-12 rounded-xl bg-[var(--bg-dark)] flex items-center justify-center border border-white/5 group-hover:border-[var(--color-resaltar)]/50 transition-colors overflow-hidden shrink-0 cursor-zoom-in"
-                    data-cert-preview
-                    data-preview-src={cert.img.src}
-                    data-preview-alt={cert.name}
-                    aria-label={`Ver certificado: ${cert.name}`}
-                  >
-                    <Image src={cert.img} alt={cert.name} width={48} height={48} class="w-full h-full object-cover" />
-                  </button> */}
                   <div class="w-12 h-12 rounded-xl bg-[var(--bg-dark)] flex items-center justify-center border border-white/5">
-                    <Image
-                      src={cert.img}
-                      alt={cert.name}
-                      width={48}
-                      height={48}
-                      class="w-full h-full object-cover"
-                    />
+                    <Image src={cert.img} alt={cert.name} width={48} height={48} class="w-full h-full object-cover" />
                   </div>
 
                   <div class="min-w-0 w-full grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-x-4 gap-y-2 items-start">
@@ -186,31 +134,6 @@ function issuerFromUrl(url: string) {
                         {cert.name}
                       </h4>
                     </div>
-
-                    {/* <div class="min-w-0 md:text-right">
-                    <p class="text-sm uppercase tracking-wide text-[var(--color-resaltar)] font-bold whitespace-nowrap">
-                      {formatDate(cert.date)}
-                    </p>
-                  </div> */}
-
-                    {/* <div class="min-w-0">
-                    <p class="text-sm md:text-base leading-relaxed border-l-2 border-[var(--color-resaltar)] pl-4 line-clamp-2">
-                      {cert.resume}
-                    </p>
-                  </div> */}
-
-                    {/* <div class="min-w-0 md:text-right">
-                    <a
-                      href={cert.url || "#"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-block max-w-full cursor-pointer align-middle "
-                    >
-                      <p class="text-sm uppercase tracking-widest underline text-[var(--color-red)] truncate max-w-[12rem] md:max-w-[14rem]">
-                        {issuerFromUrl(cert.url)}
-                      </p>
-                    </a>
-                  </div> */}
                   </div>
                 </div>
               </a>
@@ -249,9 +172,7 @@ function issuerFromUrl(url: string) {
 
 <script>
   const lightbox = document.getElementById("cert-lightbox");
-  const lightboxImg = document.getElementById(
-    "cert-lightbox-image",
-  ) as HTMLImageElement | null;
+  const lightboxImg = document.getElementById("cert-lightbox-image") as HTMLImageElement | null;
   const closeBtn = document.getElementById("cert-lightbox-close");
   const previewButtons = document.querySelectorAll("[data-cert-preview]");
 
@@ -273,10 +194,7 @@ function issuerFromUrl(url: string) {
 
   previewButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      openLightbox(
-        button.getAttribute("data-preview-src"),
-        button.getAttribute("data-preview-alt"),
-      );
+      openLightbox(button.getAttribute("data-preview-src"), button.getAttribute("data-preview-alt"));
     });
   });
 

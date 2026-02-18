@@ -64,33 +64,25 @@ const finalTitle = title ? `${title} | ${config.appName}` : config.appName;
     <meta property="og:site_name" content={config.appName} />
     <meta property="og:title" content={finalTitle} />
     <meta property="og:description" content={config.appDescription} />
-    <meta
-      property="og:image"
-      content={config.siteUrl + config.images.ogDefault}
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-    />
+    <meta property="og:image" content={config.siteUrl + config.images.ogDefault} />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   </head>
 
-  <body
-    class="antialiased bg-[var(--bg-use)] text-[var(--text-use)] h-screen flex flex-col overflow-hidden"
-  >
+  <body class="antialiased bg-[var(--bg-use)] text-[var(--text-use)] h-screen flex flex-col overflow-hidden">
     {/* Componente de notificaciones globales */}
     <Toaster client:load position="top-center" />
 
     <Header />
 
     <main class="flex-1 flex overflow-hidden min-h-0 w-full">
-      <aside
-        class="hidden md:flex fixed left-40 top-12 h-[calc(100vh-3rem)] z-30 items-center pl-4 lg:pl-6"
-      >
+      <!-- <aside class="hidden md:flex items-center ml-80 -mr-80"> -->
+      <aside class="hidden md:flex items-center w-[360px] justify-end">
         <VerticalMenu />
       </aside>
 
       <div
-        class="flex-1 h-full min-h-0 overflow-y-scroll snap-y snap-mandatory scroll-smooth py-6 px-4 md:pl-[360px] lg:pl-[380px] md:pr-8 no-scrollbar"
+        id="main-scroll-container"
+        class="flex-1 h-full min-h-0 overflow-y-scroll snap-y snap-mandatory scroll-smooth py-6 px-4 md:pr-8 no-scrollbar"
       >
         <slot />
       </div>
