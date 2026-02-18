@@ -6,6 +6,7 @@ import { experienceData } from "@/data/experience";
 import { certificatesData } from "@/data/certificates";
 import techBanner from "@/assets/techBanner.webp";
 import heyListenAudio from "@/assets/audio/hey_listen.webm";
+import { CtaButton } from "@/components/ui/CtaButton";
 
 const cookieLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
 const localLang =
@@ -59,26 +60,27 @@ const recentCerts = certificates.slice(0, 4);
     <div
       class="flex flex-col gap-4 items-center justify-center text-center w-full"
     >
-      <a
-        id="cta-audio-trigger"
-        role="button"
-        tabindex="0"
-        class="cursor-pointer"
-      >
-        <h2
-          class="text-3xl md:text-6xl font-black text-[var(--color-purple)] uppercase leading-tight mb-6 md:mb-10"
-        >
-          {profileInfo.callToAction}
-        </h2>
-      </a>
-      <audio id="cta-audio" src={heyListenAudio} preload="auto"></audio>
+      <CtaButton
+        client:load
+        audioSrc={heyListenAudio}
+        propType="success"
+        propFill="var(--color-card-bg )"
+        buttonClic={{
+          title: lang === "en" ? "Email" : "Correo",
+          url: aboutData.contact.find((c) => c.name === "Email")?.url,
+        }}
+        propDesc={lang === "en"
+          ? "Send me a mail or use other social media"
+          : "Envíame un correo o usa otra red social"}
+        propTitle={profileInfo.callToAction}
+      />
     </div>
     <div class="lg:grid lg:grid-cols-12 gap-8 items-center w-full">
       <div
         class="lg:col-span-8 lg:col-start-3 grid grid-cols-2 md:grid-cols-4 gap-4"
       >
         <div
-          class="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center items-center hover:scale-125 transition-transform"
+          class="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center items-center text-center hover:scale-125 transition-transform"
         >
           <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2"
             >{impactValue}</span
@@ -112,7 +114,6 @@ const recentCerts = certificates.slice(0, 4);
             >{lang === "en" ? "Years Exp." : "Años Exp."}</span
           >
         </div>
-
         <div
           class="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center text-center items-center hover:scale-125 transition-transform"
         >
@@ -123,6 +124,14 @@ const recentCerts = certificates.slice(0, 4);
             class="text-xs uppercase tracking-wider text-[var(--color-green)]"
             >{profileInfo.Major}</span
           >
+        </div>
+
+        <div class="col-span-2 md:col-span-4 flex justify-center mt-6">
+          <p
+            class="text-xl md:text-2xl text-[var(--color-resaltar)] font-medium"
+          >
+            {profileInfo.headline}
+          </p>
         </div>
 
         <div
@@ -169,25 +178,3 @@ const recentCerts = certificates.slice(0, 4);
     </div>
   </div>
 </section>
-
-<script>
-  const trigger = document.getElementById("cta-audio-trigger");
-  const audio = document.getElementById("cta-audio");
-
-  const playAudio = () => {
-    if (!(audio instanceof HTMLAudioElement)) return;
-    audio.pause();
-    audio.currentTime = 0;
-    audio.loop = false;
-    void audio.play();
-    window.dispatchEvent(new CustomEvent("show-header-banner-click"));
-  };
-
-  trigger?.addEventListener("click", playAudio);
-  trigger?.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      playAudio();
-    }
-  });
-</script>
