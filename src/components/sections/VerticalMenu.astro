@@ -2,12 +2,22 @@
 import { aboutData } from "@/data/about";
 import { Image } from "astro:assets";
 import bgRight from "@/assets/images/bg_right.webp";
+import alienIcon from "@/assets/logos/alien.svg";
 
 const cookieLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
-const localLang = typeof Astro.locals.lang === "string" ? Astro.locals.lang.toLowerCase() : undefined;
+const localLang =
+  typeof Astro.locals.lang === "string"
+    ? Astro.locals.lang.toLowerCase()
+    : undefined;
 
 const lang: "es" | "en" =
-  cookieLang === "en" || cookieLang === "es" ? cookieLang : Astro.url.pathname.startsWith("/en") ? "en" : localLang === "en" ? "en" : "es";
+  cookieLang === "en" || cookieLang === "es"
+    ? cookieLang
+    : Astro.url.pathname.startsWith("/en")
+      ? "en"
+      : localLang === "en"
+        ? "en"
+        : "es";
 
 let profileInfo = null;
 if (lang === "en") {
@@ -34,9 +44,21 @@ const navItems =
       ];
 ---
 
-<section id="vertical-menu" class="vertical-menu" aria-label="Profile navigation" style={`--menu-hover-bg: url('${bgRight.src}')`}>
+<section
+  id="vertical-menu"
+  class="vertical-menu"
+  aria-label="Profile navigation"
+  style={`--menu-hover-bg: url('${bgRight.src}')`}
+>
   <div class="avatar-ring mb-6">
-    <Image class="avatar" src={aboutData.avatarUrl} alt={`${aboutData.name} portrait`} loading="lazy" width={120} height={120} />
+    <Image
+      class="avatar"
+      src={aboutData.avatarUrl}
+      alt={`${aboutData.name} portrait`}
+      loading="lazy"
+      width={120}
+      height={120}
+    />
   </div>
 
   <div class="identity mt-2 mb-10">
@@ -48,19 +70,42 @@ const navItems =
   <nav class="menu" aria-label="Section links">
     {
       navItems.map((item) => (
-        <a class="menu-link" href={item.href}>
-          {item.label}
+        <a
+          class="menu-link flex items-center gap-2 group"
+          href={item.href}
+          data-section={item.href.replace("#", "")}
+        >
+          <div class="active-indicator opacity-0 transition-all duration-300 -translate-x-2">
+            <Image
+              src={alienIcon}
+              alt="Active indicator"
+              width={20}
+              height={20}
+              class="w-5 h-5 pointer-events-none"
+            />
+          </div>
+          <span class="label-text transition-transform duration-300 group-hover:translate-x-1">
+            {item.label}
+          </span>
         </a>
       ))
     }
   </nav>
 
-  <a class="cta mt-20" href={lang === "en" ? "../assets/cv/EN_CV_JAFA.pdf" : "../assets/cv/ES_CV_JAFA.pdf"} target="_blank">
+  <a
+    class="cta mt-20"
+    href={lang === "en"
+      ? "/assets/cv/EN_CV_JAFA.pdf"
+      : "/assets/cv/ES_CV_JAFA.pdf"}
+    target="_blank"
+    download
+  >
     {lang === "en" ? "Download Resume" : "Descargar Resumen"}
   </a>
 </section>
 
 <script>
+  // Smooth scroll logic previously here
   document.addEventListener("click", (event) => {
     const target = event.target;
     if (!(target instanceof Element)) return;
@@ -85,6 +130,58 @@ const navItems =
 
     history.replaceState(null, "", "#Experiencia");
   });
+
+  // Intersection Observer for active indicator
+  const observerOptions = {
+    root: null,
+    rootMargin: "-20% 0px -70% 0px", // Focus on the upper-middle part of the viewport
+    threshold: 0,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        const indicators = document.querySelectorAll(".active-indicator");
+        const links = document.querySelectorAll(".menu-link");
+
+        // Use a flag to avoid multiple removals if unnecessary
+        indicators.forEach((el) => {
+          el.classList.remove("opacity-100", "translate-x-0");
+          el.classList.add("opacity-0", "-translate-x-2");
+        });
+
+        links.forEach((l) => l.classList.remove("text-[var(--color-green)]"));
+
+        const activeIndicator = document.querySelector(
+          `.menu-link[data-section="${id}"] .active-indicator`,
+        );
+        const activeLink = document.querySelector(
+          `.menu-link[data-section="${id}"]`,
+        );
+
+        if (activeIndicator) {
+          activeIndicator.classList.remove("opacity-0", "-translate-x-2");
+          activeIndicator.classList.add("opacity-100", "translate-x-0");
+        }
+        if (activeLink) {
+          activeLink.classList.add("text-[var(--color-green)]");
+        }
+      }
+    });
+  }, observerOptions);
+
+  // Observe all sections defined in navItems
+  const navLinks = document.querySelectorAll(".menu-link");
+  navLinks.forEach((link) => {
+    const sectionId = link.getAttribute("data-section");
+    if (sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        observer.observe(section);
+      }
+    }
+  });
 </script>
 
 <style>
@@ -101,7 +198,11 @@ const navItems =
     height: 90%;
 
     /* Mantén tu gradiente y estilos, pero asegura que no flote */
-    background: radial-gradient(120% 140% at 50% -10%, var(--bg-use) 0%, var(--bg-dark) 62%);
+    background: radial-gradient(
+      120% 140% at 50% -10%,
+      var(--bg-use) 0%,
+      var(--bg-dark) 62%
+    );
     border-radius: 28px;
     padding: 40px 28px 28px;
     display: flex;
@@ -148,7 +249,12 @@ const navItems =
     border-radius: 999px;
     display: grid;
     place-items: center;
-    background: conic-gradient(from 120deg, var(--bg-light), var(--bg-dark), var(--bg-use));
+    background: conic-gradient(
+      from 120deg,
+      var(--bg-light),
+      var(--bg-dark),
+      var(--bg-use)
+    );
     padding: 6px;
   }
 
@@ -208,7 +314,7 @@ const navItems =
     gap: 14px;
     margin-top: 6px;
     text-align: left;
-    align-items: flex-start;
+    align-items: stretch; /* Stretch to allow links to take full width */
   }
 
   .menu-link {
@@ -216,14 +322,25 @@ const navItems =
     font-size: 16px;
     font-weight: bold;
     text-decoration: none;
+    color: inherit;
     transition:
       transform 0.2s ease,
       color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    padding: 4px 0;
+  }
+
+  .active-indicator {
+    flex-shrink: 0;
+    width: 20px;
   }
 
   .menu-link:hover {
     color: var(--color-green);
-    transform: translateY(-1px);
+    transform: translateX(4px);
   }
 
   .footnote {

@@ -1,6 +1,12 @@
 export const yearsOfExperience = new Date().getFullYear() - 2012;
-const images = import.meta.glob<{ default: ImageMetadata }>("../assets/images/*.{jpeg,jpg,png,gif,webp}", { eager: true });
-const socialImg = import.meta.glob<{ default: ImageMetadata }>("../assets/logos/*.svg", { eager: true });
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/images/*.{jpeg,jpg,png,gif,webp}",
+  { eager: true },
+);
+const socialImg = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/logos/*.svg",
+  { eager: true },
+);
 
 import avatar from "../assets/images/JFSelfie.webp";
 import logo from "../assets/images/JFLogo.webp";
