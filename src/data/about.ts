@@ -66,7 +66,7 @@ export const aboutData = {
       description: [
         [
           {
-            text: `Arquitecto RPA y Líder Técnico con más de ${yearsOfExperience} años transformando procesos complejos en automatizaciones escalables con UiPath e IA.`,
+            text: `Desarrollador RPA y Líder Técnico con más de ${yearsOfExperience} años transformando procesos complejos en automatizaciones escalables con UiPath e IA.`,
             bold: true,
             customColor: "var(--color-blue)",
           },
@@ -105,7 +105,7 @@ export const aboutData = {
       description: [
         [
           {
-            text: `RPA Architect and Technical Lead with over ${yearsOfExperience} years transforming complex processes into scalable automations using UiPath and AI.`,
+            text: `RPA Dev and Technical Lead with over ${yearsOfExperience} years transforming complex processes into scalable automations using UiPath and AI.`,
             bold: true,
             customColor: "var(--color-blue)",
           },
