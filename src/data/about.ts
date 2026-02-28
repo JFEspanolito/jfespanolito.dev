@@ -28,7 +28,7 @@ export const aboutData = {
     },
     {
       name: "Email",
-      url: "mailto:contact@jfespanolito.dev?subject=Contacto%20profesional&body=Hola%20Jorge,%0A%0AQuisiera%20hablar%20sobre%20...",
+      url: "mailto:hola@jfespanolito.dev?subject=Contacto%20profesional&body=Hola%20Jorge,%0A%0AQuisiera%20hablar%20sobre%20...",
       icon: socialImg["../assets/logos/mail.svg"].default,
     },
   ],
