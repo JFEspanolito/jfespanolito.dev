@@ -2,22 +2,14 @@
 import { aboutData } from "@/data/about";
 import { Image } from "astro:assets";
 import bgRight from "@/assets/images/bg_right.webp";
+import bgLeft from "@/assets/images/bg_left.webp";
 import alienIcon from "@/assets/logos/alien.svg";
 
 const cookieLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
-const localLang =
-  typeof Astro.locals.lang === "string"
-    ? Astro.locals.lang.toLowerCase()
-    : undefined;
+const localLang = typeof Astro.locals.lang === "string" ? Astro.locals.lang.toLowerCase() : undefined;
 
 const lang: "es" | "en" =
-  cookieLang === "en" || cookieLang === "es"
-    ? cookieLang
-    : Astro.url.pathname.startsWith("/en")
-      ? "en"
-      : localLang === "en"
-        ? "en"
-        : "es";
+  cookieLang === "en" || cookieLang === "es" ? cookieLang : Astro.url.pathname.startsWith("/en") ? "en" : localLang === "en" ? "en" : "es";
 
 let profileInfo = null;
 if (lang === "en") {
@@ -32,14 +24,14 @@ const navItems =
         { label: "Home", href: "#Resumen" },
         { label: "Bio", href: "#Bio" },
         { label: "XP · Experience", href: "#Experiencia" },
-        { label: "Side Quest · Personal Projects", href: "#Proyectos" },
-        { label: "Achievements · Certifications", href: "#Certificados" },
+        { label: "Side Quest · Projects", href: "#Proyectos" },
+        { label: "Achievements · Certificates", href: "#Certificados" },
       ]
     : [
         { label: "Inicio", href: "#Resumen" },
         { label: "Bio", href: "#Bio" },
         { label: "XP · Experiencia", href: "#Experiencia" },
-        { label: "Side Quest · Proyectos Personales", href: "#Proyectos" },
+        { label: "Side Quest · Proyectos", href: "#Proyectos" },
         { label: "Logros · Certificados", href: "#Certificados" },
       ];
 ---
@@ -48,17 +40,10 @@ const navItems =
   id="vertical-menu"
   class="vertical-menu"
   aria-label="Profile navigation"
-  style={`--menu-hover-bg: url('${bgRight.src}')`}
+  style={`--menu-hover-bg: url('${bgRight.src}'); --menu-bg: url('${bgLeft.src}')`}
 >
   <div class="avatar-ring mb-6">
-    <Image
-      class="avatar"
-      src={aboutData.avatarUrl}
-      alt={`${aboutData.name} portrait`}
-      loading="lazy"
-      width={120}
-      height={120}
-    />
+    <Image class="avatar" src={aboutData.avatarUrl} alt={`${aboutData.name} portrait`} loading="lazy" width={120} height={120} />
   </div>
 
   <div class="identity mt-2 mb-10">
@@ -70,36 +55,17 @@ const navItems =
   <nav class="menu" aria-label="Section links">
     {
       navItems.map((item) => (
-        <a
-          class="menu-link flex items-center gap-2 group"
-          href={item.href}
-          data-section={item.href.replace("#", "")}
-        >
+        <a class="menu-link flex items-center gap-2 group" href={item.href} data-section={item.href.replace("#", "")}>
           <div class="active-indicator opacity-0 transition-all duration-300 -translate-x-2">
-            <Image
-              src={alienIcon}
-              alt="Active indicator"
-              width={20}
-              height={20}
-              class="w-5 h-5 pointer-events-none"
-            />
+            <Image src={alienIcon} alt="Active indicator" width={20} height={20} class="w-5 h-5 pointer-events-none" />
           </div>
-          <span class="label-text transition-transform duration-300 group-hover:translate-x-1">
-            {item.label}
-          </span>
+          <span class="label-text transition-transform duration-300 group-hover:translate-x-1">{item.label}</span>
         </a>
       ))
     }
   </nav>
 
-  <a
-    class="cta mt-2"
-    href={lang === "en"
-      ? "/assets/cv/EN_CV_JAFA.pdf"
-      : "/assets/cv/ES_CV_JAFA.pdf"}
-    target="_blank"
-    download
-  >
+  <a class="cta mt-2" href={lang === "en" ? "/assets/cv/EN_CV_JAFA.pdf" : "/assets/cv/ES_CV_JAFA.pdf"} target="_blank" download>
     {lang === "en" ? "Download Resume" : "Descargar Resumen"}
   </a>
 </section>
@@ -153,12 +119,8 @@ const navItems =
 
         links.forEach((l) => l.classList.remove("text-[var(--color-green)]"));
 
-        const activeIndicator = document.querySelector(
-          `.menu-link[data-section="${id}"] .active-indicator`,
-        );
-        const activeLink = document.querySelector(
-          `.menu-link[data-section="${id}"]`,
-        );
+        const activeIndicator = document.querySelector(`.menu-link[data-section="${id}"] .active-indicator`);
+        const activeLink = document.querySelector(`.menu-link[data-section="${id}"]`);
 
         if (activeIndicator) {
           activeIndicator.classList.remove("opacity-0", "-translate-x-2");
@@ -198,11 +160,7 @@ const navItems =
     height: 90%;
 
     /* Mantén tu gradiente y estilos, pero asegura que no flote */
-    background: radial-gradient(
-      120% 140% at 50% -10%,
-      var(--bg-use) 0%,
-      var(--bg-dark) 62%
-    );
+    background: radial-gradient(120% 140% at 50% -10%, var(--bg-use) 0%, var(--bg-dark) 62%);
     border-radius: 28px;
     padding: 40px 28px 28px;
     display: flex;
@@ -210,8 +168,6 @@ const navItems =
     align-items: center;
     text-align: center;
     gap: 20px;
-    box-shadow: var(--menu-shadow);
-    border: 1px solid rgba(35, 44, 63, 0.08);
     position: relative;
     overflow: hidden;
     isolation: isolate;
@@ -221,6 +177,20 @@ const navItems =
   }
 
   .vertical-menu::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--menu-bg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.16;
+    transition: opacity 0.25s ease;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .vertical-menu::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -234,8 +204,17 @@ const navItems =
     pointer-events: none;
   }
 
-  .vertical-menu:hover::before {
+  .vertical-menu:hover {
+    box-shadow: var(--menu-shadow);
+    border: 1px solid rgba(35, 44, 63, 0.08);
+  }
+
+  .vertical-menu:hover::after {
     opacity: 0.2;
+  }
+
+  .vertical-menu:hover::before {
+    opacity: 0;
   }
 
   .vertical-menu > * {
@@ -249,12 +228,7 @@ const navItems =
     border-radius: 999px;
     display: grid;
     place-items: center;
-    background: conic-gradient(
-      from 120deg,
-      var(--bg-light),
-      var(--bg-dark),
-      var(--bg-use)
-    );
+    background: conic-gradient(from 120deg, var(--bg-light), var(--bg-dark), var(--bg-use));
     padding: 6px;
   }
 
@@ -263,7 +237,6 @@ const navItems =
     height: 100%;
     object-fit: cover;
     border-radius: 999px;
-    filter: grayscale(100%);
     border: 5px solid var(--bg-light);
     box-shadow: 0 10px 18px rgba(26, 34, 49, 0.18);
   }

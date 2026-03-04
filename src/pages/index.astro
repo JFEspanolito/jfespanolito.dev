@@ -7,12 +7,61 @@ import Experience from "@/components/sections/Experience.astro";
 import Projects from "@/components/sections/Projects.astro";
 import Certificate from "@/components/sections/Certificate.astro";
 import Bio from "@/components/sections/Bio.astro";
+
+import { configProject } from "@/data/configProject";
 ---
 
-<Layout title="Home Page">
+<Layout title={configProject.tabname}>
   <Resume />
   <Bio />
   <Experience />
   <Projects />
   <Certificate />
 </Layout>
+
+<script define:vars={{ baseTitle: configProject.tabname, navigationConfig: configProject.navigation }}>
+  const isEnglish = window.location.pathname.startsWith("/en");
+
+  const nav = isEnglish ? navigationConfig.EN : navigationConfig.ES;
+
+  const sectionLabels = {
+    Resumen: nav.home.label,
+    Bio: nav.bio.label,
+    Experiencia: nav.experience.label,
+    Proyectos: nav.projects.label,
+    Certificados: nav.certificates.label,
+  };
+
+  const setTitle = (sectionId) => {
+    const sectionTitle = sectionLabels[sectionId];
+    document.title = sectionTitle ? `${baseTitle} | ${sectionTitle}` : baseTitle;
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const activeEntry = entries.find((entry) => entry.isIntersecting);
+      if (activeEntry?.target?.id) {
+        setTitle(activeEntry.target.id);
+      }
+    },
+    {
+      root: null,
+      rootMargin: "-25% 0px -60% 0px",
+      threshold: 0,
+    },
+  );
+
+  Object.keys(sectionLabels).forEach((id) => {
+    const section = document.getElementById(id);
+    if (section) observer.observe(section);
+  });
+
+  // Also update title when user jumps directly via hash.
+  const onHashChange = () => {
+    const id = window.location.hash.replace("#", "");
+    if (id) setTitle(id);
+  };
+
+  window.addEventListener("hashchange", onHashChange);
+  onHashChange();
+</script>

@@ -4,6 +4,7 @@ export const configProject = {
   // 🧩 PROYECTO (metadata / web)
   // ======================================================
   appName: "JFEspanolito.dev",
+  tabname: "JFEspanolito",
   appDescription: "Portafolio profesional de Jorge A. Falcón A.",
   domainName: "jfespanolito.dev",
   siteUrl: "https://jfespanolito.dev",
@@ -60,6 +61,26 @@ export const configProject = {
       headline: "<Astro Place holder>",
       subhead: "<Astro Place holder>",
       items: [],
+    },
+  },
+
+  // ======================================================
+  // Menú de navegación (labels y rutas)
+  // ======================================================
+  navigation: {
+    ES: {
+      home: { label: "Inicio", href: "#Resumen" },
+      bio: { label: "Bio", href: "#Bio" },
+      experience: { label: "XP · Experiencia", href: "#Experiencia" },
+      projects: { label: "Side Quest · Proyectos", href: "#Proyectos" },
+      certificates: { label: "Logros · Certificados", href: "#Certificados" },
+    },
+    EN: {
+      home: { label: "Home", href: "#Resumen" },
+      bio: { label: "Bio", href: "#Bio" },
+      experience: { label: "XP · Experience", href: "#Experiencia" },
+      projects: { label: "Side Quest · Projects", href: "#Proyectos" },
+      certificates: { label: "Achievements · Certificates", href: "#Certificados" },
     },
   },
 };
