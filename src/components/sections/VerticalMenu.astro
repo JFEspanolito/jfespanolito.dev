@@ -1,9 +1,9 @@
 ---
 import { aboutData } from "@/data/about";
 import { Image } from "astro:assets";
-import bgRight from "@/assets/images/bg_right.webp";
-import bgLeft from "@/assets/images/bg_left.webp";
-import alienIcon from "@/assets/logos/alien.svg";
+import bgRight from "../../assets/images/bg_right.webp";
+import bgLeft from "../../assets/images/bg_left.webp";
+import alienIcon from "../../assets/logos/alien.svg";
 
 const cookieLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
 const localLang = typeof Astro.locals.lang === "string" ? Astro.locals.lang.toLowerCase() : undefined;
