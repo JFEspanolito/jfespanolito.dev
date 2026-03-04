@@ -19,25 +19,19 @@ import { configProject } from "@/data/configProject";
   <Certificate />
 </Layout>
 
-<script define:vars={{ baseTitle: configProject.tabname }}>
+<script define:vars={{ baseTitle: configProject.tabname, navigationConfig: configProject.navigation }}>
   const isEnglish = window.location.pathname.startsWith("/en");
 
-  const sectionLabels = isEnglish
-    ? {
-        Resumen: "Home",
-        Bio: "Bio",
-        Experiencia: "XP · Experience",
-        Proyectos: "Side Quest · Projects",
-        Certificados: "Achievements · Certificates",
-      }
-    : {
-        Resumen: "Resumen",
-        Bio: "Bio",
-        Experiencia: "XP · Experiencia",
-        Proyectos: "Side Quest · Proyectos",
-        Certificados: "Logros · Certificados",
-      };
-      
+  const nav = isEnglish ? navigationConfig.EN : navigationConfig.ES;
+
+  const sectionLabels = {
+    Resumen: nav.home.label,
+    Bio: nav.bio.label,
+    Experiencia: nav.experience.label,
+    Proyectos: nav.projects.label,
+    Certificados: nav.certificates.label,
+  };
+
   const setTitle = (sectionId) => {
     const sectionTitle = sectionLabels[sectionId];
     document.title = sectionTitle ? `${baseTitle} | ${sectionTitle}` : baseTitle;

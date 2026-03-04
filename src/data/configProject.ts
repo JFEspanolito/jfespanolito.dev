@@ -63,4 +63,24 @@ export const configProject = {
       items: [],
     },
   },
+
+  // ======================================================
+  // Menú de navegación (labels y rutas)
+  // ======================================================
+  navigation: {
+    ES: {
+      home: { label: "Inicio", href: "#Resumen" },
+      bio: { label: "Bio", href: "#Bio" },
+      experience: { label: "XP · Experiencia", href: "#Experiencia" },
+      projects: { label: "Side Quest · Proyectos", href: "#Proyectos" },
+      certificates: { label: "Logros · Certificados", href: "#Certificados" },
+    },
+    EN: {
+      home: { label: "Home", href: "#Resumen" },
+      bio: { label: "Bio", href: "#Bio" },
+      experience: { label: "XP · Experience", href: "#Experiencia" },
+      projects: { label: "Side Quest · Projects", href: "#Proyectos" },
+      certificates: { label: "Achievements · Certificates", href: "#Certificados" },
+    },
+  },
 };

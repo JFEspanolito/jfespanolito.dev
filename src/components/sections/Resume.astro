@@ -8,19 +8,10 @@ import heyListenAudio from "@/assets/audio/hey_listen.webm";
 import { CtaButton } from "@/components/ui/CtaButton";
 
 const cookieLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
-const localLang =
-  typeof Astro.locals.lang === "string"
-    ? Astro.locals.lang.toLowerCase()
-    : undefined;
+const localLang = typeof Astro.locals.lang === "string" ? Astro.locals.lang.toLowerCase() : undefined;
 
 const lang: "es" | "en" =
-  cookieLang === "en" || cookieLang === "es"
-    ? cookieLang
-    : Astro.url.pathname.startsWith("/en")
-      ? "en"
-      : localLang === "en"
-        ? "en"
-        : "es";
+  cookieLang === "en" || cookieLang === "es" ? cookieLang : Astro.url.pathname.startsWith("/en") ? "en" : localLang === "en" ? "en" : "es";
 
 let projects = null;
 let experiences = null;
@@ -49,16 +40,9 @@ const topSkills = [...new Set([...lastJobSkills, ...projectSkills])];
 const recentCerts = certificates.slice(0, 4);
 ---
 
-<section
-  id="Resumen"
-  class="w-full flex flex-col py-10 px-4 md:px-6 lg:px-8 mt-10"
->
-  <div
-    class="relative w-full max-w-7xl mx-auto h-screen flex flex-col justify-center py-2 mb-6"
-  >
-    <div
-      class="flex flex-col gap-4 items-center justify-center text-center w-full"
-    >
+<section id="Resumen" class="w-full flex flex-col py-10 md:py-0 lg:py-0">
+  <div class="relative w-full max-w-7xl mx-auto h-screen flex flex-col justify-center mb-6">
+    <div class="flex flex-col gap-4 items-center justify-center text-center w-full">
       <CtaButton
         client:load
         audioSrc={heyListenAudio}
@@ -68,67 +52,42 @@ const recentCerts = certificates.slice(0, 4);
           title: lang === "en" ? "Email" : "Correo",
           url: aboutData.contact.find((c) => c.name === "Email")?.url,
         }}
-        propDesc={lang === "en"
-          ? "Send me a mail or use other social media"
-          : "Envíame un correo o usa otra red social"}
+        propDesc={lang === "en" ? "Send me a mail or use other social media" : "Envíame un correo o usa otra red social"}
         propTitle={profileInfo.callToAction}
       />
     </div>
     <div class="lg:grid lg:grid-cols-12 gap-8 items-center w-full">
-      <div
-        class="lg:col-span-8 lg:col-start-3 grid grid-cols-2 md:grid-cols-4 gap-4"
-      >
+      <div class="lg:col-span-8 lg:col-start-3 grid grid-cols-2 md:grid-cols-4 gap-4">
         <div
           class="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center items-center text-center hover:scale-125 transition-transform"
         >
-          <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2"
-            >{impactValue}</span
-          >
-          <span
-            class="text-xs uppercase tracking-wider text-[var(--color-green)]"
-            >{lang === "en" ? "Annual Impact" : "Impacto Anual"}</span
+          <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2">{impactValue}</span>
+          <span class="text-xs uppercase tracking-wider text-[var(--color-green)]">{lang === "en" ? "Annual Impact" : "Impacto Anual"}</span
           >
         </div>
 
         <div
           class="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center items-center hover:scale-125 transition-transform"
         >
-          <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2"
-            >{totalRobots}</span
-          >
-          <span
-            class="text-xs uppercase tracking-wider text-[var(--color-green)]"
-            >{lang === "en" ? "Live Robots" : "Robots en Prod"}</span
-          >
+          <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2">{totalRobots}</span>
+          <span class="text-xs uppercase tracking-wider text-[var(--color-green)]">{lang === "en" ? "Live Robots" : "Robots en Prod"}</span>
         </div>
 
         <div
           class="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center items-center hover:scale-125 transition-transform"
         >
-          <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2"
-            >+{yearsOfExperience}</span
-          >
-          <span
-            class="text-xs uppercase tracking-wider text-[var(--color-green)]"
-            >{lang === "en" ? "Years Exp." : "Años Exp."}</span
-          >
+          <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2">+{yearsOfExperience}</span>
+          <span class="text-xs uppercase tracking-wider text-[var(--color-green)]">{lang === "en" ? "Years Exp." : "Años Exp."}</span>
         </div>
         <div
           class="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center text-center items-center hover:scale-125 transition-transform"
         >
-          <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2">
-            {profileInfo.sc}</span
-          >
-          <span
-            class="text-xs uppercase tracking-wider text-[var(--color-green)]"
-            >{profileInfo.Major}</span
-          >
+          <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2"> {profileInfo.sc}</span>
+          <span class="text-xs uppercase tracking-wider text-[var(--color-green)]">{profileInfo.Major}</span>
         </div>
 
         <div class="col-span-2 md:col-span-4 flex justify-center mt-6">
-          <p
-            class="text-xl md:text-2xl text-[var(--color-resaltar)] font-medium"
-          >
+          <p class="text-xl md:text-2xl text-[var(--color-resaltar)] font-medium">
             {profileInfo.headline}
           </p>
         </div>
@@ -142,9 +101,7 @@ const recentCerts = certificates.slice(0, 4);
           >
           </div>
           <div class="relative z-10">
-            <h4
-              class="text-xl font-bold uppercase mb-4 text-[var(--color-purple)] tracking-widest items-center justify-center"
-            >
+            <h4 class="text-xl font-bold uppercase mb-4 text-[var(--color-purple)] tracking-widest items-center justify-center">
               {lang === "en" ? "Strategic Stack" : "Stack Tecnológico"}
             </h4>
             <div class="flex flex-wrap gap-2 justify-center">
@@ -165,9 +122,7 @@ const recentCerts = certificates.slice(0, 4);
               recentCerts.map((cert) => (
                 <div class="flex items-center gap-2 hover:text-[var(--color-purple)] transition-opacity">
                   <div class="w-1 h-1 bg-[var(--color-green)] rounded-full flex-shrink-0" />
-                  <span class="text-base text-[var(--text-use)] hover:text-[var(--color-purple)] whitespace-nowrap">
-                    {cert.name}
-                  </span>
+                  <span class="text-base text-[var(--text-use)] hover:text-[var(--color-purple)] whitespace-nowrap">{cert.name}</span>
                 </div>
               ))
             }

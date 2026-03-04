@@ -43,8 +43,7 @@
 body {
   background-color: var(--bg-use);
   background-image:
-    linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
   color: var(--text-use);
   font-family: var(--font-sans);
@@ -167,18 +166,70 @@ body {
   font-family: "Manrope", Arial, sans-serif;
   font-size: 12px;
   font-weight: 600;
-  padding: 8px 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 4px 12px;
   background: var(--color-blue);
+  color: black;
+  border: 1px solid rgb(255 68 58 / 0.3);
   border-radius: 999px;
   text-decoration: none;
-  box-shadow: 0 12px 20px rgba(47, 109, 246, 0.25);
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.cta--sm {
+  font-size: 11px;
+  padding: 3px 10px;
+}
+
+.status_dev {
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: var(--color-card-bg);
+  color: var(--color-red);
+  border: 1px solid rgb(255 68 58 / 0.3);
+  border-radius: 999px;
+  padding: 4px 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.status_fin {
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: var(--color-card-bg);
+  color: var(--color-status-green);
+  border: 1px solid rgba(21, 80, 2, 0.3);
+  border-radius: 999px;
+  padding: 4px 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   white-space: nowrap;
 }
 
 @media (min-width: 768px) {
   .cta {
-    font-size: 13px;
-    padding: 12px 26px;
+    font-size: 12px;
+    padding: 6px 14px;
+  }
+
+  .cta--sm {
+    font-size: 12px;
+    padding: 4px 12px;
   }
 }

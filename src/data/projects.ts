@@ -51,7 +51,7 @@ export const projectsData = {
     {
       id: 3,
       title: "Midrava Art",
-      status: "Desplegado",
+      status: "Finalizado",
       description: "Portafolio personal creado para la artista Midrava Art, enfocado en la exhibición visual de su obra y trayectoria.",
       skills: ["TypeScript", "Tailwind CSS"],
       topskills: ["Astro 5"],
@@ -62,12 +62,12 @@ export const projectsData = {
         },
       ],
       image: images["../assets/projects/midrava.webp"].default,
-      imgBgPos: "background-position: 50% 100%; background-size:100% 100%;",
+      imgBgPos: "background-position: 0% 100%; background-size:100% 100%;",
     },
     {
       id: 4,
       title: "Veronica Hope 3D",
-      status: "Desplegado",
+      status: "Finalizado",
       description:
         "Sitio web portafolio desarrollado para Veronica Hope 3D, especializado en la muestra de modelos y activos tridimensionales.",
       skills: ["TypeScript", "Tailwind CSS"],
@@ -79,7 +79,7 @@ export const projectsData = {
         },
       ],
       image: images["../assets/projects/VeroHope3D.webp"].default,
-      imgBgPos: "background-position: 50% 100%; background-size:100% 100%;",
+      imgBgPos: "background-position: 0% 100%; background-size:100% 100%;",
     },
   ],
   EN: [
@@ -132,7 +132,7 @@ export const projectsData = {
     {
       id: 3,
       title: "Midrava Art",
-      status: "Deployed",
+      status: "Live",
       description: "Personal portfolio created for Midrava Art, focused on the visual exhibition of their work and professional journey.",
       skills: ["TypeScript", "Tailwind CSS"],
       topskills: ["Astro 5", "UX/UI Design"],
@@ -143,12 +143,12 @@ export const projectsData = {
         },
       ],
       image: images["../assets/projects/midrava.webp"].default,
-      imgBgPos: "background-position: 50% 100%; background-size:100% 100%;",
+      imgBgPos: "background-position: 0% 100%; background-size:100% 100%;",
     },
     {
       id: 4,
       title: "Veronica Hope 3D",
-      status: "Deployed",
+      status: "Live",
       description: "Portfolio website developed for Veronica Hope 3D, specialized in showcasing 3D models and digital assets.",
       skills: ["TypeScript", "Tailwind CSS"],
       topskills: ["Astro 5", "UX/UI Design"],
@@ -159,7 +159,7 @@ export const projectsData = {
         },
       ],
       image: images["../assets/projects/VeroHope3D.webp"].default,
-      imgBgPos: "background-position: 50% 100%; background-size:100% 100%;",
+      imgBgPos: "background-position: 0% 100%; background-size:100% 100%;",
     },
   ],
 };
