@@ -4,6 +4,7 @@ export const configProject = {
   // 🧩 PROYECTO (metadata / web)
   // ======================================================
   appName: "JFEspanolito.dev",
+  tabname: "JFEspanolito",
   appDescription: "Portafolio profesional de Jorge A. Falcón A.",
   domainName: "jfespanolito.dev",
   siteUrl: "https://jfespanolito.dev",

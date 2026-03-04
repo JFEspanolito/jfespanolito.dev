@@ -41,7 +41,7 @@ interface Props {
 
 const { title } = Astro.props;
 // Lógica para que el título sea "Página | AppName" o solo "AppName"
-const finalTitle = title ? `${title} | ${config.appName}` : config.appName;
+const finalTitle = title ? `${title}` : config.appName;
 ---
 
 <!doctype html>
