@@ -21,7 +21,7 @@ export const projectsData = {
         "Diseño UX/UI",
         "Herramientas y Automatización",
       ],
-      topskills: ["Next.js 14", "Diseño de Juego", "Diseño de Sistemas"],
+      topskills: ["next.js 15", "Diseño de Juego", "Diseño de Sistemas"],
       link: [
         {
           url: "https://echoesbeasts.com",
@@ -102,7 +102,7 @@ export const projectsData = {
         "UX/UI Design",
         "Tooling & Automation",
       ],
-      topskills: ["Next.js 14", "Game Design", "Systems Design"],
+      topskills: ["next.js 15", "Game Design", "Systems Design"],
       link: [
         {
           url: "https://echoesbeasts.com",
