@@ -16,12 +16,13 @@ export const projectsData = {
         "Diseño de Combate y Progresión",
         "Balance y Diseño Matemático",
         "Diseño Narrativo",
+        "Diseño de Juego",
         "Construcción de Mundos",
         "Diseño de Criaturas y Lore",
         "Diseño UX/UI",
         "Herramientas y Automatización",
       ],
-      topskills: ["next.js 15", "Diseño de Juego", "Diseño de Sistemas"],
+      topskills: ["Next.js 15", "Diseño de Sistemas"],
       link: [
         {
           url: "https://echoesbeasts.com",
@@ -100,9 +101,10 @@ export const projectsData = {
         "Worldbuilding",
         "Creature & Lore Design",
         "UX/UI Design",
+        "Game Design",
         "Tooling & Automation",
       ],
-      topskills: ["next.js 15", "Game Design", "Systems Design"],
+      topskills: ["Next.js 15", "Systems Design"],
       link: [
         {
           url: "https://echoesbeasts.com",
