@@ -86,26 +86,32 @@ const emailCopyErrorMessage = t("header.emailCopyError");
 ---
 
 <section id="Resumen" class="w-full flex flex-col px-4 py-10 md:px-6 md:py-12 lg:px-8 lg:py-0">
-  <div class="relative w-full max-w-4xl mx-auto min-h-screen flex flex-col justify-center gap-8 py-8 lg:py-12">
+  <div class="relative w-full max-w-7xl mx-auto min-h-screen flex flex-col justify-center gap-10 py-10 lg:py-14">
+    {/* Call to Action */}
     <div class="flex flex-col gap-4 items-center justify-center text-center w-full">
-      <CtaButton
-        client:load
-        audioSrc={heyListenAudio}
-        propType="success"
-        propFill="var(--color-card-bg )"
-        buttonClic={{
-          title: lang === "en" ? "Email" : "Correo",
-          url: sendMailHref,
-          copyValue: emailAddress,
-        }}
-        propDesc={lang === "en" ? "Send me a mail or use other social media" : "Envíame un correo o usa otra red social"}
-        propTitle={profileInfo.callToAction}
-      />
+      <div class="max-w-5xl mx-auto w-full">
+        <CtaButton
+          client:load
+          audioSrc={heyListenAudio}
+          propType="success"
+          propFill="var(--color-card-bg )"
+          buttonClic={{
+            title: lang === "en" ? "Email" : "Correo",
+            url: sendMailHref,
+            copyValue: emailAddress,
+          }}
+          propDesc={lang === "en" ? "Send me a mail or use other social media" : "Envíame un correo o usa otra red social"}
+          propTitle={profileInfo.callToAction}
+        />
+      </div>
     </div>
-    <div class="lg:grid lg:grid-cols-12 gap-8 items-center w-full">
-      <div class="lg:col-span-8 lg:col-start-3 grid grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5 max-w-4xl mx-auto w-full">
+
+    {/* Resume  */}
+    <div class="grid grid-cols-12 gap-6 lg:gap-8 items-start w-full">
+      <div class="col-span-12 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 w-full">
+        {/* Metrics */}
         <div
-          class="min-h-28 p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center items-center text-center transition-transform duration-300 hover:scale-105"
+          class="min-h-28 p-4 rounded-xl flex flex-col justify-center items-center text-center transition-transform duration-300 hover:scale-105 hover:bg-[var(--color-card-bg)]"
         >
           <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2">{impactValue}</span>
           <span class="text-xs uppercase tracking-wider text-[var(--color-green)]">{lang === "en" ? "Annual Impact" : "Impacto Anual"}</span
@@ -113,33 +119,35 @@ const emailCopyErrorMessage = t("header.emailCopyError");
         </div>
 
         <div
-          class="min-h-28 p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center items-center text-center transition-transform duration-300 hover:scale-105"
+          class="min-h-28 p-4 rounded-xl flex flex-col justify-center items-center text-center transition-transform duration-300 hover:scale-105 hover:bg-[var(--color-card-bg)]"
         >
           <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2">{totalRobots}</span>
           <span class="text-xs uppercase tracking-wider text-[var(--color-green)]">{lang === "en" ? "Live Robots" : "Robots en Prod"}</span>
         </div>
 
         <div
-          class="min-h-28 p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center items-center text-center transition-transform duration-300 hover:scale-105"
+          class="min-h-28 p-4 rounded-xl flex flex-col justify-center items-center text-center transition-transform duration-300 hover:scale-105 hover:bg-[var(--color-card-bg)]"
         >
           <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2">+{yearsOfExperience}</span>
           <span class="text-xs uppercase tracking-wider text-[var(--color-green)]">{lang === "en" ? "Years Exp." : "Años Exp."}</span>
         </div>
+
         <div
-          class="min-h-28 p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center text-center items-center transition-transform duration-300 hover:scale-105"
+          class="min-h-28 p-4 rounded-xl flex flex-col justify-center text-center items-center transition-transform duration-300 hover:scale-105 hover:bg-[var(--color-card-bg)]"
         >
           <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2"> {profileInfo.sc}</span>
           <span class="text-xs uppercase tracking-wider text-[var(--color-green)] leading-snug">{profileInfo.Major}</span>
         </div>
-
-        <div class="col-span-2 xl:col-span-4 mt-4 flex justify-center">
+        {/* Headline */}
+        <div class="col-span-2 md:col-span-4 mt-4 flex justify-center">
           <p class="max-w-3xl text-balance text-center text-xl lg:text-2xl leading-snug text-[var(--color-resaltar)] font-medium">
             {profileInfo.headline}
           </p>
         </div>
 
+        {/* Stack */}
         <div
-          class="relative overflow-hidden col-span-2 xl:col-span-4 mt-2 rounded-2xl border border-[var(--color-blue)]/30 bg-[var(--color-blue)]/5 px-4 py-5 md:px-6 md:py-6 text-center shadow-[0_18px_60px_rgba(15,23,42,0.28)]"
+          class="relative overflow-hidden col-span-2 md:col-span-4 mt-2 rounded-2xl border border-[var(--color-blue)]/30 bg-[var(--color-blue)]/5 px-4 py-5 md:px-6 md:py-6 text-center shadow-[0_18px_60px_rgba(15,23,42,0.28)]"
         >
           <div
             class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15 pointer-events-none"
@@ -164,17 +172,18 @@ const emailCopyErrorMessage = t("header.emailCopyError");
           </div>
         </div>
 
-        <div class="col-span-2 xl:col-span-4 mt-2">
-          <div class="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-4 md:px-6 max-w-3xl mx-auto">
+        {/* Certifications */}
+        <div class="col-span-2 md:col-span-4 mt-2">
+          <div class="rounded-2xl px-4 py-4 md:px-6 w-full">
             <div class="mb-4 text-center">
-              <p class="text-xs uppercase tracking-[0.28em] text-[var(--color-green)]">
+              <h2 class="text-x uppercase tracking-[0.28em] text-[var(--color-green)]">
                 {lang === "en" ? "Recent Certifications" : "Certificaciones Recientes"}
-              </p>
+              </h2>
             </div>
             <div class="grid grid-cols-1 gap-3 xl:grid-cols-2 xl:gap-x-6 xl:gap-y-4">
               {
                 recentCerts.map((cert) => (
-                  <div class="flex items-start gap-3 rounded-xl border border-white/6 bg-black/10 px-3 py-3 transition-colors hover:border-[var(--color-purple)]/30 hover:bg-white/[0.05]">
+                  <div class="flex items-start gap-3 rounded-xl px-3 py-3 transition-colors hover:border-[var(--color-purple)]/30 hover:bg-white/[0.05]">
                     <div class="mt-2 h-1.5 w-1.5 bg-[var(--color-green)] rounded-full flex-shrink-0" />
                     <span class="text-sm lg:text-base leading-relaxed text-[var(--text-use)] text-left break-words text-pretty">
                       {cert.name}
@@ -190,10 +199,10 @@ const emailCopyErrorMessage = t("header.emailCopyError");
 
     <!-- Conectemos Section -->
     <div class="mt-20 border-t border-white/10 pt-10">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {
           contactInfo.map((contact) => (
-            <div class="group relative bg-[var(--color-card-bg)] rounded-2xl p-8 border border-white/10 hover:border-[var(--color-blue)]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[var(--color-blue)]/10 flex flex-col items-center text-center overflow-hidden">
+            <div class="group relative rounded-2xl p-8 hover:border-[var(--color-blue)]/50 transition-all duration-300 hover:bg-[var(--color-card-bg)] flex flex-col items-center text-center overflow-hidden">
               <div
                 class="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-inner"
                 style={`background-color: ${contact.color}20`}
@@ -212,7 +221,7 @@ const emailCopyErrorMessage = t("header.emailCopyError");
 
               {contact.name === "Email" && (
                 <p
-                  class="mb-6 flex w-full max-w-full items-center justify-center gap-2 rounded-2xl border border-white/8 bg-white/[0.03] px-3 py-2 text-center cursor-copy text-sm leading-relaxed text-[var(--text-use)]/70 break-all font-medium transition-colors hover:border-[var(--color-red)]/30 hover:text-[var(--color-red)]"
+                  class="mb-6 flex w-full max-w-full items-center justify-center gap-2 rounded-2xl px-3 py-2 text-center cursor-copy text-sm leading-relaxed text-[var(--text-use)]/70 break-all font-medium transition-colors hover:border-[var(--color-red)]/30 hover:text-[var(--color-red)]"
                   data-email-copy="true"
                   data-email-address={emailAddress}
                   data-copied-message={copiedEmailMessage}

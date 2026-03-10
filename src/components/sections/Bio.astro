@@ -96,8 +96,14 @@ const gameStack = [
 
     {/* Tabs */}
     <div
-      class="mt-16 rounded-[28px] border border-white/10 bg-[var(--color-card-bg)]/70 p-4 md:p-6 shadow-[0_24px_80px_rgba(15,23,42,0.24)] backdrop-blur-sm"
+      class="group relative overflow-hidden rounded-[28px] border border-[#2A3B5F] bg-[#121A2B] p-6 md:p-7 shadow-[0_20px_50px_rgba(2,6,23,0.32)] transition-all duration-300 hover:-translate-y-1 hover:border-[#38BDF8]/70 hover:shadow-[0_28px_70px_rgba(56,189,248,0.12)]"
     >
+      <div class="absolute inset-y-5 left-0 w-1 rounded-full bg-gradient-to-b from-[#38BDF8] via-[#8B5CF6] to-transparent"></div>
+      <div
+        class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.12),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(139,92,246,0.10),transparent_28%)] opacity-80 pointer-events-none"
+      >
+      </div>
+
       {/* Pestañas */}
       <div
         class="flex w-[80%] max-w-2xl min-w-0 rounded-full border border-white/10 bg-black/15 p-1 items-center justify-center mx-auto"
