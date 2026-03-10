@@ -1,6 +1,6 @@
 ---
 import { experienceData } from "@/data/experience";
-import FlipCard from "@/components/ui/FlipCard";
+import ExperienceCard from "@/components/ui/ExperienceCard";
 
 const cookieLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
 const localLang = typeof Astro.locals.lang === "string" ? Astro.locals.lang.toLowerCase() : undefined;
@@ -14,23 +14,50 @@ if (lang === "en") {
 } else {
   experiences = experienceData.ES;
 }
+
+const introText =
+  lang === "en"
+    ? "A timeline of technical leadership, automation architecture, and engineering execution across enterprise environments."
+    : "Una línea de tiempo de liderazgo técnico, arquitectura de automatización y ejecución de ingeniería en entornos empresariales.";
+
+const activityLabel = lang === "en" ? "Key Contributions" : "Contribuciones Clave";
+const stackLabel = lang === "en" ? "Primary Stack" : "Stack Principal";
 ---
 
-<section id="Experiencia" class="min-h-screen w-full flex flex-col py-10 px-4 md:px-6 lg:px-8">
-  <div class="w-full max-w-7xl mx-auto text-[var(--color-green)]">
-    {lang === "en" ? <h2 class="text-4xl font-bold mb-6">XP · Experience</h2> : <h2 class="text-4xl font-bold mb-6">XP · Experiencia</h2>}
-    <div id="experience-content" data-experience-scroll class="w-full flex flex-col gap-8 py-10">
+<section id="Experiencia" class="w-full flex flex-col px-4 py-12 md:px-6 lg:px-8">
+  <div class="w-full max-w-7xl mx-auto text-[#E6EDF3]">
+    <div class="max-w-3xl">
+      {lang === "en" ? <h2 class="text-4xl md:text-5xl font-bold text-[#E6EDF3]">XP · Experience</h2> : <h2 class="text-4xl md:text-5xl font-bold text-[#E6EDF3]">XP · Experiencia</h2>}
+      <p class="mt-4 text-base md:text-lg leading-8 text-[#9FB0C3]">{introText}</p>
+    </div>
+
+    <div id="experience-content" data-experience-scroll class="relative mt-10 w-full py-4">
+      <div class="absolute bottom-0 left-[17px] top-0 w-px bg-gradient-to-b from-[#38BDF8]/20 via-[#2A3B5F] to-[#8B5CF6]/20 md:left-1/2 md:-translate-x-1/2"></div>
+
+      <div class="flex flex-col gap-8 md:gap-10">
       {
-        experiences.map((exp) => {
+        experiences.map((exp, index) => {
+          const isEven = index % 2 === 0;
+
           return (
-            <div class="w-full flex justify-center">
-              <div class="w-full">
-                <FlipCard client:load experience={exp} />
+            <div class="relative grid grid-cols-[34px_minmax(0,1fr)] gap-4 md:grid-cols-[minmax(0,1fr)_88px_minmax(0,1fr)] md:gap-8 items-start">
+              <div class="relative col-start-1 row-start-1 flex justify-center md:col-start-2">
+                <div class="relative z-10 mt-8 h-4 w-4 rounded-full border-4 border-[#0B1120] bg-[#38BDF8] shadow-[0_0_0_6px_rgba(56,189,248,0.12)]"></div>
+              </div>
+
+              <div
+                class:list={[
+                  "col-start-2 row-start-1 min-w-0",
+                  isEven ? "md:col-start-1 md:pr-4" : "md:col-start-3 md:pl-4",
+                ]}
+              >
+                <ExperienceCard experience={exp} activityLabel={activityLabel} stackLabel={stackLabel} />
               </div>
             </div>
           );
         })
       }
+      </div>
     </div>
   </div>
 </section>
