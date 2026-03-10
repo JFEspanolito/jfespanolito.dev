@@ -9,35 +9,27 @@ const FlipCard: React.FC<Props> = ({ experience }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
-    <div
-      className="group perspective-1000 w-full max-w-[600px] h-[300px] md:h-[400px] cursor-pointer"
-      onClick={() => setIsFlipped(!isFlipped)}
-    >
-      <div className={`relative w-full h-full transition-transform duration-700 transform-style-3d ${isFlipped ? "rotate-y-180" : ""}`}>
+    <div className="group perspective-1000 w-full h-[400px] md:h-[300px] cursor-pointer" onClick={() => setIsFlipped(!isFlipped)}>
+      <div className={`relative w-full h-full transition-transform duration-500 transform-style-3d ${isFlipped ? "rotate-y-180" : ""}`}>
         {/* FRONT */}
         <div className="absolute w-full h-full backface-hidden bg-[var(--color-card-bg)] rounded-2xl p-4 md:p-6 shadow-lg flex flex-col justify-between border border-[var(--color-resaltar)] overflow-hidden z-10">
           <div className="flex-1 overflow-y-auto no-scrollbar">
             <div className="flex justify-between items-start">
               <h3 className="text-lg md:text-xl font-bold leading-tight pr-2 text-[var(--color-purple)]">{experience.role}</h3>
-              <span className="ml-auto text-right text-[10px] md:text-xs font-medium tracking-wide opacity-80 select-none text-[var(--color-resaltar)]">
-                Click to Flip
-              </span>
             </div>
             <div className="flex justify-between items-start">
               <p className="font-semibold text-base md:text-base mt-1 text-[var(--color-blue)]">{experience.company}</p>
-              <span className="bg-[var(--bg-use)] text-[var(--color-red)] text-[11px] px-2.5 md:px-4 py-1 md:py-1.5 rounded-full  font-bold tracking-wide shrink-0 ml-2">
+              <span className="bg-[var(--bg-use)] text-[var(--color-red)] text-[11px] px-2.5 md:px-4 py-1 md:py-1.5 rounded-full font-bold tracking-wide shrink-0 ml-2">
                 {experience.period}
               </span>
             </div>
             {/* Background image layer */}
-            <img
+            {/* <img
               className="absolute inset-0 w-full h-full rounded-2xl opacity-8 pointer-events-none z-100"
               src={experienceBanner.src}
               alt="background"
-            />
-            <p className="mt-2.5 md:mt-3 text-base md:text-base leading-relaxed text-[var(--text-use)] ">
-              {experience.description}
-            </p>
+            /> */}
+            <p className="mt-2.5 md:mt-3 text-base md:text-base leading-relaxed text-[var(--text-use)] ">{experience.description}</p>
           </div>
 
           <div className="flex flex-wrap gap-1.5 md:gap-2 mt-2.5">
@@ -49,6 +41,9 @@ const FlipCard: React.FC<Props> = ({ experience }) => {
                 {skill}
               </span>
             ))}
+            <span className="ml-auto text-right text-[10px] md:text-xs font-medium tracking-wide opacity-80 select-none text-[var(--color-resaltar)]">
+              Click to Flip
+            </span>
           </div>
         </div>
 

@@ -1,12 +1,15 @@
 ---
 import { Image } from "astro:assets";
 import { aboutData } from "@/data/about";
+import { useTranslations } from "@/i18n/ui";
 
 const cookieLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
 const localLang = typeof Astro.locals.lang === "string" ? Astro.locals.lang.toLowerCase() : undefined;
 
 const lang: "es" | "en" =
   cookieLang === "en" || cookieLang === "es" ? cookieLang : Astro.url.pathname.startsWith("/en") ? "en" : localLang === "en" ? "en" : "es";
+
+const t = useTranslations(lang);
 
 let profile = null;
 if (lang === "en") {
@@ -21,7 +24,7 @@ const contactInfo = [
     url: aboutData.contact.find((c) => c.name === "LinkedIn")?.url,
     icon: aboutData.contact.find((c) => c.name === "LinkedIn")?.icon,
     desc: lang === "en" ? "Professional profile and updates" : "Perfil profesional y actualizaciones",
-    label: lang === "en" ? "Let's talk on LinkedIn" : "Hablemos por LinkedIn",
+    label: lang === "en" ? "View Profile" : "Ver Perfil",
     color: "var(--color-linkedin)",
     iconSymbol: "arrow_outward",
   },
@@ -30,7 +33,7 @@ const contactInfo = [
     url: aboutData.contact.find((c) => c.name === "Telegram")?.url,
     icon: aboutData.contact.find((c) => c.name === "Telegram")?.icon,
     desc: lang === "en" ? "Direct chat and quick responses" : "Chat directo y respuestas rápidas",
-    label: lang === "en" ? "Message on Telegram" : "Mensaje en Telegram",
+    label: lang === "en" ? "Start Chat" : "Iniciar Chat",
     color: "var(--color-telegram)",
     iconSymbol: "send",
   },
@@ -44,21 +47,35 @@ const contactInfo = [
     iconSymbol: "forward_to_inbox",
   },
 ];
+
+const emailAddress =
+  aboutData.contact
+    .find((c) => c.name === "Email")
+    ?.url.replace(/^mailto:/, "")
+    .split("?")[0] ?? "";
+const workStack = [
+  { key: "frontend", title: t("bio.stack.frontend"), items: aboutData.skillsAndTools.work.frontend },
+  { key: "backend", title: t("bio.stack.backend"), items: aboutData.skillsAndTools.work.backend },
+  { key: "automate", title: t("bio.stack.automate"), items: aboutData.skillsAndTools.work.automate },
+  { key: "tools", title: t("bio.stack.tools"), items: aboutData.skillsAndTools.work.tools },
+];
+const gameStack = [
+  { key: "skills", title: t("bio.stack.skills"), items: aboutData.skillsAndTools.indieGameDev.gamedesign },
+  { key: "tools", title: t("bio.stack.tools"), items: aboutData.skillsAndTools.indieGameDev.tools },
+];
 ---
 
-<section id="Bio" class="min-h-full w-full flex flex-col py-10 px-4 md:px-6 lg:px-8">
+<section id="Bio" class="w-full flex flex-col py-10 px-4 md:px-6 lg:px-8">
   <div class="relative w-full max-w-7xl mx-auto min-h-full text-[var(--color-green)]">
     {lang === "en" ? <h2 class="text-4xl font-bold mb-6">Biography</h2> : <h2 class="text-4xl font-bold mb-6">Biografía</h2>}
 
+    {/* Tittle */}
     <h2 class="text-2xl md:text-3xl tracking-[0.2em] text-[var(--color-purple)] uppercase font-medium mb-6">
       {profile.role}
     </h2>
 
-    <p class="text-xl md:text-2xl text-[var(--color-resaltar)] font-medium mb-12">
-      {profile.headline}
-    </p>
-
-    <div class="space-y-8">
+    {/* Description */}
+    <div class="space-y-8 mb-12">
       {
         profile.description.map((paragraph) => (
           <p class="text-lg md:text-xl leading-relaxed text-gray-300">
@@ -77,64 +94,214 @@ const contactInfo = [
       }
     </div>
 
-    <!-- Conectemos Section -->
-    <div class="mt-20 border-t border-white/10 pt-10">
-      <div class="mb-8">
-        <h3 class="text-2xl font-bold text-white font-mono flex items-center gap-2 italic">
-          {profile.callToAction}
-        </h3>
-        <p class="text-gray-400 mt-2">
-          {
-            lang === "en"
-              ? "Select your preferred communication channel to start a conversation."
-              : "Selecciona tu canal de comunicación preferido para iniciar una conversación."
-          }
-        </p>
+    {/* Tabs */}
+    <div
+      class="mt-16 rounded-[28px] border border-white/10 bg-[var(--color-card-bg)]/70 p-4 md:p-6 shadow-[0_24px_80px_rgba(15,23,42,0.24)] backdrop-blur-sm"
+    >
+      {/* Pestañas */}
+      <div
+        class="flex w-[80%] max-w-2xl min-w-0 rounded-full border border-white/10 bg-black/15 p-1 items-center justify-center mx-auto"
+        role="tablist"
+        aria-label={lang === "en" ? "Biography sections" : "Secciones de biografía"}
+      >
+        <button
+          id="bio-tab-stack"
+          type="button"
+          class="bio-tab-trigger flex-1 rounded-full px-4 py-2 text-sm font-semibold text-center transition-colors text-[var(--text-use)]/70"
+          role="tab"
+          aria-selected="true"
+          aria-controls="bio-panel-stack"
+          data-tab-target="bio-panel-stack"
+        >
+          {t("bio.tabs.stack")}
+        </button>
+        <button
+          id="bio-tab-indieGameDev"
+          type="button"
+          class="bio-tab-trigger flex-1 rounded-full px-4 py-2 text-sm font-semibold text-center transition-colors text-[var(--text-use)]/70"
+          role="tab"
+          aria-selected="false"
+          aria-controls="bio-panel-indieGameDev"
+          data-tab-target="bio-panel-indieGameDev"
+          tabindex="-1"
+        >
+          {t("bio.tabs.gamedev")}
+        </button>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {
-          contactInfo.map((contact) => (
-            <a
-              class="group relative bg-[var(--color-card-bg)] rounded-2xl p-8 border border-white/10 hover:border-[var(--color-blue)]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[var(--color-blue)]/10 flex flex-col items-center text-center overflow-hidden"
-              href={contact.url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div
-                class="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-inner"
-                style={`background-color: ${contact.color}20`}
-              >
-                <Image
-                  src={contact.icon as any}
-                  alt={contact.name}
-                  class="w-10 h-10 opacity-90 group-hover:opacity-100 object-contain"
-                  width={40}
-                  height={40}
-                />
-              </div>
+      {/* Contenido */}
+      <div class="mt-8">
+        {/* Stack Laboral */}
+        <div id="bio-panel-stack" class="bio-tab-panel" role="tabpanel" aria-labelledby="bio-tab-stack">
+          <div class="mb-6">
+            <h1 class="text-2xl md:text-3xl tracking-[0.2em] text-[var(--color-purple)] uppercase font-medium mb-3">
+              {t("bio.stack")}
+            </h1>
+            <p class="text-sm md:text-base text-[var(--text-use)]/70">
+              {
+                lang === "en"
+                  ? "Technologies, tools, and practices I use to design, build, and scale professional software and automation solutions."
+                  : "Tecnologías, herramientas y prácticas que utilizo para diseñar, desarrollar y escalar soluciones profesionales de software y automatización."
+              }
+            </p>
+          </div>
 
-              <h4 class="text-xl font-bold text-white mb-2 group-hover:text-[var(--color-blue)] transition-colors">{contact.name}</h4>
-              <p class="text-sm text-gray-400 mb-6">{contact.desc}</p>
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+            {
+              workStack.map((group) => (
+                <div class="rounded-3xl p-5">
+                  <p class="mb-4 text-xs uppercase tracking-[0.28em] text-[var(--color-green)]">{group.title}</p>
+                  <div class="flex flex-wrap gap-2">
+                    {group.items.map((item: string) => (
+                      <span class="rounded-full border border-white/8 bg-black/15 px-3 py-1.5 text-sm text-[var(--text-use)]/85">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
 
-              <span
-                class="contact-btn mt-auto px-6 py-2 rounded-full border text-sm font-semibold transition-all duration-300 flex items-center gap-2"
-                style={`border-color: ${contact.color}; color: ${contact.color}; --btn-color: ${contact.color};`}
-              >
-                {contact.label}
-                <span class="material-symbols-outlined text-sm">{contact.iconSymbol}</span>
-              </span>
-            </a>
-          ))
-        }
+        {/* Stack IndieGameDev */}
+        <div id="bio-panel-indieGameDev" class="bio-tab-panel hidden" role="tabpanel" aria-labelledby="bio-tab-indieGameDev">
+          <div class="mb-6">
+            <h1 class="text-2xl md:text-3xl tracking-[0.2em] text-[var(--color-purple)] uppercase font-medium mb-3">
+              {t("bio.gamedev")}
+            </h1>
+            <p class="text-sm md:text-base text-[var(--text-use)]/70">
+              {
+                lang === "en"
+                  ? "Design disciplines and tools I use to create tabletop game systems, mechanics, and worlds."
+                  : "Disciplinas de diseño y herramientas que utilizo para crear sistemas, mecánicas y mundos de juegos de mesa,"
+              }
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+            {
+              gameStack.map((group) => (
+                <div class="rounded-3xl p-5">
+                  <p class="mb-4 text-xs uppercase tracking-[0.28em] text-[var(--color-green)]">{group.title}</p>
+                  <div class="flex flex-wrap gap-2">
+                    {group.items.map((item: string) => (
+                      <span class="rounded-full border border-white/8 bg-black/15 px-3 py-1.5 text-sm text-[var(--text-use)]/85">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
       </div>
     </div>
-
-    <style>
-      .contact-btn:hover {
-        background-color: var(--btn-color);
-        color: white !important;
-      }
-    </style>
   </div>
+
+  <script>
+    async function copyEmailToClipboard(emailAddress: string) {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(emailAddress);
+        return;
+      }
+
+      const input = document.createElement("textarea");
+      input.value = emailAddress;
+      input.setAttribute("readonly", "true");
+      input.style.position = "absolute";
+      input.style.left = "-9999px";
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand("copy");
+      document.body.removeChild(input);
+    }
+
+    function initBioEmailLinks() {
+      const emailCopies = document.querySelectorAll("[data-email-copy='true']");
+
+      emailCopies.forEach((element) => {
+        if (!(element instanceof HTMLElement) || element.dataset.bound === "true") return;
+
+        element.dataset.bound = "true";
+        element.addEventListener("click", async () => {
+          const emailAddress = element.dataset.emailAddress ?? "";
+          const copiedMessage = element.dataset.copiedMessage ?? "Correo copiado";
+          const copyErrorMessage = element.dataset.copyErrorMessage ?? "No se pudo copiar el correo";
+          const { sileo } = await import("sileo");
+
+          try {
+            await copyEmailToClipboard(emailAddress);
+            sileo.success({
+              title: copiedMessage,
+              description: "",
+            });
+          } catch {
+            sileo.error({
+              title: copyErrorMessage,
+              description: "",
+            });
+          }
+        });
+      });
+    }
+
+    function initBioTabs() {
+      const triggers = Array.from(document.querySelectorAll(".bio-tab-trigger"));
+      const panels = Array.from(document.querySelectorAll(".bio-tab-panel"));
+
+      if (triggers.length === 0 || panels.length === 0) return;
+
+      const activateTab = (targetId: string) => {
+        triggers.forEach((trigger) => {
+          if (!(trigger instanceof HTMLButtonElement)) return;
+
+          const isActive = trigger.dataset.tabTarget === targetId;
+          trigger.setAttribute("aria-selected", String(isActive));
+          trigger.tabIndex = isActive ? 0 : -1;
+          trigger.classList.toggle("bg-[var(--color-blue)]", isActive);
+          trigger.classList.toggle("text-black", isActive);
+          trigger.classList.toggle("text-[var(--text-use)]/70", !isActive);
+        });
+
+        panels.forEach((panel) => {
+          if (!(panel instanceof HTMLElement)) return;
+          panel.classList.toggle("hidden", panel.id !== targetId);
+        });
+      };
+
+      triggers.forEach((trigger, index) => {
+        if (!(trigger instanceof HTMLButtonElement) || trigger.dataset.bound === "true") return;
+
+        trigger.dataset.bound = "true";
+        trigger.addEventListener("click", () => activateTab(trigger.dataset.tabTarget ?? "bio-panel-stack"));
+        trigger.addEventListener("keydown", (event) => {
+          if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+
+          event.preventDefault();
+          const nextIndex = event.key === "ArrowRight" ? (index + 1) % triggers.length : (index - 1 + triggers.length) % triggers.length;
+          const nextTrigger = triggers[nextIndex];
+          if (nextTrigger instanceof HTMLButtonElement) {
+            nextTrigger.focus();
+            activateTab(nextTrigger.dataset.tabTarget ?? "bio-panel-stack");
+          }
+        });
+      });
+
+      activateTab("bio-panel-stack");
+    }
+
+    initBioEmailLinks();
+    initBioTabs();
+    document.addEventListener("astro:page-load", initBioEmailLinks);
+    document.addEventListener("astro:page-load", initBioTabs);
+  </script>
+
+  <style>
+    .contact-btn:hover {
+      background-color: var(--btn-color);
+      color: white !important;
+    }
+  </style>
 </section>

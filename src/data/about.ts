@@ -1,12 +1,6 @@
 export const yearsOfExperience = new Date().getFullYear() - 2012;
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  "../assets/images/*.{jpeg,jpg,png,gif,webp}",
-  { eager: true },
-);
-const socialImg = import.meta.glob<{ default: ImageMetadata }>(
-  "../assets/logos/*.svg",
-  { eager: true },
-);
+const images = import.meta.glob<{ default: ImageMetadata }>("../assets/images/*.{jpeg,jpg,png,gif,webp}", { eager: true });
+const socialImg = import.meta.glob<{ default: ImageMetadata }>("../assets/logos/*.svg", { eager: true });
 
 import avatar from "../assets/images/JFSelfie.webp";
 import logo from "../assets/images/JFLogo.webp";
@@ -28,7 +22,7 @@ export const aboutData = {
     },
     {
       name: "Email",
-      url: "mailto:hola@jfespanolito.dev?subject=Contacto%20profesional&body=Hola%20Jorge,%0A%0AQuisiera%20hablar%20sobre%20...",
+      url: "hola@jfespanolito.dev",
       icon: socialImg["../assets/logos/mail.svg"].default,
     },
   ],
@@ -132,4 +126,37 @@ export const aboutData = {
       ],
     },
   ],
+  skillsAndTools: {
+    work: {
+      frontend: ["TypeScript", "Tailwind CSS", "Next.js 15", "Astro 5"],
+      backend: ["Python", "FastAPI", ".NET Framework (C#)", "SQL Server"],
+      automate: ["UiPath Suite", "VB.NET", "NLP Automations", "OCR Automations", "Bic Cloud BPM"],
+      tools: [
+        "UiPath Studio",
+        "UiPath Orchestrator",
+        "Git",
+        "Docker",
+        "n8n",
+        "MindManager",
+        "Postman",
+        "Jira",
+        "IIS",
+        "AWS",
+        "Azure App Service",
+      ],
+    },
+
+    indieGameDev: {
+      gamedesign: [
+        "Diseño de Motores de Reglas",
+        "Diseño de Combate y Progresión",
+        "Balance y Diseño Matemático",
+        "Diseño Narrativo",
+        "Diseño de Juego",
+        "Construcción de Mundos",
+        "Diseño de Criaturas y Lore",
+      ],
+      tools: ["Tabletop Creator Pro", "Dungeon Alchemist"],
+    },
+  },
 };

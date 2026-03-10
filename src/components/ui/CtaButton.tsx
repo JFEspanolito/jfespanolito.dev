@@ -146,7 +146,7 @@ export const CtaButton = ({
         }}
         className="cursor-pointer select-none inline-block outline-none"
       >
-        <h2 className="text-3xl md:text-6xl font-black text-[var(--color-purple)] uppercase leading-tight mb-6 md:mb-10 hover:scale-105 transition-transform duration-300">
+        <h2 className="text-2xl md:text-5xl font-black text-[var(--color-purple)] uppercase leading-tight mb-6 md:mb-10 hover:scale-105 transition-transform duration-300">
           {propTitle}
         </h2>
       </div>

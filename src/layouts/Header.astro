@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import logoImg from "@/assets/images/JFLogo.webp";
 import { configProject as config } from "@/data/configProject";
 import { aboutData as aboutInfo } from "@/data/about";
+import { useTranslations } from "@/i18n/ui";
 import LanguageSwitch from "@/components/ui/LanguageSwitch";
 import Oneko from "@/components/ui/Oneko.astro";
 import hangingImage from "@/assets/hanging.svg";
@@ -17,12 +18,17 @@ const socialLinks = ((aboutInfo as any).social ?? []) as Array<{
   url: string;
   icon: any;
 }>;
+const emailContact = contactLinks.find((contact) => contact.name === "Email");
+const emailAddress = emailContact?.url.replace(/^mailto:/, "").split("?")[0] ?? "";
+const iconContactLinks = contactLinks.filter((contact) => contact.name !== "Email");
 
 const cookieLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
 const localLang = typeof Astro.locals.lang === "string" ? Astro.locals.lang.toLowerCase() : undefined;
 
 const lang: "es" | "en" =
   cookieLang === "en" || cookieLang === "es" ? cookieLang : Astro.url.pathname.startsWith("/en") ? "en" : localLang === "en" ? "en" : "es";
+
+const t = useTranslations(lang);
 
 let aboutLan = null;
 if (lang === "en") {
@@ -34,6 +40,10 @@ if (lang === "en") {
 const navLang = lang === "en" ? "EN" : "ES";
 const navigation = config.navigation[navLang];
 const navItems = [navigation.home, navigation.bio, navigation.experience, navigation.projects, navigation.certificates];
+const sendMailHref = t("sendMail").replace("<mail>", emailAddress);
+const copiedEmailMessage = t("header.emailCopied");
+const emailCopyErrorMessage = t("header.emailCopyError");
+const emailActionTitle = t("header.emailCopyAndSend");
 ---
 
 <header
@@ -48,10 +58,10 @@ const navItems = [navigation.home, navigation.bio, navigation.experience, naviga
       </a>
 
       <div class="ml-auto flex items-center justify-end gap-2">
-        <div class="hidden md:flex items-center gap-2 border-r border-[var(--color-resaltar)] mr-4 ml-4">
+        <div class="hidden md:flex h-8 items-center gap-2 border-r border-[var(--color-resaltar)] mr-4 ml-4 pr-4">
           <Oneko client:load />
         </div>
-        <div class="hidden md:flex items-center gap-2 border-r border-[var(--color-resaltar)] mr-4 ml-4">
+        <div class="hidden md:flex h-8 items-center gap-2 border-r border-[var(--color-resaltar)] mr-4 ml-4 pr-4">
           <LanguageSwitch client:load initialLang={lang} />
         </div>
 
@@ -68,13 +78,13 @@ const navItems = [navigation.home, navigation.bio, navigation.experience, naviga
           </svg>
         </button>
 
-        <div class="hidden md:flex items-center gap-2 border-r border-[var(--color-resaltar)] pr-4 mr-4 ml-4">
+        <div class="hidden md:flex h-8 items-center gap-2 border-r border-[var(--color-resaltar)] pr-4 mr-4 ml-4">
           {
-            contactLinks.map((contact) => (
+            iconContactLinks.map((contact) => (
               <a
                 class="scale-80 hover:scale-120 p-2 rounded-md"
                 href={contact.url}
-                title={`${contact.name}`}
+                title={contact.name}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${contact.name}`}
@@ -93,16 +103,42 @@ const navItems = [navigation.home, navigation.bio, navigation.experience, naviga
           }
         </div>
 
-        <div class="hidden md:flex items-center gap-2 border-r border-[var(--color-resaltar)] pr-4 mr-4 ml-4">
+        {
+          emailContact && (
+            <a
+              class="hidden lg:flex h-8 items-center gap-3 border-r border-[var(--color-resaltar)] pr-4 mr-4 ml-4 text-sm text-[var(--text-use)] hover:text-[var(--color-green)] transition-colors"
+              id="header-email-link"
+              data-email-address={emailAddress}
+              data-copied-message={copiedEmailMessage}
+              data-copy-error-message={emailCopyErrorMessage}
+              href={sendMailHref}
+              title={emailActionTitle}
+              aria-label={emailActionTitle}
+            >
+              <Image
+                class="w-6 h-6 flex-shrink-0"
+                src={emailContact.icon}
+                alt="Email icon"
+                width={24}
+                height={24}
+                loading="eager"
+                decoding="async"
+              />
+              <span class="max-w-[220px] truncate">{emailAddress}</span>
+            </a>
+          )
+        }
+
+        <div class="hidden md:flex h-8 items-center gap-2 border-r border-[var(--color-resaltar)] pr-4 mr-4 ml-4">
           {
             socialLinks.map((contact) => (
               <a
                 class="scale-80 hover:scale-120 p-2 rounded-md"
                 href={contact.url}
-                title={`${contact.name}`}
+                title={`${contact.url}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`${contact.name}`}
+                aria-label={`${contact.url}`}
               >
                 <Image
                   class="w-8 h-8"
@@ -177,6 +213,23 @@ const navItems = [navigation.home, navigation.bio, navigation.experience, naviga
     </nav>
   </div>
   <script>
+    async function copyEmailToClipboard(emailAddress: string) {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(emailAddress);
+        return;
+      }
+
+      const input = document.createElement("textarea");
+      input.value = emailAddress;
+      input.setAttribute("readonly", "true");
+      input.style.position = "absolute";
+      input.style.left = "-9999px";
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand("copy");
+      document.body.removeChild(input);
+    }
+
     let isMenuListenerAdded = false;
 
     function initMenu() {
@@ -253,6 +306,52 @@ const navItems = [navigation.home, navigation.bio, navigation.experience, naviga
 
     initMenu();
     document.addEventListener("astro:page-load", initMenu);
+
+    async function showEmailCopiedFeedback(message: string, fallbackMessage: string) {
+      const { sileo } = await import("sileo");
+      try {
+        sileo.success({
+          title: message,
+          description: "",
+        });
+      } catch {
+        sileo.error({
+          title: fallbackMessage,
+          description: "",
+        });
+      }
+    }
+
+    function initEmailLink() {
+      const emailLink = document.querySelector("#header-email-link");
+
+      if (!(emailLink instanceof HTMLAnchorElement) || emailLink.dataset.bound === "true") return;
+
+      emailLink.dataset.bound = "true";
+      emailLink.addEventListener("click", async (event) => {
+        event.preventDefault();
+
+        const emailAddress = emailLink.dataset.emailAddress ?? "";
+        const copiedMessage = emailLink.dataset.copiedMessage ?? "Correo copiado";
+        const copyErrorMessage = emailLink.dataset.copyErrorMessage ?? "No se pudo copiar el correo";
+
+        try {
+          await copyEmailToClipboard(emailAddress);
+          await showEmailCopiedFeedback(copiedMessage, copyErrorMessage);
+        } catch {
+          const { sileo } = await import("sileo");
+          sileo.error({
+            title: copyErrorMessage,
+            description: "",
+          });
+        } finally {
+          window.location.href = emailLink.href;
+        }
+      });
+    }
+
+    initEmailLink();
+    document.addEventListener("astro:page-load", initEmailLink);
 
     function initBanner() {
       const bannerClic = document.querySelector("#bannerClic");
