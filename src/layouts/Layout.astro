@@ -60,17 +60,17 @@ const finalTitle = title ? `${title}` : config.appName;
     <meta name="theme-color" content={config.themeColor} />
     <meta name="generator" content={Astro.generator} />
 
-    {/* Open Graph (Redes Sociales) */}
+    {/* Open Graph / Facebook */}
+    <meta property="og:url" content={config.siteUrl + "/"} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={config.siteUrl} />
-    <meta property="og:site_name" content={config.appName} />
     <meta property="og:title" content={finalTitle} />
     <meta property="og:description" content={config.appDescription} />
     <meta property="og:image" content={config.siteUrl + config.images.ogDefault} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+
+    {/* Twitter */}
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content={config.twitter} />
+    <meta property="twitter:domain" content={config.domainName} />
+    <meta property="twitter:url" content={config.siteUrl + "/"} />
     <meta name="twitter:title" content={finalTitle} />
     <meta name="twitter:description" content={config.appDescription} />
     <meta name="twitter:image" content={config.siteUrl + config.images.twitterCard} />
