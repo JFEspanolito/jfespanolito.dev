@@ -7,7 +7,8 @@ export const configProject = {
   tabname: "JFEspanolito",
   appDescription: "Portafolio profesional de Jorge A. Falcón A.",
   ogTitle: "JFEspanolito | Desarrollo Web & Automatización RPA",
-  ogDescription: "Portafolio de Jorge A. Falcón A. — Desarrollador Full-Stack y especialista en automatización RPA con UiPath, Next.js, Astro y TypeScript.",
+  ogDescription:
+    "Portafolio de Jorge A. Falcón A. — Desarrollador Full-Stack y especialista en automatización RPA con UiPath, Next.js, Astro y TypeScript.",
   domainName: "jfespanolito.dev",
   siteUrl: "https://jfespanolito.dev",
   copyright: `© ${new Date().getFullYear()} — El código fuente de este sitio es público y puede consultarse y reutilizarse. La información personal y profesional presentada no está autorizada para copia ni redistribución.`,
@@ -27,16 +28,17 @@ export const configProject = {
   twitter: "@JFEspanolito",
 
   // Rutas hacia imágenes base
+  // se recomienda qué las imagenes sean de 1200x630px para OG y 1024x512px para Twitter
   images: {
-    ogDefault: "/cover.webp",
-    twitterCard: "/cover.webp",
-    favicon: "/favicon.ico",
-    icon16: "/favicon.ico",
-    icon32: "/favicon.ico",
-    icon192: "/images/placeholder-192.png",
-    icon512: "/images/placeholder-512.png",
-    appleTouch: "/images/placeholder-apple.png",
-    safariMask: "/images/placeholder-mask.png",
+    ogDefault: "public/cover/cover.webp",
+    twitterCard: "public/cover/cover.webp",
+    favicon: "public/cover/favicon.ico",
+    icon16: "public/cover/favicon.ico",
+    icon32: "public/cover/favicon.ico",
+    icon192: "public/cover/cover.webp",
+    icon512: "public/cover/cover.webp",
+    appleTouch: "public/cover/cover.webp",
+    safariMask: "public/cover/cover.webp",
   },
 
   // ======================================================
