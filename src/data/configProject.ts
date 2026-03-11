@@ -30,8 +30,8 @@ export const configProject = {
   // Rutas hacia imágenes base
   // se recomienda qué las imagenes sean de 1200x630px para OG y 1024x512px para Twitter
   images: {
-    ogDefault: "/cover/cover.webp",
-    twitterCard: "/cover/cover.webp",
+    ogDefault: "/cover/cover.png",
+    twitterCard: "/cover/cover.png",
     favicon: "/cover/favicon.ico",
     icon16: "/cover/favicon.ico",
     icon32: "/cover/favicon.ico",
