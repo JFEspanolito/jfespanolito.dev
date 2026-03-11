@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \":*)",
+      "Bash(mv public/cover.webp public/cover-original.webp)",
+      "Bash(mv public/cover-resized.webp public/cover.webp)",
+      "Bash(node -e \"const sharp = require\\(''./node_modules/.pnpm/sharp@0.34.5/node_modules/sharp''\\); sharp\\(''public/cover.webp''\\).metadata\\(\\).then\\(m => console.log\\(m.width + ''x'' + m.height\\)\\)\")"
+    ]
+  }
+}
