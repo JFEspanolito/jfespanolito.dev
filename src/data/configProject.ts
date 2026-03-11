@@ -26,8 +26,8 @@ export const configProject = {
 
   // Rutas hacia imágenes base
   images: {
-    ogDefault: "/images/placeholder.webp",
-    twitterCard: "/images/placeholder.webp",
+    ogDefault: "/og-image.png",
+    twitterCard: "/og-image.png",
     favicon: "/favicon.ico",
     icon16: "/favicon.ico",
     icon32: "/favicon.ico",

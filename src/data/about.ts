@@ -1,12 +1,6 @@
 export const yearsOfExperience = new Date().getFullYear() - 2012;
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  "../assets/images/*.{jpeg,jpg,png,gif,webp}",
-  { eager: true },
-);
-const socialImg = import.meta.glob<{ default: ImageMetadata }>(
-  "../assets/logos/*.svg",
-  { eager: true },
-);
+const images = import.meta.glob<{ default: ImageMetadata }>("../assets/images/*.{jpeg,jpg,png,gif,webp}", { eager: true });
+const socialImg = import.meta.glob<{ default: ImageMetadata }>("../assets/logos/*.svg", { eager: true });
 
 import avatar from "../assets/images/JFSelfie.webp";
 import logo from "../assets/images/JFLogo.webp";
@@ -28,7 +22,7 @@ export const aboutData = {
     },
     {
       name: "Email",
-      url: "mailto:hola@jfespanolito.dev?subject=Contacto%20profesional&body=Hola%20Jorge,%0A%0AQuisiera%20hablar%20sobre%20...",
+      url: "hola@jfespanolito.dev",
       icon: socialImg["../assets/logos/mail.svg"].default,
     },
   ],
@@ -91,6 +85,25 @@ export const aboutData = {
           },
         ],
       ],
+      education: [
+        {
+          institution: "Platzi",
+          degree: "Ingeniería (Actualización constante de varios temas), Ingeniería Informática (Actualización constante de varios temas)",
+          period: "ene. 2019 – dic. 2026",
+          notes: ["Ver Licencias y Certificados para más detalles sobre cada curso o certificación finalizada en Platzi."],
+        },
+        {
+          institution: "Universidad Autónoma de Guadalajara",
+          degree: "Ingeniería en Sistemas Computacionales, Ingeniería Informática",
+          period: "2008 – 2011",
+          notes: [
+            "Campus Tabasco",
+            "Participé en eventos de desarrollo de videojuegos con Java en NetBeans.",
+            "Asistente y administrador del evento TechDay.",
+            "Participé en campañas de mantenimiento de equipos (laptops, PCs, etc.) de estudiantes, con bajo costo destinado como donación para eventos.",
+          ],
+        },
+      ],
     },
   ],
   EN: [
@@ -130,6 +143,58 @@ export const aboutData = {
           },
         ],
       ],
+      education: [
+        {
+          institution: "Platzi",
+          degree: "Engineering (Continuous update across multiple topics), Computer Engineering (Continuous update across multiple topics)",
+          period: "Jan 2019 – Dec 2026",
+          notes: ["See Licenses and Certifications for more details about each completed course or certification on Platzi."],
+        },
+        {
+          institution: "Universidad Autónoma de Guadalajara",
+          degree: "Computer Systems Engineering, Computer Engineering",
+          period: "2008 – 2011",
+          notes: [
+            "Tabasco Campus",
+            "Participated in game development events using Java in NetBeans.",
+            "Assistant and administrator of the TechDay event.",
+            "Participated in maintenance campaigns for student equipment (laptops, PCs, etc.) at low cost, with proceeds used as donations for events.",
+          ],
+        },
+      ],
     },
   ],
+  skillsAndTools: {
+    work: {
+      frontend: ["TypeScript", "Tailwind CSS", "Next.js 15", "Astro 5"],
+      backend: ["Python", "FastAPI", ".NET Framework (C#)", "SQL Server"],
+      automate: ["UiPath Suite", "VB.NET", "NLP Automations", "OCR Automations", "Bic Cloud BPM"],
+      tools: [
+        "UiPath Studio",
+        "UiPath Orchestrator",
+        "Git",
+        "Docker",
+        "n8n",
+        "MindManager",
+        "Postman",
+        "Jira",
+        "IIS",
+        "AWS",
+        "Azure App Service",
+      ],
+    },
+
+    indieGameDev: {
+      gamedesign: [
+        "Diseño de Motores de Reglas",
+        "Diseño de Combate y Progresión",
+        "Balance y Diseño Matemático",
+        "Diseño Narrativo",
+        "Diseño de Juego",
+        "Construcción de Mundos",
+        "Diseño de Criaturas y Lore",
+      ],
+      tools: ["Tabletop Creator Pro", "Dungeon Alchemist"],
+    },
+  },
 };

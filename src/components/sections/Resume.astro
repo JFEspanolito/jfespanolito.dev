@@ -1,8 +1,10 @@
 ---
+import { Image } from "astro:assets";
 import { aboutData, yearsOfExperience } from "@/data/about";
 import { projectsData } from "@/data/projects";
 import { experienceData } from "@/data/experience";
 import { certificatesData } from "@/data/certificates";
+import { useTranslations } from "@/i18n/ui";
 import techBanner from "@/assets/techBanner.webp";
 import heyListenAudio from "@/assets/audio/hey_listen.webm";
 import { CtaButton } from "@/components/ui/CtaButton";
@@ -12,6 +14,8 @@ const localLang = typeof Astro.locals.lang === "string" ? Astro.locals.lang.toLo
 
 const lang: "es" | "en" =
   cookieLang === "en" || cookieLang === "es" ? cookieLang : Astro.url.pathname.startsWith("/en") ? "en" : localLang === "en" ? "en" : "es";
+
+const t = useTranslations(lang);
 
 let projects = null;
 let experiences = null;
@@ -38,28 +42,76 @@ const lastJobSkills = lastJob.topskills.slice(0, 5);
 const projectSkills = projects.flatMap((p) => p.topskills);
 const topSkills = [...new Set([...lastJobSkills, ...projectSkills])];
 const recentCerts = certificates.slice(0, 4);
+// const emailAddress = aboutData.contact.find((c) => c.name === "Email")?.url.replace(/^mailto:/, "").split("?")[0] ?? "";
+// const sendMailHref = t("sendMail").replace("<mail>", emailAddress);
+
+const contactInfo = [
+  {
+    name: "LinkedIn",
+    url: aboutData.contact.find((c) => c.name === "LinkedIn")?.url,
+    icon: aboutData.contact.find((c) => c.name === "LinkedIn")?.icon,
+    desc: lang === "en" ? "Professional profile and updates" : "Perfil profesional y actualizaciones",
+    label: lang === "en" ? "View Profile" : "Ver Perfil",
+    color: "var(--color-linkedin)",
+    iconSymbol: "arrow_outward",
+  },
+  {
+    name: "Telegram",
+    url: aboutData.contact.find((c) => c.name === "Telegram")?.url,
+    icon: aboutData.contact.find((c) => c.name === "Telegram")?.icon,
+    desc: lang === "en" ? "Direct chat and quick responses" : "Chat directo y respuestas rápidas",
+    label: lang === "en" ? "Start Chat" : "Iniciar Chat",
+    color: "var(--color-telegram)",
+    iconSymbol: "send",
+  },
+  {
+    name: "Email",
+    url: aboutData.contact.find((c) => c.name === "Email")?.url,
+    icon: aboutData.contact.find((c) => c.name === "Email")?.icon,
+    desc: lang === "en" ? "Formal inquiries and proposals" : "Consultas y propuestas formales",
+    label: lang === "en" ? "Send Email" : "Enviar Correo",
+    color: "var(--color-email)",
+    iconSymbol: "forward_to_inbox",
+  },
+];
+
+const emailAddress =
+  aboutData.contact
+    .find((c) => c.name === "Email")
+    ?.url.replace(/^mailto:/, "")
+    .split("?")[0] ?? "";
+const sendMailHref = t("sendMail").replace("<mail>", emailAddress);
+const copiedEmailMessage = t("header.emailCopied");
+const emailCopyErrorMessage = t("header.emailCopyError");
 ---
 
-<section id="Resumen" class="w-full flex flex-col py-10 md:py-0 lg:py-0">
-  <div class="relative w-full max-w-7xl mx-auto h-screen flex flex-col justify-center mb-6">
+<section id="Resumen" class="w-full flex flex-col px-4 py-10 md:px-6 md:py-12 lg:px-8 lg:py-0">
+  <div class="relative w-full max-w-7xl mx-auto min-h-screen flex flex-col justify-center gap-10 py-10 lg:py-14">
+    {/* Call to Action */}
     <div class="flex flex-col gap-4 items-center justify-center text-center w-full">
-      <CtaButton
-        client:load
-        audioSrc={heyListenAudio}
-        propType="success"
-        propFill="var(--color-card-bg )"
-        buttonClic={{
-          title: lang === "en" ? "Email" : "Correo",
-          url: aboutData.contact.find((c) => c.name === "Email")?.url,
-        }}
-        propDesc={lang === "en" ? "Send me a mail or use other social media" : "Envíame un correo o usa otra red social"}
-        propTitle={profileInfo.callToAction}
-      />
+      <div class="max-w-5xl mx-auto w-full">
+        <CtaButton
+          client:load
+          audioSrc={heyListenAudio}
+          propType="success"
+          propFill="var(--color-card-bg )"
+          buttonClic={{
+            title: lang === "en" ? "Email" : "Correo",
+            url: sendMailHref,
+            copyValue: emailAddress,
+          }}
+          propDesc={lang === "en" ? "Send me a mail or use other social media" : "Envíame un correo o usa otra red social"}
+          propTitle={profileInfo.callToAction}
+        />
+      </div>
     </div>
-    <div class="lg:grid lg:grid-cols-12 gap-8 items-center w-full">
-      <div class="lg:col-span-8 lg:col-start-3 grid grid-cols-2 md:grid-cols-4 gap-4">
+
+    {/* Resume  */}
+    <div class="grid grid-cols-12 gap-6 lg:gap-8 items-start w-full">
+      <div class="col-span-12 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 w-full">
+        {/* Metrics */}
         <div
-          class="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center items-center text-center hover:scale-125 transition-transform"
+          class="min-h-28 p-4 rounded-xl flex flex-col justify-center items-center text-center transition-transform duration-300 hover:scale-105 hover:bg-[var(--color-card-bg)]"
         >
           <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2">{impactValue}</span>
           <span class="text-xs uppercase tracking-wider text-[var(--color-green)]">{lang === "en" ? "Annual Impact" : "Impacto Anual"}</span
@@ -67,33 +119,35 @@ const recentCerts = certificates.slice(0, 4);
         </div>
 
         <div
-          class="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center items-center hover:scale-125 transition-transform"
+          class="min-h-28 p-4 rounded-xl flex flex-col justify-center items-center text-center transition-transform duration-300 hover:scale-105 hover:bg-[var(--color-card-bg)]"
         >
           <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2">{totalRobots}</span>
           <span class="text-xs uppercase tracking-wider text-[var(--color-green)]">{lang === "en" ? "Live Robots" : "Robots en Prod"}</span>
         </div>
 
         <div
-          class="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center items-center hover:scale-125 transition-transform"
+          class="min-h-28 p-4 rounded-xl flex flex-col justify-center items-center text-center transition-transform duration-300 hover:scale-105 hover:bg-[var(--color-card-bg)]"
         >
           <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2">+{yearsOfExperience}</span>
           <span class="text-xs uppercase tracking-wider text-[var(--color-green)]">{lang === "en" ? "Years Exp." : "Años Exp."}</span>
         </div>
+
         <div
-          class="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-center text-center items-center hover:scale-125 transition-transform"
+          class="min-h-28 p-4 rounded-xl flex flex-col justify-center text-center items-center transition-transform duration-300 hover:scale-105 hover:bg-[var(--color-card-bg)]"
         >
           <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2"> {profileInfo.sc}</span>
-          <span class="text-xs uppercase tracking-wider text-[var(--color-green)]">{profileInfo.Major}</span>
+          <span class="text-xs uppercase tracking-wider text-[var(--color-green)] leading-snug">{profileInfo.Major}</span>
         </div>
-
-        <div class="col-span-2 md:col-span-4 flex justify-center mt-6">
-          <p class="text-xl md:text-2xl text-[var(--color-resaltar)] font-medium">
+        {/* Headline */}
+        <div class="col-span-2 md:col-span-4 mt-4 flex justify-center">
+          <p class="max-w-3xl text-balance text-center text-xl lg:text-2xl leading-snug text-[var(--color-resaltar)] font-medium">
             {profileInfo.headline}
           </p>
         </div>
 
+        {/* Stack */}
         <div
-          class="relative overflow-hidden col-span-2 md:col-span-4 mt-4 p-6 rounded-2xl border border-[var(--color-blue)]/30 bg-[var(--color-blue)]/5 items-center justify-center text-center p-4 rounded-lg"
+          class="relative overflow-hidden col-span-2 md:col-span-4 mt-2 rounded-2xl border border-[var(--color-blue)]/30 bg-[var(--color-blue)]/5 px-4 py-5 md:px-6 md:py-6 text-center shadow-[0_18px_60px_rgba(15,23,42,0.28)]"
         >
           <div
             class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15 pointer-events-none"
@@ -101,13 +155,15 @@ const recentCerts = certificates.slice(0, 4);
           >
           </div>
           <div class="relative z-10">
-            <h4 class="text-xl font-bold uppercase mb-4 text-[var(--color-purple)] tracking-widest items-center justify-center">
+            <h4
+              class="text-lg lg:text-xl font-bold uppercase mb-4 text-[var(--color-purple)] tracking-[0.22em] lg:tracking-[0.3em] items-center justify-center"
+            >
               {lang === "en" ? "Strategic Stack" : "Stack Tecnológico"}
             </h4>
             <div class="flex flex-wrap gap-2 justify-center">
               {
                 topSkills.map((skill) => (
-                  <span class="px-3 py-1 bg-white/10 rounded-full text-xs font-medium border border-white/5 whitespace-nowrap">
+                  <span class="px-3 py-1.5 bg-white/10 rounded-full text-xs font-medium border border-white/5 whitespace-nowrap backdrop-blur-sm">
                     {skill}
                   </span>
                 ))
@@ -116,19 +172,98 @@ const recentCerts = certificates.slice(0, 4);
           </div>
         </div>
 
-        <div class="col-span-2 md:col-span-4 flex justify-center mt-6">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-            {
-              recentCerts.map((cert) => (
-                <div class="flex items-center gap-2 hover:text-[var(--color-purple)] transition-opacity">
-                  <div class="w-1 h-1 bg-[var(--color-green)] rounded-full flex-shrink-0" />
-                  <span class="text-base text-[var(--text-use)] hover:text-[var(--color-purple)] whitespace-nowrap">{cert.name}</span>
-                </div>
-              ))
-            }
+        {/* Certifications */}
+        <div class="col-span-2 md:col-span-4 mt-2">
+          <div class="rounded-2xl px-4 py-4 md:px-6 w-full">
+            <div class="mb-4 text-center">
+              <h2 class="text-x uppercase tracking-[0.28em] text-[var(--color-green)]">
+                {lang === "en" ? "Recent Certifications" : "Certificaciones Recientes"}
+              </h2>
+            </div>
+            <div class="grid grid-cols-1 gap-3 xl:grid-cols-2 xl:gap-x-6 xl:gap-y-4">
+              {
+                recentCerts.map((cert) => (
+                  <div class="flex items-start gap-3 rounded-xl px-3 py-3 transition-colors hover:border-[var(--color-purple)]/30 hover:bg-white/[0.05]">
+                    <div class="mt-2 h-1.5 w-1.5 bg-[var(--color-green)] rounded-full flex-shrink-0" />
+                    <span class="text-sm lg:text-base leading-relaxed text-[var(--text-use)] text-left break-words text-pretty">
+                      {cert.name}
+                    </span>
+                  </div>
+                ))
+              }
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Conectemos Section -->
+    <div class="mt-20 border-t border-white/10 pt-10">
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {
+          contactInfo.map((contact) => (
+            <div class="group relative flex h-full flex-col items-center overflow-hidden rounded-2xl p-8 text-center transition-all duration-300 hover:border-[var(--color-blue)]/50 hover:bg-[var(--color-card-bg)]">
+              <div
+                class="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-inner"
+                style={`background-color: ${contact.color}20`}
+              >
+                <Image
+                  src={contact.icon as any}
+                  alt={contact.name}
+                  class="w-10 h-10 opacity-90 group-hover:opacity-100 object-contain"
+                  width={40}
+                  height={40}
+                />
+              </div>
+
+              <h4 class="text-xl font-bold text-white mb-2 group-hover:text-[var(--color-blue)] transition-colors">{contact.name}</h4>
+              <p class="text-sm text-gray-400 mb-6">{contact.desc}</p>
+
+              <a
+                href={contact.name === "Email" ? sendMailHref : contact.url}
+                target={contact.name === "Email" ? undefined : "_blank"}
+                rel={contact.name === "Email" ? undefined : "noopener noreferrer"}
+                class:list={["cta contact-cta mt-auto flex items-center gap-2", contact.name === "Email" && "contact-cta--email"]}
+              >
+                {contact.label}
+                <span class="material-symbols-outlined text-sm">{contact.iconSymbol}</span>
+              </a>
+
+              <div class="mt-2 flex min-h-[3.75rem] w-full items-center justify-center">
+                {contact.name === "Email" ? (
+                  <p
+                    class="flex w-full max-w-full items-center justify-center gap-2 rounded-2xl px-3 py-2 text-center cursor-copy break-all text-sm font-medium leading-relaxed text-[var(--text-use)]/70 transition-colors hover:border-[var(--color-red)]/30 hover:text-[var(--color-red)]"
+                    data-email-copy="true"
+                    data-email-address={emailAddress}
+                    data-copied-message={copiedEmailMessage}
+                    data-copy-error-message={emailCopyErrorMessage}
+                    title={lang === "en" ? "Click to copy email" : "Haz clic para copiar el correo"}
+                  >
+                    <span class="material-symbols-outlined shrink-0 text-base text-[var(--color-red)]">content_copy</span>
+                    <span class="min-w-0 break-all">{emailAddress}</span>
+                  </p>
+                ) : (
+                  <span class="sr-only">placeholder</span>
+                )}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
   </div>
 </section>
+
+<style>
+  .contact-cta--email {
+    background: var(--color-red);
+    border-color: color-mix(in srgb, var(--color-red) 45%, transparent);
+    color: white;
+  }
+
+  .contact-cta--email:hover {
+    background: color-mix(in srgb, var(--color-red) 88%, black);
+    border-color: color-mix(in srgb, var(--color-red) 60%, transparent);
+    box-shadow: 0 0 20px color-mix(in srgb, var(--color-red) 28%, transparent);
+  }
+</style>

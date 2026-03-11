@@ -1,6 +1,6 @@
 ---
 import { experienceData } from "@/data/experience";
-import FlipCard from "@/components/ui/FlipCard";
+import ExperienceCard from "@/components/ui/ExperienceCard";
 
 const cookieLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
 const localLang = typeof Astro.locals.lang === "string" ? Astro.locals.lang.toLowerCase() : undefined;
@@ -14,55 +14,50 @@ if (lang === "en") {
 } else {
   experiences = experienceData.ES;
 }
-const nodeIcons = ["🤖", "💼", "💻", "⚙️"];
+
+const introText =
+  lang === "en"
+    ? "A timeline of technical leadership, automation architecture, and engineering execution across enterprise environments."
+    : "Una línea de tiempo de liderazgo técnico, arquitectura de automatización y ejecución de ingeniería en entornos empresariales.";
+
+const activityLabel = lang === "en" ? "Key Contributions" : "Contribuciones Clave";
+const stackLabel = lang === "en" ? "Primary Stack" : "Stack Principal";
 ---
 
-<section id="Experiencia" class="min-h-screen w-full flex flex-col py-10 px-4 md:px-6 lg:px-8">
-  <div class="relative w-full max-w-7xl mx-auto text-[var(--color-green)]">
-    {lang === "en" ? <h2 class="text-4xl font-bold mb-6">XP · Experience</h2> : <h2 class="text-4xl font-bold mb-6">XP · Experiencia</h2>}
-    {/* LÍNEA VERTICAL (Móvil) */}
-    <div class="absolute left-5 top-0 w-[2px] h-full bg-white/20 z-0 md:hidden"></div>
+<section id="Experiencia" class="w-full flex flex-col px-4 py-12 md:px-6 lg:px-8">
+  <div class="w-full max-w-7xl mx-auto text-[#E6EDF3]">
+    <div class="max-w-3xl">
+      {lang === "en" ? <h2 class="text-4xl md:text-5xl font-bold text-[#E6EDF3]">XP · Experience</h2> : <h2 class="text-4xl md:text-5xl font-bold text-[#E6EDF3]">XP · Experiencia</h2>}
+      <p class="mt-4 text-base md:text-lg leading-8 text-[#9FB0C3]">{introText}</p>
+    </div>
 
-    {/* LÍNEA VERTICAL (Desktop centrada) */}
-    <div class="absolute left-1/2 -translate-x-1/2 top-0 w-[2px] h-full bg-white/20 z-0 hidden md:block"></div>
+    <div id="experience-content" data-experience-scroll class="relative mt-10 w-full py-4">
+      <div class="absolute bottom-0 left-[17px] top-0 w-px bg-gradient-to-b from-[#38BDF8]/20 via-[#2A3B5F] to-[#8B5CF6]/20 md:left-1/2 md:-translate-x-1/2"></div>
 
-    <div id="experience-content" data-experience-scroll class="relative z-10 w-full flex flex-col gap-12 py-10">
+      <div class="flex flex-col gap-8 md:gap-10">
       {
         experiences.map((exp, index) => {
-          const isLeft = index % 2 !== 0;
+          const isEven = index % 2 === 0;
 
           return (
-            <div class="group grid grid-cols-[auto_minmax(0,1fr)] md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-start gap-4 md:gap-0 w-full min-w-0">
-              {/* NODO */}
-              <div class="col-start-1 md:col-start-2 row-start-1 relative flex items-center justify-center w-10 md:w-12 h-10 md:h-12">
-                <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white border-2 border-white/30 flex items-center justify-center z-20 group-hover:border-[var(--color-resaltar)] transition-colors shadow-sm">
-                  <span class="text-base md:text-lg">{nodeIcons[index] ?? "•"}</span>
-                </div>
-
-                {/* CONECTOR HORIZONTAL (solo desktop) */}
-                <div
-                  class:list={[
-                    "hidden md:block absolute top-1/2 -translate-y-1/2 h-[2px] bg-white/20 z-10",
-                    isLeft ? "right-1/2 w-8 lg:w-12" : "left-1/2 w-8 lg:w-12",
-                  ]}
-                />
+            <div class="relative grid grid-cols-[34px_minmax(0,1fr)] gap-4 md:grid-cols-[minmax(0,1fr)_88px_minmax(0,1fr)] md:gap-8 items-start">
+              <div class="relative col-start-1 row-start-1 flex justify-center md:col-start-2">
+                <div class="relative z-10 mt-8 h-4 w-4 rounded-full border-4 border-[#0B1120] bg-[#38BDF8] shadow-[0_0_0_6px_rgba(56,189,248,0.12)]"></div>
               </div>
 
-              {/* TARJETA */}
               <div
                 class:list={[
-                  "col-start-2 row-start-1 md:row-start-1 ml-2 md:ml-0 w-full min-w-0",
-                  isLeft
-                    ? "md:col-start-1 md:pr-10 lg:pr-14 md:justify-self-end"
-                    : "md:col-start-3 md:pl-10 lg:pl-14 md:justify-self-start",
+                  "col-start-2 row-start-1 min-w-0",
+                  isEven ? "md:col-start-1 md:pr-4" : "md:col-start-3 md:pl-4",
                 ]}
               >
-                <FlipCard client:load experience={exp} />
+                <ExperienceCard experience={exp} activityLabel={activityLabel} stackLabel={stackLabel} />
               </div>
             </div>
           );
         })
       }
+      </div>
     </div>
   </div>
 </section>

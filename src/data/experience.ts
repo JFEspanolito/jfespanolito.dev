@@ -35,7 +35,12 @@ export const experienceData = {
         "VB.NET",
         "Windows Server",
       ],
-      topskills: ["UiPath Suite (Studio, Orchestrator, Assistant, etc)", "IA - Modelos de Lenguaje", "n8n", "Python"],
+      topskills: [
+        "UiPath Suite (Studio, Orchestrator, Assistant, etc)",
+        "n8n",
+        "Python",
+        "IA, Document Understanding & Modelos de Lenguaje",
+      ],
     },
 
     {
@@ -130,7 +135,12 @@ export const experienceData = {
         "VB.NET",
         "Windows Server",
       ],
-      topskills: ["UiPath Suite (Studio, Orchestrator, Assistant, etc)", "AI & Language Models", "n8n", "Python"],
+      topskills: [
+        "UiPath Suite (Studio, Orchestrator, Assistant, etc)",
+        "n8n",
+        "Python",
+        "IA, Document Understanding & Modelos de Lenguaje",
+      ],
     },
 
     {
