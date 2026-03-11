@@ -20,7 +20,7 @@ const ExperienceCard: React.FC<Props> = ({ experience, activityLabel, stackLabel
   const tags = experience.topskills.slice(0, 10);
 
   return (
-    <article className="group relative overflow-hidden rounded-[28px] border border-[#2A3B5F] bg-[#121A2B] p-6 md:p-7 shadow-[0_20px_50px_rgba(2,6,23,0.32)] transition-all duration-300 hover:-translate-y-1 hover:border-[#38BDF8]/70 hover:shadow-[0_28px_70px_rgba(56,189,248,0.12)]">
+    <article className="group relative overflow-hidden rounded-[28px] border border-[#2A3B5F] bg-[#121A2B] p-6 md:p-7 shadow-[0_20px_50px_rgba(2,6,23,0.32)] transition-all duration-300 hover:-translate-y-1 hover:border-[#38BDF8]/70 hover:[box-shadow:0_28px_70px_color-mix(in_srgb,var(--color-resaltar)_16%,transparent)]">
       <div className="absolute inset-y-5 left-0 w-1 rounded-full bg-gradient-to-b from-[#38BDF8] via-[#8B5CF6] to-transparent" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.12),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(139,92,246,0.10),transparent_28%)] opacity-80 pointer-events-none" />
 

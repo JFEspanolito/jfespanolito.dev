@@ -85,6 +85,25 @@ export const aboutData = {
           },
         ],
       ],
+      education: [
+        {
+          institution: "Platzi",
+          degree: "Ingeniería (Actualización constante de varios temas), Ingeniería Informática (Actualización constante de varios temas)",
+          period: "ene. 2019 – dic. 2026",
+          notes: ["Ver Licencias y Certificados para más detalles sobre cada curso o certificación finalizada en Platzi."],
+        },
+        {
+          institution: "Universidad Autónoma de Guadalajara",
+          degree: "Ingeniería en Sistemas Computacionales, Ingeniería Informática",
+          period: "2008 – 2011",
+          notes: [
+            "Campus Tabasco",
+            "Participé en eventos de desarrollo de videojuegos con Java en NetBeans.",
+            "Asistente y administrador del evento TechDay.",
+            "Participé en campañas de mantenimiento de equipos (laptops, PCs, etc.) de estudiantes, con bajo costo destinado como donación para eventos.",
+          ],
+        },
+      ],
     },
   ],
   EN: [
@@ -123,6 +142,25 @@ export const aboutData = {
             customColor: "",
           },
         ],
+      ],
+      education: [
+        {
+          institution: "Platzi",
+          degree: "Engineering (Continuous update across multiple topics), Computer Engineering (Continuous update across multiple topics)",
+          period: "Jan 2019 – Dec 2026",
+          notes: ["See Licenses and Certifications for more details about each completed course or certification on Platzi."],
+        },
+        {
+          institution: "Universidad Autónoma de Guadalajara",
+          degree: "Computer Systems Engineering, Computer Engineering",
+          period: "2008 – 2011",
+          notes: [
+            "Tabasco Campus",
+            "Participated in game development events using Java in NetBeans.",
+            "Assistant and administrator of the TechDay event.",
+            "Participated in maintenance campaigns for student equipment (laptops, PCs, etc.) at low cost, with proceeds used as donations for events.",
+          ],
+        },
       ],
     },
   ],

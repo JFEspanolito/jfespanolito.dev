@@ -67,9 +67,9 @@ const projectsForModal = projects.map((project) => {
     {
       featuredProject && (
         <article
-          class="group relative w-full overflow-hidden rounded-2xl border border-[#2A3B5F] bg-[#121A2B] mb-8
+          class="project-hover-card group relative w-full overflow-hidden rounded-2xl border border-[#2A3B5F] bg-[#121A2B] mb-8
                transition-all duration-300
-               hover:border-[#38BDF8]/40 hover:shadow-[0_0_40px_rgba(56,189,248,0.08)]"
+            hover:border-[#38BDF8]/40"
         >
           {/* Image + gradient overlay */}
           <div class="relative h-[320px] md:h-[460px] overflow-hidden">
@@ -104,9 +104,9 @@ const projectsForModal = projects.map((project) => {
                     href={featuredVisitLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="inline-flex items-center px-5 py-2.5 rounded-xl bg-[#38BDF8] text-[#0B1120] text-sm font-semibold
+                    class="project-hover-primary inline-flex items-center px-5 py-2.5 rounded-xl bg-[#38BDF8] text-[#0B1120] text-sm font-semibold
                          transition-all duration-200
-                         hover:bg-[#38BDF8]/90 hover:shadow-[0_0_20px_rgba(56,189,248,0.35)]"
+                      hover:bg-[#38BDF8]/90"
                   >
                     {featuredLinks[0]?.label ?? visitLabel}
                   </a>
@@ -137,9 +137,9 @@ const projectsForModal = projects.map((project) => {
 
           return (
             <article
-              class="group flex flex-col overflow-hidden rounded-2xl border border-[#2A3B5F] bg-[#121A2B]
+              class="project-hover-card group flex flex-col overflow-hidden rounded-2xl border border-[#2A3B5F] bg-[#121A2B]
                      transition-all duration-300
-                     hover:border-[#38BDF8]/35 hover:shadow-[0_8px_32px_rgba(56,189,248,0.08)] hover:-translate-y-1"
+                hover:border-[#38BDF8]/35 hover:-translate-y-1"
             >
               {/* Image */}
               <div class="relative h-[180px] overflow-hidden shrink-0">
@@ -300,7 +300,7 @@ const projectsForModal = projects.map((project) => {
       anchor.target = "_blank";
       anchor.rel = "noopener noreferrer";
       anchor.className =
-        "inline-flex items-center px-5 py-2.5 rounded-xl bg-[#38BDF8] text-[#0B1120] text-sm font-semibold transition-all duration-200 hover:bg-[#38BDF8]/90 hover:shadow-[0_0_20px_rgba(56,189,248,0.35)]";
+        "project-hover-primary inline-flex items-center px-5 py-2.5 rounded-xl bg-[#38BDF8] text-[#0B1120] text-sm font-semibold transition-all duration-200 hover:bg-[#38BDF8]/90";
       anchor.textContent = link.label || visitLabel || "Visit";
       actionsEl.appendChild(anchor);
     });
@@ -337,3 +337,13 @@ const projectsForModal = projects.map((project) => {
     if (event.key === "Escape") closeProjectModal();
   });
 </script>
+
+<style>
+  .project-hover-card:hover {
+    box-shadow: 0 8px 32px color-mix(in srgb, var(--color-resaltar) 12%, transparent);
+  }
+
+  .project-hover-primary:hover {
+    box-shadow: 0 0 20px color-mix(in srgb, var(--color-resaltar) 35%, transparent);
+  }
+</style>

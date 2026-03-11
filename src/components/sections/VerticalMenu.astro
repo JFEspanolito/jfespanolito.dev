@@ -40,7 +40,7 @@ const navItems =
   id="vertical-menu"
   class="vertical-menu"
   aria-label="Profile navigation"
-  style={`--menu-hover-bg: url('${bgRight.src}'); --menu-bg: url('${bgLeft.src}')`}
+  style={`--menu-hover-bg: url('${bgRight.src}'); --menu-bg: url('${bgLeft.src}');`}
 >
   <div class="avatar-ring mb-6">
     <Image class="avatar" src={aboutData.avatarUrl} alt={`${aboutData.name} portrait`} loading="lazy" width={120} height={120} />
@@ -205,7 +205,7 @@ const navItems =
   }
 
   .vertical-menu:hover {
-    box-shadow: var(--menu-shadow);
+    box-shadow: 0 28px 70px color-mix(in srgb, var(--color-resaltar) 50%, transparent);
     border: 1px solid rgba(35, 44, 63, 0.08);
   }
 
