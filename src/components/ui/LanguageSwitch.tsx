@@ -6,7 +6,7 @@ interface LanguageSwitchProps {
   initialLang?: Lang;
 }
 
-export default function LanguageSwitch({ initialLang = "es" }: LanguageSwitchProps) {
+export default function LanguageSwitch({ initialLang = "en" }: LanguageSwitchProps) {
   const [lang, setLang] = useState<Lang>(initialLang);
 
   const setLanguage = (next: Lang) => {

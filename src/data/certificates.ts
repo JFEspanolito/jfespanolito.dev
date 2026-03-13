@@ -34,6 +34,13 @@ export const certificatesData = {
 
     // ===== Resto ===== Se ven en el modal.
     {
+      name: "Curso de Optimización de LinkedIn",
+      url: "https://platzi.com/p/jfespanolito/curso/12547-course/diploma/detalle/",
+      img: images["../assets/certificates/certificado-linkedin.webp"].default,
+      resume: "Certificado del curso de Optimización de LinkedIn.",
+      date: "2026-03-03",
+    },
+    {
       name: "Claude Code in Action",
       url: "https://verify.skilljar.com/c/kvkeneaxect8",
       img: images["../assets/certificates/certificate-claude-code-in-action.webp"].default,
@@ -596,6 +603,13 @@ export const certificatesData = {
     },
 
     // ===== Rest ===== Shown in the modal.
+    {
+      name: "LinkedIn Optimization Course",
+      url: "https://platzi.com/p/jfespanolito/curso/12547-course/diploma/detalle/",
+      img: images["../assets/certificates/certificado-linkedin.webp"].default,
+      resume: "Certificate for the LinkedIn Optimization Course.",
+      date: "2026-03-03",
+    },
     {
       name: "Claude Code in Action",
       url: "https://verify.skilljar.com/c/kvkeneaxect8",

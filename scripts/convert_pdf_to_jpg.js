@@ -6,12 +6,16 @@
 // run script with:
 // node scripts/convert_pdf_to_jpg.js
 
-const fs = require('fs');
-const path = require('path');
-const { execSync } = require('child_process');
+import fs from 'node:fs';
+import path from 'node:path';
+import { execSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 
-const pdfDir = path.join(__dirname, '../public/certificates');
-const outputDir = path.join(__dirname, '../public/certificates');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const pdfDir = path.join(__dirname, '../src/assets/certificates');
+const outputDir = path.join(__dirname, '../src/assets/certificates');
 
 if (!fs.existsSync(outputDir)) {
   fs.mkdirSync(outputDir, { recursive: true });

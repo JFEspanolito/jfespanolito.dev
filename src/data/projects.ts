@@ -7,22 +7,18 @@ export const projectsData = {
       title: "Ecos de las Bestias",
       status: "En Desarrollo",
       description:
-        "Plataforma web y sistema de rol táctico-narrativo propio. Los jugadores encarnan a cazadores de la Orden de los Ecos para enfrentar bestias ancestrales. Cuenta con herramientas digitales para creación de personajes, bestiario dinámico y gestión de campañas.",
+        "Sistema de rol táctico-narrativo propio basado en reglas y plataforma web integral. Incluye gestión de personajes, bestiario dinámico y herramientas de campaña, con mecánicas de combate y progresión soportadas por modelos matemáticos para el balance de habilidades.",
       skills: [
+        "Next.js",
         "TypeScript",
-        "Tailwind CSS",
+        "Tailwind",
+        "Diseño de Sistemas",
+        "Diseño de Mecánicas de Juego",
+        "Modelos Matemáticos",
         "Desarrollo Full-Stack",
-        "Diseño de Motores de Reglas",
-        "Diseño de Combate y Progresión",
-        "Balance y Diseño Matemático",
-        "Diseño Narrativo",
-        "Diseño de Juego",
-        "Construcción de Mundos",
-        "Diseño de Criaturas y Lore",
-        "Diseño UX/UI",
-        "Herramientas y Automatización",
+        "Vercel",
       ],
-      topskills: ["Next.js 15", "Diseño de Sistemas"],
+      topskills: ["Next.js", "Diseño de Sistemas"],
       link: [
         {
           url: "https://echoesbeasts.com",
@@ -37,9 +33,9 @@ export const projectsData = {
       title: "Heladería Ocho MX",
       status: "En Desarrollo",
       description:
-        "Portal web para la heladería artesanal Ocho MX. Permite a los clientes explorar el menú, realizar cotizaciones para eventos y conocer la historia de la marca.",
-      skills: ["TypeScript", "Tailwind CSS"],
-      topskills: ["Astro 5"],
+        "Portal web para marca de helados artesanales con arquitectura static-first. Optimizado para rendimiento y SEO, permite la exploración del menú, gestión de marca y solicitudes de cotización para eventos.",
+      skills: ["Astro", "TypeScript", "Tailwind", "Vercel", "Optimización SEO"],
+      topskills: ["Astro"],
       link: [
         {
           url: "https://ochomx-com.vercel.app",
@@ -53,9 +49,10 @@ export const projectsData = {
       id: 3,
       title: "Midrava Art",
       status: "Finalizado",
-      description: "Portafolio personal creado para la artista Midrava Art, enfocado en la exhibición visual de su obra y trayectoria.",
-      skills: ["TypeScript", "Tailwind CSS"],
-      topskills: ["Astro 5"],
+      description:
+        "Sitio web de portafolio para artista digital enfocado en presentación visual, rendimiento y accesibilidad mediante una arquitectura de sitio estático.",
+      skills: ["Astro", "TypeScript", "Tailwind", "Vercel", "Accesibilidad"],
+      topskills: ["Astro"],
       link: [
         {
           url: "https://www.midrava.com/",
@@ -70,9 +67,9 @@ export const projectsData = {
       title: "Veronica Hope 3D",
       status: "Finalizado",
       description:
-        "Sitio web portafolio desarrollado para Veronica Hope 3D, especializado en la muestra de modelos y activos tridimensionales.",
-      skills: ["TypeScript", "Tailwind CSS"],
-      topskills: ["Astro 5"],
+        "Plataforma de portafolio para creadora 3D diseñada para la exhibición de modelos y activos tridimensionales con alto rendimiento y despliegue automatizado.",
+      skills: ["Astro", "TypeScript", "Tailwind", "Vercel", "Optimización de activos"],
+      topskills: ["Astro"],
       link: [
         {
           url: "https://www.veronicahope3d.com/",
@@ -86,29 +83,25 @@ export const projectsData = {
   EN: [
     {
       id: 1,
-      title: "Echoes of Beasts",
+      title: "Echoes of the Beasts",
       status: "In Development",
       description:
-        "Web platform and proprietary tactical-narrative RPG system. Players embody hunters from the Order of Echoes to face ancestral beasts. Features digital tools for character creation, dynamic bestiary, and campaign management.",
+        "Proprietary tactical-narrative RPG system and comprehensive web platform. Includes character management, dynamic bestiary, and campaign tools, featuring combat mechanics and progression supported by mathematical models for skill and encounter balance.",
       skills: [
+        "Next.js",
         "TypeScript",
-        "Tailwind CSS",
+        "Tailwind",
+        "Systems Design",
+        "Game Mechanics Design",
+        "Mathematical Modeling",
         "Full-Stack Development",
-        "Rules Engine Design",
-        "Combat & Progression Design",
-        "Balance & Math Design",
-        "Narrative Design",
-        "Worldbuilding",
-        "Creature & Lore Design",
-        "UX/UI Design",
-        "Game Design",
-        "Tooling & Automation",
+        "Vercel",
       ],
-      topskills: ["Next.js 15", "Systems Design"],
+      topskills: ["Next.js", "Systems Design"],
       link: [
         {
           url: "https://echoesbeasts.com",
-          label: "Visit it",
+          label: "Visit Site",
         },
       ],
       image: images["../assets/projects/ecosbanner.webp"].default,
@@ -119,13 +112,13 @@ export const projectsData = {
       title: "Ocho MX Ice Cream",
       status: "In Development",
       description:
-        "Web portal for the artisanal ice cream shop Ocho MX. Allows customers to explore the menu, request quotes for events, and learn about the brand's history.",
-      skills: ["TypeScript", "Tailwind CSS"],
-      topskills: ["Astro 5", "UX/UI Design"],
+        "Web portal for an artisanal ice cream brand featuring a static-first architecture. Optimized for high performance and SEO, enabling menu exploration, brand management, and event quote requests.",
+      skills: ["Astro", "TypeScript", "Tailwind", "Vercel", "SEO Optimization"],
+      topskills: ["Astro"],
       link: [
         {
           url: "https://ochomx-com.vercel.app",
-          label: "Visit it",
+          label: "Visit Site",
         },
       ],
       image: images["../assets/projects/ochoBanner.webp"].default,
@@ -135,13 +128,14 @@ export const projectsData = {
       id: 3,
       title: "Midrava Art",
       status: "Live",
-      description: "Personal portfolio created for Midrava Art, focused on the visual exhibition of their work and professional journey.",
-      skills: ["TypeScript", "Tailwind CSS"],
-      topskills: ["Astro 5", "UX/UI Design"],
+      description:
+        "Digital artist portfolio website focused on visual showcase, high performance, and accessibility through a static-site architecture.",
+      skills: ["Astro", "TypeScript", "Tailwind", "Vercel", "Web Accessibility"],
+      topskills: ["Astro"],
       link: [
         {
           url: "https://www.midrava.com/",
-          label: "Visit it",
+          label: "Visit Site",
         },
       ],
       image: images["../assets/projects/midrava.webp"].default,
@@ -151,13 +145,14 @@ export const projectsData = {
       id: 4,
       title: "Veronica Hope 3D",
       status: "Live",
-      description: "Portfolio website developed for Veronica Hope 3D, specialized in showcasing 3D models and digital assets.",
-      skills: ["TypeScript", "Tailwind CSS"],
-      topskills: ["Astro 5", "UX/UI Design"],
+      description:
+        "Portfolio platform for 3D creators designed for high-performance showcasing of digital models and assets with automated deployments.",
+      skills: ["Astro", "TypeScript", "Tailwind", "Vercel", "Asset Optimization"],
+      topskills: ["Astro"],
       link: [
         {
           url: "https://www.veronicahope3d.com/",
-          label: "Visit it",
+          label: "Visit Site",
         },
       ],
       image: images["../assets/projects/VeroHope3D.webp"].default,

@@ -23,7 +23,7 @@ const lang: "en" | "es" =
       ? rawLang
       : Astro.url.pathname.startsWith("/en")
         ? "en"
-        : "es";
+        : "en";
 
 if (queryLang === "en" || queryLang === "es") {
   Astro.cookies.set("lang", queryLang, {

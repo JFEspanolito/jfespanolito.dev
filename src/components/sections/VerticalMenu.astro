@@ -9,7 +9,7 @@ const cookieLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
 const localLang = typeof Astro.locals.lang === "string" ? Astro.locals.lang.toLowerCase() : undefined;
 
 const lang: "es" | "en" =
-  cookieLang === "en" || cookieLang === "es" ? cookieLang : Astro.url.pathname.startsWith("/en") ? "en" : localLang === "en" ? "en" : "es";
+  cookieLang === "en" || cookieLang === "es" ? cookieLang : Astro.url.pathname.startsWith("/en") ? "en" : localLang === "es" ? "es" : "en";
 
 let profileInfo = null;
 if (lang === "en") {
@@ -65,8 +65,13 @@ const navItems =
     }
   </nav>
 
-  <a class="cta mt-2" href={lang === "en" ? "/assets/cv/EN_CV_JAFA.pdf" : "/assets/cv/ES_CV_JAFA.pdf"} target="_blank" download>
-    {lang === "en" ? "Download Resume" : "Descargar Resumen"}
+  <a
+    class="cta mt-2"
+    href={lang === "en" ? "/assets/cv/CV_Jorge_Falcon_EN.pdf" : "/assets/cv/CV_Jorge_Falcon_ES.pdf"}
+    target="_blank"
+    download
+  >
+    {lang === "en" ? "Download CV" : "Descargar CV"}
   </a>
 </section>
 
