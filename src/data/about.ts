@@ -22,21 +22,11 @@ export const aboutData = {
     },
     {
       name: "Email",
-      url: "hola@jfespanolito.dev",
+      url: "mailto:hola@jfespanolito.dev",
       icon: socialImg["../assets/logos/mail.svg"].default,
     },
   ],
   social: [
-    // {
-    //   name: "Twitter (x)",
-    //   url: "https://twitter.com/JFEspanolito",
-    //   icon: "twitter",
-    // },
-    // {
-    //   name: "Instagram",
-    //   url: "https://instagram.com/JFEspanolito",
-    //   icon: "instagram",
-    // },
     {
       name: "GitHub",
       url: "https://github.com/JFEspanolito",
@@ -52,34 +42,34 @@ export const aboutData = {
   logoUrl: logo,
   ES: [
     {
-      role: "Líder de Desarrollo RPA",
+      role: "Automation Architect | RPA Technical Lead",
       sc: "ISC",
-      Major: "Ingenieria en Sistemas Computacionales",
+      Major: "Ingeniería en Sistemas Computacionales",
       callToAction: "¡Hablemos de tus procesos!",
-      headline: "Transformo procesos complejos en automatizaciones eficientes.",
+      headline: "Diseño y gobierno arquitecturas de automatización de alto impacto.",
       description: [
         [
           {
-            text: `Desarrollador RPA y Líder Técnico con más de ${yearsOfExperience} años transformando procesos complejos en automatizaciones escalables con UiPath e IA.`,
+            text: `Arquitecto de Automatización e Ingeniero en Sistemas con más de ${yearsOfExperience} años diseñando y escalando soluciones empresariales con UiPath e IA.`,
             bold: true,
             customColor: "var(--color-blue)",
           },
           {
-            text: `Diseño soluciones RPA end-to-end, lidero equipos técnicos y opero Centros de Excelencia (CoE). Más de 35 robots productivos en entornos críticos, optimización operativa a gran escala y +$3MDP anuales en impacto mediante soluciones gobernadas, documentadas y mantenibles.`,
+            text: ` Especialista en la operación de Centros de Excelencia (CoE) y despliegue de robots unattended en entornos críticos. He generado más de $3M MXN anuales mediante la optimización de procesos y automatización gobernada.`,
             bold: false,
             customColor: "",
           },
         ],
         [
           {
-            text: `Especialista en arquitectura RPA, calidad técnica y mejora continua. Experiencia sólida en UiPath, .NET e integración de IA en procesos empresariales.`,
+            text: `Experto en ecosistemas .NET, integración de APIs y adopción de IA (MCP, Prompt Engineering) en flujos de negocio. Mi enfoque prioriza la arquitectura robusta y la mantenibilidad sobre el código rápido.`,
             bold: false,
             customColor: "",
           },
         ],
         [
           {
-            text: `Desarrollo proyectos personales que combinan ingeniería, diseño de sistemas y creatividad (actualmente el juego de rol “Ecos de las Bestias”). Interesado en tecnologías de IA, aprendizaje autodidacta y creación de experiencias lúdicas que fusionan estrategia, storytelling y software.`,
+            text: `En mi faceta "indie", diseño sistemas complejos como "Ecos de las Bestias", fusionando ingeniería, modelos matemáticos de balance y narrativa digital.`,
             bold: false,
             customColor: "",
           },
@@ -88,56 +78,49 @@ export const aboutData = {
       education: [
         {
           institution: "Platzi",
-          degree: "Ingeniería (Actualización constante de varios temas), Ingeniería Informática (Actualización constante de varios temas)",
-          period: "ene. 2019 – dic. 2026",
-          notes: ["Ver Licencias y Certificados para más detalles sobre cada curso o certificación finalizada en Platzi."],
+          degree: "Aprendizaje Continuo en Ingeniería y Tecnología",
+          period: "2022 – Actualidad",
+          notes: ["Especialización en IA, n8n, Prompt Engineering y desarrollo Full-Stack."],
         },
         {
           institution: "Universidad Autónoma de Guadalajara",
-          degree: "Ingeniería en Sistemas Computacionales, Ingeniería Informática",
+          degree: "Ingeniería en Sistemas Computacionales",
           period: "2008 – 2011",
-          notes: [
-            "Campus Tabasco",
-            "Participé en eventos de desarrollo de videojuegos con Java en NetBeans.",
-            "Asistente y administrador del evento TechDay.",
-            "Participé en campañas de mantenimiento de equipos (laptops, PCs, etc.) de estudiantes, con bajo costo destinado como donación para eventos.",
-          ],
+          notes: ["Cédula Profesional: 8259277", "Enfoque en diseño de sistemas y desarrollo de software."],
         },
       ],
     },
   ],
   EN: [
     {
-      name: "Jorge A. Falcón A.",
-      nickname: "JFEspanolito",
-      role: "RPA Development Lead",
+      role: "Automation Architect | RPA Technical Lead",
       sc: "CSE",
       Major: "Computer Systems Engineering",
-      callToAction: "Let's talk about your processes!",
-      headline: "Transforming complex processes into efficient automations.",
+      callToAction: "Let's optimize your business processes!",
+      headline: "Architecting governed automation and high-impact AI solutions.",
       description: [
         [
           {
-            text: `RPA Dev and Technical Lead with over ${yearsOfExperience} years transforming complex processes into scalable automations using UiPath and AI.`,
+            text: `Automation Architect and Systems Engineer with over ${yearsOfExperience} years designing and scaling enterprise solutions using UiPath and AI.`,
             bold: true,
             customColor: "var(--color-blue)",
           },
           {
-            text: `I design end-to-end RPA solutions, lead technical teams, and operate Centers of Excellence (CoE). Over 35 production robots in critical environments, large-scale operational optimization, and +$3M MXN annual impact through governed, documented, and maintainable solutions.`,
+            text: ` Expert in CoE operations and unattended robot deployments in critical environments. I have generated +$3M MXN in annual savings through governed and scalable automation.`,
             bold: false,
             customColor: "",
           },
         ],
         [
           {
-            text: `Specialized in RPA architecture, technical quality, and continuous improvement. Strong experience with UiPath, .NET, and AI integration into enterprise processes.`,
+            text: `Specialized in .NET ecosystems, API integration, and AI implementation (MCP, LLMs) within business workflows. I prioritize SOLID foundations and architectural integrity.`,
             bold: false,
             customColor: "",
           },
         ],
         [
           {
-            text: `I develop personal projects that combine engineering, system design, and creativity (currently the tabletop RPG “Echoes of the Beasts”). Interested in AI technologies, self-directed learning, and crafting playful experiences that merge strategy, storytelling, and software.`,
+            text: `In my indie dev projects, I build complex systems like "Echoes of the Beasts," merging engineering principles with mathematical balancing and digital storytelling.`,
             bold: false,
             customColor: "",
           },
@@ -146,55 +129,35 @@ export const aboutData = {
       education: [
         {
           institution: "Platzi",
-          degree: "Engineering (Continuous update across multiple topics), Computer Engineering (Continuous update across multiple topics)",
-          period: "Jan 2019 – Dec 2026",
-          notes: ["See Licenses and Certifications for more details about each completed course or certification on Platzi."],
+          degree: "Continuous Education in Engineering & Technology",
+          period: "2022 – Present",
+          notes: ["Specialized training in AI, n8n, Prompt Engineering, and Full-Stack development."],
         },
         {
           institution: "Universidad Autónoma de Guadalajara",
-          degree: "Computer Systems Engineering, Computer Engineering",
+          degree: "Computer Systems Engineering",
           period: "2008 – 2011",
-          notes: [
-            "Tabasco Campus",
-            "Participated in game development events using Java in NetBeans.",
-            "Assistant and administrator of the TechDay event.",
-            "Participated in maintenance campaigns for student equipment (laptops, PCs, etc.) at low cost, with proceeds used as donations for events.",
-          ],
+          notes: ["Professional License: 8259277", "Focused on system design and software engineering foundations."],
         },
       ],
     },
   ],
   skillsAndTools: {
     work: {
-      frontend: ["TypeScript", "Tailwind CSS", "Next.js 15", "Astro 5"],
-      backend: ["Python", "FastAPI", ".NET Framework (C#)", "SQL Server"],
-      automate: ["UiPath Suite", "VB.NET", "NLP Automations", "OCR Automations", "Bic Cloud BPM"],
-      tools: [
-        "UiPath Studio",
-        "UiPath Orchestrator",
-        "Git",
-        "Docker",
-        "n8n",
-        "MindManager",
-        "Postman",
-        "Jira",
-        "IIS",
-        "AWS",
-        "Azure App Service",
+      frontend: ["TypeScript", "Tailwind CSS", "Next.js", "Astro"],
+      backend: ["Python", ".NET (C#)", "SQL Server", "REST APIs"],
+      automate: [
+        "UiPath Suite (Full)",
+        "n8n (Professional)",
+        "MCP (Model Context Protocol)",
+        "AI & LLM Integration",
+        "BPM (Bizagi, Bic Cloud)",
       ],
+      tools: ["Orchestrator On-Premise", "Git / GitHub", "Docker", "AWS / Azure", "IIS / Windows Server", "Jira"],
     },
-
     indieGameDev: {
-      gamedesign: [
-        "Diseño de Motores de Reglas",
-        "Diseño de Combate y Progresión",
-        "Balance y Diseño Matemático",
-        "Diseño Narrativo",
-        "Diseño de Juego",
-        "Construcción de Mundos",
-        "Diseño de Criaturas y Lore",
-      ],
-      tools: ["Tabletop Creator Pro", "Dungeon Alchemist"],
+      gamedesign: ["Rules Engine Design", "Combat & Progression Design", "Math Balance Modeling", "Systems Architecture", "Worldbuilding"],
+      tools: ["Next.js", "Vercel", "Tabletop Creator Pro"],
     },
   },
 };

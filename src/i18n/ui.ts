@@ -6,7 +6,7 @@ export const languages = {
   en: "English",
 };
 
-export const defaultLang = "es";
+export const defaultLang = "en";
 
 // 2. Tu diccionario de traducciones (Copiado de tu contexto anterior)
 export const ui = {
