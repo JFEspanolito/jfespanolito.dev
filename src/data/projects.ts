@@ -79,6 +79,23 @@ export const projectsData = {
       image: images["../assets/projects/VeroHope3D.webp"].default,
       imgBgPos: "background-position: 0% 100%; background-size:100% 100%;",
     },
+    {
+      id: 5,
+      title: "Plantacora",
+      status: "Beta",
+      description:
+        "Bitacora de seguimiento de plantas para entusiastas de la jardinería, diseñada para el registro visual y textual del crecimiento de las plantas, con funcionalidades de calendario, recordatorios y análisis de crecimiento.",
+      skills: ["NextJS", "TypeScript", "Tailwind", "Vercel", "Supabase"],
+      topskills: ["NextJS"],
+      link: [
+        {
+          url: "https://www.Plantacora.com/",
+          label: "Visit Site",
+        },
+      ],
+      image: images["../assets/projects/plantacora.webp"].default,
+      imgBgPos: "background-position: 0% 100%; background-size:100% 100%;",
+    },
   ],
   EN: [
     {
@@ -156,6 +173,23 @@ export const projectsData = {
         },
       ],
       image: images["../assets/projects/VeroHope3D.webp"].default,
+      imgBgPos: "background-position: 0% 100%; background-size:100% 100%;",
+    },
+    {
+      id: 5,
+      title: "Plantacora",
+      status: "Beta",
+      description:
+        "Plant tracking log for gardening enthusiasts, designed for visual and textual recording of plant growth, with calendar functionalities, reminders and growth analysis.",
+      skills: ["NextJS", "TypeScript", "Tailwind", "Vercel", "Supabase"],
+      topskills: ["NextJS"],
+      link: [
+        {
+          url: "https://www.Plantacora.com/",
+          label: "Visit Site",
+        },
+      ],
+      image: images["../assets/projects/plantacora.webp"].default,
       imgBgPos: "background-position: 0% 100%; background-size:100% 100%;",
     },
   ],
