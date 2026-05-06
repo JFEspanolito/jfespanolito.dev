@@ -6,17 +6,15 @@
 }
 
 :root {
+  color-scheme: dark;
   scroll-padding-top: 80px;
-  /* Light mode color */
-  --bg-light: #f8fafc;
-  --text-light: #f5f7fa;
 
-  /* Dark mode color */
+  /* Theme Colors (Always Dark) */
   --bg-dark: #1b1f2f;
   --text-dark: #f8fafc;
 
-  --bg-use: var(--bg-light);
-  --text-use: var(--text-light);
+  --bg-use: var(--bg-dark);
+  --text-use: var(--text-dark);
 
   --color-resaltar: #f2c94c;
   --color-purple: #c7bfff;
@@ -33,17 +31,10 @@
   --color-status-green: #22c55e;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-use: var(--bg-dark);
-    --text-use: var(--text-dark);
-  }
-}
-
 body {
   background-color: var(--bg-use);
-  background-image:
-    linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
   color: var(--text-use);
   font-family: var(--font-sans);
