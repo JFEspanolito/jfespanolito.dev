@@ -1,34 +1,7 @@
-import certificateMcpAdvance from "../assets/certificates/certificate-MCP-advance.webp";
-import certificateMcpServer from "../assets/certificates/certificate-MCP-Server.webp";
-import diplomaN8nProfesional from "../assets/certificates/diploma-n8n-profesional.webp";
-import diplomaPromptEngineering from "../assets/certificates/diploma_prompt_engineering.webp";
-
-const certificateThumbnail = certificateMcpAdvance;
-
-const featuredImages = {
-  "../assets/certificates/certificate-MCP-advance.webp": {
-    default: certificateMcpAdvance,
-  },
-  "../assets/certificates/certificate-MCP-Server.webp": {
-    default: certificateMcpServer,
-  },
-  "../assets/certificates/diploma-n8n-profesional.webp": {
-    default: diplomaN8nProfesional,
-  },
-  "../assets/certificates/diploma_prompt_engineering.webp": {
-    default: diplomaPromptEngineering,
-  },
-} satisfies Record<string, { default: ImageMetadata }>;
-
-const images = new Proxy(featuredImages, {
-  get(target, property) {
-    if (typeof property === "string" && property in target) {
-      return target[property as keyof typeof target];
-    }
-
-    return { default: certificateThumbnail };
-  },
-}) as Record<string, { default: ImageMetadata }>;
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/certificates/*.webp",
+  { eager: true },
+);
 
 export const certificatesData = {
   ES: [

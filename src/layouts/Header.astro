@@ -5,7 +5,7 @@ import { configProject as config } from "@/data/configProject";
 import { aboutData as aboutInfo } from "@/data/about";
 import { useTranslations } from "@/i18n/ui";
 import LanguageSwitch from "@/components/ui/LanguageSwitch";
-import Oneko from "@/components/ui/Oneko.astro";
+// import Oneko from "@/components/ui/Oneko.astro";
 import hangingImage from "@/assets/hanging.svg";
 
 const contactLinks = ((aboutInfo as any).contact ?? []) as Array<{
@@ -19,14 +19,26 @@ const socialLinks = ((aboutInfo as any).social ?? []) as Array<{
   icon: any;
 }>;
 const emailContact = contactLinks.find((contact) => contact.name === "Email");
-const emailAddress = emailContact?.url.replace(/^mailto:/, "").split("?")[0] ?? "";
-const iconContactLinks = contactLinks.filter((contact) => contact.name !== "Email");
+const emailAddress =
+  emailContact?.url.replace(/^mailto:/, "").split("?")[0] ?? "";
+const iconContactLinks = contactLinks.filter(
+  (contact) => contact.name !== "Email",
+);
 
 const cookieLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
-const localLang = typeof Astro.locals.lang === "string" ? Astro.locals.lang.toLowerCase() : undefined;
+const localLang =
+  typeof Astro.locals.lang === "string"
+    ? Astro.locals.lang.toLowerCase()
+    : undefined;
 
 const lang: "es" | "en" =
-  cookieLang === "en" || cookieLang === "es" ? cookieLang : Astro.url.pathname.startsWith("/en") ? "en" : localLang === "es" ? "es" : "en";
+  cookieLang === "en" || cookieLang === "es"
+    ? cookieLang
+    : Astro.url.pathname.startsWith("/en")
+      ? "en"
+      : localLang === "es"
+        ? "es"
+        : "en";
 
 const t = useTranslations(lang);
 
@@ -39,7 +51,13 @@ if (lang === "en") {
 
 const navLang = lang === "en" ? "EN" : "ES";
 const navigation = config.navigation[navLang];
-const navItems = [navigation.home, navigation.bio, navigation.experience, navigation.projects, navigation.certificates];
+const navItems = [
+  navigation.home,
+  navigation.bio,
+  navigation.experience,
+  navigation.projects,
+  navigation.certificates,
+];
 const sendMailHref = t("sendMail").replace("<mail>", emailAddress);
 const copiedEmailMessage = t("header.emailCopied");
 const emailCopyErrorMessage = t("header.emailCopyError");
@@ -54,16 +72,32 @@ const copyMailLabel = lang === "en" ? "Copy Mail" : "Copiar correo";
 >
   <div class="container mx-auto max-w-7xl px-4">
     <div class="flex items-center justify-between h-12">
-      <a href="/" class="flex items-center gap-3" title={`${aboutLan.callToAction}`}>
-        <Image src={logoImg} alt={`${config.appName} logo`} class="w-6 h-6" width={24} height={24} loading="eager" decoding="async" />
-        <span class="sm:inline font-semibold text-x text-[var(--color-green)]">{config.appName}</span>
+      <a
+        href="/"
+        class="flex items-center gap-3"
+        title={`${aboutLan.callToAction}`}
+      >
+        <Image
+          src={logoImg}
+          alt={`${config.appName} logo`}
+          class="w-6 h-6"
+          width={24}
+          height={24}
+          loading="eager"
+          decoding="async"
+        />
+        <span class="sm:inline font-semibold text-x text-[var(--color-green)]"
+          >{config.appName}</span
+        >
       </a>
 
-      <div class="ml-auto flex items-center justify-end gap-2">
-        <div class="hidden md:flex h-8 items-center gap-2 border-r border-[var(--color-resaltar)] mr-4 ml-4 pr-4">
+      <div class="ml-auto flex items-center justify-end">
+        <!-- <div class="hidden md:flex h-8 items-center gap-2 border-r border-[var(--color-resaltar)] mr-4 ml-4 pr-4">
           <Oneko client:load />
-        </div>
-        <div class="hidden md:flex h-8 items-center gap-2 border-r border-[var(--color-resaltar)] mr-4 ml-4 pr-4">
+        </div> -->
+        <div
+          class="hidden md:flex h-8 items-center gap-2 border-r border-[var(--color-resaltar)] px-4"
+        >
           <LanguageSwitch client:load initialLang={lang} />
         </div>
 
@@ -75,12 +109,24 @@ const copyMailLabel = lang === "en" ? "Copy Mail" : "Copiar correo";
           aria-controls="mobile-menu-panel"
           aria-label="Abrir menú"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
 
-        <div class="hidden md:flex h-8 items-center gap-2 border-r border-[var(--color-resaltar)] pr-4 mr-4 ml-4">
+        <div
+          class="hidden md:flex h-8 items-center gap-2 border-r border-[var(--color-resaltar)] px-4"
+        >
           {
             iconContactLinks.map((contact) => (
               <a
@@ -107,20 +153,20 @@ const copyMailLabel = lang === "en" ? "Copy Mail" : "Copiar correo";
 
         {
           emailContact && (
-            <div class="group relative hidden lg:flex h-8 items-center border-r border-[var(--color-resaltar)] pr-4 mr-4 ml-4">
+            <div class="group relative hidden lg:flex h-8 items-center border-r border-[var(--color-resaltar)] px-4">
               <button
-                class="flex h-8 items-center gap-3 text-sm text-[var(--text-use)] hover:text-[var(--color-green)] transition-colors"
+                class="flex items-center gap-2 rounded-md p-2 text-sm text-[var(--text-use)] hover:text-[var(--color-green)] transition-colors"
                 type="button"
                 title={emailActionTitle}
                 aria-label={emailActionTitle}
                 aria-haspopup="true"
               >
                 <Image
-                  class="w-6 h-6 flex-shrink-0"
+                  class="w-8 h-8 flex-shrink-0"
                   src={emailContact.icon}
                   alt="Email icon"
-                  width={24}
-                  height={24}
+                  width={32}
+                  height={32}
                   loading="eager"
                   decoding="async"
                 />
@@ -156,7 +202,9 @@ const copyMailLabel = lang === "en" ? "Copy Mail" : "Copiar correo";
           )
         }
 
-        <div class="hidden md:flex h-8 items-center gap-2 border-r border-[var(--color-resaltar)] pr-4 mr-4 ml-4">
+        <div
+          class="hidden md:flex h-8 items-center gap-2 border-r border-[var(--color-resaltar)] px-4"
+        >
           {
             socialLinks.map((contact) => (
               <a
@@ -183,9 +231,18 @@ const copyMailLabel = lang === "en" ? "Copy Mail" : "Copiar correo";
       </div>
     </div>
 
-    <div id="bannerClic" class="absolute hidden md:right-170 top-full mt-2 flex flex-col items-center group">
-      <Image src={hangingImage} alt="Hanging" class="w-16 h-16 md:w-64 md:h-32" />
-      <span class="absolute top-3/5 -translate-y-1/2 text-sm md:text-base font-semibold text-[var(--text-use)]">
+    <div
+      id="bannerClic"
+      class="absolute hidden md:right-170 top-full mt-2 flex flex-col items-center group"
+    >
+      <Image
+        src={hangingImage}
+        alt="Hanging"
+        class="w-16 h-16 md:w-64 md:h-32"
+      />
+      <span
+        class="absolute top-3/5 -translate-y-1/2 text-sm md:text-base font-semibold text-[var(--text-use)]"
+      >
         {lang === "es" ? "Escríbeme" : "Write me"}
       </span>
     </div>
@@ -196,18 +253,27 @@ const copyMailLabel = lang === "en" ? "Copy Mail" : "Copiar correo";
     class="md:hidden hidden border-t border-[var(--color-resaltar)]/20 bg-[var(--bg-dark)]/98 backdrop-blur-md px-4 py-6 shadow-2xl max-h-[calc(100vh-4rem)] overflow-y-auto"
   >
     <nav class="flex flex-col gap-2" aria-label="Mobile navigation">
-      <div class="flex items-center justify-between mb-2 pb-2 border-b border-[var(--color-resaltar)]/10">
-        <span class="text-sm font-medium text-[var(--text-use)]/60">Idioma / Language</span>
+      <div
+        class="flex items-center justify-between mb-2 pb-2 border-b border-[var(--color-resaltar)]/10"
+      >
+        <span class="text-sm font-medium text-[var(--text-use)]/60"
+          >Idioma / Language</span
+        >
         <LanguageSwitch client:load initialLang={lang} />
       </div>
       {
         navItems.map((item) => (
-          <a class="menu-link rounded-md px-3 py-2 text-base text-[var(--text-use)] hover:bg-white/5" href={item.href}>
+          <a
+            class="menu-link rounded-md px-3 py-2 text-base text-[var(--text-use)] hover:bg-white/5"
+            href={item.href}
+          >
             {item.label}
           </a>
         ))
       }
-      <div class="mt-4 pt-4 border-t border-[var(--color-resaltar)]/10 flex flex-wrap gap-4 justify-center">
+      <div
+        class="mt-4 pt-4 border-t border-[var(--color-resaltar)]/10 flex flex-wrap gap-4 justify-center"
+      >
         {
           contactLinks.map((contact) => (
             <a
@@ -218,7 +284,13 @@ const copyMailLabel = lang === "en" ? "Copy Mail" : "Copiar correo";
               rel="noopener noreferrer"
               aria-label={`${contact.name}`}
             >
-              <Image class="w-6 h-6" src={contact.icon} alt={`${contact.name} icon`} width={24} height={24} />
+              <Image
+                class="w-6 h-6"
+                src={contact.icon}
+                alt={`${contact.name} icon`}
+                width={24}
+                height={24}
+              />
             </a>
           ))
         }
@@ -232,20 +304,28 @@ const copyMailLabel = lang === "en" ? "Copy Mail" : "Copiar correo";
               rel="noopener noreferrer"
               aria-label={`${contact.name}`}
             >
-              <Image class="w-6 h-6" src={contact.icon} alt={`${contact.name} icon`} width={24} height={24} />
+              <Image
+                class="w-6 h-6"
+                src={contact.icon}
+                alt={`${contact.name} icon`}
+                width={24}
+                height={24}
+              />
             </a>
           ))
         }
       </div>
     </nav>
   </div>
+
   <script>
     const SILEO_NOTIFICATION_TYPE = {
       SUCCESS: "success",
       ERROR: "error",
     } as const;
 
-    type SileoNotificationType = (typeof SILEO_NOTIFICATION_TYPE)[keyof typeof SILEO_NOTIFICATION_TYPE];
+    type SileoNotificationType =
+      (typeof SILEO_NOTIFICATION_TYPE)[keyof typeof SILEO_NOTIFICATION_TYPE];
 
     async function copyEmailToClipboard(emailAddress: string) {
       if (navigator.clipboard?.writeText) {
@@ -296,7 +376,9 @@ const copyMailLabel = lang === "en" ? "Copy Mail" : "Copiar correo";
             const targetEl = document.getElementById(targetId);
 
             if (targetEl) {
-              const container = document.getElementById("main-scroll-container");
+              const container = document.getElementById(
+                "main-scroll-container",
+              );
 
               if (container) {
                 // Precise scroll using the container
@@ -311,7 +393,9 @@ const copyMailLabel = lang === "en" ? "Copy Mail" : "Copiar correo";
 
               // Reset internal scrollable areas for specific sections
               setTimeout(() => {
-                const internal = targetEl.querySelector(".overflow-y-auto, [data-experience-scroll], #experience-content");
+                const internal = targetEl.querySelector(
+                  ".overflow-y-auto, [data-experience-scroll], #experience-content",
+                );
                 if (internal && internal instanceof HTMLElement) {
                   internal.scrollTo({ top: 0, behavior: "smooth" });
                 }
@@ -333,7 +417,11 @@ const copyMailLabel = lang === "en" ? "Copy Mail" : "Copiar correo";
           const isClickInsideMenu = menuPanel.contains(target);
           const isClickOnButton = menuBtn.contains(target);
 
-          if (!isClickInsideMenu && !isClickOnButton && !menuPanel.classList.contains("hidden")) {
+          if (
+            !isClickInsideMenu &&
+            !isClickOnButton &&
+            !menuPanel.classList.contains("hidden")
+          ) {
             menuPanel.classList.add("hidden");
             menuBtn.setAttribute("aria-expanded", "false");
           }
@@ -345,7 +433,10 @@ const copyMailLabel = lang === "en" ? "Copy Mail" : "Copiar correo";
     initMenu();
     document.addEventListener("astro:page-load", initMenu);
 
-    function showEmailCopiedFeedback(type: SileoNotificationType, message: string) {
+    function showEmailCopiedFeedback(
+      type: SileoNotificationType,
+      message: string,
+    ) {
       document.dispatchEvent(
         new CustomEvent("sileo:notify", {
           detail: {
@@ -353,7 +444,7 @@ const copyMailLabel = lang === "en" ? "Copy Mail" : "Copiar correo";
             title: message,
             description: "",
           },
-        })
+        }),
       );
     }
 
@@ -364,21 +455,37 @@ const copyMailLabel = lang === "en" ? "Copy Mail" : "Copiar correo";
 
       document.addEventListener("click", async (event) => {
         const target = event.target;
-        const targetElement = target instanceof Element ? target : target instanceof Node ? target.parentElement : null;
-        const emailCopyButton = targetElement?.closest("[data-header-email-copy='true']");
+        const targetElement =
+          target instanceof Element
+            ? target
+            : target instanceof Node
+              ? target.parentElement
+              : null;
+        const emailCopyButton = targetElement?.closest(
+          "[data-header-email-copy='true']",
+        );
 
         if (!(emailCopyButton instanceof HTMLButtonElement)) return;
         event.preventDefault();
 
         const emailAddress = emailCopyButton.dataset.emailAddress ?? "";
-        const copiedMessage = emailCopyButton.dataset.copiedMessage ?? "Correo copiado";
-        const copyErrorMessage = emailCopyButton.dataset.copyErrorMessage ?? "No se pudo copiar el correo";
+        const copiedMessage =
+          emailCopyButton.dataset.copiedMessage ?? "Correo copiado";
+        const copyErrorMessage =
+          emailCopyButton.dataset.copyErrorMessage ??
+          "No se pudo copiar el correo";
 
         try {
           await copyEmailToClipboard(emailAddress);
-          showEmailCopiedFeedback(SILEO_NOTIFICATION_TYPE.SUCCESS, copiedMessage);
+          showEmailCopiedFeedback(
+            SILEO_NOTIFICATION_TYPE.SUCCESS,
+            copiedMessage,
+          );
         } catch {
-          showEmailCopiedFeedback(SILEO_NOTIFICATION_TYPE.ERROR, copyErrorMessage);
+          showEmailCopiedFeedback(
+            SILEO_NOTIFICATION_TYPE.ERROR,
+            copyErrorMessage,
+          );
         }
       });
 

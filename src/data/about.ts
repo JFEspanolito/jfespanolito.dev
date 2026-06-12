@@ -1,6 +1,12 @@
 export const yearsOfExperience = new Date().getFullYear() - 2012;
-const images = import.meta.glob<{ default: ImageMetadata }>("../assets/images/*.{jpeg,jpg,png,gif,webp}", { eager: true });
-const socialImg = import.meta.glob<{ default: ImageMetadata }>("../assets/logos/*.svg", { eager: true });
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/images/*.{jpeg,jpg,png,gif,webp}",
+  { eager: true },
+);
+const socialImg = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/logos/*.svg",
+  { eager: true },
+);
 
 import avatar from "../assets/images/JFSelfie.webp";
 import logo from "../assets/images/JFLogo.webp";
@@ -32,11 +38,11 @@ export const aboutData = {
       url: "https://github.com/JFEspanolito",
       icon: socialImg["../assets/logos/github.svg"].default,
     },
-    {
-      name: "Wakatime",
-      url: "https://wakatime.com/@JFEspanolito",
-      icon: socialImg["../assets/logos/wakatime.svg"].default,
-    },
+    // {
+    //   name: "Wakatime",
+    //   url: "https://wakatime.com/@JFEspanolito",
+    //   icon: socialImg["../assets/logos/wakatime.svg"].default,
+    // },
   ],
   avatarUrl: avatar,
   logoUrl: logo,
@@ -46,7 +52,8 @@ export const aboutData = {
       sc: "ISC",
       Major: "Ingeniería en Sistemas Computacionales",
       callToAction: "¡Hablemos de tus procesos!",
-      headline: "Diseño y gobierno arquitecturas de automatización de alto impacto.",
+      headline:
+        "Diseño y gobierno arquitecturas de automatización de alto impacto.",
       description: [
         [
           {
@@ -80,13 +87,18 @@ export const aboutData = {
           institution: "Platzi",
           degree: "Aprendizaje Continuo en Ingeniería y Tecnología",
           period: "2022 – Actualidad",
-          notes: ["Especialización en IA, n8n, Prompt Engineering y desarrollo Full-Stack."],
+          notes: [
+            "Especialización en IA, n8n, Prompt Engineering y desarrollo Full-Stack.",
+          ],
         },
         {
           institution: "Universidad Autónoma de Guadalajara",
           degree: "Ingeniería en Sistemas Computacionales",
           period: "2008 – 2011",
-          notes: ["Cédula Profesional: 8259277", "Enfoque en diseño de sistemas y desarrollo de software."],
+          notes: [
+            "Cédula Profesional: 8259277",
+            "Enfoque en diseño de sistemas y desarrollo de software.",
+          ],
         },
       ],
     },
@@ -97,7 +109,8 @@ export const aboutData = {
       sc: "CSE",
       Major: "Computer Systems Engineering",
       callToAction: "Let's optimize your business processes!",
-      headline: "Architecting governed automation and high-impact AI solutions.",
+      headline:
+        "Architecting governed automation and high-impact AI solutions.",
       description: [
         [
           {
@@ -131,13 +144,18 @@ export const aboutData = {
           institution: "Platzi",
           degree: "Continuous Education in Engineering & Technology",
           period: "2022 – Present",
-          notes: ["Specialized training in AI, n8n, Prompt Engineering, and Full-Stack development."],
+          notes: [
+            "Specialized training in AI, n8n, Prompt Engineering, and Full-Stack development.",
+          ],
         },
         {
           institution: "Universidad Autónoma de Guadalajara",
           degree: "Computer Systems Engineering",
           period: "2008 – 2011",
-          notes: ["Professional License: 8259277", "Focused on system design and software engineering foundations."],
+          notes: [
+            "Professional License: 8259277",
+            "Focused on system design and software engineering foundations.",
+          ],
         },
       ],
     },
@@ -153,10 +171,23 @@ export const aboutData = {
         "AI & LLM Integration",
         "BPM (Bizagi, Bic Cloud)",
       ],
-      tools: ["Orchestrator On-Premise", "Git / GitHub", "Docker", "AWS / Azure", "IIS / Windows Server", "Jira"],
+      tools: [
+        "Orchestrator On-Premise",
+        "Git / GitHub",
+        "Docker",
+        "AWS / Azure",
+        "IIS / Windows Server",
+        "Jira",
+      ],
     },
     indieGameDev: {
-      gamedesign: ["Rules Engine Design", "Combat & Progression Design", "Math Balance Modeling", "Systems Architecture", "Worldbuilding"],
+      gamedesign: [
+        "Rules Engine Design",
+        "Combat & Progression Design",
+        "Math Balance Modeling",
+        "Systems Architecture",
+        "Worldbuilding",
+      ],
       tools: ["Next.js", "Vercel", "Tabletop Creator Pro"],
     },
   },

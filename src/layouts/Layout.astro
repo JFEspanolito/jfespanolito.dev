@@ -52,7 +52,7 @@ const finalTitle = title ? `${title}` : config.appName;
 
   <body class="antialiased bg-[var(--bg-use)] text-[var(--text-use)] h-screen flex flex-col overflow-hidden">
     {/* Componente de notificaciones globales */}
-    <SileoProvider client:load position="top-center" />
+    <SileoProvider client:idle position="top-center" />
 
     <Header />
 
