@@ -44,11 +44,13 @@ const sendMailHref = t("sendMail").replace("<mail>", emailAddress);
 const copiedEmailMessage = t("header.emailCopied");
 const emailCopyErrorMessage = t("header.emailCopyError");
 const emailActionTitle = t("header.emailCopyAndSend");
+const sendMailLabel = lang === "en" ? "Send Mail" : "Enviar correo";
+const copyMailLabel = lang === "en" ? "Copy Mail" : "Copiar correo";
 ---
 
 <header
   id="main-header"
-  class="sticky top-0 z-40 w-full bg-[var(--bg-dark)]/90 backdrop-blur-sm border-b border-[var(--color-resaltar)] text-2xl"
+  class="sticky top-0 z-40 w-full bg-[var(--bg-dark)]/90 backdrop-blur-sm shadow-[0_1px_0_rgba(242,201,76,0.16)] text-2xl"
 >
   <div class="container mx-auto max-w-7xl px-4">
     <div class="flex items-center justify-between h-12">
@@ -105,27 +107,52 @@ const emailActionTitle = t("header.emailCopyAndSend");
 
         {
           emailContact && (
-            <a
-              class="hidden lg:flex h-8 items-center gap-3 border-r border-[var(--color-resaltar)] pr-4 mr-4 ml-4 text-sm text-[var(--text-use)] hover:text-[var(--color-green)] transition-colors"
-              id="header-email-link"
-              data-email-address={emailAddress}
-              data-copied-message={copiedEmailMessage}
-              data-copy-error-message={emailCopyErrorMessage}
-              href={sendMailHref}
-              title={emailActionTitle}
-              aria-label={emailActionTitle}
-            >
-              <Image
-                class="w-6 h-6 flex-shrink-0"
-                src={emailContact.icon}
-                alt="Email icon"
-                width={24}
-                height={24}
-                loading="eager"
-                decoding="async"
-              />
-              <span class="max-w-[220px] truncate">{emailAddress}</span>
-            </a>
+            <div class="group relative hidden lg:flex h-8 items-center border-r border-[var(--color-resaltar)] pr-4 mr-4 ml-4">
+              <button
+                class="flex h-8 items-center gap-3 text-sm text-[var(--text-use)] hover:text-[var(--color-green)] transition-colors"
+                type="button"
+                title={emailActionTitle}
+                aria-label={emailActionTitle}
+                aria-haspopup="true"
+              >
+                <Image
+                  class="w-6 h-6 flex-shrink-0"
+                  src={emailContact.icon}
+                  alt="Email icon"
+                  width={24}
+                  height={24}
+                  loading="eager"
+                  decoding="async"
+                />
+                <span class="max-w-[220px] truncate">{emailAddress}</span>
+              </button>
+
+              <div
+                class="pointer-events-none absolute right-4 top-[calc(100%-1px)] z-50 w-44 translate-y-1 rounded-2xl border border-[var(--color-resaltar)]/30 bg-[var(--bg-dark)]/95 p-2 text-sm opacity-0 shadow-2xl backdrop-blur-md transition-all duration-150 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100"
+                role="menu"
+                aria-label={emailActionTitle}
+              >
+                <a
+                  class="block rounded-xl px-3 py-2 text-[var(--text-use)] transition-colors hover:bg-white/10 hover:text-[var(--color-green)] focus:bg-white/10 focus:text-[var(--color-green)] focus:outline-none"
+                  href={sendMailHref}
+                  role="menuitem"
+                >
+                  {sendMailLabel}
+                </a>
+                <button
+                  id="header-email-copy-button"
+                  class="mt-1 w-full rounded-xl px-3 py-2 text-left text-[var(--text-use)] transition-colors hover:bg-white/10 hover:text-[var(--color-green)] focus:bg-white/10 focus:text-[var(--color-green)] focus:outline-none"
+                  type="button"
+                  role="menuitem"
+                  data-header-email-copy="true"
+                  data-email-address={emailAddress}
+                  data-copied-message={copiedEmailMessage}
+                  data-copy-error-message={emailCopyErrorMessage}
+                >
+                  {copyMailLabel}
+                </button>
+              </div>
+            </div>
           )
         }
 
@@ -213,10 +240,21 @@ const emailActionTitle = t("header.emailCopyAndSend");
     </nav>
   </div>
   <script>
+    const SILEO_NOTIFICATION_TYPE = {
+      SUCCESS: "success",
+      ERROR: "error",
+    } as const;
+
+    type SileoNotificationType = (typeof SILEO_NOTIFICATION_TYPE)[keyof typeof SILEO_NOTIFICATION_TYPE];
+
     async function copyEmailToClipboard(emailAddress: string) {
       if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(emailAddress);
-        return;
+        try {
+          await navigator.clipboard.writeText(emailAddress);
+          return;
+        } catch {
+          // Fall back to the legacy copy path below.
+        }
       }
 
       const input = document.createElement("textarea");
@@ -307,51 +345,48 @@ const emailActionTitle = t("header.emailCopyAndSend");
     initMenu();
     document.addEventListener("astro:page-load", initMenu);
 
-    async function showEmailCopiedFeedback(message: string, fallbackMessage: string) {
-      const { sileo } = await import("sileo");
-      try {
-        sileo.success({
-          title: message,
-          description: "",
-        });
-      } catch {
-        sileo.error({
-          title: fallbackMessage,
-          description: "",
-        });
-      }
+    function showEmailCopiedFeedback(type: SileoNotificationType, message: string) {
+      document.dispatchEvent(
+        new CustomEvent("sileo:notify", {
+          detail: {
+            type,
+            title: message,
+            description: "",
+          },
+        })
+      );
     }
 
-    function initEmailLink() {
-      const emailLink = document.querySelector("#header-email-link");
+    let isEmailCopyListenerAdded = false;
 
-      if (!(emailLink instanceof HTMLAnchorElement) || emailLink.dataset.bound === "true") return;
+    function initEmailCopyButton() {
+      if (isEmailCopyListenerAdded) return;
 
-      emailLink.dataset.bound = "true";
-      emailLink.addEventListener("click", async (event) => {
+      document.addEventListener("click", async (event) => {
+        const target = event.target;
+        const targetElement = target instanceof Element ? target : target instanceof Node ? target.parentElement : null;
+        const emailCopyButton = targetElement?.closest("[data-header-email-copy='true']");
+
+        if (!(emailCopyButton instanceof HTMLButtonElement)) return;
         event.preventDefault();
 
-        const emailAddress = emailLink.dataset.emailAddress ?? "";
-        const copiedMessage = emailLink.dataset.copiedMessage ?? "Correo copiado";
-        const copyErrorMessage = emailLink.dataset.copyErrorMessage ?? "No se pudo copiar el correo";
+        const emailAddress = emailCopyButton.dataset.emailAddress ?? "";
+        const copiedMessage = emailCopyButton.dataset.copiedMessage ?? "Correo copiado";
+        const copyErrorMessage = emailCopyButton.dataset.copyErrorMessage ?? "No se pudo copiar el correo";
 
         try {
           await copyEmailToClipboard(emailAddress);
-          await showEmailCopiedFeedback(copiedMessage, copyErrorMessage);
+          showEmailCopiedFeedback(SILEO_NOTIFICATION_TYPE.SUCCESS, copiedMessage);
         } catch {
-          const { sileo } = await import("sileo");
-          sileo.error({
-            title: copyErrorMessage,
-            description: "",
-          });
-        } finally {
-          window.location.href = emailLink.href;
+          showEmailCopiedFeedback(SILEO_NOTIFICATION_TYPE.ERROR, copyErrorMessage);
         }
       });
+
+      isEmailCopyListenerAdded = true;
     }
 
-    initEmailLink();
-    document.addEventListener("astro:page-load", initEmailLink);
+    initEmailCopyButton();
+    document.addEventListener("astro:page-load", initEmailCopyButton);
 
     function initBanner() {
       const bannerClic = document.querySelector("#bannerClic");

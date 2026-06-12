@@ -277,19 +277,28 @@ const educationIntro =
           const emailAddress = element.dataset.emailAddress ?? "";
           const copiedMessage = element.dataset.copiedMessage ?? "Correo copiado";
           const copyErrorMessage = element.dataset.copyErrorMessage ?? "No se pudo copiar el correo";
-          const { sileo } = await import("sileo");
 
           try {
             await copyEmailToClipboard(emailAddress);
-            sileo.success({
-              title: copiedMessage,
-              description: "",
-            });
+            document.dispatchEvent(
+              new CustomEvent("sileo:notify", {
+                detail: {
+                  type: "success",
+                  title: copiedMessage,
+                  description: "",
+                },
+              })
+            );
           } catch {
-            sileo.error({
-              title: copyErrorMessage,
-              description: "",
-            });
+            document.dispatchEvent(
+              new CustomEvent("sileo:notify", {
+                detail: {
+                  type: "error",
+                  title: copyErrorMessage,
+                  description: "",
+                },
+              })
+            );
           }
         });
       });

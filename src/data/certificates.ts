@@ -6,10 +6,18 @@ import diplomaPromptEngineering from "../assets/certificates/diploma_prompt_engi
 const certificateThumbnail = certificateMcpAdvance;
 
 const featuredImages = {
-  "../assets/certificates/certificate-MCP-advance.webp": { default: certificateMcpAdvance },
-  "../assets/certificates/certificate-MCP-Server.webp": { default: certificateMcpServer },
-  "../assets/certificates/diploma-n8n-profesional.webp": { default: diplomaN8nProfesional },
-  "../assets/certificates/diploma_prompt_engineering.webp": { default: diplomaPromptEngineering },
+  "../assets/certificates/certificate-MCP-advance.webp": {
+    default: certificateMcpAdvance,
+  },
+  "../assets/certificates/certificate-MCP-Server.webp": {
+    default: certificateMcpServer,
+  },
+  "../assets/certificates/diploma-n8n-profesional.webp": {
+    default: diplomaN8nProfesional,
+  },
+  "../assets/certificates/diploma_prompt_engineering.webp": {
+    default: diplomaPromptEngineering,
+  },
 } satisfies Record<string, { default: ImageMetadata }>;
 
 const images = new Proxy(featuredImages, {
@@ -28,7 +36,8 @@ export const certificatesData = {
     {
       name: "Claude Introducción a MCP Advance",
       url: "https://verify.skilljar.com/c/kvkeneaxect8",
-      img: images["../assets/certificates/certificate-MCP-advance.webp"].default,
+      img: images["../assets/certificates/certificate-MCP-advance.webp"]
+        .default,
       resume: "Certificado del curso Claude Introdución a MCP Advance.",
       date: "2026-02-05",
     },
@@ -42,19 +51,29 @@ export const certificatesData = {
     {
       name: "Curso de Workflows Profesionales con n8n",
       url: "https://platzi.com/p/jfespanolito/curso/12250-n8n-profesional/diploma/detalle/ ",
-      img: images["../assets/certificates/diploma-n8n-profesional.webp"].default,
+      img: images["../assets/certificates/diploma-n8n-profesional.webp"]
+        .default,
       resume: "Certificado del Curso de Workflows Profesionales con n8n",
       date: "2026-01-27",
     },
     {
       name: "Curso de Prompt Engineering",
       url: "https://platzi.com/p/jfespanolito/curso/12001-prompt-engineering-2025/diploma/detalle/",
-      img: images["../assets/certificates/diploma_prompt_engineering.webp"].default,
+      img: images["../assets/certificates/diploma_prompt_engineering.webp"]
+        .default,
       resume: "Certificación del curso de Prompt Engineering.",
       date: "2025-07-12",
     },
 
     // ===== Resto ===== Se ven en el modal.
+    {
+      name: "Curso de Supabase",
+      url: "https://platzi.com/p/jfespanolito/curso/12544-course/diploma/detalle/",
+      img: images["../assets/certificates/certificado-linkedin.webp"].default,
+      resume:
+        "Aprende a construir aplicaciones con backend serverless usando Supabase.",
+      date: "2026-06-01",
+    },
     {
       name: "Curso de Optimización de LinkedIn",
       url: "https://platzi.com/p/jfespanolito/curso/12547-course/diploma/detalle/",
@@ -65,7 +84,9 @@ export const certificatesData = {
     {
       name: "Claude Code in Action",
       url: "https://verify.skilljar.com/c/kvkeneaxect8",
-      img: images["../assets/certificates/certificate-claude-code-in-action.webp"].default,
+      img: images[
+        "../assets/certificates/certificate-claude-code-in-action.webp"
+      ].default,
       resume: "Certificado del curso Claude Code in Action.",
       date: "2026-01-27",
     },
@@ -79,7 +100,8 @@ export const certificatesData = {
     {
       name: "Diploma Recibir Feedback",
       url: "https://platzi.com/p/jfespanolito/curso/2482-recibir-feedback/diploma/detalle/",
-      img: images["../assets/certificates/diploma_recibir_feedback.webp"].default,
+      img: images["../assets/certificates/diploma_recibir_feedback.webp"]
+        .default,
       resume: "Certificación sobre cómo recibir feedback.",
       date: "2025-02-01",
     },
@@ -105,7 +127,8 @@ export const certificatesData = {
       img: images[
         "../assets/certificates/pricing_updates_unified_pricing_agent_and_maestro_updates_for_partners_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
       ].default,
-      resume: "Certificación de actualizaciones unificadas de pricing para partners.",
+      resume:
+        "Certificación de actualizaciones unificadas de pricing para partners.",
       date: "2025-09-15",
     },
     {
@@ -114,7 +137,8 @@ export const certificatesData = {
       img: images[
         "../assets/certificates/pricing_and_licensing_updates_for_partners_2025_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
       ].default,
-      resume: "Certificación de actualización de precios y licencias para partners.",
+      resume:
+        "Certificación de actualización de precios y licencias para partners.",
       date: "2025-09-15",
     },
     {
@@ -127,15 +151,17 @@ export const certificatesData = {
     {
       name: "Fundamentos de C# con .NET Core 2.1",
       url: "https://platzi.com/p/jfespanolito/curso/1375-fundamentos-csharp-2/diploma/detalle/",
-      img: images["../assets/certificates/diploma_fundamentos_csharp.webp"].default,
+      img: images["../assets/certificates/diploma_fundamentos_csharp.webp"]
+        .default,
       resume: "Certificación en fundamentos de C# con .NET Core 2.1.",
       date: "2025-07-27",
     },
     {
       name: "Orchestrator for RPA Developers (v2019.4)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/orchestrator_for_rpa_developers_v2019_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"]
-        .default,
+      img: images[
+        "../assets/certificates/orchestrator_for_rpa_developers_v2019_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
       resume: "Certificación en uso de Orchestrator para desarrolladores.",
       date: "2019-07-23",
     },
@@ -156,8 +182,9 @@ export const certificatesData = {
     {
       name: "Email Automation with Studio (v2018.4)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/email_automation_with_studio_v2018_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"]
-        .default,
+      img: images[
+        "../assets/certificates/email_automation_with_studio_v2018_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
       resume: "Certificación en automatización de correos con UiPath Studio.",
       date: "2025-03-27",
     },
@@ -171,45 +198,57 @@ export const certificatesData = {
     {
       name: "Control Flow in Studio (v2021.10)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/control_flow_in_studio_v2021_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"].default,
-      resume: "Certificación en control de flujo para automatizaciones en Studio.",
+      img: images[
+        "../assets/certificates/control_flow_in_studio_v2021_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
+      resume:
+        "Certificación en control de flujo para automatizaciones en Studio.",
       date: "2023-03-30",
     },
     {
       name: "Variables and Arguments in Studio (v2021.10)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/variables_and_arguments_in_studio_v2021_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"]
-        .default,
+      img: images[
+        "../assets/certificates/variables_and_arguments_in_studio_v2021_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
       resume: "Certificado sobre variables y argumentos en UiPath Studio.",
       date: "2023-03-30",
     },
     {
       name: "A Day in the Life of an RPA Developer",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/a_day_in_the_life_of_an_rpa_developer_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"]
-        .default,
+      img: images[
+        "../assets/certificates/a_day_in_the_life_of_an_rpa_developer_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
       resume: "Certificación introductoria al rol de RPA Developer.",
       date: "2023-03-30",
     },
     {
       name: "Build Your First Process (v2021.10)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/build_your_first_process_v2021_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"].default,
+      img: images[
+        "../assets/certificates/build_your_first_process_v2021_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
       resume: "Certificado de creación de tu primer proceso de automatización.",
       date: "2023-03-30",
     },
     {
       name: "Meet the UiPath Platform (v2021.10)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/meet_the_uipath_platform_v2021_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"].default,
+      img: images[
+        "../assets/certificates/meet_the_uipath_platform_v2021_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
       resume: "Certificación de introducción a la plataforma UiPath.",
       date: "2023-03-30",
     },
     {
       name: "Document Understanding (Learning Path)",
       url: "",
-      img: images["../assets/certificates/learningpath_certificate_document_understanding.webp"].default,
-      resume: "Certificado del Learning Path de UiPath enfocado en Document Understanding.",
+      img: images[
+        "../assets/certificates/learningpath_certificate_document_understanding.webp"
+      ].default,
+      resume:
+        "Certificado del Learning Path de UiPath enfocado en Document Understanding.",
       date: "2023-03-29",
     },
     {
@@ -224,72 +263,89 @@ export const certificatesData = {
     {
       name: "Enhanced Selectors (UiPath)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/enhanced_selectors_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"].default,
+      img: images[
+        "../assets/certificates/enhanced_selectors_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
       resume: "Certificación en selectores avanzados en UiPath Studio.",
       date: "2023-06-20",
     },
     {
       name: "Get Started with RPA Development (v2020.10)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/get_started_with_rpa_development_v2020_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"]
-        .default,
-      resume: "Certificado de inicio en desarrollo RPA con UiPath (versión 2020.10).",
+      img: images[
+        "../assets/certificates/get_started_with_rpa_development_v2020_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
+      resume:
+        "Certificado de inicio en desarrollo RPA con UiPath (versión 2020.10).",
       date: "2022-05-13",
     },
     {
       name: "Introduction to RPA and Automation (v2021.10)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/introduction_to_rpa_and_automation_v2021_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"]
-        .default,
+      img: images[
+        "../assets/certificates/introduction_to_rpa_and_automation_v2021_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
       resume: "Certificado introductorio a RPA y automatización con UiPath.",
       date: "2022-05-13",
     },
     {
       name: "Diploma Neurociencia del Feedback",
       url: "https://platzi.com/p/jfespanolito/curso/2481-neurociencia-feedback/diploma/detalle/",
-      img: images["../assets/certificates/diploma_neurociencia_feedback.webp"].default,
+      img: images["../assets/certificates/diploma_neurociencia_feedback.webp"]
+        .default,
       resume: "Certificación sobre neurociencia aplicada al feedback.",
       date: "2022-02-14",
     },
     {
       name: "Diploma Emociones Básicas",
       url: "https://platzi.com/p/jfespanolito/curso/2581-emociones-basicas/diploma/detalle/",
-      img: images["../assets/certificates/diploma_emociones_basicas.webp"].default,
+      img: images["../assets/certificates/diploma_emociones_basicas.webp"]
+        .default,
       resume: "Certificación en manejo y comprensión de emociones básicas.",
       date: "2022-01-05",
     },
     {
       name: "Diploma Networking Efectivo",
       url: "https://platzi.com/p/jfespanolito/curso/2124-networking-efectivo/diploma/detalle/",
-      img: images["../assets/certificates/diploma_networking_efectivo.webp"].default,
+      img: images["../assets/certificates/diploma_networking_efectivo.webp"]
+        .default,
       resume: "Certificado en networking efectivo.",
       date: "2022-01-05",
     },
     {
       name: "Curso de Organización Digital",
       url: "https://platzi.com/p/jfespanolito/curso/2177-organizacion-digital/diploma/detalle/",
-      img: images["../assets/certificates/diploma_organizacion_digital.webp"].default,
+      img: images["../assets/certificates/diploma_organizacion_digital.webp"]
+        .default,
       resume: "Certificación en técnicas de organización digital.",
       date: "2021-08-26",
     },
     {
       name: "UiPath Automation Hub for Citizen Developers (Learning Path)",
       url: "",
-      img: images["../assets/certificates/LearningPath_Certificate_08262021204721830.webp"].default,
-      resume: "Certificado de finalización del Learning Path de UiPath: Automation Hub for Citizen Developers.",
+      img: images[
+        "../assets/certificates/LearningPath_Certificate_08262021204721830.webp"
+      ].default,
+      resume:
+        "Certificado de finalización del Learning Path de UiPath: Automation Hub for Citizen Developers.",
       date: "2021-08-26",
     },
     {
       name: "UiPath Task Mining (Learning Path)",
       url: "",
-      img: images["../assets/certificates/LearningPath_Certificate_08262021214622805.webp"].default,
-      resume: "Certificado de finalización del Learning Path de UiPath: Task Mining.",
+      img: images[
+        "../assets/certificates/LearningPath_Certificate_08262021214622805.webp"
+      ].default,
+      resume:
+        "Certificado de finalización del Learning Path de UiPath: Task Mining.",
       date: "2021-08-26",
     },
     {
       name: "UiPath Insights Product Overview",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/uipath_insights_product_overview_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"].default,
+      img: images[
+        "../assets/certificates/uipath_insights_product_overview_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
       resume: "Certificación de overview del producto UiPath Insights.",
       date: "2021-11-11",
     },
@@ -310,7 +366,8 @@ export const certificatesData = {
     {
       name: "Diploma Comunicación Efectiva para Equipos",
       url: "",
-      img: images["../assets/certificates/diploma_comunicacion_equipos.webp"].default,
+      img: images["../assets/certificates/diploma_comunicacion_equipos.webp"]
+        .default,
       resume: "Certificación en comunicación efectiva para trabajo en equipo.",
       date: "2020-07-07",
     },
@@ -331,7 +388,8 @@ export const certificatesData = {
     {
       name: "Diploma Reclutamiento de Talento",
       url: "https://platzi.com/@jfespanolito/curso/1884-reclutamiento-talento/diploma/detalle/",
-      img: images["../assets/certificates/diploma_reclutamiento_talento.webp"].default,
+      img: images["../assets/certificates/diploma_reclutamiento_talento.webp"]
+        .default,
       resume: "Certificado en procesos de reclutamiento y selección.",
       date: "2020-11-24",
     },
@@ -373,35 +431,41 @@ export const certificatesData = {
     {
       name: "Diploma Diseño de Interfaces",
       url: "https://platzi.com/p/jfespanolito/curso/1493-diseno-interfaz/diploma/detalle/",
-      img: images["../assets/certificates/diploma_diseno_interfaz.webp"].default,
+      img: images["../assets/certificates/diploma_diseno_interfaz.webp"]
+        .default,
       resume: "Certificado en diseño de interfaces.",
       date: "2020-06-26",
     },
     {
       name: "Diploma Contenido para YouTube",
       url: "",
-      img: images["../assets/certificates/diploma_contenido_youtube.webp"].default,
+      img: images["../assets/certificates/diploma_contenido_youtube.webp"]
+        .default,
       resume: "Certificación en creación de contenido para YouTube.",
       date: "2020-06-02",
     },
     {
       name: "Diploma Solución de Problemas",
       url: "https://platzi.com/p/jfespanolito/curso/1890-solucion-problemas/diploma/detalle/",
-      img: images["../assets/certificates/diploma_solucion_problemas.webp"].default,
+      img: images["../assets/certificates/diploma_solucion_problemas.webp"]
+        .default,
       resume: "Certificación en resolución de problemas.",
       date: "2020-04-31",
     },
     {
       name: "Diploma Tecnología para Gerentes",
       url: "https://platzi.com/p/jfespanolito/curso/1882-tecnologia-gerentes/diploma/detalle/",
-      img: images["../assets/certificates/diploma_tecnologia_gerentes.webp"].default,
+      img: images["../assets/certificates/diploma_tecnologia_gerentes.webp"]
+        .default,
       resume: "Certificado en tecnología para gerentes y directores.",
       date: "2020-04-31",
     },
     {
       name: "Diploma Lavarse las Manos Correctamente",
       url: "",
-      img: images["../assets/certificates/diploma_lavarse_manos_correctamente.webp"].default,
+      img: images[
+        "../assets/certificates/diploma_lavarse_manos_correctamente.webp"
+      ].default,
       resume: "Certificación de higiene y lavado correcto de manos.",
       date: "2020-04-02",
     },
@@ -422,14 +486,17 @@ export const certificatesData = {
     {
       name: "Diploma Inteligencia Emocional",
       url: "https://platzi.com/p/jfespanolito/curso/1614-inteligencia-emocional/diploma/detalle/",
-      img: images["../assets/certificates/diploma_inteligencia_emocional.webp"].default,
+      img: images["../assets/certificates/diploma_inteligencia_emocional.webp"]
+        .default,
       resume: "Certificado en inteligencia emocional.",
       date: "2020-04-11",
     },
     {
       name: "Diploma Teletrabajo y Trabajo Remoto",
       url: "https://platzi.com/p/jfespanolito/curso/1872-teletrabajo-trabajo-remoto/diploma/detalle/",
-      img: images["../assets/certificates/diploma_teletrabajo_trabajo_remoto.webp"].default,
+      img: images[
+        "../assets/certificates/diploma_teletrabajo_trabajo_remoto.webp"
+      ].default,
       resume: "Certificado en habilidades y buenas prácticas de teletrabajo.",
       date: "2020-03-23",
     },
@@ -443,7 +510,8 @@ export const certificatesData = {
     {
       name: "Diploma Hablar en Público",
       url: "https://platzi.com/p/jfespanolito/curso/1285-hablar-en-publico/diploma/detalle/",
-      img: images["../assets/certificates/diploma_hablar_en_publico.webp"].default,
+      img: images["../assets/certificates/diploma_hablar_en_publico.webp"]
+        .default,
       resume: "Certificado de oratoria para hablar en público.",
       date: "2020-03-21",
     },
@@ -464,14 +532,17 @@ export const certificatesData = {
     {
       name: "Diploma Programación Básica",
       url: "",
-      img: images["../assets/certificates/diploma_programacion_basica.webp"].default,
+      img: images["../assets/certificates/diploma_programacion_basica.webp"]
+        .default,
       resume: "Certificación en fundamentos de programación.",
       date: "2019-09-21",
     },
     {
       name: "Formación sobre Infraestructuras RPA",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/formacion_sobre_infraestructuras_rpa.webp"].default,
+      img: images[
+        "../assets/certificates/formacion_sobre_infraestructuras_rpa.webp"
+      ].default,
       resume: "Certificado en fundamentos de infraestructuras para RPA.",
       date: "2019-09-19",
     },
@@ -481,78 +552,99 @@ export const certificatesData = {
       img: images[
         "../assets/certificates/variables_arguments_and_control_flow_in_studio_v2019_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
       ].default,
-      resume: "Certificación en variables, argumentos y control de flujo en Studio.",
+      resume:
+        "Certificación en variables, argumentos y control de flujo en Studio.",
       date: "2019-09-12",
     },
     {
       name: "Working with the Recorder (UiPath)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/working_with_the_recorder_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"].default,
+      img: images[
+        "../assets/certificates/working_with_the_recorder_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
       resume: "Certificación en uso del Recorder en UiPath Studio.",
       date: "2019-09-12",
     },
     {
       name: "Curso UiPath sobre Arquitecto de Soluciones",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/curso_uipath_sobre_arquitecto_de_soluciones.webp"].default,
+      img: images[
+        "../assets/certificates/curso_uipath_sobre_arquitecto_de_soluciones.webp"
+      ].default,
       resume: "Certificación orientada a arquitectura de soluciones RPA.",
       date: "2019-09-30",
     },
     {
       name: "Curso sobre Metodología de Implementación de RPA",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/curso_sobre_metodologia_de_implementacion_de_rpa.webp"].default,
-      resume: "Certificación en metodología de implementación de proyectos RPA.",
+      img: images[
+        "../assets/certificates/curso_sobre_metodologia_de_implementacion_de_rpa.webp"
+      ].default,
+      resume:
+        "Certificación en metodología de implementación de proyectos RPA.",
       date: "2019-10-01",
     },
     {
       name: "Nivel 3 Formación Avanzada RPA",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/nivel_3_formacion_avanzada.webp"].default,
+      img: images["../assets/certificates/nivel_3_formacion_avanzada.webp"]
+        .default,
       resume: "Certificación avanzada de desarrollo RPA.",
       date: "2019-08-19",
     },
     {
       name: "Level 2 Orchestrator Training (2018.3)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/level_2_orchestrator_2018_3_training.webp"].default,
-      resume: "Certificado complementario de entrenamiento Orchestrator nivel 2.",
+      img: images[
+        "../assets/certificates/level_2_orchestrator_2018_3_training.webp"
+      ].default,
+      resume:
+        "Certificado complementario de entrenamiento Orchestrator nivel 2.",
       date: "2019-08-12",
     },
     {
       name: "Get Started with RPA Development (v2019.4)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/get_started_with_rpa_development_v2019_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"]
-        .default,
+      img: images[
+        "../assets/certificates/get_started_with_rpa_development_v2019_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
       resume: "Certificado de inicio en desarrollo RPA con UiPath.",
       date: "2019-08-29",
     },
     {
       name: "Nivel 2 Orchestrator (2018.3)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/nivel_2_orchestrator_2018_3_training.webp"].default,
+      img: images[
+        "../assets/certificates/nivel_2_orchestrator_2018_3_training.webp"
+      ].default,
       resume: "Certificación de nivel 2 orientada a Orchestrator (2018.3).",
       date: "2019-07-22",
     },
     {
       name: "UiPath RPA Platform Updates (18.4)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/uipath_rpa_platform_18_4_updates_v_18_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"]
-        .default,
-      resume: "Certificación sobre actualizaciones de la plataforma UiPath 18.4.",
+      img: images[
+        "../assets/certificates/uipath_rpa_platform_18_4_updates_v_18_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
+      resume:
+        "Certificación sobre actualizaciones de la plataforma UiPath 18.4.",
       date: "2019-07-23",
     },
     {
       name: "Nivel 1 Desarrollador RPA - Formación Básica",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/nivel_1_desarrollador_de_rpa_formacion_basica_actualizado.webp"].default,
+      img: images[
+        "../assets/certificates/nivel_1_desarrollador_de_rpa_formacion_basica_actualizado.webp"
+      ].default,
       resume: "Certificación básica de desarrollo RPA.",
       date: "2019-07-12",
     },
     {
       name: "RPA Developer Foundation (UiPath, ESP)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/jfalcon_rpa_developer_foundation_completion_diploma_esp.webp"].default,
+      img: images[
+        "../assets/certificates/jfalcon_rpa_developer_foundation_completion_diploma_esp.webp"
+      ].default,
       resume: "Certificado base para desarrolladores RPA.",
       date: "2019-07-12",
     },
@@ -580,14 +672,16 @@ export const certificatesData = {
     {
       name: "Certificación TRNetwork ASP",
       url: "",
-      img: images["../assets/certificates/certificados_trnetwork_asp.webp"].default,
+      img: images["../assets/certificates/certificados_trnetwork_asp.webp"]
+        .default,
       resume: "Certificación técnica TRNetwork ASP.",
       date: "2012",
     },
     {
       name: "Certificación TRNetwork MCTS",
       url: "",
-      img: images["../assets/certificates/certificados_trnetwork_mcts.webp"].default,
+      img: images["../assets/certificates/certificados_trnetwork_mcts.webp"]
+        .default,
       resume: "Certificación técnica TRNetwork MCTS.",
       date: "2012",
     },
@@ -598,7 +692,8 @@ export const certificatesData = {
     {
       name: "Claude Introduction to MCP Advance",
       url: "https://verify.skilljar.com/c/kvkeneaxect8",
-      img: images["../assets/certificates/certificate-MCP-advance.webp"].default,
+      img: images["../assets/certificates/certificate-MCP-advance.webp"]
+        .default,
       resume: "Certificate for the Claude Introduction to MCP Advance course.",
       date: "2026-02-05",
     },
@@ -612,19 +707,29 @@ export const certificatesData = {
     {
       name: "Professional Workflows Course with n8n",
       url: "https://platzi.com/p/jfespanolito/curso/12250-n8n-profesional/diploma/detalle/ ",
-      img: images["../assets/certificates/diploma-n8n-profesional.webp"].default,
+      img: images["../assets/certificates/diploma-n8n-profesional.webp"]
+        .default,
       resume: "Certificate for the Professional Workflows Course with n8n.",
       date: "2026-01-27",
     },
     {
       name: "Prompt Engineering Course",
       url: "https://platzi.com/p/jfespanolito/curso/12001-prompt-engineering-2025/diploma/detalle/",
-      img: images["../assets/certificates/diploma_prompt_engineering.webp"].default,
+      img: images["../assets/certificates/diploma_prompt_engineering.webp"]
+        .default,
       resume: "Prompt Engineering course certification.",
       date: "2025-07-12",
     },
 
     // ===== Rest ===== Shown in the modal.
+    {
+      name: "Supabase Course",
+      url: "https://platzi.com/p/jfespanolito/curso/12544-course/diploma/detalle/",
+      img: images["../assets/certificates/certificado-linkedin.webp"].default,
+      resume:
+        "Learn how to build serverless backend applications using Supabase.",
+      date: "2026-06-01",
+    },
     {
       name: "LinkedIn Optimization Course",
       url: "https://platzi.com/p/jfespanolito/curso/12547-course/diploma/detalle/",
@@ -635,7 +740,9 @@ export const certificatesData = {
     {
       name: "Claude Code in Action",
       url: "https://verify.skilljar.com/c/kvkeneaxect8",
-      img: images["../assets/certificates/certificate-claude-code-in-action.webp"].default,
+      img: images[
+        "../assets/certificates/certificate-claude-code-in-action.webp"
+      ].default,
       resume: "Certification for Claude Code in Action.",
       date: "2026-01-27",
     },
@@ -649,7 +756,8 @@ export const certificatesData = {
     {
       name: "Receiving Feedback Certificate",
       url: "https://platzi.com/p/jfespanolito/curso/2482-recibir-feedback/diploma/detalle/",
-      img: images["../assets/certificates/diploma_recibir_feedback.webp"].default,
+      img: images["../assets/certificates/diploma_recibir_feedback.webp"]
+        .default,
       resume: "Certification on how to receive feedback effectively.",
       date: "2025-02-01",
     },
@@ -697,15 +805,17 @@ export const certificatesData = {
     {
       name: "C# Fundamentals with .NET Core 2.1",
       url: "https://platzi.com/p/jfespanolito/curso/1375-fundamentos-csharp-2/diploma/detalle/",
-      img: images["../assets/certificates/diploma_fundamentos_csharp.webp"].default,
+      img: images["../assets/certificates/diploma_fundamentos_csharp.webp"]
+        .default,
       resume: "Certification in C# fundamentals with .NET Core 2.1.",
       date: "2025-07-27",
     },
     {
       name: "Orchestrator for RPA Developers (v2019.4)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/orchestrator_for_rpa_developers_v2019_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"]
-        .default,
+      img: images[
+        "../assets/certificates/orchestrator_for_rpa_developers_v2019_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
       resume: "Certification in using UiPath Orchestrator for developers.",
       date: "2019-07-23",
     },
@@ -726,8 +836,9 @@ export const certificatesData = {
     {
       name: "Email Automation with Studio (v2018.4)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/email_automation_with_studio_v2018_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"]
-        .default,
+      img: images[
+        "../assets/certificates/email_automation_with_studio_v2018_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
       resume: "Certification in email automation using UiPath Studio.",
       date: "2025-03-27",
     },
@@ -741,45 +852,56 @@ export const certificatesData = {
     {
       name: "Control Flow in Studio (v2021.10)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/control_flow_in_studio_v2021_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"].default,
+      img: images[
+        "../assets/certificates/control_flow_in_studio_v2021_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
       resume: "Certification in control flow for automations in Studio.",
       date: "2023-03-30",
     },
     {
       name: "Variables and Arguments in Studio (v2021.10)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/variables_and_arguments_in_studio_v2021_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"]
-        .default,
+      img: images[
+        "../assets/certificates/variables_and_arguments_in_studio_v2021_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
       resume: "Certificate on variables and arguments in UiPath Studio.",
       date: "2023-03-30",
     },
     {
       name: "A Day in the Life of an RPA Developer",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/a_day_in_the_life_of_an_rpa_developer_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"]
-        .default,
+      img: images[
+        "../assets/certificates/a_day_in_the_life_of_an_rpa_developer_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
       resume: "Introductory certification to the RPA Developer role.",
       date: "2023-03-30",
     },
     {
       name: "Build Your First Process (v2021.10)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/build_your_first_process_v2021_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"].default,
+      img: images[
+        "../assets/certificates/build_your_first_process_v2021_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
       resume: "Certificate for building your first automation process.",
       date: "2023-03-30",
     },
     {
       name: "Meet the UiPath Platform (v2021.10)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/meet_the_uipath_platform_v2021_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"].default,
+      img: images[
+        "../assets/certificates/meet_the_uipath_platform_v2021_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
       resume: "Introductory certification to the UiPath platform.",
       date: "2023-03-30",
     },
     {
       name: "Document Understanding (Learning Path)",
       url: "",
-      img: images["../assets/certificates/learningpath_certificate_document_understanding.webp"].default,
-      resume: "Completion certificate for the UiPath Document Understanding Learning Path.",
+      img: images[
+        "../assets/certificates/learningpath_certificate_document_understanding.webp"
+      ].default,
+      resume:
+        "Completion certificate for the UiPath Document Understanding Learning Path.",
       date: "2023-03-29",
     },
     {
@@ -794,72 +916,88 @@ export const certificatesData = {
     {
       name: "Enhanced Selectors (UiPath)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/enhanced_selectors_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"].default,
+      img: images[
+        "../assets/certificates/enhanced_selectors_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
       resume: "Certification in advanced selectors in UiPath Studio.",
       date: "2023-06-20",
     },
     {
       name: "Get Started with RPA Development (v2020.10)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/get_started_with_rpa_development_v2020_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"]
-        .default,
-      resume: "Getting started certificate for RPA development with UiPath (v2020.10).",
+      img: images[
+        "../assets/certificates/get_started_with_rpa_development_v2020_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
+      resume:
+        "Getting started certificate for RPA development with UiPath (v2020.10).",
       date: "2022-05-13",
     },
     {
       name: "Introduction to RPA and Automation (v2021.10)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/introduction_to_rpa_and_automation_v2021_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"]
-        .default,
+      img: images[
+        "../assets/certificates/introduction_to_rpa_and_automation_v2021_10_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
       resume: "Introductory certificate to RPA and UiPath automation.",
       date: "2022-05-13",
     },
     {
       name: "Neuroscience of Feedback Diploma",
       url: "https://platzi.com/p/jfespanolito/curso/2481-neurociencia-feedback/diploma/detalle/",
-      img: images["../assets/certificates/diploma_neurociencia_feedback.webp"].default,
+      img: images["../assets/certificates/diploma_neurociencia_feedback.webp"]
+        .default,
       resume: "Certification in neuroscience applied to feedback.",
       date: "2022-02-14",
     },
     {
       name: "Basic Emotions Diploma",
       url: "https://platzi.com/p/jfespanolito/curso/2581-emociones-basicas/diploma/detalle/",
-      img: images["../assets/certificates/diploma_emociones_basicas.webp"].default,
+      img: images["../assets/certificates/diploma_emociones_basicas.webp"]
+        .default,
       resume: "Certification in understanding and managing basic emotions.",
       date: "2022-01-05",
     },
     {
       name: "Effective Networking Diploma",
       url: "https://platzi.com/p/jfespanolito/curso/2124-networking-efectivo/diploma/detalle/",
-      img: images["../assets/certificates/diploma_networking_efectivo.webp"].default,
+      img: images["../assets/certificates/diploma_networking_efectivo.webp"]
+        .default,
       resume: "Certificate in effective networking.",
       date: "2022-01-05",
     },
     {
       name: "Digital Organization Course",
       url: "https://platzi.com/p/jfespanolito/curso/2177-organizacion-digital/diploma/detalle/",
-      img: images["../assets/certificates/diploma_organizacion_digital.webp"].default,
+      img: images["../assets/certificates/diploma_organizacion_digital.webp"]
+        .default,
       resume: "Certification in digital organization techniques.",
       date: "2021-08-26",
     },
     {
       name: "UiPath Automation Hub for Citizen Developers (Learning Path)",
       url: "",
-      img: images["../assets/certificates/LearningPath_Certificate_08262021204721830.webp"].default,
-      resume: "Completion certificate for UiPath Automation Hub for Citizen Developers Learning Path.",
+      img: images[
+        "../assets/certificates/LearningPath_Certificate_08262021204721830.webp"
+      ].default,
+      resume:
+        "Completion certificate for UiPath Automation Hub for Citizen Developers Learning Path.",
       date: "2021-08-26",
     },
     {
       name: "UiPath Task Mining (Learning Path)",
       url: "",
-      img: images["../assets/certificates/LearningPath_Certificate_08262021214622805.webp"].default,
+      img: images[
+        "../assets/certificates/LearningPath_Certificate_08262021214622805.webp"
+      ].default,
       resume: "Completion certificate for UiPath Task Mining Learning Path.",
       date: "2021-08-26",
     },
     {
       name: "UiPath Insights Product Overview",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/uipath_insights_product_overview_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"].default,
+      img: images[
+        "../assets/certificates/uipath_insights_product_overview_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
       resume: "Product overview certification for UiPath Insights.",
       date: "2021-11-11",
     },
@@ -880,7 +1018,8 @@ export const certificatesData = {
     {
       name: "Effective Communication for Teams Diploma",
       url: "",
-      img: images["../assets/certificates/diploma_comunicacion_equipos.webp"].default,
+      img: images["../assets/certificates/diploma_comunicacion_equipos.webp"]
+        .default,
       resume: "Certification in effective communication for teamwork.",
       date: "2020-07-07",
     },
@@ -901,7 +1040,8 @@ export const certificatesData = {
     {
       name: "Talent Recruitment Diploma",
       url: "https://platzi.com/@jfespanolito/curso/1884-reclutamiento-talento/diploma/detalle/",
-      img: images["../assets/certificates/diploma_reclutamiento_talento.webp"].default,
+      img: images["../assets/certificates/diploma_reclutamiento_talento.webp"]
+        .default,
       resume: "Certificate in recruitment and talent selection processes.",
       date: "2020-11-24",
     },
@@ -943,35 +1083,41 @@ export const certificatesData = {
     {
       name: "Interface Design Diploma",
       url: "https://platzi.com/p/jfespanolito/curso/1493-diseno-interfaz/diploma/detalle/",
-      img: images["../assets/certificates/diploma_diseno_interfaz.webp"].default,
+      img: images["../assets/certificates/diploma_diseno_interfaz.webp"]
+        .default,
       resume: "Certificate in interface design.",
       date: "2020-06-26",
     },
     {
       name: "YouTube Content Diploma",
       url: "",
-      img: images["../assets/certificates/diploma_contenido_youtube.webp"].default,
+      img: images["../assets/certificates/diploma_contenido_youtube.webp"]
+        .default,
       resume: "Certification in YouTube content creation.",
       date: "2020-06-02",
     },
     {
       name: "Problem Solving Diploma",
       url: "https://platzi.com/p/jfespanolito/curso/1890-solucion-problemas/diploma/detalle/",
-      img: images["../assets/certificates/diploma_solucion_problemas.webp"].default,
+      img: images["../assets/certificates/diploma_solucion_problemas.webp"]
+        .default,
       resume: "Certification in problem solving.",
       date: "2020-04-31",
     },
     {
       name: "Technology for Managers Diploma",
       url: "https://platzi.com/p/jfespanolito/curso/1882-tecnologia-gerentes/diploma/detalle/",
-      img: images["../assets/certificates/diploma_tecnologia_gerentes.webp"].default,
+      img: images["../assets/certificates/diploma_tecnologia_gerentes.webp"]
+        .default,
       resume: "Certificate in technology for managers and directors.",
       date: "2020-04-31",
     },
     {
       name: "Proper Handwashing Diploma",
       url: "",
-      img: images["../assets/certificates/diploma_lavarse_manos_correctamente.webp"].default,
+      img: images[
+        "../assets/certificates/diploma_lavarse_manos_correctamente.webp"
+      ].default,
       resume: "Hygiene certification for proper hand washing.",
       date: "2020-04-02",
     },
@@ -992,14 +1138,17 @@ export const certificatesData = {
     {
       name: "Emotional Intelligence Diploma",
       url: "https://platzi.com/p/jfespanolito/curso/1614-inteligencia-emocional/diploma/detalle/",
-      img: images["../assets/certificates/diploma_inteligencia_emocional.webp"].default,
+      img: images["../assets/certificates/diploma_inteligencia_emocional.webp"]
+        .default,
       resume: "Certificate in emotional intelligence.",
       date: "2020-04-11",
     },
     {
       name: "Remote Work and Teleworking Diploma",
       url: "https://platzi.com/p/jfespanolito/curso/1872-teletrabajo-trabajo-remoto/diploma/detalle/",
-      img: images["../assets/certificates/diploma_teletrabajo_trabajo_remoto.webp"].default,
+      img: images[
+        "../assets/certificates/diploma_teletrabajo_trabajo_remoto.webp"
+      ].default,
       resume: "Certificate in remote work skills and best practices.",
       date: "2020-03-23",
     },
@@ -1013,7 +1162,8 @@ export const certificatesData = {
     {
       name: "Public Speaking Diploma",
       url: "https://platzi.com/p/jfespanolito/curso/1285-hablar-en-publico/diploma/detalle/",
-      img: images["../assets/certificates/diploma_hablar_en_publico.webp"].default,
+      img: images["../assets/certificates/diploma_hablar_en_publico.webp"]
+        .default,
       resume: "Public speaking course certificate.",
       date: "2020-03-21",
     },
@@ -1034,14 +1184,17 @@ export const certificatesData = {
     {
       name: "Basic Programming Diploma",
       url: "",
-      img: images["../assets/certificates/diploma_programacion_basica.webp"].default,
+      img: images["../assets/certificates/diploma_programacion_basica.webp"]
+        .default,
       resume: "Certification in programming fundamentals.",
       date: "2019-09-21",
     },
     {
       name: "RPA Infrastructure Training",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/formacion_sobre_infraestructuras_rpa.webp"].default,
+      img: images[
+        "../assets/certificates/formacion_sobre_infraestructuras_rpa.webp"
+      ].default,
       resume: "Certificate in RPA infrastructure fundamentals.",
       date: "2019-09-19",
     },
@@ -1051,78 +1204,96 @@ export const certificatesData = {
       img: images[
         "../assets/certificates/variables_arguments_and_control_flow_in_studio_v2019_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
       ].default,
-      resume: "Certification in variables, arguments, and control flow in Studio.",
+      resume:
+        "Certification in variables, arguments, and control flow in Studio.",
       date: "2019-09-12",
     },
     {
       name: "Working with the Recorder (UiPath)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/working_with_the_recorder_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"].default,
+      img: images[
+        "../assets/certificates/working_with_the_recorder_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
       resume: "Certification in using the Recorder in UiPath Studio.",
       date: "2019-09-12",
     },
     {
       name: "UiPath Solution Architect Course",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/curso_uipath_sobre_arquitecto_de_soluciones.webp"].default,
+      img: images[
+        "../assets/certificates/curso_uipath_sobre_arquitecto_de_soluciones.webp"
+      ].default,
       resume: "Certification focused on RPA solution architecture with UiPath.",
       date: "2019-09-30",
     },
     {
       name: "RPA Implementation Methodology Course",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/curso_sobre_metodologia_de_implementacion_de_rpa.webp"].default,
+      img: images[
+        "../assets/certificates/curso_sobre_metodologia_de_implementacion_de_rpa.webp"
+      ].default,
       resume: "Certification in RPA project implementation methodology.",
       date: "2019-10-01",
     },
     {
       name: "Advanced RPA Training Level 3",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/nivel_3_formacion_avanzada.webp"].default,
+      img: images["../assets/certificates/nivel_3_formacion_avanzada.webp"]
+        .default,
       resume: "Advanced RPA development certification.",
       date: "2019-08-19",
     },
     {
       name: "Level 2 Orchestrator Training (2018.3)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/level_2_orchestrator_2018_3_training.webp"].default,
+      img: images[
+        "../assets/certificates/level_2_orchestrator_2018_3_training.webp"
+      ].default,
       resume: "Supplementary Level 2 Orchestrator training certificate.",
       date: "2019-08-12",
     },
     {
       name: "Get Started with RPA Development (v2019.4)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/get_started_with_rpa_development_v2019_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"]
-        .default,
+      img: images[
+        "../assets/certificates/get_started_with_rpa_development_v2019_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
       resume: "Getting started certificate for RPA development with UiPath.",
       date: "2019-08-29",
     },
     {
       name: "Level 2 Orchestrator (2018.3)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/nivel_2_orchestrator_2018_3_training.webp"].default,
+      img: images[
+        "../assets/certificates/nivel_2_orchestrator_2018_3_training.webp"
+      ].default,
       resume: "Level 2 certification focused on Orchestrator (2018.3).",
       date: "2019-07-22",
     },
     {
       name: "UiPath RPA Platform Updates (18.4)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/uipath_rpa_platform_18_4_updates_v_18_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"]
-        .default,
+      img: images[
+        "../assets/certificates/uipath_rpa_platform_18_4_updates_v_18_4_jorge_alejandro_falcon_alvarez_en_us_diploma.webp"
+      ].default,
       resume: "Certification on UiPath RPA Platform 18.4 updates.",
       date: "2019-07-23",
     },
     {
       name: "Level 1 RPA Developer - Basic Training",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/nivel_1_desarrollador_de_rpa_formacion_basica_actualizado.webp"].default,
+      img: images[
+        "../assets/certificates/nivel_1_desarrollador_de_rpa_formacion_basica_actualizado.webp"
+      ].default,
       resume: "Basic RPA development certification.",
       date: "2019-07-12",
     },
     {
       name: "RPA Developer Foundation (UiPath, ESP)",
       url: "https://academy.uipath.com/",
-      img: images["../assets/certificates/jfalcon_rpa_developer_foundation_completion_diploma_esp.webp"].default,
+      img: images[
+        "../assets/certificates/jfalcon_rpa_developer_foundation_completion_diploma_esp.webp"
+      ].default,
       resume: "Foundation certificate for RPA developers in UiPath.",
       date: "2019-07-12",
     },
@@ -1150,14 +1321,16 @@ export const certificatesData = {
     {
       name: "TRNetwork ASP Certification",
       url: "",
-      img: images["../assets/certificates/certificados_trnetwork_asp.webp"].default,
+      img: images["../assets/certificates/certificados_trnetwork_asp.webp"]
+        .default,
       resume: "TRNetwork technical certification (ASP).",
       date: "2012",
     },
     {
       name: "TRNetwork MCTS Certification",
       url: "",
-      img: images["../assets/certificates/certificados_trnetwork_mcts.webp"].default,
+      img: images["../assets/certificates/certificados_trnetwork_mcts.webp"]
+        .default,
       resume: "TRNetwork technical certification (MCTS).",
       date: "2012",
     },
