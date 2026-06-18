@@ -7,6 +7,10 @@ const socialImg = import.meta.glob<{ default: ImageMetadata }>(
   "../assets/logos/*.svg",
   { eager: true },
 );
+const projectImages = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/projects/*.{jpeg,jpg,png,gif,webp}",
+  { eager: true },
+);
 
 import avatar from "../assets/images/JFSelfie.webp";
 import logo from "../assets/images/JFLogo.webp";
@@ -15,6 +19,7 @@ export const aboutData = {
   name: "Jorge A. Falcón A.",
   nickname: "JFEspanolito",
   location: "Ciudad de México, México",
+  domainwebsite: "www.jfespanolito.dev",
   contact: [
     {
       name: "LinkedIn",
@@ -38,14 +43,65 @@ export const aboutData = {
       url: "https://github.com/JFEspanolito",
       icon: socialImg["../assets/logos/github.svg"].default,
     },
-    // {
-    //   name: "Wakatime",
-    //   url: "https://wakatime.com/@JFEspanolito",
-    //   icon: socialImg["../assets/logos/wakatime.svg"].default,
-    // },
   ],
+  linktree: {
+    contact: [
+      {
+        name: "LinkedIn",
+        url: "https://www.linkedin.com/in/jfespanolito",
+        icon: socialImg["../assets/logos/linkedin.svg"].default,
+      },
+      {
+        name: "Telegram",
+        url: "https://t.me/jfespanolito",
+        icon: socialImg["../assets/logos/telegram.svg"].default,
+      },
+      {
+        name: "Email",
+        url: "mailto:hola@jfespanolito.dev",
+        icon: socialImg["../assets/logos/mail.svg"].default,
+      },
+    ],
+    laboralMedia: [
+      {
+        name: "GitHub",
+        url: "https://github.com/JFEspanolito",
+        icon: socialImg["../assets/logos/github.svg"].default,
+      },
+    ],
+    socialMedia: [
+      {
+        name: "Instagram",
+        url: "https://instagram.com/jfespanolito",
+        icon: socialImg["../assets/logos/instagram.svg"].default,
+      },
+    ],
+    projects: [
+      {
+        name: "Echoes of the Beasts",
+        url: "https://echoesbeasts.com",
+        icon: projectImages["../assets/projects/ecosbanner.webp"].default,
+      },
+      {
+        name: "Plantacora",
+        url: "https://plantacora.com",
+        icon: projectImages["../assets/projects/plantacora.webp"].default,
+      },
+    ],
+    supportProjects: [
+      // {
+      //   name: "Ko-Fi",
+      //   url: "https://ko-fi.com/jfespanolito",
+      // },
+      // {
+      //   name: "Patreon",
+      //   url: "https://www.patreon.com/c/jfespanolito",
+      // },
+    ],
+  },
   avatarUrl: avatar,
   logoUrl: logo,
+
   ES: [
     {
       role: "Automation Architect | RPA Technical Lead",

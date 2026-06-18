@@ -1,0 +1,380 @@
+---
+import "@/styles/global.css";
+import { aboutData } from "@/data/about";
+import Meta from "@/layouts/Meta.astro";
+import { Image } from "astro:assets";
+import bgRight from "@/assets/images/bg_right.webp";
+import bgLeft from "@/assets/images/bg_left.webp";
+
+const queryLang = Astro.url.searchParams.get("lang")?.trim().toLowerCase();
+const rawLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
+
+const lang: "en" | "es" =
+  queryLang === "en" || queryLang === "es"
+    ? queryLang
+    : rawLang === "en" || rawLang === "es"
+      ? rawLang
+      : Astro.url.pathname.startsWith("/en")
+        ? "en"
+        : "es";
+
+const localLang = typeof Astro.locals.lang === "string" ? Astro.locals.lang.toLowerCase() : undefined;
+const finalLang: "en" | "es" = lang || (localLang === "en" || localLang === "es" ? localLang : "en");
+
+let profileInfo = finalLang === "en" ? aboutData.EN[0] : aboutData.ES[0];
+
+const linktree = aboutData.linktree || {};
+const projectsList = linktree.projects || linktree.Projects || [];
+const supportList = linktree.supportProjects || linktree.SupportProjects || [];
+const contactList = linktree.contact || linktree.Contact || [];
+const laboralMediaList = linktree.laboralMedia || linktree.LaboralMedia || [];
+const socialMediaList = linktree.socialMedia || linktree.SocialMedia || [];
+
+const t = {
+  backToPortfolio: finalLang === "en" ? "Back to Portfolio" : "Volver al Portafolio",
+  myWebsite: finalLang === "en" ? "My Website" : "Mi Website",
+  projects: finalLang === "en" ? "Featured Projects" : "Proyectos Destacados",
+  supportProjects: finalLang === "en" ? "Support My Projects" : "Apoyar mis proyectos",
+  professional: finalLang === "en" ? "Professional Networks" : "Redes Profesionales",
+  contact: finalLang === "en" ? "Direct Contact" : "Contacto Directo",
+  social: finalLang === "en" ? "Social Media" : "Redes Sociales",
+};
+---
+
+<!doctype html>
+<html lang={finalLang} class="dark" style="color-scheme: dark;">
+  <head>
+    <Meta title={`Linktree | ${aboutData.name}`} />
+  </head>
+  <body class="antialiased bg-[var(--bg-use)] text-[var(--text-use)] min-h-screen flex flex-col justify-between py-8 px-4">
+    <!-- Back to portfolio button -->
+    <div class="max-w-md w-full mx-auto mb-6 flex justify-end">
+      <a href="/" class="back-link flex items-center gap-2 text-sm font-semibold py-2 px-4 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all">
+        <span class="material-symbols-outlined text-sm">arrow_back</span>
+        {t.backToPortfolio}
+      </a>
+    </div>
+
+    <!-- Main Container -->
+    <main class="max-w-md w-full mx-auto flex-1 flex flex-col items-center justify-center">
+      <div class="linktree-card w-full" style={`--menu-hover-bg: url('${bgRight.src}'); --menu-bg: url('${bgLeft.src}');`}>
+        <!-- Profile Header -->
+        <div class="avatar-ring mx-auto mb-4">
+          <Image class="avatar" src={aboutData.avatarUrl} alt={`${aboutData.name} portrait`} width={120} height={120} />
+        </div>
+
+        <div class="text-center mb-8">
+          <h1 class="name mb-2">{aboutData.name}</h1>
+          <p class="role mb-3">{profileInfo.role}</p>
+          <p class="headline text-sm max-w-sm mx-auto opacity-80">{profileInfo.headline}</p>
+        </div>
+
+        <!-- Links Sections -->
+        <div class="flex flex-col gap-6">
+
+          <!-- Main Website -->
+          {aboutData.domainwebsite && (
+            <div class="link-group">
+              <h2 class="group-title">{t.myWebsite}</h2>
+              <a href={`https://${aboutData.domainwebsite}`} target="_blank" class="link-button group flex items-center justify-between p-4 rounded-xl border border-[var(--color-blue)]/30 bg-[var(--color-blue)]/5 hover:bg-[var(--color-blue)]/15 hover:border-[var(--color-blue)]/60 hover:shadow-[0_8px_20px_rgba(96,165,250,0.15)] transition-all duration-300">
+                <div class="flex items-center gap-3">
+                  <span class="material-symbols-outlined text-[var(--color-blue)]">language</span>
+                  <span class="font-bold text-sm text-white group-hover:text-[var(--color-blue)] transition-colors">{aboutData.domainwebsite}</span>
+                </div>
+                <span class="material-symbols-outlined text-[var(--color-blue)]/70 group-hover:text-[var(--color-blue)] transition-colors text-sm">open_in_new</span>
+              </a>
+            </div>
+          )}
+          
+          <!-- Projects Category -->
+          {projectsList.length > 0 && (
+            <div class="link-group">
+              <h2 class="group-title">{t.projects}</h2>
+              <div class="grid gap-3">
+                {projectsList.map((project) => (
+                  <a href={project.url} target="_blank" class="project-card group relative flex items-center p-4 rounded-xl overflow-hidden border border-white/5 bg-[#24293e]/40 hover:border-[var(--color-blue)]/50 transition-all duration-300">
+                    {project.icon && (
+                      <Image src={project.icon} alt={project.name} width={400} height={100} class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-45 transition-opacity duration-300 pointer-events-none" />
+                    )}
+                    <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent z-0"></div>
+                    <div class="relative z-10 flex w-full justify-between items-center">
+                      <div>
+                        <h3 class="text-base font-bold text-white group-hover:text-[var(--color-blue)] transition-colors">{project.name}</h3>
+                        <span class="text-xs text-slate-300 group-hover:text-white transition-colors">{project.url.replace("https://", "")}</span>
+                      </div>
+                      <span class="material-symbols-outlined text-white/50 group-hover:text-white transition-colors">open_in_new</span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Direct Contact -->
+          {contactList.length > 0 && (
+            <div class="link-group">
+              <h2 class="group-title">{t.contact}</h2>
+              <div class="flex flex-col gap-3">
+                {contactList.map((item) => {
+                  let hoverVar = "";
+                  if (item.name.toLowerCase() === "linkedin") hoverVar = "hover:border-[var(--color-linkedin)] hover:text-[var(--color-linkedin)]";
+                  else if (item.name.toLowerCase() === "telegram") hoverVar = "hover:border-[var(--color-telegram)] hover:text-[var(--color-telegram)]";
+                  else if (item.name.toLowerCase() === "email") hoverVar = "hover:border-[var(--color-email)] hover:text-[var(--color-email)]";
+
+                  return (
+                    <a href={item.url} target="_blank" class={`link-button group flex items-center justify-between p-3.5 rounded-xl border border-white/5 bg-[#24293e]/40 hover:bg-[#24293e]/80 ${hoverVar} transition-all duration-300`}>
+                      <div class="flex items-center gap-3">
+                        {item.icon && (
+                          <Image src={item.icon} alt={item.name} width={20} height={20} class="w-5 h-5 object-contain" />
+                        )}
+                        <span class="font-medium text-sm text-white group-hover:text-inherit">{item.name}</span>
+                      </div>
+                      <span class="material-symbols-outlined text-white/30 group-hover:text-inherit text-sm">arrow_forward</span>
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          <!-- Laboral & Social Media -->
+          {(laboralMediaList.length > 0 || socialMediaList.length > 0) && (
+            <div class="link-group">
+              <h2 class="group-title">{t.professional} & {t.social}</h2>
+              <div class="flex flex-col gap-3">
+                {/* Laboral Media */}
+                {laboralMediaList.map((item) => (
+                  <a href={item.url} target="_blank" class="link-button group flex items-center justify-between p-3.5 rounded-xl border border-white/5 bg-[#24293e]/40 hover:bg-[#24293e]/80 hover:border-white/30 transition-all duration-300">
+                    <div class="flex items-center gap-3">
+                      {item.icon && (
+                        <Image src={item.icon} alt={item.name} width={20} height={20} class="w-5 h-5 object-contain" />
+                      )}
+                      <span class="font-medium text-sm text-white">{item.name}</span>
+                    </div>
+                    <span class="material-symbols-outlined text-white/30 group-hover:text-white text-sm">arrow_forward</span>
+                  </a>
+                ))}
+
+                {/* Social Media */}
+                {socialMediaList.map((item) => (
+                  <a href={item.url} target="_blank" class="link-button group flex items-center justify-between p-3.5 rounded-xl border border-white/5 bg-[#24293e]/40 hover:bg-[#24293e]/80 hover:border-pink-500/50 hover:text-pink-400 transition-all duration-300">
+                    <div class="flex items-center gap-3">
+                      {item.icon && (
+                        <Image src={item.icon} alt={item.name} width={20} height={20} class="w-5 h-5 object-contain" />
+                      )}
+                      <span class="font-medium text-sm text-white group-hover:text-inherit">{item.name}</span>
+                    </div>
+                    <span class="material-symbols-outlined text-white/30 group-hover:text-inherit text-sm">arrow_forward</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Support Projects -->
+          {supportList.length > 0 && (
+            <div class="link-group">
+              <h2 class="group-title">{t.supportProjects}</h2>
+              <div class="flex flex-col gap-3">
+                {supportList.map((item) => {
+                  let hoverVar = "";
+                  if (item.name.toLowerCase() === "ko-fi") hoverVar = "hover:border-[#FF5E5B] hover:text-[#FF5E5B]";
+                  else if (item.name.toLowerCase() === "patreon") hoverVar = "hover:border-[#FF424D] hover:text-[#FF424D]";
+
+                  return (
+                    <a href={item.url} target="_blank" class={`link-button group flex items-center justify-between p-3.5 rounded-xl border border-white/5 bg-[#24293e]/40 hover:bg-[#24293e]/80 ${hoverVar} transition-all duration-300`}>
+                      <div class="flex items-center gap-3">
+                        {item.name.toLowerCase() === "ko-fi" && (
+                          <span class="w-5 h-5 text-white group-hover:text-inherit flex items-center justify-center">
+                            <svg class="w-5 h-5 object-contain" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+                              <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+                              <line x1="6" y1="1" x2="6" y2="4" />
+                              <line x1="10" y1="1" x2="10" y2="4" />
+                              <line x1="14" y1="1" x2="14" y2="4" />
+                            </svg>
+                          </span>
+                        )}
+                        {item.name.toLowerCase() === "patreon" && (
+                          <span class="w-5 h-5 text-white group-hover:text-inherit flex items-center justify-center">
+                            <svg class="w-5 h-5 object-contain" viewBox="0 0 24 24" fill="currentColor">
+                              <circle cx="14.5" cy="7.5" r="7.5"/>
+                              <rect x="2" y="0" width="4" height="24"/>
+                            </svg>
+                          </span>
+                        )}
+                        <span class="font-medium text-sm text-white group-hover:text-inherit">{item.name}</span>
+                      </div>
+                      <span class="material-symbols-outlined text-white/30 group-hover:text-inherit text-sm">arrow_forward</span>
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center mt-12 text-xs text-[#9FB0C3]/60">
+      <p>&copy; {new Date().getFullYear()} {aboutData.name}. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Manrope:wght@400;500;600&display=swap");
+
+  .linktree-card {
+    background: radial-gradient(120% 140% at 50% -10%, var(--bg-use) 0%, var(--bg-dark) 62%);
+    border-radius: 28px;
+    padding: 40px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .linktree-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--menu-bg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.16;
+    transition: opacity 0.25s ease;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .linktree-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--menu-hover-bg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .linktree-card:hover {
+    box-shadow: 0 28px 70px color-mix(in srgb, var(--color-resaltar) 50%, transparent);
+    border: 1px solid rgba(35, 44, 63, 0.08);
+  }
+
+  .linktree-card:hover::after {
+    opacity: 0.2;
+  }
+
+  .linktree-card:hover::before {
+    opacity: 0;
+  }
+
+  .linktree-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .avatar-ring {
+    width: 120px;
+    height: 120px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    background: conic-gradient(from 120deg, var(--bg-light, #2a3b5f), var(--bg-dark), var(--bg-use));
+    padding: 6px;
+  }
+
+  .avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 999px;
+    border: 5px solid var(--bg-light, #2a3b5f);
+    box-shadow: 0 10px 18px rgba(26, 34, 49, 0.18);
+    transition: transform 0.3s ease;
+  }
+
+  .avatar:hover {
+    transform: scale(1.05);
+  }
+
+  .name {
+    font-family: "Crimson Text", "Times New Roman", serif;
+    font-size: 28px;
+    color: var(--color-green);
+    font-weight: 600;
+    letter-spacing: 0.4px;
+  }
+
+  .role {
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 16px;
+    color: var(--color-purple);
+    text-transform: uppercase;
+    letter-spacing: 1.6px;
+  }
+
+  .headline {
+    font-family: "Manrope", Arial, sans-serif;
+    color: #cbd5e1; /* Much lighter light grey for high readability */
+    line-height: 1.5;
+  }
+
+  .group-title {
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-purple); /* Purple highlight to clearly contrast and separate sections */
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .project-card {
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .project-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(96, 165, 250, 0.15);
+  }
+
+  .link-button {
+    transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .link-button:hover {
+    transform: translateY(-2px);
+  }
+  
+  .link-button:hover.hover\:border-\[var\(--color-linkedin\)\] {
+    box-shadow: 0 8px 20px rgba(0, 119, 181, 0.15);
+  }
+  .link-button:hover.hover\:border-\[var\(--color-telegram\)\] {
+    box-shadow: 0 8px 20px rgba(0, 136, 204, 0.15);
+  }
+  .link-button:hover.hover\:border-\[var\(--color-email\)\] {
+    box-shadow: 0 8px 20px rgba(234, 67, 53, 0.15);
+  }
+  .link-button:hover.hover\:border-pink-500\/50 {
+    box-shadow: 0 8px 20px rgba(236, 72, 153, 0.15);
+  }
+  .link-button:hover.hover\:border-\[\#FF5E5B\] {
+    box-shadow: 0 8px 20px rgba(255, 94, 91, 0.15);
+  }
+  .link-button:hover.hover\:border-\[\#FF424D\] {
+    box-shadow: 0 8px 20px rgba(255, 66, 77, 0.15);
+  }
+
+  .back-link {
+    font-family: "Manrope", Arial, sans-serif;
+  }
+</style>
