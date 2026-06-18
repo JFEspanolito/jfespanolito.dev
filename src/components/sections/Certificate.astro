@@ -17,10 +17,13 @@ if (lang === "en") {
 
 const featured = certificates?.[0] ?? null;
 const restCertificates = certificates?.slice(1) ?? [];
+const initialRestCertificates = restCertificates.slice(0, 4);
+const deferredRestCertificates = restCertificates.slice(4);
 
 const title = lang === "en" ? "Achievements · Certificates" : "Logros · Certificados";
 const issuerLabel = lang === "en" ? "Issuer" : "Entidad";
 const totalCertLabel = lang === "en" ? "Total Certifications" : "Total Certificaciones";
+const loadRestLabel = lang === "en" ? "Load the rest" : "Cargar el resto";
 
 const totalCertifications = certificates?.length ?? 0;
 
@@ -120,9 +123,9 @@ function issuerFromUrl(url: string) {
 
     {/* Certificados list */}
     <div class="max-h-[34rem] overflow-y-auto no-scrollbar pr-1">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div id="deferred-certificates-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {
-          restCertificates.map((cert) => (
+          initialRestCertificates.map((cert) => (
             <div class="experience-card p-2 rounded-2xl group overflow-hidden">
               <a
                 href={cert.url || "#"}
@@ -131,8 +134,8 @@ function issuerFromUrl(url: string) {
                 class="inline-block max-w-full cursor-pointer align-middle "
               >
                 <div class="flex items-center gap-4 min-w-0 w-full">
-                  <div class="w-12 h-12 rounded-xl bg-[var(--bg-dark)] flex items-center justify-center border border-white/5">
-                    <Image src={cert.img} alt={cert.name} width={48} height={48} class="w-full h-full object-cover" />
+                  <div class="w-16 h-12 shrink-0 rounded-xl bg-[var(--bg-dark)] overflow-hidden border border-white/5">
+                    <Image src={cert.img} alt={cert.name} class="h-full w-full object-cover" width={160} height={96} loading="lazy" />
                   </div>
 
                   <div class="min-w-0 w-full grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-x-4 gap-y-2 items-start">
@@ -148,6 +151,48 @@ function issuerFromUrl(url: string) {
           ))
         }
       </div>
+      {
+        deferredRestCertificates.length > 0 && (
+          <div class="mt-6 flex justify-center">
+            <button
+              id="load-certificates-button"
+              type="button"
+              class="rounded-full border border-[var(--color-resaltar)]/50 px-5 py-3 text-sm font-black uppercase tracking-[0.16em] text-[var(--color-resaltar)] transition-colors hover:bg-[var(--color-resaltar)] hover:text-[var(--bg-dark)]"
+            >
+              {loadRestLabel} ({deferredRestCertificates.length})
+            </button>
+          </div>
+        )
+      }
+    </div>
+
+    <div class="hidden">
+      {
+        deferredRestCertificates.map((cert) => (
+          <div class="experience-card p-2 rounded-2xl group overflow-hidden hidden" data-deferred-certificate>
+            <a
+              href={cert.url || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block max-w-full cursor-pointer align-middle "
+            >
+              <div class="flex items-center gap-4 min-w-0 w-full">
+                <div class="w-16 h-12 shrink-0 rounded-xl bg-[var(--bg-dark)] overflow-hidden border border-white/5">
+                  <Image src={cert.img} alt={cert.name} class="h-full w-full object-cover" width={160} height={96} loading="lazy" />
+                </div>
+
+                <div class="min-w-0 w-full grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-x-4 gap-y-2 items-start">
+                  <div class="min-w-0">
+                    <h4 class="text-lg md:text-xl font-bold text-[var(--color-blue)] group-hover:text-[var(--color-resaltar)] transition-colors truncate">
+                      {cert.name}
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        ))
+      }
     </div>
   </div>
 
@@ -181,6 +226,7 @@ function issuerFromUrl(url: string) {
   const lightbox = document.getElementById("cert-lightbox");
   const lightboxImg = document.getElementById("cert-lightbox-image") as HTMLImageElement | null;
   const closeBtn = document.getElementById("cert-lightbox-close");
+  const loadCertificatesButton = document.getElementById("load-certificates-button");
   const previewButtons = document.querySelectorAll("[data-cert-preview]");
 
   function openLightbox(src: string | null, alt: string | null) {
@@ -206,6 +252,20 @@ function issuerFromUrl(url: string) {
   });
 
   closeBtn?.addEventListener("click", closeLightbox);
+
+  loadCertificatesButton?.addEventListener("click", () => {
+    const grid = document.getElementById("deferred-certificates-grid");
+    const deferredCertificates = document.querySelectorAll("[data-deferred-certificate]");
+
+    if (!(grid instanceof HTMLElement)) return;
+
+    deferredCertificates.forEach((certificate) => {
+      if (!(certificate instanceof HTMLElement)) return;
+      certificate.classList.remove("hidden");
+      grid.append(certificate);
+    });
+    loadCertificatesButton.remove();
+  });
 
   lightbox?.addEventListener("click", (event) => {
     if (event.target === lightbox) closeLightbox();

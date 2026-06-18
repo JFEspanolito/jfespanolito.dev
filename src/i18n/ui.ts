@@ -12,9 +12,9 @@ export const defaultLang = "en";
 export const ui = {
   es: {
     // Header
-    "nav.menu1": "Menú 1",
-    "nav.menu2": "Menú 2",
-    "nav.menu3": "Menú 3",
+    "nav.menu1": "Bio",
+    "nav.menu2": "Experiencia",
+    "nav.menu3": "Proyectos",
     "nav.logIn": "Ingresar",
 
     // Footer
@@ -43,9 +43,9 @@ export const ui = {
   },
   en: {
     // Header
-    "nav.menu1": "Menu 1",
-    "nav.menu2": "Menu 2",
-    "nav.menu3": "Menu 3",
+    "nav.menu1": "Bio",
+    "nav.menu2": "Experience",
+    "nav.menu3": "Projects",
     "nav.logIn": "Log In",
 
     // Footer

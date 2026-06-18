@@ -45,25 +45,25 @@ export const configProject = {
   // 💬 SOPORTE / CONTACTO (público)
   // ======================================================
   support: {
-    email: "correo@placeholder.com",
+    email: "hola@jfespanolito.dev",
   },
 
   // ======================================================
   // ✉️ RESEND (client-side references)
   // ======================================================
   resend: {
-    fromAdmin: "admin@placeholder.com",
-    fromNoReply: "noreply@placeholder.com",
+    fromAdmin: "hola@jfespanolito.dev",
+    fromNoReply: "noreply@jfespanolito.dev",
   },
 
   // ======================================================
   // 📣 MARKETING (placeholders)
   // ======================================================
   marketing: {
-    tagline: "<Astro Place holder>",
+    tagline: "Automation architecture, RPA leadership, and full-stack delivery.",
     testimonials: {
-      headline: "<Astro Place holder>",
-      subhead: "<Astro Place holder>",
+      headline: "Selected professional outcomes",
+      subhead: "Public testimonials will appear here when available.",
       items: [],
     },
   },
