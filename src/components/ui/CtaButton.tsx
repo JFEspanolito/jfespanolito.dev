@@ -150,7 +150,7 @@ export const CtaButton = ({
           {propTitle}
         </h2>
       </div>
-      <audio ref={audioRef} src={audioSrc} preload="auto" />
+      <audio ref={audioRef} src={audioSrc} preload="none" />
     </>
   );
 };

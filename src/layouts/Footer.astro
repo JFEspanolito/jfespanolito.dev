@@ -1,13 +1,29 @@
 ---
-// Importamos la config y componentes necesarios
 import { Image } from "astro:assets";
-import logoImg from "@/assets/images/JFLogo.webp";
 import githubLogo from "@/assets/logos/github.svg";
-import { configProject as configProject } from "@/data/configProject";
+import { configProject } from "@/data/configProject";
 
 const year = new Date().getFullYear();
-const supportEmail = configProject?.support?.email || null;
-const faviconUrl = logoImg;
+
+const cookieLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
+const localLang =
+  typeof Astro.locals.lang === "string"
+    ? Astro.locals.lang.toLowerCase()
+    : undefined;
+
+const lang: "es" | "en" =
+  cookieLang === "en" || cookieLang === "es"
+    ? cookieLang
+    : Astro.url.pathname.startsWith("/en")
+      ? "en"
+      : localLang === "es"
+        ? "es"
+        : "en";
+
+const copyright =
+  lang === "en"
+    ? `© ${year} — The source code for this site is public and may be reviewed and reused. The personal and professional information presented is not authorized for copy or redistribution.`
+    : configProject.copyright;
 ---
 
 <footer
@@ -32,6 +48,6 @@ const faviconUrl = logoImg;
     />
   </a>
   <p class="text-sm md:text-base opacity-80 text-center md:text-right">
-    {configProject.copyright}
+    {copyright}
   </p>
 </footer>
