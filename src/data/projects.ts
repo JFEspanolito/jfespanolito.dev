@@ -34,7 +34,7 @@ export const projectsData = {
     {
       id: 2,
       title: "Plantacora",
-      status: "Beta",
+      status: "Live",
       description:
         "Bitacora de seguimiento de plantas para entusiastas de la jardinería, diseñada para el registro visual y textual del crecimiento de las plantas, con funcionalidades de calendario, recordatorios y análisis de crecimiento.",
       skills: ["NextJS", "TypeScript", "Tailwind", "Vercel", "Supabase"],
@@ -50,6 +50,32 @@ export const projectsData = {
     },
     {
       id: 3,
+      title: "ShardBugs Card Database & Deck Builder",
+      status: "Live",
+      description:
+        "Plataforma fan-made integral para el TCG ShardBugs: catálogo completo de 880+ cartas con filtros por facción, tipo y estadísticas, constructor de mazos con motor de sinergias y combos, tracker de combate para duelos de 2 a 4 jugadores, sistema de temas por alianza, i18n y despliegue automatizado.",
+      skills: [
+        "Astro",
+        "React",
+        "TypeScript",
+        "Tailwind",
+        "nanostores",
+        "Framer Motion",
+        "Three.js",
+        "Vercel",
+      ],
+      topskills: ["Astro", "TypeScript"],
+      link: [
+        {
+          url: "https://shardbugs-fanmade.vercel.app/",
+          label: "Visítala",
+        },
+      ],
+      image: images["../assets/projects/shardbugs.webp"].default,
+      imgBgPos: "background-position: 50% 50%; background-size: 100%;",
+    },
+    {
+      id: 4,
       title: "Heladería Ocho MX",
       status: "En Desarrollo",
       description:
@@ -66,7 +92,7 @@ export const projectsData = {
       imgBgPos: "background-position: 50% 130%;",
     },
     {
-      id: 4,
+      id: 5,
       title: "Veronica Hope 3D",
       status: "Finalizado",
       description:
@@ -89,7 +115,7 @@ export const projectsData = {
       imgBgPos: "background-position: 0% 100%; background-size:100% 100%;",
     },
     {
-      id: 5,
+      id: 6,
       title: "Midrava Art",
       status: "Finalizado",
       description:
@@ -136,7 +162,7 @@ export const projectsData = {
     {
       id: 2,
       title: "Plantacora",
-      status: "Beta",
+      status: "Live",
       description:
         "Plant tracking log for gardening enthusiasts, designed for visual and textual recording of plant growth, with calendar functionalities, reminders and growth analysis.",
       skills: ["NextJS", "TypeScript", "Tailwind", "Vercel", "Supabase"],
@@ -151,7 +177,33 @@ export const projectsData = {
       imgBgPos: "background-position: 0% 100%; background-size:100% 100%;",
     },
     {
-      id: 3,
+      id: 6,
+      title: "ShardBugs Card Database & Deck Builder",
+      status: "Live",
+      description:
+        "All-in-one fan-made platform for the ShardBugs TCG: full catalog of 880+ cards with faction, type and stat filters, deck builder with synergy and combo engine, combat point tracker for 2-4 player duels, alliance-based theme system, i18n, and automated deployment.",
+      skills: [
+        "Astro",
+        "React",
+        "TypeScript",
+        "Tailwind",
+        "nanostores",
+        "Framer Motion",
+        "Three.js",
+        "Vercel",
+      ],
+      topskills: ["Astro", "TypeScript"],
+      link: [
+        {
+          url: "https://shardbugs-fanmade.vercel.app/",
+          label: "Visit Site",
+        },
+      ],
+      image: images["../assets/projects/shardbugs.webp"].default,
+      imgBgPos: "background-position: 50% 50%; background-size: 100%;",
+    },
+    {
+      id: 4,
       title: "Ocho MX Ice Cream",
       status: "In Development",
       description:
@@ -168,7 +220,7 @@ export const projectsData = {
       imgBgPos: "background-position: 50% 130%;",
     },
     {
-      id: 4,
+      id: 5,
       title: "Veronica Hope 3D",
       status: "Live",
       description:
@@ -191,7 +243,7 @@ export const projectsData = {
       imgBgPos: "background-position: 0% 100%; background-size:100% 100%;",
     },
     {
-      id: 5,
+      id: 6,
       title: "Midrava Art",
       status: "Live",
       description:
