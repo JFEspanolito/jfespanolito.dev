@@ -83,6 +83,11 @@ export const aboutData = {
         icon: projectImages["../assets/projects/ecosbanner.webp"].default,
       },
       {
+        name: "Shard Bugs FanMade",
+        url: "https://shardbugs-fanmade.vercel.app",
+        icon: projectImages["../assets/projects/shardbugs.webp"].default,
+      },
+      {
         name: "Plantacora",
         url: "https://plantacora.com",
         icon: projectImages["../assets/projects/plantacora.webp"].default,
