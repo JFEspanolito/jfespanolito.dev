@@ -1,8 +1,5 @@
 export const yearsOfExperience = new Date().getFullYear() - 2012;
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  "../assets/images/*.{jpeg,jpg,png,gif,webp}",
-  { eager: true },
-);
+
 const socialImg = import.meta.glob<{ default: ImageMetadata }>(
   "../assets/logos/*.svg",
   { eager: true },
@@ -30,6 +27,11 @@ export const aboutData = {
       name: "Telegram",
       url: "https://t.me/jfespanolito",
       icon: socialImg["../assets/logos/telegram.svg"].default,
+    },
+    {
+      name: "Whatsapp",
+      url: "https://wa.me/jfespanolito",
+      icon: socialImg["../assets/logos/whatsapp.svg"].default,
     },
     {
       name: "Email",
