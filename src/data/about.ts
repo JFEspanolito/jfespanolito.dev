@@ -57,6 +57,11 @@ export const aboutData = {
         icon: socialImg["../assets/logos/telegram.svg"].default,
       },
       {
+        name: "Whatsapp",
+        url: "https://wa.me/jfespanolito",
+        icon: socialImg["../assets/logos/whatsapp.svg"].default,
+      },
+      {
         name: "Email",
         url: "mailto:hola@jfespanolito.dev",
         icon: socialImg["../assets/logos/mail.svg"].default,
