@@ -46,6 +46,7 @@ export const configProject = {
   // ======================================================
   support: {
     email: "hola@jfespanolito.dev",
+    appsEmail: "apps@jfespanolito.dev",
   },
 
   // ======================================================
@@ -78,6 +79,7 @@ export const configProject = {
       experience: { label: "XP · Experiencia", href: "#Experiencia" },
       projects: { label: "Side Quest · Proyectos", href: "#Proyectos" },
       certificates: { label: "Logros · Certificados", href: "#Certificados" },
+      apps: { label: "Apps", href: "/apps" },
     },
     EN: {
       home: { label: "Home", href: "#Resumen" },
@@ -85,6 +87,7 @@ export const configProject = {
       experience: { label: "XP · Experience", href: "#Experiencia" },
       projects: { label: "Side Quest · Projects", href: "#Proyectos" },
       certificates: { label: "Achievements · Certificates", href: "#Certificados" },
+      apps: { label: "Apps", href: "/apps" },
     },
   },
 };

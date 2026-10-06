@@ -1,0 +1,176 @@
+---
+import "@/styles/global.css";
+import Meta from "@/layouts/Meta.astro";
+import Header from "@/layouts/Header.astro";
+import Footer from "@/layouts/Footer.astro";
+import { configProject as config } from "@/data/configProject";
+
+const queryLang = Astro.url.searchParams.get("lang")?.trim().toLowerCase();
+const rawLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
+
+const lang: "en" | "es" =
+  queryLang === "en" || queryLang === "es"
+    ? queryLang
+    : rawLang === "en" || rawLang === "es"
+      ? rawLang
+      : "en";
+
+Astro.locals.lang = lang;
+const isEs = lang === "es";
+
+const pageTitle = isEs
+  ? "PuckLife Counter | Wear OS Companion para Juegos de Mesa"
+  : "PuckLife Counter | Wear OS Tabletop Life Counter";
+---
+
+<!doctype html>
+<html lang={lang} class="dark" style="color-scheme: dark;">
+  <head>
+    <Meta title={pageTitle} />
+  </head>
+
+  <body class="antialiased bg-[var(--bg-use)] text-[var(--text-use)] min-h-screen flex flex-col justify-between">
+    <Header />
+
+    <main class="flex-1 w-full max-w-4xl mx-auto px-6 py-10 md:py-16">
+      <!-- Hero Section -->
+      <div class="relative rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-b from-white/5 to-transparent p-6 md:p-10 mb-12 shadow-2xl">
+        <div class="flex flex-col md:flex-row items-center gap-8">
+          <img
+            src="/apps/pucklife/icon.png"
+            alt="PuckLife Counter Icon"
+            class="w-28 h-28 md:w-36 md:h-36 rounded-3xl shadow-xl border border-white/10 shrink-0"
+          />
+
+          <div class="flex-1 text-center md:text-left">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/20 mb-3">
+              <span>⌚ Wear OS Smartwatch</span>
+              <span>•</span>
+              <span>Magic: The Gathering & TCGs</span>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-3">
+              PuckLife Counter
+            </h1>
+            <p class="text-gray-300 text-base md:text-lg max-w-xl leading-relaxed">
+              {isEs
+                ? "El contador de vidas definitivo para tu muñeca o centro de mesa. Diseñado para partidas de 1 y 2 jugadores enfrentados, con selector de iniciativa y retroalimentación háptica."
+                : "The ultimate tabletop life counter for your wrist or table center. Built for 1-player and mirrored 2-player matches, featuring initiative dice roll and rich haptics."}
+            </p>
+
+            <div class="mt-6 flex flex-wrap items-center justify-center md:justify-start gap-4">
+              <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 text-gray-200 text-sm font-medium border border-white/10">
+                <span>Google Play Store</span>
+                <span class="text-xs bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/30">
+                  {isEs ? "Prueba Interna" : "Internal Testing"}
+                </span>
+              </span>
+              <a
+                href="/apps/pucklife/privacy"
+                class="text-sm text-sky-400 hover:text-sky-300 transition-colors underline underline-offset-4"
+              >
+                {isEs ? "Política de Privacidad →" : "Privacy Policy →"}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Banner Preview -->
+        <div class="mt-8 rounded-xl overflow-hidden border border-white/10 shadow-lg">
+          <img
+            src="/apps/pucklife/banner.png"
+            alt="PuckLife Counter Preview"
+            class="w-full h-auto object-cover"
+          />
+        </div>
+      </div>
+
+      <!-- Feature Grid -->
+      <div class="mb-14">
+        <h2 class="text-2xl font-bold text-white mb-6 text-center md:text-left">
+          {isEs ? "Características Principales" : "Key Features"}
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- Feature 1 -->
+          <div class="p-5 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
+            <div class="text-2xl mb-2">🔄</div>
+            <h3 class="text-lg font-semibold text-white mb-1">
+              {isEs ? "Modo 2 Jugadores Enfrentados" : "Mirrored 2-Player Mode"}
+            </h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              {isEs
+                ? "Coloca tu reloj en el centro de la mesa. El jugador 2 ve su marcador invertido 180° para una lectura natural frente a frente sin mover el reloj."
+                : "Place your watch in the center of the table. Player 2 views their score mirrored 180° for seamless head-to-head tabletop interaction."}
+            </p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="p-5 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
+            <div class="text-2xl mb-2">🎲</div>
+            <h3 class="text-lg font-semibold text-white mb-1">
+              {isEs ? "Selector de Iniciativa Háptico" : "Haptic Initiative Decider"}
+            </h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              {isEs
+                ? "Tira una moneda o dado virtual con un solo toque. Una ruleta animada con pulsos hápticos desacelerados señala claramente quién inicia la partida."
+                : "Decide who goes first with a single tap. An animated dial with decelerating haptic vibrations points to the starting player."}
+            </p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="p-5 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
+            <div class="text-2xl mb-2">📐</div>
+            <h3 class="text-lg font-semibold text-white mb-1">
+              {isEs ? "Rotación 0° / 90° de Mesa" : "0° / 90° Tabletop Orientation"}
+            </h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              {isEs
+                ? "Alterna la orientación de la pantalla 90° para adaptar la lectura cuando el reloj reposa horizontalmente entre las cartas."
+                : "Rotate the game display 90° to adapt the orientation when resting horizontally alongside playmats and decks."}
+            </p>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="p-5 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
+            <div class="text-2xl mb-2">⚡</div>
+            <h3 class="text-lg font-semibold text-white mb-1">
+              {isEs ? "Protección de Inactividad y Batería" : "Inactivity Protection & Efficiency"}
+            </h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              {isEs
+                ? "Fondo negro puro AMOLED (#000000) para máxima autonomía, y opción de mantener la pantalla activa durante toda la ronda."
+                : "True AMOLED black (#000000) for maximum battery life, plus an optional wake lock toggle to keep the screen on during rounds."}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Specs & Privacy Link -->
+      <div class="rounded-xl border border-white/10 bg-white/[0.02] p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div>
+          <h4 class="text-white font-semibold mb-1">
+            {isEs ? "100% Privado y Sin Conexión" : "100% Private & Offline"}
+          </h4>
+          <p class="text-xs text-gray-400 mb-1">
+            {isEs
+              ? "Sin anuncios, sin rastreadores y sin cuentas. Todos los datos permanecen en tu reloj."
+              : "No ads, no tracking, and no accounts. All match states stay strictly on your device."}
+          </p>
+          <p class="text-xs text-gray-500">
+            <span>{isEs ? "Soporte:" : "Support:"} </span>
+            <a href={`mailto:${config.support.appsEmail}`} class="text-sky-400 hover:underline">
+              {config.support.appsEmail}
+            </a>
+          </p>
+        </div>
+        <a
+          href="/apps/pucklife/privacy"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-black text-sm font-bold transition-all shrink-0"
+        >
+          {isEs ? "Ver Política de Privacidad" : "View Privacy Policy"}
+        </a>
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>

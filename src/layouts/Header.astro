@@ -96,6 +96,18 @@ const copyMailLabel = lang === "en" ? "Copy Mail" : "Copiar correo";
           <Oneko client:load />
         </div> -->
         <div
+          class="hidden md:flex h-8 items-center border-r border-[var(--color-resaltar)] px-4"
+        >
+          <a
+            href="/apps"
+            class="inline-flex items-center text-sm font-medium text-[var(--text-use)] hover:text-[var(--color-green)] transition-colors"
+            title={lang === "en" ? "Explore Apps" : "Ver Apps"}
+          >
+            Apps
+          </a>
+        </div>
+
+        <div
           class="hidden md:flex h-8 items-center gap-2 border-r border-[var(--color-resaltar)] px-4"
         >
           <LanguageSwitch client:load initialLang={lang} />
@@ -203,7 +215,7 @@ const copyMailLabel = lang === "en" ? "Copy Mail" : "Copiar correo";
         }
 
         <div
-          class="hidden md:flex h-8 items-center gap-2 border-r border-[var(--color-resaltar)] px-4"
+          class="hidden md:flex h-8 items-center gap-2 px-4"
         >
           {
             socialLinks.map((contact) => (

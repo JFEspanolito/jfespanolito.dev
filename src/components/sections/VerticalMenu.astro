@@ -63,6 +63,17 @@ const navItems =
         </a>
       ))
     }
+    <a
+      class="menu-link flex items-center gap-2 group"
+      href="/apps"
+    >
+      <div class="active-indicator opacity-0 transition-all duration-300 -translate-x-2">
+        <Image src={alienIcon} alt="Active indicator" width={20} height={20} class="w-5 h-5 pointer-events-none" />
+      </div>
+      <span class="label-text transition-transform duration-300 group-hover:translate-x-1">
+        {lang === "en" ? "Apps & Products" : "Apps & Productos"}
+      </span>
+    </a>
   </nav>
 
   <a
