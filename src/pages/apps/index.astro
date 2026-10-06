@@ -1,0 +1,144 @@
+---
+import "@/styles/global.css";
+import Meta from "@/layouts/Meta.astro";
+import Header from "@/layouts/Header.astro";
+import Footer from "@/layouts/Footer.astro";
+import { configProject as config } from "@/data/configProject";
+
+const queryLang = Astro.url.searchParams.get("lang")?.trim().toLowerCase();
+const rawLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
+
+const lang: "en" | "es" =
+  queryLang === "en" || queryLang === "es"
+    ? queryLang
+    : rawLang === "en" || rawLang === "es"
+      ? rawLang
+      : "en";
+
+Astro.locals.lang = lang;
+const isEs = lang === "es";
+
+const pageTitle = isEs
+  ? "Apps & Productos | JFEspanolito"
+  : "Apps & Products | JFEspanolito";
+
+const appsList = [
+  {
+    id: "pucklife",
+    title: "PuckLife Counter",
+    tagline: isEs
+      ? "Contador de vidas para juegos de mesa y TCGs con modo 2P espejo y respuesta háptica."
+      : "Tabletop life and turn counter for TCGs with mirrored 2-player mode and rich haptics.",
+    platform: "Wear OS",
+    category: isEs ? "Utilidad / TCG Companion" : "Utility / TCG Companion",
+    status: isEs ? "En prueba interna (Google Play)" : "Internal Testing (Google Play)",
+    icon: "/apps/pucklife/icon.png",
+    href: "/apps/pucklife",
+    privacyHref: "/apps/pucklife/privacy",
+    tags: ["Wear OS", "Jetpack Compose", "Kotlin", "Clean Architecture"],
+  },
+];
+---
+
+<!doctype html>
+<html lang={lang} class="dark" style="color-scheme: dark;">
+  <head>
+    <Meta title={pageTitle} />
+  </head>
+
+  <body class="antialiased bg-[var(--bg-use)] text-[var(--text-use)] min-h-screen flex flex-col justify-between">
+    <Header />
+
+    <main class="flex-1 w-full max-w-5xl mx-auto px-6 py-12 md:py-16">
+      <!-- Header / Title -->
+      <div class="mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/20 mb-3">
+          <span>🚀 {isEs ? "Catálogo de Aplicaciones" : "App Catalog"}</span>
+        </div>
+        <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+          {isEs ? "Apps & Productos Desarrollados" : "Apps & Products"}
+        </h1>
+        <p class="text-gray-300 text-base md:text-lg max-w-2xl leading-relaxed">
+          {isEs
+            ? "Explora las herramientas, utilidades y aplicaciones independientes que he diseñado y programado para smartwatches, web y móviles."
+            : "Explore standalone tools, utilities, and software products designed and built for smartwatches, web, and mobile ecosystems."}
+        </p>
+      </div>
+
+      <!-- App Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {
+          appsList.map((app) => (
+            <div class="rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] p-6 transition-all duration-300 flex flex-col justify-between shadow-xl group">
+              <div>
+                <div class="flex items-start gap-4 mb-4">
+                  <img
+                    src={app.icon}
+                    alt={`${app.title} icon`}
+                    class="w-16 h-16 rounded-2xl border border-white/10 shadow-md shrink-0 object-cover"
+                  />
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between gap-2">
+                      <h2 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors truncate">
+                        {app.title}
+                      </h2>
+                      <span class="text-[11px] font-mono px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-300 border border-sky-500/20 shrink-0">
+                        {app.platform}
+                      </span>
+                    </div>
+                    <p class="text-xs text-gray-400 mt-0.5">{app.category}</p>
+                    <div class="mt-2 inline-flex items-center gap-1.5 text-xs text-emerald-400">
+                      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                      <span>{app.status}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <p class="text-sm text-gray-300 leading-relaxed mb-5">
+                  {app.tagline}
+                </p>
+
+                <div class="flex flex-wrap gap-1.5 mb-6">
+                  {app.tags.map((tag) => (
+                    <span class="text-[11px] px-2.5 py-1 rounded-md bg-white/5 text-gray-300 border border-white/5">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div class="pt-4 border-t border-white/10 flex items-center justify-between gap-3 text-xs">
+                <a
+                  href={app.href}
+                  class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-black font-bold transition-all shadow-md"
+                >
+                  <span>{isEs ? "Ver App" : "View App"}</span>
+                  <span>→</span>
+                </a>
+
+                <a
+                  href={app.privacyHref}
+                  class="text-gray-400 hover:text-gray-200 transition-colors underline underline-offset-4"
+                >
+                  {isEs ? "Privacidad" : "Privacy"}
+                </a>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Contact support note -->
+      <div class="mt-16 rounded-xl border border-white/10 bg-white/[0.01] p-6 text-center text-xs text-gray-400">
+        <p>
+          {isEs ? "¿Tienes dudas o sugerencias sobre alguna de mis aplicaciones?" : "Have questions or feedback about any of my apps?"}{" "}
+          <a href={`mailto:${config.support.appsEmail}`} class="text-sky-400 hover:underline font-semibold">
+            {config.support.appsEmail}
+          </a>
+        </p>
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>

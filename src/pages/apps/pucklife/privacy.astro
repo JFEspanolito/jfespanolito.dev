@@ -1,0 +1,178 @@
+---
+import "@/styles/global.css";
+import Meta from "@/layouts/Meta.astro";
+import Header from "@/layouts/Header.astro";
+import Footer from "@/layouts/Footer.astro";
+import { configProject as config } from "@/data/configProject";
+
+const queryLang = Astro.url.searchParams.get("lang")?.trim().toLowerCase();
+const rawLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
+
+const lang: "en" | "es" =
+  queryLang === "en" || queryLang === "es"
+    ? queryLang
+    : rawLang === "en" || rawLang === "es"
+      ? rawLang
+      : "en";
+
+Astro.locals.lang = lang;
+
+const isEs = lang === "es";
+
+const pageTitle = isEs
+  ? "Política de Privacidad | PuckLife Counter"
+  : "Privacy Policy | PuckLife Counter";
+---
+
+<!doctype html>
+<html lang={lang} class="dark" style="color-scheme: dark;">
+  <head>
+    <Meta title={pageTitle} />
+  </head>
+
+  <body class="antialiased bg-[var(--bg-use)] text-[var(--text-use)] min-h-screen flex flex-col justify-between">
+    <Header />
+
+    <main class="flex-1 w-full max-w-4xl mx-auto px-6 py-12 md:py-16">
+      <div class="mb-8 border-b border-[var(--border-use,#333)] pb-6">
+        <div class="flex items-center gap-3 text-sm text-[var(--accent-use,#38bdf8)] font-mono mb-2">
+          <span>Wear OS App</span>
+          <span>•</span>
+          <span>PuckLife Counter</span>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-3">
+          {isEs ? "Política de Privacidad" : "Privacy Policy"}
+        </h1>
+        <p class="text-sm text-gray-400">
+          {isEs ? "Última actualización: 6 de octubre de 2026" : "Last updated: October 6, 2026"}
+        </p>
+      </div>
+
+      <div class="space-y-8 text-gray-300 leading-relaxed text-sm md:text-base">
+        {isEs ? (
+          <>
+            <section class="space-y-3">
+              <p>
+                <strong>PuckLife Counter</strong> ("la Aplicación") es una utilidad local para smartwatches Wear OS desarrollada por <strong>JFEspanolito</strong> para llevar el recuento de vidas y turnos en juegos de cartas y de mesa. Esta Política de Privacidad describe el tratamiento de datos y privacidad de los usuarios.
+              </p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-bold text-white">1. Recopilación y Uso de Datos</h2>
+              <p>
+                PuckLife Counter <strong>NO recopila, almacena, transmite ni comparte ningún dato personal o sensible del usuario</strong>.
+              </p>
+              <ul class="list-disc pl-6 space-y-1 text-gray-400">
+                <li>La aplicación funciona de forma 100% offline.</li>
+                <li>No contiene bibliotecas de análisis (analytics), herramientas de rastreo, SDKs de publicidad ni servicios externos de telemetría.</li>
+                <li>Los datos de la partida (puntos de vida, temporizadores, preferencias visuales) se almacenan única y exclusivamente de forma local en el almacenamiento del reloj (<code class="text-xs bg-black/40 px-1.5 py-0.5 rounded text-sky-300">SharedPreferences</code>) y nunca abandonan el dispositivo.</li>
+              </ul>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-bold text-white">2. Permisos del Dispositivo</h2>
+              <p>La Aplicación solicita únicamente los permisos estrictamente indispensables para su funcionamiento técnico local:</p>
+              <ul class="list-disc pl-6 space-y-2 text-gray-400">
+                <li>
+                  <strong class="text-gray-200">Vibración (<code class="text-xs bg-black/40 px-1 py-0.5 rounded text-sky-300">android.permission.VIBRATE</code>):</strong> Utilizado exclusivamente para proporcionar respuesta háptica en cambios de vida, avance del temporizador y el selector aleatorio de iniciativa.
+                </li>
+                <li>
+                  <strong class="text-gray-200">Mantener pantalla encendida (<code class="text-xs bg-black/40 px-1 py-0.5 rounded text-sky-300">android.permission.WAKE_LOCK</code>):</strong> Empleado únicamente en la opción configurable de "Protección de Inactividad" para evitar que el reloj entre en modo de espera o vuelva a la carátula durante partidas largas.
+                </li>
+              </ul>
+              <p class="text-sm text-gray-400">No se solicitan ni requieren permisos de ubicación, acceso a cámara, micrófono, identidad, contactos ni lectura de archivos personales.</p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-bold text-white">3. Servicios de Terceros</h2>
+              <p>La Aplicación no integra ningún servicio de terceros que recopile información.</p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-bold text-white">4. Privacidad de Menores</h2>
+              <p>Dado que PuckLife Counter no recopila ningún tipo de información personal, no recopila datos de menores de 13 años.</p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-bold text-white">5. Cambios en esta Política</h2>
+              <p>Cualquier actualización a esta política se publicará en esta misma dirección web con la fecha de revisión correspondiente.</p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-bold text-white">6. Contacto</h2>
+              <p>Si tienes preguntas o inquietudes sobre esta política de privacidad, puedes contactarnos a través de:</p>
+              <p>
+                <strong>Email:</strong>{" "}
+                <a href={`mailto:${config.support.appsEmail}`} class="text-[var(--accent-use,#38bdf8)] hover:underline">
+                  {config.support.appsEmail}
+                </a>
+              </p>
+            </section>
+          </>
+        ) : (
+          <>
+            <section class="space-y-3">
+              <p>
+                <strong>PuckLife Counter</strong> ("the Application") is a tabletop life and score counter utility for Wear OS smartwatches developed by <strong>JFEspanolito</strong>. This Privacy Policy outlines how user information and device permissions are handled.
+              </p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-bold text-white">1. Information Collection and Use</h2>
+              <p>
+                PuckLife Counter <strong>does NOT collect, store, transmit, or share any personal information or sensitive user data</strong>.
+              </p>
+              <ul class="list-disc pl-6 space-y-1 text-gray-400">
+                <li>The Application functions 100% offline.</li>
+                <li>No analytics frameworks, tracking SDKs, advertising libraries, or external telemetry tools are integrated.</li>
+                <li>Match data (player life totals, timers, visual preferences) are stored strictly locally on your Wear OS watch (<code class="text-xs bg-black/40 px-1.5 py-0.5 rounded text-sky-300">SharedPreferences</code>) and never leave the device.</li>
+              </ul>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-bold text-white">2. Device Permissions</h2>
+              <p>The Application requests only the minimal permissions strictly necessary for local core operation:</p>
+              <ul class="list-disc pl-6 space-y-2 text-gray-400">
+                <li>
+                  <strong class="text-gray-200">Vibration (<code class="text-xs bg-black/40 px-1 py-0.5 rounded text-sky-300">android.permission.VIBRATE</code>):</strong> Used solely to provide tactile haptic feedback during counter modifications, timer ticks, and random initiative rolls.
+                </li>
+                <li>
+                  <strong class="text-gray-200">Wake Lock (<code class="text-xs bg-black/40 px-1 py-0.5 rounded text-sky-300">android.permission.WAKE_LOCK</code>):</strong> Used solely for the user-configurable "Inactivity Protection" feature to keep the display awake during active tabletop gameplay matches.
+                </li>
+              </ul>
+              <p class="text-sm text-gray-400">No permissions regarding identity, location, contacts, microphone, camera, or device storage files are requested or accessed.</p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-bold text-white">3. Third-Party Services</h2>
+              <p>The Application does not integrate with any third-party services that collect data.</p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-bold text-white">4. Children's Privacy</h2>
+              <p>Because PuckLife Counter does not collect any personal information whatsoever, it does not collect or solicit information from children under the age of 13.</p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-bold text-white">5. Changes to This Privacy Policy</h2>
+              <p>Any updates to this policy will be posted on this page with an updated revision date.</p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-bold text-white">6. Contact Us</h2>
+              <p>If you have any questions or feedback regarding this Privacy Policy, please contact:</p>
+              <p>
+                <strong>Email:</strong>{" "}
+                <a href={`mailto:${config.support.appsEmail}`} class="text-[var(--accent-use,#38bdf8)] hover:underline">
+                  {config.support.appsEmail}
+                </a>
+              </p>
+            </section>
+          </>
+        )}
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>
