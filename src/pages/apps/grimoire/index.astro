@@ -95,10 +95,19 @@ const features = [
             </p>
             <div class="mt-6 flex flex-wrap items-center gap-4">
               <a
-                href="https://github.com/JFEspanolito/Grimoire-Maker"
+                href="https://github.com/JFEspanolito/Grimoire-Maker/releases/latest"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-sky-400 hover:bg-sky-300 active:bg-sky-500 active:scale-[0.98] motion-reduce:transform-none text-slate-950 text-sm font-semibold transition-[background-color,transform] duration-150 ease-out touch-manipulation focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+              >
+                <span>{isEs ? "Descargar última versión" : "Download latest release"}</span>
+                <span aria-hidden="true">↓</span>
+              </a>
+              <a
+                href="https://github.com/JFEspanolito/Grimoire-Maker"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 active:bg-white/15 active:scale-[0.98] motion-reduce:transform-none text-white text-sm font-medium transition-[background-color,border-color,transform] duration-150 ease-out touch-manipulation focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
               >
                 <span>{isEs ? "Ver repositorio en GitHub" : "View GitHub Repository"}</span>
                 <span aria-hidden="true">→</span>
