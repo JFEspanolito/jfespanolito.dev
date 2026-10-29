@@ -24,6 +24,20 @@ const pageTitle = isEs
 
 const appsList = [
   {
+    id: "grimoire",
+    title: "Grimoire Maker",
+    tagline: isEs
+      ? "Escribe en Markdown y diseña libros, revistas y manuales de rol con maquetación visual y exportación a PDF."
+      : "Write in Markdown and design books, magazines, and RPG manuals with visual page layout and PDF export.",
+    platform: "Desktop",
+    category: isEs ? "Escritura / Maquetación" : "Writing / Desktop Publishing",
+    status: isEs ? "En desarrollo" : "In development",
+    icon: "/apps/grimoire/icon.png",
+    href: "/apps/grimoire",
+    privacyHref: "/apps/grimoire#local-files",
+    tags: ["Tauri", "React", "TypeScript", "Markdown"],
+  },
+  {
     id: "pucklife",
     title: "PuckLife Counter",
     tagline: isEs

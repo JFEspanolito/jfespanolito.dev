@@ -1,0 +1,129 @@
+---
+import "@/styles/global.css";
+import Meta from "@/layouts/Meta.astro";
+import Header from "@/layouts/Header.astro";
+import Footer from "@/layouts/Footer.astro";
+import { configProject as config } from "@/data/configProject";
+
+const queryLang = Astro.url.searchParams.get("lang")?.trim().toLowerCase();
+const rawLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
+const lang: "en" | "es" =
+  queryLang === "en" || queryLang === "es"
+    ? queryLang
+    : rawLang === "en" || rawLang === "es"
+      ? rawLang
+      : "en";
+
+Astro.locals.lang = lang;
+const isEs = lang === "es";
+const pageTitle = isEs
+  ? "Grimoire Maker | Escritura y maquetación en Markdown"
+  : "Grimoire Maker | Markdown Writing & Desktop Publishing";
+const features = [
+  {
+    title: isEs ? "De Markdown a páginas" : "From Markdown to pages",
+    description: isEs
+      ? "Escribe sobre páginas con dimensiones físicas, ajusta márgenes y columnas, y alterna entre el código Markdown y la vista de página."
+      : "Write on physical-sized pages, adjust margins and columns, and switch between Markdown source and page view.",
+  },
+  {
+    title: isEs ? "Tu proyecto, organizado" : "Your project, organized",
+    description: isEs
+      ? "Separa el manuscrito, la investigación y los descartes en Draft, Research y Trash. Trabaja con pestañas y vista dividida para consultar dos documentos."
+      : "Keep your manuscript, research, and discarded material in Draft, Research, and Trash. Use tabs and split view to work with two documents.",
+  },
+  {
+    title: isEs ? "Temas, plantillas y snippets" : "Themes, templates, and snippets",
+    description: isEs
+      ? "Empieza con una plantilla para novelas, informes, revistas o aventuras de rol. Personaliza el estilo editorial y reutiliza bloques de contenido."
+      : "Start with a template for novels, reports, magazines, or RPG adventures. Customize the editorial style and reuse content blocks.",
+  },
+  {
+    title: isEs ? "Exportación a PDF" : "PDF export",
+    description: isEs
+      ? "Prepara tus documentos para compartirlos o imprimirlos con paginación, encabezados y pies de página configurables."
+      : "Prepare your documents for sharing or printing with pagination and configurable headers and footers.",
+  },
+];
+---
+
+<!doctype html>
+<html lang={lang} class="dark" style="color-scheme: dark;">
+  <head>
+    <Meta title={pageTitle} />
+  </head>
+  <body class="antialiased bg-[var(--bg-use)] text-[var(--text-use)] min-h-screen flex flex-col justify-between">
+    <Header />
+    <main class="flex-1 w-full max-w-4xl mx-auto px-6 py-10 md:py-16">
+      <a
+        href={`/apps?lang=${lang}`}
+        class="inline-block mb-6 text-sm text-sky-400 hover:text-sky-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+      >
+        {isEs ? "← Todas las aplicaciones" : "← All apps"}
+      </a>
+
+      <section class="rounded-2xl border border-white/10 bg-white/[0.02] p-6 md:p-10 mb-12">
+        <div class="flex flex-col md:flex-row items-start gap-8">
+          <img
+            src="/apps/grimoire/icon.png"
+            alt={isEs ? "Icono de Grimoire Maker" : "Grimoire Maker icon"}
+            width="144"
+            height="144"
+            class="w-28 h-28 md:w-36 md:h-36 rounded-3xl shrink-0"
+          />
+          <div class="flex-1 min-w-0">
+            <p class="text-xs font-semibold text-sky-400 mb-3">
+              {isEs ? "Aplicación de escritorio · En desarrollo" : "Desktop application · In development"}
+            </p>
+            <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+              Grimoire Maker
+            </h1>
+            <p class="text-gray-300 text-base md:text-lg leading-relaxed">
+              {isEs
+                ? "Un estudio de escritura y maquetación para convertir archivos Markdown en libros, poemarios, informes, revistas y manuales de rol. Trabaja con tus archivos locales y da forma al texto directamente sobre la página."
+                : "A writing and layout studio that turns Markdown files into books, poetry collections, reports, magazines, and RPG manuals. Work with your local files and shape your text directly on the page."}
+            </p>
+            <a
+              href="https://github.com/JFEspanolito/Grimoire-Maker"
+              class="inline-flex mt-6 px-5 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 active:bg-sky-600 text-black text-sm font-bold transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+            >
+              {isEs ? "Ver proyecto en GitHub →" : "View project on GitHub →"}
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-12" aria-labelledby="features-title">
+        <h2 id="features-title" class="text-2xl font-bold text-white mb-6">
+          {isEs ? "Del borrador al documento" : "From draft to document"}
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {features.map((feature) => (
+            <div class="border-t border-white/10 pt-5">
+              <h3 class="text-lg font-semibold text-white mb-2">{feature.title}</h3>
+              <p class="text-sm text-gray-400 leading-relaxed">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="local-files" class="scroll-mt-8 rounded-xl border border-white/10 bg-white/[0.02] p-6">
+        <h2 class="text-xl font-bold text-white mb-3">
+          {isEs ? "Tus manuscritos, en tu equipo" : "Your manuscripts, on your computer"}
+        </h2>
+        <p class="text-sm text-gray-400 leading-relaxed">
+          {isEs
+            ? "Grimoire Maker guarda los manuscritos como archivos Markdown dentro de una carpeta de proyecto local. Puedes abrirlos con otros editores y gestionar su historial con las herramientas Git integradas."
+            : "Grimoire Maker stores manuscripts as Markdown files inside a local project folder. You can open them in other editors and manage their history with the built-in Git tools."}
+        </p>
+        <p class="mt-4 text-sm text-gray-400">
+          {isEs ? "¿Dudas o sugerencias?" : "Questions or feedback?"}{" "}
+          <a href={`mailto:${config.support.appsEmail}`} class="text-sky-400 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400">
+            {config.support.appsEmail}
+          </a>
+        </p>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
