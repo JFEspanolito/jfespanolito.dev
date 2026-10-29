@@ -55,70 +55,95 @@ const features = [
   <body class="antialiased bg-[var(--bg-use)] text-[var(--text-use)] min-h-screen flex flex-col justify-between">
     <Header />
     <main class="flex-1 w-full max-w-4xl mx-auto px-6 py-10 md:py-16">
-      <a
-        href={`/apps?lang=${lang}`}
-        class="inline-block mb-6 text-sm text-sky-400 hover:text-sky-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
-      >
-        {isEs ? "← Todas las aplicaciones" : "← All apps"}
-      </a>
+      <nav aria-label="Breadcrumb" class="mb-6">
+        <a
+          href={`/apps?lang=${lang}`}
+          class="inline-flex items-center gap-1.5 py-1 text-sm font-medium text-sky-400 hover:text-sky-300 transition-colors touch-manipulation focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+        >
+          <span aria-hidden="true">←</span>
+          <span>{isEs ? "Todas las aplicaciones" : "All apps"}</span>
+        </a>
+      </nav>
 
-      <section class="rounded-2xl border border-white/10 bg-white/[0.02] p-6 md:p-10 mb-12">
+      <section class="rounded-2xl border border-white/10 bg-[var(--color-card-bg)]/60 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_12px_32px_-8px_rgba(0,0,0,0.35)] p-6 md:p-10 mb-12">
         <div class="flex flex-col md:flex-row items-start gap-8">
           <img
             src="/apps/grimoire/icon.png"
             alt={isEs ? "Icono de Grimoire Maker" : "Grimoire Maker icon"}
             width="144"
             height="144"
-            class="w-28 h-28 md:w-36 md:h-36 rounded-3xl shrink-0"
+            loading="eager"
+            decoding="async"
+            class="w-28 h-28 md:w-36 md:h-36 rounded-3xl border border-white/10 shadow-xl shrink-0"
           />
           <div class="flex-1 min-w-0">
-            <p class="text-xs font-semibold text-sky-400 mb-3">
-              {isEs ? "Aplicación de escritorio · En desarrollo" : "Desktop application · In development"}
-            </p>
-            <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+            <div class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-sky-400 mb-3">
+              <span>{isEs ? "Aplicación de escritorio" : "Desktop application"}</span>
+              <span aria-hidden="true" class="text-slate-500">·</span>
+              <span class="inline-flex items-center gap-1.5 text-emerald-400 normal-case tracking-normal">
+                <span aria-hidden="true" class="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                <span>{isEs ? "En desarrollo" : "In development"}</span>
+              </span>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-[-0.025em] leading-[1.08] text-balance mb-4" translate="no">
               Grimoire Maker
             </h1>
-            <p class="text-gray-300 text-base md:text-lg leading-relaxed">
+            <p class="text-slate-300 text-base md:text-lg leading-relaxed text-pretty max-w-[60ch]">
               {isEs
                 ? "Un estudio de escritura y maquetación para convertir archivos Markdown en libros, poemarios, informes, revistas y manuales de rol. Trabaja con tus archivos locales y da forma al texto directamente sobre la página."
                 : "A writing and layout studio that turns Markdown files into books, poetry collections, reports, magazines, and RPG manuals. Work with your local files and shape your text directly on the page."}
             </p>
-            <a
-              href="https://github.com/JFEspanolito/Grimoire-Maker"
-              class="inline-flex mt-6 px-5 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 active:bg-sky-600 text-black text-sm font-bold transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
-            >
-              {isEs ? "Ver proyecto en GitHub →" : "View project on GitHub →"}
-            </a>
+            <div class="mt-6 flex flex-wrap items-center gap-4">
+              <a
+                href="https://github.com/JFEspanolito/Grimoire-Maker"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-sky-400 hover:bg-sky-300 active:bg-sky-500 active:scale-[0.98] motion-reduce:transform-none text-slate-950 text-sm font-semibold transition-[background-color,transform] duration-150 ease-out touch-manipulation focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+              >
+                <span>{isEs ? "Ver repositorio en GitHub" : "View GitHub Repository"}</span>
+                <span aria-hidden="true">→</span>
+              </a>
+              <a
+                href="#local-files"
+                class="py-1.5 text-sm text-slate-300 hover:text-white transition-colors underline underline-offset-4 touch-manipulation focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+              >
+                {isEs ? "Almacenamiento local y privacidad" : "Local storage & privacy"}
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
       <section class="mb-12" aria-labelledby="features-title">
-        <h2 id="features-title" class="text-2xl font-bold text-white mb-6">
+        <h2 id="features-title" class="text-2xl font-bold text-white tracking-[-0.015em] text-balance mb-6">
           {isEs ? "Del borrador al documento" : "From draft to document"}
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {features.map((feature) => (
             <div class="border-t border-white/10 pt-5">
-              <h3 class="text-lg font-semibold text-white mb-2">{feature.title}</h3>
-              <p class="text-sm text-gray-400 leading-relaxed">{feature.description}</p>
+              <h3 class="text-lg font-semibold text-white tracking-[-0.01em] text-balance mb-2">{feature.title}</h3>
+              <p class="text-sm text-slate-400 leading-relaxed text-pretty">{feature.description}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <section id="local-files" class="scroll-mt-8 rounded-xl border border-white/10 bg-white/[0.02] p-6">
-        <h2 class="text-xl font-bold text-white mb-3">
+      <section id="local-files" class="scroll-mt-24 rounded-2xl border border-white/10 bg-[var(--color-card-bg)]/40 p-6 md:p-8">
+        <h2 class="text-xl font-bold text-white tracking-[-0.015em] text-balance mb-3">
           {isEs ? "Tus manuscritos, en tu equipo" : "Your manuscripts, on your computer"}
         </h2>
-        <p class="text-sm text-gray-400 leading-relaxed">
+        <p class="text-sm text-slate-300 leading-relaxed text-pretty max-w-[65ch]">
           {isEs
             ? "Grimoire Maker guarda los manuscritos como archivos Markdown dentro de una carpeta de proyecto local. Puedes abrirlos con otros editores y gestionar su historial con las herramientas Git integradas."
             : "Grimoire Maker stores manuscripts as Markdown files inside a local project folder. You can open them in other editors and manage their history with the built-in Git tools."}
         </p>
-        <p class="mt-4 text-sm text-gray-400">
-          {isEs ? "¿Dudas o sugerencias?" : "Questions or feedback?"}{" "}
-          <a href={`mailto:${config.support.appsEmail}`} class="text-sky-400 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400">
+        <p class="mt-4 text-sm text-slate-400">
+          {isEs ? "¿Preguntas o comentarios?" : "Questions or feedback?"}{" "}
+          <a
+            href={`mailto:${config.support.appsEmail}`}
+            class="text-sky-400 hover:text-sky-300 font-medium underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+            translate="no"
+          >
             {config.support.appsEmail}
           </a>
         </p>

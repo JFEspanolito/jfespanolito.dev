@@ -22,34 +22,56 @@ const pageTitle = isEs
   ? "Apps & Productos | JFEspanolito"
   : "Apps & Products | JFEspanolito";
 
-const appsList = [
+const apps = [
   {
     id: "grimoire",
     title: "Grimoire Maker",
-    tagline: isEs
-      ? "Escribe en Markdown y diseña libros, revistas y manuales de rol con maquetación visual y exportación a PDF."
-      : "Write in Markdown and design books, magazines, and RPG manuals with visual page layout and PDF export.",
-    platform: "Desktop",
-    category: isEs ? "Escritura / Maquetación" : "Writing / Desktop Publishing",
-    status: isEs ? "En desarrollo" : "In development",
+    eyebrow: isEs ? "Aplicación de escritorio" : "Desktop Application",
+    status: isEs ? "En desarrollo activo" : "Active development",
+    pitch: isEs
+      ? "Convierte archivos Markdown en libros, informes y manuales maquetados sobre páginas con dimensiones físicas y exportación lista para imprenta o PDF."
+      : "Turns Markdown files into books, reports, and manuals laid out on physical-sized pages with print-ready PDF export.",
+    highlights: isEs
+      ? [
+          "Edición visual con soporte para márgenes, columnas y pliegos",
+          "Estructura de proyecto dividida en Draft, Research y Trash",
+          "Archivos Markdown locales con control de versiones Git integrado",
+        ]
+      : [
+          "Visual layout with margins, columns, and facing page spreads",
+          "Project workspace organized into Draft, Research, and Trash",
+          "Local Markdown files with integrated Git version history",
+        ],
+    stack: "Tauri · React · TypeScript · Rust",
     icon: "/apps/grimoire/icon.png",
-    href: "/apps/grimoire",
-    privacyHref: "/apps/grimoire#local-files",
-    tags: ["Tauri", "React", "TypeScript", "Markdown"],
+    href: `/apps/grimoire?lang=${lang}`,
+    secondaryHref: `/apps/grimoire?lang=${lang}#local-files`,
+    secondaryLabel: isEs ? "Archivos locales" : "Local files",
   },
   {
     id: "pucklife",
     title: "PuckLife Counter",
-    tagline: isEs
-      ? "Contador de vidas para juegos de mesa y TCGs con modo 2P espejo y respuesta háptica."
-      : "Tabletop life and turn counter for TCGs with mirrored 2-player mode and rich haptics.",
-    platform: "Wear OS",
-    category: isEs ? "Utilidad / TCG Companion" : "Utility / TCG Companion",
-    status: isEs ? "En prueba interna (Google Play)" : "Internal Testing (Google Play)",
+    eyebrow: isEs ? "Utilidad para smartwatches" : "Smartwatch Companion",
+    status: isEs ? "Prueba interna en Google Play" : "Internal Testing on Google Play",
+    pitch: isEs
+      ? "Contador de vidas y turnos diseñado para colocar el smartwatch en el centro de la mesa en partidas de cartas coleccionables y juegos de tablero."
+      : "Life and turn counter designed to rest your smartwatch in the center of the table during tabletop and trading card matches.",
+    highlights: isEs
+      ? [
+          "Pantalla invertida 180° para lectura cara a cara en modo 2 jugadores",
+          "Selector de iniciativa aleatorio con retroalimentación háptica",
+          "Cero conexión de red, sin analíticas y con modo negro puro OLED",
+        ]
+      : [
+          "180° inverted display for face-to-face reading in 2-player mode",
+          "Random initiative dial with tactile decelerating haptics",
+          "Zero network activity, no telemetry, and true OLED black layout",
+        ],
+    stack: "Wear OS · Jetpack Compose · Kotlin",
     icon: "/apps/pucklife/icon.png",
-    href: "/apps/pucklife",
-    privacyHref: "/apps/pucklife/privacy",
-    tags: ["Wear OS", "Jetpack Compose", "Kotlin", "Clean Architecture"],
+    href: `/apps/pucklife?lang=${lang}`,
+    secondaryHref: `/apps/pucklife/privacy?lang=${lang}`,
+    secondaryLabel: isEs ? "Política de Privacidad" : "Privacy Policy",
   },
 ];
 ---
@@ -63,94 +85,119 @@ const appsList = [
   <body class="antialiased bg-[var(--bg-use)] text-[var(--text-use)] min-h-screen flex flex-col justify-between">
     <Header />
 
-    <main class="flex-1 w-full max-w-5xl mx-auto px-6 py-12 md:py-16">
-      <!-- Header / Title -->
-      <div class="mb-12">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/20 mb-3">
-          <span>🚀 {isEs ? "Catálogo de Aplicaciones" : "App Catalog"}</span>
-        </div>
-        <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
-          {isEs ? "Apps & Productos Desarrollados" : "Apps & Products"}
-        </h1>
-        <p class="text-gray-300 text-base md:text-lg max-w-2xl leading-relaxed">
-          {isEs
-            ? "Explora las herramientas, utilidades y aplicaciones independientes que he diseñado y programado para smartwatches, web y móviles."
-            : "Explore standalone tools, utilities, and software products designed and built for smartwatches, web, and mobile ecosystems."}
+    <main class="flex-1 w-full max-w-5xl mx-auto px-6 py-12 md:py-20">
+      <!-- Editorial Header -->
+      <header class="mb-16 md:mb-24 w-full">
+        <p class="text-xs font-semibold uppercase tracking-widest text-sky-400 mb-4 font-mono">
+          {isEs ? "Software independiente" : "Standalone Software"}
         </p>
-      </div>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-[-0.03em] leading-[1.05] text-balance mb-6">
+          {isEs ? "Herramientas creadas con propósito." : "Tools built with purpose."}
+        </h1>
+        <p class="text-slate-300 text-lg md:text-xl leading-relaxed">
+          {isEs
+            ? "Aplicaciones diseñadas para resolver problemas concretos sin intermediarios: rendimiento local, cero telemetría invasiva y control absoluto para el usuario."
+            : "Applications designed to solve concrete problems without intermediaries: local performance, zero telemetry, and complete user control."}
+        </p>
+      </header>
 
-      <!-- App Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Editorial Showcase (No cards inside cards) -->
+      <section aria-label={isEs ? "Listado de aplicaciones" : "Application catalog"} class="space-y-16 md:space-y-24">
         {
-          appsList.map((app) => (
-            <div class="rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] p-6 transition-all duration-300 flex flex-col justify-between shadow-xl group">
-              <div>
-                <div class="flex items-start gap-4 mb-4">
-                  <img
-                    src={app.icon}
-                    alt={`${app.title} icon`}
-                    class="w-16 h-16 rounded-2xl border border-white/10 shadow-md shrink-0 object-cover"
-                  />
-                  <div class="flex-1 min-w-0">
-                    <div class="flex items-center justify-between gap-2">
-                      <h2 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors truncate">
-                        {app.title}
-                      </h2>
-                      <span class="text-[11px] font-mono px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-300 border border-sky-500/20 shrink-0">
-                        {app.platform}
-                      </span>
-                    </div>
-                    <p class="text-xs text-gray-400 mt-0.5">{app.category}</p>
-                    <div class="mt-2 inline-flex items-center gap-1.5 text-xs text-emerald-400">
-                      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                      <span>{app.status}</span>
-                    </div>
-                  </div>
+          apps.map((app) => (
+            <article class="border-t border-white/10 pt-10 md:pt-14 grid grid-cols-1 md:grid-cols-[160px_1fr] gap-8 md:gap-12 items-start">
+              {/* Product Visual Identity */}
+              <div class="flex items-center md:flex-col md:items-start gap-5 shrink-0">
+                <img
+                  src={app.icon}
+                  alt={isEs ? `Icono de ${app.title}` : `${app.title} icon`}
+                  width="128"
+                  height="128"
+                  loading="eager"
+                  decoding="async"
+                  class="w-20 h-20 md:w-32 md:h-32 rounded-3xl border border-white/10 shadow-[0_12px_32px_-4px_rgba(0,0,0,0.5)] shrink-0 object-cover"
+                />
+                <div class="md:hidden">
+                  <h2 class="text-2xl font-bold text-white tracking-[-0.02em]" translate="no">
+                    {app.title}
+                  </h2>
+                  <p class="text-xs text-sky-400 font-mono mt-0.5">{app.eyebrow}</p>
+                </div>
+              </div>
+
+              {/* Product Narrative & Capabilities */}
+              <div class="min-w-0">
+                <div class="hidden md:flex items-center gap-3 text-xs font-mono text-slate-400 mb-2">
+                  <span class="text-sky-400 font-semibold uppercase tracking-wider">{app.eyebrow}</span>
+                  <span aria-hidden="true" class="text-slate-600">·</span>
+                  <span class="inline-flex items-center gap-1.5 text-emerald-400">
+                    <span aria-hidden="true" class="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                    <span>{app.status}</span>
+                  </span>
                 </div>
 
-                <p class="text-sm text-gray-300 leading-relaxed mb-5">
-                  {app.tagline}
+                <h2 class="hidden md:block text-3xl md:text-4xl font-extrabold text-white tracking-[-0.025em] leading-[1.1] mb-4 text-balance" translate="no">
+                  {app.title}
+                </h2>
+
+                <p class="text-base md:text-lg text-slate-200 leading-relaxed text-pretty max-w-[65ch] mb-6">
+                  {app.pitch}
                 </p>
 
-                <div class="flex flex-wrap gap-1.5 mb-6">
-                  {app.tags.map((tag) => (
-                    <span class="text-[11px] px-2.5 py-1 rounded-md bg-white/5 text-gray-300 border border-white/5">
-                      {tag}
-                    </span>
+                {/* Concrete Capabilities (Not pill tags) */}
+                <ul class="space-y-2 mb-8 max-w-[62ch]" aria-label={isEs ? "Características destacadas" : "Key highlights"}>
+                  {app.highlights.map((item) => (
+                    <li class="flex items-start gap-2.5 text-sm text-slate-300 leading-normal">
+                      <span aria-hidden="true" class="text-sky-400 mt-1 select-none">―</span>
+                      <span class="text-pretty">{item}</span>
+                    </li>
                   ))}
+                </ul>
+
+                {/* Tech & Architecture Line */}
+                <div class="flex items-center gap-2 text-xs font-mono text-slate-400 mb-8" translate="no">
+                  <span class="text-slate-500 uppercase tracking-wider">{isEs ? "Arquitectura:" : "Stack:"}</span>
+                  <span class="text-slate-300">{app.stack}</span>
+                </div>
+
+                {/* Primary & Secondary Actions */}
+                <div class="flex flex-wrap items-center gap-4 text-sm">
+                  <a
+                    href={app.href}
+                    class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-sky-400 hover:bg-sky-300 active:bg-sky-500 active:scale-[0.98] motion-reduce:transform-none text-slate-950 font-semibold transition-[background-color,transform] duration-150 ease-out touch-manipulation focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+                  >
+                    <span>{isEs ? `Ver proyecto ${app.title}` : `Explore ${app.title}`}</span>
+                    <span aria-hidden="true">→</span>
+                  </a>
+
+                  <a
+                    href={app.secondaryHref}
+                    class="py-2 text-slate-400 hover:text-white transition-colors underline underline-offset-4 touch-manipulation focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+                  >
+                    {app.secondaryLabel}
+                  </a>
                 </div>
               </div>
-
-              <div class="pt-4 border-t border-white/10 flex items-center justify-between gap-3 text-xs">
-                <a
-                  href={app.href}
-                  class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-black font-bold transition-all shadow-md"
-                >
-                  <span>{isEs ? "Ver App" : "View App"}</span>
-                  <span>→</span>
-                </a>
-
-                <a
-                  href={app.privacyHref}
-                  class="text-gray-400 hover:text-gray-200 transition-colors underline underline-offset-4"
-                >
-                  {isEs ? "Privacidad" : "Privacy"}
-                </a>
-              </div>
-            </div>
+            </article>
           ))
         }
-      </div>
+      </section>
 
-      <!-- Contact support note -->
-      <div class="mt-16 rounded-xl border border-white/10 bg-white/[0.01] p-6 text-center text-xs text-gray-400">
-        <p>
-          {isEs ? "¿Tienes dudas o sugerencias sobre alguna de mis aplicaciones?" : "Have questions or feedback about any of my apps?"}{" "}
-          <a href={`mailto:${config.support.appsEmail}`} class="text-sky-400 hover:underline font-semibold">
-            {config.support.appsEmail}
-          </a>
+      <!-- Minimalist Support (Open, unboxed) -->
+      <footer class="mt-20 md:mt-28 border-t border-white/10 pt-8 flex flex-col sm:flex-row items-baseline justify-between gap-4 text-xs md:text-sm text-slate-400">
+        <p class="text-pretty">
+          {isEs
+            ? "¿Tienes una idea o reporte sobre alguna de estas herramientas?"
+            : "Have questions or ideas about any of these tools?"}
         </p>
-      </div>
+        <a
+          href={`mailto:${config.support.appsEmail}`}
+          class="text-sky-400 hover:text-sky-300 font-medium underline underline-offset-4 shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+          translate="no"
+        >
+          {config.support.appsEmail}
+        </a>
+      </footer>
     </main>
 
     <Footer />
