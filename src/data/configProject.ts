@@ -11,7 +11,7 @@ export const configProject = {
     "Portafolio de Jorge A. Falcón A. — Desarrollador Full-Stack y especialista en automatización RPA con UiPath, Next.js, Astro y TypeScript.",
   domainName: "jfespanolito.dev",
   siteUrl: "https://jfespanolito.dev",
-  copyright: `© ${new Date().getFullYear()} — El código fuente de este sitio es público y puede consultarse y reutilizarse. La información personal y profesional presentada no está autorizada para copia ni redistribución.`,
+  copyright: `© ${new Date().getFullYear()} Jorge A. Falcón A. — Código web público. Apps, productos e información personal: todos los derechos reservados.`,
 
   // ======================================================
   // 🌐 METADATOS / SEO
