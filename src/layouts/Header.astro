@@ -51,12 +51,34 @@ if (lang === "en") {
 
 const navLang = lang === "en" ? "EN" : "ES";
 const navigation = config.navigation[navLang];
+const isHomePage =
+  Astro.url.pathname === "/" ||
+  Astro.url.pathname === "/en" ||
+  Astro.url.pathname === "/en/";
+const isAppsActive = Astro.url.pathname.startsWith("/apps");
+
 const navItems = [
-  navigation.home,
-  navigation.bio,
-  navigation.experience,
-  navigation.projects,
-  navigation.certificates,
+  {
+    ...navigation.home,
+    href: isHomePage ? navigation.home.href : `/${navigation.home.href}`,
+  },
+  {
+    ...navigation.bio,
+    href: isHomePage ? navigation.bio.href : `/${navigation.bio.href}`,
+  },
+  {
+    ...navigation.experience,
+    href: isHomePage ? navigation.experience.href : `/${navigation.experience.href}`,
+  },
+  {
+    ...navigation.projects,
+    href: isHomePage ? navigation.projects.href : `/${navigation.projects.href}`,
+  },
+  {
+    ...navigation.certificates,
+    href: isHomePage ? navigation.certificates.href : `/${navigation.certificates.href}`,
+  },
+  navigation.apps,
 ];
 const sendMailHref = t("sendMail").replace("<mail>", emailAddress);
 const copiedEmailMessage = t("header.emailCopied");
@@ -96,11 +118,16 @@ const copyMailLabel = lang === "en" ? "Copy Mail" : "Copiar correo";
           <Oneko client:load />
         </div> -->
         <div
-          class="hidden md:flex h-8 items-center border-r border-[var(--color-resaltar)] px-4"
+          class="flex h-8 items-center border-r border-[var(--color-resaltar)] px-3 md:px-4"
         >
           <a
             href="/apps"
-            class="inline-flex items-center text-sm font-medium text-[var(--text-use)] hover:text-[var(--color-green)] transition-colors"
+            class:list={[
+              "inline-flex items-center text-sm font-medium transition-colors",
+              isAppsActive
+                ? "text-[var(--color-green)] font-semibold"
+                : "text-[var(--text-use)] hover:text-[var(--color-green)]",
+            ]}
             title={lang === "en" ? "Explore Apps" : "Ver Apps"}
           >
             Apps
@@ -116,7 +143,7 @@ const copyMailLabel = lang === "en" ? "Copy Mail" : "Copiar correo";
         <button
           id="mobile-menu-btn"
           type="button"
-          class="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-md border border-[var(--color-resaltar)]/40 text-[var(--color-resaltar)] hover:bg-white/5 active:scale-95 transition-all"
+          class="md:hidden ml-3 inline-flex items-center justify-center w-11 h-11 rounded-md border border-[var(--color-resaltar)]/40 text-[var(--color-resaltar)] hover:bg-white/5 active:scale-95 transition-all"
           aria-expanded="false"
           aria-controls="mobile-menu-panel"
           aria-label="Abrir menú"
@@ -274,14 +301,27 @@ const copyMailLabel = lang === "en" ? "Copy Mail" : "Copiar correo";
         <LanguageSwitch client:load initialLang={lang} />
       </div>
       {
-        navItems.map((item) => (
-          <a
-            class="menu-link rounded-md px-3 py-2 text-base text-[var(--text-use)] hover:bg-white/5"
-            href={item.href}
-          >
-            {item.label}
-          </a>
-        ))
+        navItems.map((item) => {
+          const isActive =
+            item.href === "/apps"
+              ? isAppsActive
+              : !isAppsActive &&
+                isHomePage &&
+                (item.href === "#Resumen" || item.href === "/#Resumen");
+          return (
+            <a
+              class:list={[
+                "menu-link rounded-md px-3 py-2 text-base transition-colors",
+                isActive
+                  ? "text-[var(--color-green)] font-semibold bg-white/5"
+                  : "text-[var(--text-use)] hover:bg-white/5",
+              ]}
+              href={item.href}
+            >
+              {item.label}
+            </a>
+          );
+        })
       }
       <div
         class="mt-4 pt-4 border-t border-[var(--color-resaltar)]/10 flex flex-wrap gap-4 justify-center"
@@ -415,6 +455,8 @@ const copyMailLabel = lang === "en" ? "Copy Mail" : "Copiar correo";
 
               // Update URL without jump
               history.pushState(null, "", href);
+            } else {
+              window.location.href = `/${href}`;
             }
           }
 
