@@ -77,7 +77,7 @@ export const projectsData = {
     {
       id: 7,
       title: "Grimoire Maker",
-      status: "En Desarrollo",
+      status: "Live",
       description:
         "Estudio de escritura y maquetación de escritorio para convertir archivos Markdown en libros, informes, revistas y manuales de rol. Funciona 100% offline sobre tu sistema de archivos local con integración Git nativa.",
       skills: [
@@ -254,7 +254,7 @@ export const projectsData = {
     {
       id: 7,
       title: "Grimoire Maker",
-      status: "In Development",
+      status: "Live",
       description:
         "Desktop writing and publication layout studio turning Markdown documents into print-ready books, zines, reports, and RPG rulebooks. Operates 100% offline on local folders with built-in Git version control.",
       skills: [
