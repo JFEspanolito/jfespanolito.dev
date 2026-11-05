@@ -75,6 +75,55 @@ export const projectsData = {
       imgBgPos: "background-position: 50% 50%; background-size: 100%;",
     },
     {
+      id: 7,
+      title: "Grimoire Maker",
+      status: "En Desarrollo",
+      description:
+        "Estudio de escritura y maquetación de escritorio para convertir archivos Markdown en libros, informes, revistas y manuales de rol. Funciona 100% offline sobre tu sistema de archivos local con integración Git nativa.",
+      skills: [
+        "Electron",
+        "Vue 3",
+        "Rust",
+        "TypeScript",
+        "Tailwind",
+        "Vite",
+        "Markdown AST",
+      ],
+      topskills: ["Electron", "Vue 3", "Rust"],
+      link: [
+        {
+          url: "/apps/grimoire",
+          label: "Ver Proyecto",
+        },
+      ],
+      github: "https://github.com/JFEspanolito/Grimoire-Maker",
+      image: images["../assets/projects/grimoire.png"].default,
+      imgBgPos: "background-position: 50% 50%; background-size: contain; background-repeat: no-repeat;",
+    },
+    {
+      id: 8,
+      title: "PuckLife Counter",
+      status: "Live",
+      description:
+        "Contador de vidas y utilidad de mesa para smartwatches Wear OS. Interfaz circular optimizada para AMOLED, rotación 180° para duelos frente a frente en la mesa, ruleta háptica de iniciativa y funcionamiento 100% offline.",
+      skills: [
+        "Kotlin",
+        "Jetpack Compose for Wear OS",
+        "Android SDK",
+        "Haptics API",
+        "Wearable Architecture",
+      ],
+      topskills: ["Kotlin", "Wear OS"],
+      link: [
+        {
+          url: "/apps/pucklife",
+          label: "Ver Proyecto",
+        },
+      ],
+      image: images["../assets/projects/pucklife.png"].default,
+      imgBgPos: "background-position: 50% 50%; background-size: cover;",
+    },
+    {
       id: 4,
       title: "Heladería Ocho MX",
       status: "En Desarrollo",
@@ -201,6 +250,55 @@ export const projectsData = {
       ],
       image: images["../assets/projects/shardbugs.webp"].default,
       imgBgPos: "background-position: 50% 50%; background-size: 100%;",
+    },
+    {
+      id: 7,
+      title: "Grimoire Maker",
+      status: "In Development",
+      description:
+        "Desktop writing and publication layout studio turning Markdown documents into print-ready books, zines, reports, and RPG rulebooks. Operates 100% offline on local folders with built-in Git version control.",
+      skills: [
+        "Electron",
+        "Vue 3",
+        "Rust",
+        "TypeScript",
+        "Tailwind",
+        "Vite",
+        "Markdown AST",
+      ],
+      topskills: ["Electron", "Vue 3", "Rust"],
+      link: [
+        {
+          url: "/apps/grimoire?lang=en",
+          label: "Explore Project",
+        },
+      ],
+      github: "https://github.com/JFEspanolito/Grimoire-Maker",
+      image: images["../assets/projects/grimoire.png"].default,
+      imgBgPos: "background-position: 50% 50%; background-size: contain; background-repeat: no-repeat;",
+    },
+    {
+      id: 8,
+      title: "PuckLife Counter",
+      status: "Live",
+      description:
+        "Tabletop life tracker and match utility designed exclusively for Wear OS smartwatches. Features an AMOLED-optimized circular UI, 180° inverted readout for head-to-head play, tactile haptic initiative decider, and zero telemetry.",
+      skills: [
+        "Kotlin",
+        "Jetpack Compose for Wear OS",
+        "Android SDK",
+        "Haptics API",
+        "Wearable Architecture",
+      ],
+      topskills: ["Kotlin", "Wear OS"],
+      link: [
+        {
+          url: "/apps/pucklife?lang=en",
+          label: "Explore Project",
+        },
+      ],
+      image: images["../assets/projects/pucklife.png"].default,
+      imgBgPos: "background-position: 50% 50%; background-size: cover;",
     },
     {
       id: 4,
