@@ -37,31 +37,31 @@ const pageTitle = isEs
       <nav aria-label="Breadcrumb" class="mb-6 flex items-center gap-2 text-sm">
         <a
           href={`/apps/pucklife?lang=${lang}`}
-          class="inline-flex items-center gap-1.5 py-1 font-medium text-sky-400 hover:text-sky-300 transition-colors touch-manipulation focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+          class="inline-flex items-center gap-1.5 py-1 font-medium text-[var(--color-green)] hover:underline transition-colors touch-manipulation focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-green)]"
         >
           <span aria-hidden="true">←</span>
           <span translate="no">PuckLife Counter</span>
         </a>
-        <span aria-hidden="true" class="text-slate-600">/</span>
-        <span class="text-slate-400">{isEs ? "Privacidad" : "Privacy"}</span>
+        <span aria-hidden="true" class="text-white/20">/</span>
+        <span class="text-white/60">{isEs ? "Privacidad" : "Privacy"}</span>
       </nav>
 
-      <header class="mb-10 border-b border-white/10 pb-6">
-        <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-sky-400 mb-2">
+      <header class="mb-10 border-b border-white/[0.08] pb-6">
+        <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[var(--color-green)] opacity-90 mb-2">
           <span translate="no">Wear OS</span>
-          <span aria-hidden="true" class="text-slate-500">·</span>
+          <span aria-hidden="true" class="text-white/30">·</span>
           <span translate="no">PuckLife Counter</span>
         </div>
         <h1 class="text-3xl md:text-5xl font-extrabold tracking-[-0.025em] leading-[1.08] text-balance text-white mb-3">
           {isEs ? "Política de Privacidad" : "Privacy Policy"}
         </h1>
-        <p class="text-xs md:text-sm text-slate-400 font-mono tabular-nums">
+        <p class="text-xs md:text-sm text-white/50 font-mono tabular-nums">
           {isEs ? "Última actualización: " : "Last updated: "}
           <time datetime="2026-10-06">{isEs ? "6 de octubre de 2026" : "October 6, 2026"}</time>
         </p>
       </header>
 
-      <div class="rounded-2xl border border-white/10 bg-[var(--color-card-bg)]/40 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_12px_32px_-8px_rgba(0,0,0,0.35)] p-6 md:p-10 space-y-8 text-slate-300 leading-relaxed text-sm md:text-base text-pretty max-w-[72ch]">
+      <div class="rounded-3xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-sm shadow-xl p-6 md:p-10 space-y-8 text-white/80 leading-relaxed text-sm md:text-base text-pretty max-w-[72ch]">
         {isEs ? (
           <>
             <section class="space-y-3">
@@ -78,7 +78,7 @@ const pageTitle = isEs
               <ul class="list-disc pl-6 space-y-1.5 text-slate-300">
                 <li>La aplicación funciona de forma 100% offline.</li>
                 <li>No contiene bibliotecas de análisis (analytics), herramientas de rastreo, SDKs de publicidad ni servicios externos de telemetría.</li>
-                <li>Los datos de la partida (puntos de vida, temporizadores, preferencias visuales) se almacenan única y exclusivamente de forma local en el almacenamiento del reloj (<code class="text-xs bg-black/40 px-1.5 py-0.5 rounded text-sky-300 font-mono" translate="no">SharedPreferences</code>) y nunca abandonan el dispositivo.</li>
+                <li>Los datos de la partida (puntos de vida, temporizadores, preferencias visuales) se almacenan única y exclusivamente de forma local en el almacenamiento del reloj (<code class="text-xs bg-white/[0.06] border border-white/10 px-1.5 py-0.5 rounded text-[var(--color-green)] font-mono" translate="no">SharedPreferences</code>) y nunca abandonan el dispositivo.</li>
               </ul>
             </section>
 
@@ -87,10 +87,10 @@ const pageTitle = isEs
               <p>La Aplicación solicita únicamente los permisos estrictamente indispensables para su funcionamiento técnico local:</p>
               <ul class="list-disc pl-6 space-y-2 text-slate-300">
                 <li>
-                  <strong class="text-white">Vibración (<code class="text-xs bg-black/40 px-1 py-0.5 rounded text-sky-300 font-mono" translate="no">android.permission.VIBRATE</code>):</strong> Utilizado exclusivamente para proporcionar respuesta háptica en cambios de vida, avance del temporizador y el selector aleatorio de iniciativa.
+                  <strong class="text-white">Vibración (<code class="text-xs bg-white/[0.06] border border-white/10 px-1 py-0.5 rounded text-[var(--color-green)] font-mono" translate="no">android.permission.VIBRATE</code>):</strong> Utilizado exclusivamente para proporcionar respuesta háptica en cambios de vida, avance del temporizador y el selector aleatorio de iniciativa.
                 </li>
                 <li>
-                  <strong class="text-white">Mantener pantalla encendida (<code class="text-xs bg-black/40 px-1 py-0.5 rounded text-sky-300 font-mono" translate="no">android.permission.WAKE_LOCK</code>):</strong> Empleado únicamente en la opción configurable de "Protección de Inactividad" para evitar que el reloj entre en modo de espera durante partidas largas.
+                  <strong class="text-white">Mantener pantalla encendida (<code class="text-xs bg-white/[0.06] border border-white/10 px-1 py-0.5 rounded text-[var(--color-green)] font-mono" translate="no">android.permission.WAKE_LOCK</code>):</strong> Empleado únicamente en la opción configurable de "Protección de Inactividad" para evitar que el reloj entre en modo de espera durante partidas largas.
                 </li>
               </ul>
               <p class="text-sm text-slate-400">No se solicitan ni requieren permisos de ubicación, acceso a cámara, micrófono, identidad, contactos ni lectura de archivos personales.</p>
@@ -118,7 +118,7 @@ const pageTitle = isEs
                 <strong class="text-white">Email:</strong>{" "}
                 <a
                   href={`mailto:${config.support.appsEmail}`}
-                  class="text-sky-400 hover:text-sky-300 font-medium underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+                  class="text-[var(--color-green)] hover:underline font-medium underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-green)]"
                   translate="no"
                 >
                   {config.support.appsEmail}
@@ -142,7 +142,7 @@ const pageTitle = isEs
               <ul class="list-disc pl-6 space-y-1.5 text-slate-300">
                 <li>The Application functions 100% offline.</li>
                 <li>No analytics frameworks, tracking SDKs, advertising libraries, or external telemetry tools are integrated.</li>
-                <li>Match data (player life totals, timers, visual preferences) are stored strictly locally on your Wear OS watch (<code class="text-xs bg-black/40 px-1.5 py-0.5 rounded text-sky-300 font-mono" translate="no">SharedPreferences</code>) and never leave the device.</li>
+                <li>Match data (player life totals, timers, visual preferences) are stored strictly locally on your Wear OS watch (<code class="text-xs bg-white/[0.06] border border-white/10 px-1.5 py-0.5 rounded text-[var(--color-green)] font-mono" translate="no">SharedPreferences</code>) and never leave the device.</li>
               </ul>
             </section>
 
@@ -151,10 +151,10 @@ const pageTitle = isEs
               <p>The Application requests only the minimal permissions strictly necessary for local core operation:</p>
               <ul class="list-disc pl-6 space-y-2 text-slate-300">
                 <li>
-                  <strong class="text-white">Vibration (<code class="text-xs bg-black/40 px-1 py-0.5 rounded text-sky-300 font-mono" translate="no">android.permission.VIBRATE</code>):</strong> Used solely to provide tactile haptic feedback during counter modifications, timer ticks, and random initiative rolls.
+                  <strong class="text-white">Vibration (<code class="text-xs bg-white/[0.06] border border-white/10 px-1 py-0.5 rounded text-[var(--color-green)] font-mono" translate="no">android.permission.VIBRATE</code>):</strong> Used solely to provide tactile haptic feedback during counter modifications, timer ticks, and random initiative rolls.
                 </li>
                 <li>
-                  <strong class="text-white">Wake Lock (<code class="text-xs bg-black/40 px-1 py-0.5 rounded text-sky-300 font-mono" translate="no">android.permission.WAKE_LOCK</code>):</strong> Used solely for the user-configurable "Inactivity Protection" feature to keep the display awake during active tabletop gameplay matches.
+                  <strong class="text-white">Wake Lock (<code class="text-xs bg-white/[0.06] border border-white/10 px-1 py-0.5 rounded text-[var(--color-green)] font-mono" translate="no">android.permission.WAKE_LOCK</code>):</strong> Used solely for the user-configurable "Inactivity Protection" feature to keep the display awake during active tabletop gameplay matches.
                 </li>
               </ul>
               <p class="text-sm text-slate-400">No permissions regarding identity, location, contacts, microphone, camera, or device storage files are requested or accessed.</p>
@@ -182,7 +182,7 @@ const pageTitle = isEs
                 <strong class="text-white">Email:</strong>{" "}
                 <a
                   href={`mailto:${config.support.appsEmail}`}
-                  class="text-sky-400 hover:text-sky-300 font-medium underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+                  class="text-[var(--color-green)] hover:underline font-medium underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-green)]"
                   translate="no"
                 >
                   {config.support.appsEmail}

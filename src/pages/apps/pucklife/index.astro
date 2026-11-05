@@ -67,14 +67,14 @@ const features = [
       <nav aria-label="Breadcrumb" class="mb-6">
         <a
           href={`/apps?lang=${lang}`}
-          class="inline-flex items-center gap-1.5 py-1 text-sm font-medium text-sky-400 hover:text-sky-300 transition-colors touch-manipulation focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+          class="inline-flex items-center gap-1.5 py-1 text-sm font-medium text-[var(--color-green)] hover:underline transition-colors touch-manipulation"
         >
           <span aria-hidden="true">←</span>
           <span>{isEs ? "Todas las aplicaciones" : "All apps"}</span>
         </a>
       </nav>
 
-      <section class="rounded-2xl border border-white/10 bg-[var(--color-card-bg)]/60 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_12px_32px_-8px_rgba(0,0,0,0.35)] p-6 md:p-10 mb-12">
+      <section class="rounded-3xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-sm shadow-xl p-6 md:p-10 mb-12">
         <div class="flex flex-col md:flex-row items-start gap-8">
           <img
             src="/apps/pucklife/icon.png"
@@ -83,11 +83,11 @@ const features = [
             height="144"
             loading="eager"
             decoding="async"
-            class="w-28 h-28 md:w-36 md:h-36 rounded-3xl shadow-xl border border-white/10 shrink-0"
+            class="w-28 h-28 md:w-36 md:h-36 rounded-3xl shadow-2xl border border-white/10 shrink-0 object-cover"
           />
 
           <div class="flex-1 min-w-0">
-            <div class="inline-flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-widest text-sky-400 mb-3">
+            <div class="inline-flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[var(--color-green)] opacity-90 mb-3">
               <span translate="no">Wear OS</span>
               <span aria-hidden="true" class="text-slate-500">·</span>
               <span>{isEs ? "Juegos de mesa y TCG" : "Tabletop & TCG Utility"}</span>
@@ -98,7 +98,7 @@ const features = [
               </span>
             </div>
 
-            <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-[-0.025em] leading-[1.08] text-balance mb-4" translate="no">
+            <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.08] text-balance mb-4" translate="no">
               PuckLife Counter
             </h1>
             <p class="text-slate-300 text-base md:text-lg max-w-[60ch] leading-relaxed text-pretty">
@@ -110,19 +110,19 @@ const features = [
             <div class="mt-6 flex flex-wrap items-center gap-4">
               <a
                 href={`/apps/pucklife/privacy?lang=${lang}`}
-                class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-sky-400 hover:bg-sky-300 active:bg-sky-500 active:scale-[0.98] motion-reduce:transform-none text-slate-950 text-sm font-semibold transition-[background-color,transform] duration-150 ease-out touch-manipulation focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+                class="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full bg-[var(--color-green)] hover:brightness-110 active:scale-[0.98] text-slate-950 text-sm font-semibold transition-all duration-150 touch-manipulation shadow-sm"
               >
                 <span>{isEs ? "Leer Política de Privacidad" : "Read Privacy Policy"}</span>
                 <span aria-hidden="true">→</span>
               </a>
-              <span class="text-xs font-mono text-slate-400 px-3 py-2 rounded-lg bg-white/[0.04] border border-white/10">
+              <span class="text-xs text-slate-300 px-3.5 py-2 rounded-full bg-white/[0.04] border border-white/10">
                 {isEs ? "100% sin conexión · Sin rastreadores" : "100% offline · Zero tracking"}
               </span>
             </div>
           </div>
         </div>
 
-        <div class="mt-8 rounded-xl overflow-hidden border border-white/10 shadow-lg bg-slate-950">
+        <div class="mt-8 rounded-2xl overflow-hidden border border-white/10 shadow-lg bg-slate-950">
           <img
             src="/apps/pucklife/banner.png"
             alt={isEs ? "Vista previa de la interfaz de PuckLife Counter en Wear OS" : "PuckLife Counter interface preview on Wear OS"}
@@ -136,19 +136,19 @@ const features = [
       </section>
 
       <section class="mb-12" aria-labelledby="features-title">
-        <h2 id="features-title" class="text-2xl font-bold text-white tracking-[-0.015em] text-balance mb-6">
+        <h2 id="features-title" class="text-2xl font-bold text-white tracking-tight text-balance mb-6">
           {isEs ? "Diseñado para la mesa de juego" : "Built for the tabletop"}
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {features.map((feature) => (
-            <div class="border-t border-white/10 pt-5">
-              <span class="inline-block text-[11px] font-mono font-semibold tracking-wider text-sky-400 tabular-nums mb-1.5" translate="no">
+            <div class="border-t border-white/[0.08] pt-5">
+              <span class="inline-block text-xs font-semibold uppercase tracking-wider text-[var(--color-green)] opacity-90 tabular-nums mb-1.5" translate="no">
                 {feature.spec}
               </span>
-              <h3 class="text-lg font-semibold text-white tracking-[-0.01em] text-balance mb-2">
+              <h3 class="text-lg font-semibold text-white tracking-tight text-balance mb-2">
                 {feature.title}
               </h3>
-              <p class="text-sm text-slate-400 leading-relaxed text-pretty tabular-nums">
+              <p class="text-sm text-slate-300 leading-relaxed text-pretty tabular-nums">
                 {feature.description}
               </p>
             </div>
@@ -156,9 +156,9 @@ const features = [
         </div>
       </section>
 
-      <section class="rounded-2xl border border-white/10 bg-[var(--color-card-bg)]/40 p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <section class="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6 md:p-8 backdrop-blur-sm shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div class="max-w-[58ch]">
-          <h2 class="text-xl font-bold text-white tracking-[-0.015em] text-balance mb-2">
+          <h2 class="text-xl font-bold text-white tracking-tight text-balance mb-2">
             {isEs ? "Privacidad y funcionamiento local" : "Privacy & local-only operation"}
           </h2>
           <p class="text-sm text-slate-300 leading-relaxed text-pretty mb-3">
@@ -170,7 +170,7 @@ const features = [
             <span>{isEs ? "Soporte:" : "Support:"} </span>
             <a
               href={`mailto:${config.support.appsEmail}`}
-              class="text-sky-400 hover:text-sky-300 font-medium underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+              class="text-[var(--color-green)] hover:underline font-medium underline-offset-4"
               translate="no"
             >
               {config.support.appsEmail}
@@ -179,7 +179,7 @@ const features = [
         </div>
         <a
           href={`/apps/pucklife/privacy?lang=${lang}`}
-          class="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] active:scale-[0.98] motion-reduce:transform-none text-white text-sm font-semibold transition-[background-color,transform] duration-150 ease-out touch-manipulation shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+          class="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] active:scale-[0.98] text-white text-sm font-semibold transition-all duration-150 touch-manipulation shrink-0"
         >
           <span>{isEs ? "Ver Política de Privacidad" : "View Privacy Policy"}</span>
           <span aria-hidden="true">→</span>

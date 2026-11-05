@@ -88,13 +88,13 @@ const apps = [
     <main class="flex-1 w-full max-w-5xl mx-auto px-6 py-12 md:py-20">
       <!-- Editorial Header -->
       <header class="mb-16 md:mb-24 w-full">
-        <p class="text-xs font-semibold uppercase tracking-widest text-sky-400 mb-4 font-mono">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-green)] opacity-90 mb-4">
           {isEs ? "Software independiente" : "Standalone Software"}
         </p>
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-[-0.03em] leading-[1.05] text-balance mb-6">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-[1.05] text-balance mb-6">
           {isEs ? "Herramientas creadas con propósito." : "Tools built with purpose."}
         </h1>
-        <p class="text-slate-300 text-lg md:text-xl leading-relaxed">
+        <p class="text-slate-300 text-lg md:text-xl leading-relaxed max-w-3xl">
           {isEs
             ? "Aplicaciones diseñadas para resolver problemas concretos sin intermediarios: rendimiento local, cero telemetría invasiva y control absoluto para el usuario."
             : "Applications designed to solve concrete problems without intermediaries: local performance, zero telemetry, and complete user control."}
@@ -105,7 +105,7 @@ const apps = [
       <section aria-label={isEs ? "Listado de aplicaciones" : "Application catalog"} class="space-y-16 md:space-y-24">
         {
           apps.map((app) => (
-            <article class="border-t border-white/10 pt-10 md:pt-14 grid grid-cols-1 md:grid-cols-[160px_1fr] gap-8 md:gap-12 items-start">
+            <article class="border-t border-white/[0.08] pt-12 md:pt-16 grid grid-cols-1 md:grid-cols-[140px_1fr] gap-8 md:gap-12 items-start">
               {/* Product Visual Identity */}
               <div class="flex items-center md:flex-col md:items-start gap-5 shrink-0">
                 <img
@@ -115,20 +115,20 @@ const apps = [
                   height="128"
                   loading="eager"
                   decoding="async"
-                  class="w-20 h-20 md:w-32 md:h-32 rounded-3xl border border-white/10 shadow-[0_12px_32px_-4px_rgba(0,0,0,0.5)] shrink-0 object-cover"
+                  class="w-20 h-20 md:w-28 md:h-28 rounded-3xl border border-white/10 shadow-[0_12px_32px_-4px_rgba(0,0,0,0.5)] shrink-0 object-cover"
                 />
                 <div class="md:hidden">
-                  <h2 class="text-2xl font-bold text-white tracking-[-0.02em]" translate="no">
+                  <h2 class="text-2xl font-bold text-white tracking-tight" translate="no">
                     {app.title}
                   </h2>
-                  <p class="text-xs text-sky-400 font-mono mt-0.5">{app.eyebrow}</p>
+                  <p class="text-xs text-[var(--color-green)] uppercase tracking-wider font-semibold mt-1 opacity-90">{app.eyebrow}</p>
                 </div>
               </div>
 
               {/* Product Narrative & Capabilities */}
               <div class="min-w-0">
-                <div class="hidden md:flex items-center gap-3 text-xs font-mono text-slate-400 mb-2">
-                  <span class="text-sky-400 font-semibold uppercase tracking-wider">{app.eyebrow}</span>
+                <div class="hidden md:flex items-center gap-3 text-xs text-slate-400 mb-2">
+                  <span class="text-[var(--color-green)] font-semibold uppercase tracking-wider opacity-90">{app.eyebrow}</span>
                   <span aria-hidden="true" class="text-slate-600">·</span>
                   <span class="inline-flex items-center gap-1.5 text-emerald-400">
                     <span aria-hidden="true" class="w-1.5 h-1.5 rounded-full bg-emerald-400" />
@@ -136,35 +136,35 @@ const apps = [
                   </span>
                 </div>
 
-                <h2 class="hidden md:block text-3xl md:text-4xl font-extrabold text-white tracking-[-0.025em] leading-[1.1] mb-4 text-balance" translate="no">
+                <h2 class="hidden md:block text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-[1.1] mb-4 text-balance" translate="no">
                   {app.title}
                 </h2>
 
-                <p class="text-base md:text-lg text-slate-200 leading-relaxed text-pretty max-w-[65ch] mb-6">
+                <p class="text-base md:text-lg text-slate-300 leading-relaxed text-pretty max-w-[65ch] mb-6">
                   {app.pitch}
                 </p>
 
-                {/* Concrete Capabilities (Not pill tags) */}
-                <ul class="space-y-2 mb-8 max-w-[62ch]" aria-label={isEs ? "Características destacadas" : "Key highlights"}>
+                {/* Concrete Capabilities */}
+                <ul class="space-y-2.5 mb-8 max-w-[62ch]" aria-label={isEs ? "Características destacadas" : "Key highlights"}>
                   {app.highlights.map((item) => (
-                    <li class="flex items-start gap-2.5 text-sm text-slate-300 leading-normal">
-                      <span aria-hidden="true" class="text-sky-400 mt-1 select-none">―</span>
+                    <li class="flex items-start gap-3 text-sm text-slate-300 leading-relaxed">
+                      <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--color-green)] opacity-80 shrink-0" />
                       <span class="text-pretty">{item}</span>
                     </li>
                   ))}
                 </ul>
 
                 {/* Tech & Architecture Line */}
-                <div class="flex items-center gap-2 text-xs font-mono text-slate-400 mb-8" translate="no">
-                  <span class="text-slate-500 uppercase tracking-wider">{isEs ? "Arquitectura:" : "Stack:"}</span>
-                  <span class="text-slate-300">{app.stack}</span>
+                <div class="flex items-center gap-2 text-xs text-slate-400 mb-8" translate="no">
+                  <span class="text-slate-500 uppercase tracking-wider font-semibold">{isEs ? "Arquitectura:" : "Stack:"}</span>
+                  <span class="text-slate-300 font-medium">{app.stack}</span>
                 </div>
 
                 {/* Primary & Secondary Actions */}
                 <div class="flex flex-wrap items-center gap-4 text-sm">
                   <a
                     href={app.href}
-                    class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-sky-400 hover:bg-sky-300 active:bg-sky-500 active:scale-[0.98] motion-reduce:transform-none text-slate-950 font-semibold transition-[background-color,transform] duration-150 ease-out touch-manipulation focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+                    class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[var(--color-green)] hover:brightness-110 active:scale-[0.98] text-slate-950 font-semibold transition-all duration-150 touch-manipulation shadow-sm"
                   >
                     <span>{isEs ? `Ver proyecto ${app.title}` : `Explore ${app.title}`}</span>
                     <span aria-hidden="true">→</span>
@@ -172,7 +172,7 @@ const apps = [
 
                   <a
                     href={app.secondaryHref}
-                    class="py-2 text-slate-400 hover:text-white transition-colors underline underline-offset-4 touch-manipulation focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+                    class="py-2 text-slate-400 hover:text-white transition-colors underline underline-offset-4 touch-manipulation"
                   >
                     {app.secondaryLabel}
                   </a>
@@ -184,7 +184,7 @@ const apps = [
       </section>
 
       <!-- Minimalist Support (Open, unboxed) -->
-      <footer class="mt-20 md:mt-28 border-t border-white/10 pt-8 flex flex-col sm:flex-row items-baseline justify-between gap-4 text-xs md:text-sm text-slate-400">
+      <footer class="mt-20 md:mt-28 border-t border-white/[0.08] pt-8 flex flex-col sm:flex-row items-baseline justify-between gap-4 text-xs md:text-sm text-slate-400">
         <p class="text-pretty">
           {isEs
             ? "¿Tienes una idea o reporte sobre alguna de estas herramientas?"
@@ -192,7 +192,7 @@ const apps = [
         </p>
         <a
           href={`mailto:${config.support.appsEmail}`}
-          class="text-sky-400 hover:text-sky-300 font-medium underline underline-offset-4 shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400"
+          class="text-[var(--color-green)] hover:underline font-medium underline-offset-4 shrink-0"
           translate="no"
         >
           {config.support.appsEmail}
