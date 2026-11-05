@@ -9,12 +9,14 @@
   color-scheme: dark;
   scroll-padding-top: 80px;
 
-  /* Theme Colors (Always Dark) */
-  --bg-dark: #1b1f2f;
+  /* Theme Colors (Always Dark - HIG Calibrated) */
+  --bg-dark: #111524;
   --text-dark: #f8fafc;
 
   --bg-use: var(--bg-dark);
   --text-use: var(--text-dark);
+  --text-secondary: #94a3b8;
+  --text-tertiary: #64748b;
 
   --color-resaltar: #f2c94c;
   --color-purple: #c7bfff;
@@ -22,7 +24,8 @@
   --color-blue: #60a5fa;
   --color-red: #ff443a;
   --color-slate-blue: #94a3b8;
-  --color-card-bg: #24293e;
+  --color-card-bg: #1a2034;
+  --color-card-border: rgba(255, 255, 255, 0.08);
 
   /* Social Colors */
   --color-linkedin: #0077b5;
@@ -65,7 +68,7 @@ body {
 
   .mini-scrollbar {
     scrollbar-width: thin;
-    scrollbar-color: var(--color-card-bg) var(--bg-dark);
+    scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
   }
 
   .mini-scrollbar::-webkit-scrollbar {
@@ -74,17 +77,16 @@ body {
   }
 
   .mini-scrollbar::-webkit-scrollbar-track {
-    background: var(--bg-dark);
-    border-radius: 999px;
+    background: transparent;
   }
 
   .mini-scrollbar::-webkit-scrollbar-thumb {
-    background: var(--color-card-bg);
+    background: rgba(255, 255, 255, 0.18);
     border-radius: 999px;
   }
 
   .mini-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: var(--color-blue);
+    background: rgba(255, 255, 255, 0.35);
   }
 
   .timeline-line {
@@ -154,15 +156,14 @@ body {
 }
 
 .cta {
-  font-family: "Manrope", Arial, sans-serif;
-  font-size: 12px;
+  font-family: var(--font-sans);
+  font-size: 13px;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 4px 12px;
+  letter-spacing: 0.02em;
+  padding: 6px 16px;
   background: var(--color-blue);
-  color: black;
-  border: 1px solid rgb(255 68 58 / 0.3);
+  color: #0b1120;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 999px;
   text-decoration: none;
   display: inline-flex;
@@ -170,6 +171,18 @@ body {
   justify-content: center;
   flex-shrink: 0;
   white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.cta:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(96, 165, 250, 0.25);
+}
+
+.cta:active {
+  transform: translateY(0);
 }
 
 .cta--sm {

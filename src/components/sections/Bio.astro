@@ -39,12 +39,13 @@ const educationIntro =
     : "Formación académica, aprendizaje continuo y los entornos que consolidaron mi base técnica.";
 ---
 
-<section id="Bio" class="w-full flex flex-col py-10 px-4 md:px-6 lg:px-8">
-  <div class="relative w-full max-w-7xl mx-auto min-h-full text-[var(--color-green)]">
-    {lang === "en" ? <h2 class="text-4xl font-bold mb-6">Biography</h2> : <h2 class="text-4xl font-bold mb-6">Biografía</h2>}
+<section id="Bio" class="w-full flex flex-col py-12 px-4 md:px-6 lg:px-8">
+  <div class="relative w-full max-w-7xl mx-auto min-h-full">
+    <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-green)] opacity-90 mb-2">
+      {lang === "en" ? "Biography" : "Biografía"}
+    </p>
 
-    {/* Tittle */}
-    <h2 class="text-2xl md:text-3xl tracking-[0.2em] text-[var(--color-purple)] uppercase font-medium mb-6">
+    <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-8">
       {profile.role}
     </h2>
 
@@ -73,24 +74,18 @@ const educationIntro =
       <div>
         {/* Tabs */}
         <div
-          class="bio-card group relative overflow-hidden rounded-[28px] border border-[#2A3B5F] bg-[#121A2B] p-6 md:p-7 shadow-[0_20px_50px_rgba(2,6,23,0.32)] transition-all duration-300 hover:-translate-y-1 hover:border-[#38BDF8]/70"
+          class="bio-card group relative overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6 md:p-8 backdrop-blur-sm shadow-xl transition-all duration-300 hover:border-white/20 hover:bg-white/[0.04]"
         >
-          <div class="absolute inset-y-5 left-0 w-1 rounded-full bg-gradient-to-b from-[#38BDF8] via-[#8B5CF6] to-transparent"></div>
-          <div
-            class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.12),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(139,92,246,0.10),transparent_28%)] opacity-80 pointer-events-none"
-          >
-          </div>
-
           {/* Pestañas */}
           <div
-            class="flex w-[80%] max-w-2xl min-w-0 rounded-full border border-white/10 bg-black/15 p-1 items-center justify-center mx-auto"
+            class="flex w-full max-w-sm rounded-full border border-white/10 bg-white/[0.04] p-1 items-center justify-center mx-auto backdrop-blur-sm"
             role="tablist"
             aria-label={lang === "en" ? "Biography sections" : "Secciones de biografía"}
           >
             <button
               id="bio-tab-stack"
               type="button"
-              class="bio-tab-trigger flex-1 rounded-full px-4 py-2 text-sm font-semibold text-center transition-colors text-[var(--text-use)]/70"
+              class="bio-tab-trigger flex-1 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wider text-center transition-all text-slate-400"
               role="tab"
               aria-selected="true"
               aria-controls="bio-panel-stack"
@@ -101,7 +96,7 @@ const educationIntro =
             <button
               id="bio-tab-indieGameDev"
               type="button"
-              class="bio-tab-trigger flex-1 rounded-full px-4 py-2 text-sm font-semibold text-center transition-colors text-[var(--text-use)]/70"
+              class="bio-tab-trigger flex-1 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wider text-center transition-all text-slate-400"
               role="tab"
               aria-selected="false"
               aria-controls="bio-panel-indieGameDev"
@@ -117,10 +112,10 @@ const educationIntro =
             {/* Stack Laboral */}
             <div id="bio-panel-stack" class="bio-tab-panel" role="tabpanel" aria-labelledby="bio-tab-stack">
               <div class="mb-6">
-                <h1 class="text-2xl md:text-3xl tracking-[0.2em] text-[var(--color-purple)] uppercase font-medium mb-3">
+                <h3 class="text-xl md:text-2xl font-bold text-white tracking-tight mb-2">
                   {t("bio.stack")}
-                </h1>
-                <p class="text-sm md:text-base text-[var(--text-use)]/70">
+                </h3>
+                <p class="text-sm leading-relaxed text-slate-300">
                   {
                     lang === "en"
                       ? "Technologies, tools, and practices I use to design, build, and scale professional software and automation solutions."
@@ -132,11 +127,11 @@ const educationIntro =
               <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
                 {
                   workStack.map((group) => (
-                    <div class="rounded-3xl p-5">
-                      <p class="mb-4 text-xs uppercase tracking-[0.28em] text-[var(--color-green)]">{group.title}</p>
+                    <div class="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5">
+                      <p class="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-green)] opacity-90">{group.title}</p>
                       <div class="flex flex-wrap gap-2">
                         {group.items.map((item: string) => (
-                          <span class="rounded-full border border-white/8 bg-black/15 px-3 py-1.5 text-sm text-[var(--text-use)]/85">
+                          <span class="rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-1 text-xs font-medium text-slate-200">
                             {item}
                           </span>
                         ))}
@@ -150,14 +145,14 @@ const educationIntro =
             {/* Stack IndieGameDev */}
             <div id="bio-panel-indieGameDev" class="bio-tab-panel hidden" role="tabpanel" aria-labelledby="bio-tab-indieGameDev">
               <div class="mb-6">
-                <h1 class="text-2xl md:text-3xl tracking-[0.2em] text-[var(--color-purple)] uppercase font-medium mb-3">
+                <h3 class="text-xl md:text-2xl font-bold text-white tracking-tight mb-2">
                   {t("bio.gamedev")}
-                </h1>
-                <p class="text-sm md:text-base text-[var(--text-use)]/70">
+                </h3>
+                <p class="text-sm leading-relaxed text-slate-300">
                   {
                     lang === "en"
                       ? "Design disciplines and tools I use to create tabletop game systems, mechanics, and worlds."
-                      : "Disciplinas de diseño y herramientas que utilizo para crear sistemas, mecánicas y mundos de juegos de mesa,"
+                      : "Disciplinas de diseño y herramientas que utilizo para crear sistemas, mecánicas y mundos de juegos de mesa."
                   }
                 </p>
               </div>
@@ -165,11 +160,11 @@ const educationIntro =
               <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
                 {
                   gameStack.map((group) => (
-                    <div class="rounded-3xl p-5">
-                      <p class="mb-4 text-xs uppercase tracking-[0.28em] text-[var(--color-green)]">{group.title}</p>
+                    <div class="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5">
+                      <p class="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-green)] opacity-90">{group.title}</p>
                       <div class="flex flex-wrap gap-2">
                         {group.items.map((item: string) => (
-                          <span class="rounded-full border border-white/8 bg-black/15 px-3 py-1.5 text-sm text-[var(--text-use)]/85">
+                          <span class="rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-1 text-xs font-medium text-slate-200">
                             {item}
                           </span>
                         ))}
@@ -185,32 +180,20 @@ const educationIntro =
       {/* col Right */}
       <div>
         <div
-          class="bio-card group relative overflow-hidden rounded-[28px] border border-[#2A3B5F] bg-[#121A2B] p-6 md:p-7 shadow-[0_20px_50px_rgba(2,6,23,0.32)] transition-all duration-300 hover:-translate-y-1 hover:border-[#38BDF8]/70"
+          class="bio-card group relative overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6 md:p-8 backdrop-blur-sm shadow-xl transition-all duration-300 hover:border-white/20 hover:bg-white/[0.04]"
         >
-          <div class="absolute inset-y-5 left-0 w-1 rounded-full bg-gradient-to-b from-[#38BDF8] via-[#8B5CF6] to-transparent"></div>
-          <div
-            class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.12),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(139,92,246,0.10),transparent_28%)] opacity-80 pointer-events-none"
-          >
-          </div>
-
           <div class="relative z-10">
-            <div
-              class="flex w-[80%] max-w-2xl min-w-0 rounded-full border border-white/10 bg-black/15 p-1 items-center justify-center mx-auto"
-            >
-              <span class="flex-1 rounded-full px-4 py-2 text-sm font-semibold text-center text-[var(--text-use)]/85">
+            <div class="mb-6">
+              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-green)] opacity-90 mb-2">
+                {lang === "en" ? "Academic Foundation" : "Fundamento Académico"}
+              </p>
+              <h3 class="text-xl md:text-2xl font-bold text-white tracking-tight mb-2">
                 {educationTitle}
-              </span>
+              </h3>
+              <p class="text-sm leading-relaxed text-slate-300">
+                {educationIntro}
+              </p>
             </div>
-
-            <div class="mt-8">
-              <div class="mb-6">
-                <h2 class="text-2xl md:text-3xl tracking-[0.2em] text-[var(--color-purple)] uppercase font-medium mb-3">
-                  {educationTitle}
-                </h2>
-                <p class="text-sm md:text-base text-[var(--text-use)]/70">
-                  {educationIntro}
-                </p>
-              </div>
 
               <div class="space-y-5">
                 {
@@ -246,7 +229,6 @@ const educationIntro =
         </div>
       </div>
     </div>
-  </div>
 
   <script>
     async function copyEmailToClipboard(emailAddress: string) {
@@ -317,9 +299,10 @@ const educationIntro =
           const isActive = trigger.dataset.tabTarget === targetId;
           trigger.setAttribute("aria-selected", String(isActive));
           trigger.tabIndex = isActive ? 0 : -1;
-          trigger.classList.toggle("bg-[var(--color-blue)]", isActive);
-          trigger.classList.toggle("text-black", isActive);
-          trigger.classList.toggle("text-[var(--text-use)]/70", !isActive);
+          trigger.classList.toggle("bg-white/15", isActive);
+          trigger.classList.toggle("text-white", isActive);
+          trigger.classList.toggle("shadow-sm", isActive);
+          trigger.classList.toggle("text-slate-400", !isActive);
         });
 
         panels.forEach((panel) => {

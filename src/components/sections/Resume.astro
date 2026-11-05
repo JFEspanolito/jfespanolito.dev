@@ -111,59 +111,54 @@ const emailCopyErrorMessage = t("header.emailCopyError");
       <div class="col-span-12 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 w-full">
         {/* Metrics */}
         <div
-          class="min-h-28 p-4 rounded-xl flex flex-col justify-center items-center text-center transition-transform duration-300 hover:scale-105 hover:bg-[var(--color-card-bg)]"
+          class="group rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5 flex flex-col justify-center items-center text-center backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/[0.05]"
         >
-          <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2">{impactValue}</span>
-          <span class="text-xs uppercase tracking-wider text-[var(--color-green)]">{lang === "en" ? "Annual Impact" : "Impacto Anual"}</span
-          >
+          <span class="text-3xl lg:text-4xl font-extrabold tracking-tight text-white mb-1.5">{impactValue}</span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-[var(--color-green)] opacity-90">{lang === "en" ? "Annual Impact" : "Impacto Anual"}</span>
         </div>
 
         <div
-          class="min-h-28 p-4 rounded-xl flex flex-col justify-center items-center text-center transition-transform duration-300 hover:scale-105 hover:bg-[var(--color-card-bg)]"
+          class="group rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5 flex flex-col justify-center items-center text-center backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/[0.05]"
         >
-          <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2">{totalRobots}</span>
-          <span class="text-xs uppercase tracking-wider text-[var(--color-green)]">{lang === "en" ? "Live Robots" : "Robots en Prod"}</span>
+          <span class="text-3xl lg:text-4xl font-extrabold tracking-tight text-white mb-1.5">{totalRobots}</span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-[var(--color-green)] opacity-90">{lang === "en" ? "Live Robots" : "Robots en Prod"}</span>
         </div>
 
         <div
-          class="min-h-28 p-4 rounded-xl flex flex-col justify-center items-center text-center transition-transform duration-300 hover:scale-105 hover:bg-[var(--color-card-bg)]"
+          class="group rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5 flex flex-col justify-center items-center text-center backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/[0.05]"
         >
-          <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2">+{yearsOfExperience}</span>
-          <span class="text-xs uppercase tracking-wider text-[var(--color-green)]">{lang === "en" ? "Years Exp." : "Años Exp."}</span>
+          <span class="text-3xl lg:text-4xl font-extrabold tracking-tight text-white mb-1.5">+{yearsOfExperience}</span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-[var(--color-green)] opacity-90">{lang === "en" ? "Years Exp." : "Años Exp."}</span>
         </div>
 
         <div
-          class="min-h-28 p-4 rounded-xl flex flex-col justify-center text-center items-center transition-transform duration-300 hover:scale-105 hover:bg-[var(--color-card-bg)]"
+          class="group rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5 flex flex-col justify-center text-center items-center backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/[0.05]"
         >
-          <span class="text-3xl font-bold text-[var(--color-resaltar)] mb-2"> {profileInfo.sc}</span>
-          <span class="text-xs uppercase tracking-wider text-[var(--color-green)] leading-snug">{profileInfo.Major}</span>
+          <span class="text-3xl lg:text-4xl font-extrabold tracking-tight text-white mb-1.5">{profileInfo.sc}</span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-[var(--color-green)] opacity-90 leading-snug">{profileInfo.Major}</span>
         </div>
+
         {/* Headline */}
-        <div class="col-span-2 md:col-span-4 mt-4 flex justify-center">
-          <p class="max-w-3xl text-balance text-center text-xl lg:text-2xl leading-snug text-[var(--color-resaltar)] font-medium">
+        <div class="col-span-2 md:col-span-4 mt-6 flex justify-center">
+          <p class="max-w-3xl text-balance text-center text-xl lg:text-2xl leading-relaxed text-slate-100 font-medium tracking-tight">
             {profileInfo.headline}
           </p>
         </div>
 
         {/* Stack */}
         <div
-          class="relative overflow-hidden col-span-2 md:col-span-4 mt-2 rounded-2xl border border-[var(--color-blue)]/30 bg-[var(--color-blue)]/5 px-4 py-5 md:px-6 md:py-6 text-center shadow-[0_18px_60px_rgba(15,23,42,0.28)]"
+          class="relative overflow-hidden col-span-2 md:col-span-4 mt-4 rounded-2xl border border-white/[0.08] bg-white/[0.02] px-4 py-6 md:px-8 md:py-7 text-center backdrop-blur-sm"
         >
-          <div
-            class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15 pointer-events-none"
-            style={`background-image: url(${techBanner.src});`}
-          >
-          </div>
           <div class="relative z-10">
             <h4
-              class="text-lg lg:text-xl font-bold uppercase mb-4 text-[var(--color-purple)] tracking-[0.22em] lg:tracking-[0.3em] items-center justify-center"
+              class="text-xs font-semibold uppercase mb-4 text-[var(--color-green)] tracking-[0.2em] opacity-90"
             >
               {lang === "en" ? "Strategic Stack" : "Stack Tecnológico"}
             </h4>
-            <div class="flex flex-wrap gap-2 justify-center">
+            <div class="flex flex-wrap gap-2.5 justify-center">
               {
                 topSkills.map((skill) => (
-                  <span class="px-3 py-1.5 bg-white/10 rounded-full text-xs font-medium border border-white/5 whitespace-nowrap backdrop-blur-sm">
+                  <span class="px-3.5 py-1.5 bg-white/[0.05] rounded-full text-xs font-medium text-slate-200 border border-white/[0.08] whitespace-nowrap backdrop-blur-md transition-all duration-200 hover:border-white/25 hover:text-white hover:bg-white/[0.1]">
                     {skill}
                   </span>
                 ))
@@ -174,18 +169,18 @@ const emailCopyErrorMessage = t("header.emailCopyError");
 
         {/* Certifications */}
         <div class="col-span-2 md:col-span-4 mt-2">
-          <div class="rounded-2xl px-4 py-4 md:px-6 w-full">
+          <div class="rounded-2xl p-4 md:p-6 w-full">
             <div class="mb-4 text-center">
-              <h2 class="text-x uppercase tracking-[0.28em] text-[var(--color-green)]">
+              <h2 class="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-green)] opacity-90">
                 {lang === "en" ? "Recent Certifications" : "Certificaciones Recientes"}
               </h2>
             </div>
-            <div class="grid grid-cols-1 gap-3 xl:grid-cols-2 xl:gap-x-6 xl:gap-y-4">
+            <div class="grid grid-cols-1 gap-3 xl:grid-cols-2 xl:gap-x-6 xl:gap-y-3">
               {
                 recentCerts.map((cert) => (
-                  <div class="flex items-start gap-3 rounded-xl px-3 py-3 transition-colors hover:border-[var(--color-purple)]/30 hover:bg-white/[0.05]">
+                  <div class="flex items-start gap-3 rounded-xl border border-transparent px-3.5 py-2.5 transition-colors hover:border-white/10 hover:bg-white/[0.03]">
                     <div class="mt-2 h-1.5 w-1.5 bg-[var(--color-green)] rounded-full flex-shrink-0" />
-                    <span class="text-sm lg:text-base leading-relaxed text-[var(--text-use)] text-left break-words text-pretty">
+                    <span class="text-sm lg:text-base leading-relaxed text-slate-200 text-left break-words text-pretty">
                       {cert.name}
                     </span>
                   </div>
@@ -198,26 +193,26 @@ const emailCopyErrorMessage = t("header.emailCopyError");
     </div>
 
     <!-- Conectemos Section -->
-    <div class="mt-20 border-t border-white/10 pt-10">
-      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+    <div class="mt-16 border-t border-white/[0.08] pt-10">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
         {
           contactInfo.map((contact) => (
-            <div class="group relative flex h-full flex-col items-center overflow-hidden rounded-2xl p-8 text-center transition-all duration-300 hover:border-[var(--color-blue)]/50 hover:bg-[var(--color-card-bg)]">
+            <div class="group relative flex h-full flex-col items-center rounded-2xl border border-white/[0.08] bg-white/[0.02] p-8 text-center backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/[0.04]">
               <div
-                class="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-inner"
-                style={`background-color: ${contact.color}20`}
+                class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-105 transition-transform duration-300"
+                style={`background-color: ${contact.color}15`}
               >
                 <Image
                   src={contact.icon as any}
                   alt={contact.name}
-                  class="w-10 h-10 opacity-90 group-hover:opacity-100 object-contain"
-                  width={40}
-                  height={40}
+                  class="w-8 h-8 opacity-90 group-hover:opacity-100 object-contain"
+                  width={32}
+                  height={32}
                 />
               </div>
 
-              <h4 class="text-xl font-bold text-white mb-2 group-hover:text-[var(--color-blue)] transition-colors">{contact.name}</h4>
-              <p class="text-sm text-gray-400 mb-6">{contact.desc}</p>
+              <h4 class="text-lg font-bold text-white mb-1.5 transition-colors">{contact.name}</h4>
+              <p class="text-xs text-slate-400 mb-6 leading-relaxed">{contact.desc}</p>
 
               <a
                 href={contact.name === "Email" ? sendMailHref : contact.url}
@@ -229,17 +224,17 @@ const emailCopyErrorMessage = t("header.emailCopyError");
                 <span class="material-symbols-outlined text-sm">{contact.iconSymbol}</span>
               </a>
 
-              <div class="mt-2 flex min-h-[3.75rem] w-full items-center justify-center">
+              <div class="mt-2 flex min-h-[3.25rem] w-full items-center justify-center">
                 {contact.name === "Email" ? (
                   <p
-                    class="flex w-full max-w-full items-center justify-center gap-2 rounded-2xl px-3 py-2 text-center cursor-copy break-all text-sm font-medium leading-relaxed text-[var(--text-use)]/70 transition-colors hover:border-[var(--color-red)]/30 hover:text-[var(--color-red)]"
+                    class="flex w-full max-w-full items-center justify-center gap-2 rounded-xl px-3 py-1.5 text-center cursor-copy break-all text-xs font-medium text-slate-400 transition-colors hover:text-white"
                     data-email-copy="true"
                     data-email-address={emailAddress}
                     data-copied-message={copiedEmailMessage}
                     data-copy-error-message={emailCopyErrorMessage}
                     title={lang === "en" ? "Click to copy email" : "Haz clic para copiar el correo"}
                   >
-                    <span class="material-symbols-outlined shrink-0 text-base text-[var(--color-red)]">content_copy</span>
+                    <span class="material-symbols-outlined shrink-0 text-sm text-[var(--color-red)]">content_copy</span>
                     <span class="min-w-0 break-all">{emailAddress}</span>
                   </p>
                 ) : (
