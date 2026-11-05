@@ -62,9 +62,9 @@ function issuerFromUrl(url: string) {
         </h2>
       </div>
       <div
-        class="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5 flex flex-col items-center justify-center text-center max-w-[14rem] mx-auto lg:mx-0 lg:justify-self-end backdrop-blur-sm shadow-sm"
+        class="flex flex-col items-center lg:items-end justify-center text-center lg:text-right max-w-[14rem] mx-auto lg:mx-0 lg:justify-self-end"
       >
-        <span class="text-3xl lg:text-4xl font-extrabold text-white tracking-tight mb-1">{totalCertifications}+</span>
+        <span class="text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-1">{totalCertifications}+</span>
         <span class="text-xs uppercase tracking-wider text-[var(--color-green)] font-semibold opacity-90">{totalCertLabel}</span>
       </div>
     </div>
@@ -75,17 +75,12 @@ function issuerFromUrl(url: string) {
       <div
         class="certificate-hover-card col-span-2 group relative overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6 md:p-8 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:shadow-xl"
       >
-        <div class="absolute inset-y-5 left-0 w-1 rounded-full bg-gradient-to-b from-[#38BDF8] via-[#8B5CF6] to-transparent"></div>
-        <div
-          class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.12),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(139,92,246,0.10),transparent_28%)] opacity-80 pointer-events-none"
-        >
-        </div>
         {
           featured && (
             <div class="relative z-10">
               <button
                 type="button"
-                class="mb-5 w-full rounded-2xl overflow-hidden border border-white/10 bg-black/10 cursor-zoom-in"
+                class="mb-6 w-full rounded-2xl overflow-hidden border border-white/10 bg-black/20 cursor-zoom-in"
                 data-cert-preview
                 data-preview-src={featured.img.src}
                 data-preview-alt={featured.name}
@@ -93,7 +88,7 @@ function issuerFromUrl(url: string) {
               >
                 <Image src={featured.img} alt={featured.name} class="w-full h-auto" width={900} height={520} />
               </button>
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="md:col-span-2">
                   <h3 class="text-2xl md:text-3xl font-bold text-white mb-3 break-words leading-tight tracking-tight">{featured.name}</h3>
                   <p class="text-sm md:text-base mb-6 max-w-2xl leading-relaxed text-slate-300 border-l-2 border-[var(--color-green)] pl-4 break-words">
@@ -104,14 +99,14 @@ function issuerFromUrl(url: string) {
                   <div>
                     <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-green)] opacity-90 mb-1">{issuerLabel}</p>
                     <a
-                      class="underline text-slate-300 hover:text-white transition-colors inline-block max-w-full truncate align-middle"
+                      class="text-sm underline text-slate-300 hover:text-white transition-colors inline-block max-w-full truncate align-middle"
                       href={featured.url}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       {issuerFromUrl(featured.url)}
                     </a>
-                    <p class="text-xs mt-6 uppercase tracking-wider text-slate-400 font-semibold">
+                    <p class="text-xs mt-4 uppercase tracking-wider text-slate-400 font-mono">
                       {formatDate(featured.date)}
                     </p>
                   </div>
@@ -126,28 +121,24 @@ function issuerFromUrl(url: string) {
 
     {/* Certificados list */}
     <div class="max-h-[34rem] overflow-y-auto no-scrollbar pr-1">
-      <div id="deferred-certificates-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div id="deferred-certificates-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3">
         {
           initialRestCertificates.map((cert) => (
-            <div class="experience-card p-2 rounded-2xl group overflow-hidden">
+            <div class="group">
               <a
                 href={cert.url || "#"}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-block max-w-full cursor-pointer align-middle "
+                class="flex items-center gap-3.5 p-3 rounded-2xl border border-white/[0.04] bg-white/[0.01] hover:border-white/15 hover:bg-white/[0.03] transition-all duration-200"
               >
-                <div class="flex items-center gap-4 min-w-0 w-full">
-                  <div class="w-16 h-12 shrink-0 rounded-xl bg-[var(--bg-dark)] overflow-hidden border border-white/5">
-                    <Image src={cert.img} alt={cert.name} class="h-full w-full object-cover" width={160} height={96} loading="lazy" />
-                  </div>
+                <div class="w-14 h-10 shrink-0 rounded-lg bg-[var(--bg-dark)] overflow-hidden border border-white/5">
+                  <Image src={cert.img} alt={cert.name} class="h-full w-full object-cover" width={140} height={80} loading="lazy" />
+                </div>
 
-                  <div class="min-w-0 w-full grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-x-4 gap-y-2 items-start">
-                    <div class="min-w-0">
-                      <h4 class="text-lg md:text-xl font-bold text-white group-hover:text-[var(--color-green)] transition-colors truncate">
-                        {cert.name}
-                      </h4>
-                    </div>
-                  </div>
+                <div class="min-w-0 flex-1">
+                  <h4 class="text-sm md:text-base font-semibold text-slate-200 group-hover:text-white transition-colors truncate">
+                    {cert.name}
+                  </h4>
                 </div>
               </a>
             </div>
@@ -160,7 +151,7 @@ function issuerFromUrl(url: string) {
             <button
               id="load-certificates-button"
               type="button"
-              class="rounded-full border border-[var(--color-green)]/50 px-5 py-3 text-sm font-black uppercase tracking-[0.16em] text-[var(--color-resaltar)] transition-colors hover:bg-[var(--color-resaltar)] hover:text-[var(--bg-dark)]"
+              class="rounded-full border border-white/15 bg-white/[0.02] px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-slate-200 transition-all hover:bg-white/[0.06] hover:border-white/30"
             >
               {loadRestLabel} ({deferredRestCertificates.length})
             </button>
@@ -172,25 +163,21 @@ function issuerFromUrl(url: string) {
     <div class="hidden">
       {
         deferredRestCertificates.map((cert) => (
-          <div class="experience-card p-2 rounded-2xl group overflow-hidden hidden" data-deferred-certificate>
+          <div class="group hidden" data-deferred-certificate>
             <a
               href={cert.url || "#"}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-block max-w-full cursor-pointer align-middle "
+              class="flex items-center gap-3.5 p-3 rounded-2xl border border-white/[0.04] bg-white/[0.01] hover:border-white/15 hover:bg-white/[0.03] transition-all duration-200"
             >
-              <div class="flex items-center gap-4 min-w-0 w-full">
-                <div class="w-16 h-12 shrink-0 rounded-xl bg-[var(--bg-dark)] overflow-hidden border border-white/5">
-                  <Image src={cert.img} alt={cert.name} class="h-full w-full object-cover" width={160} height={96} loading="lazy" />
-                </div>
+              <div class="w-14 h-10 shrink-0 rounded-lg bg-[var(--bg-dark)] overflow-hidden border border-white/5">
+                <Image src={cert.img} alt={cert.name} class="h-full w-full object-cover" width={140} height={80} loading="lazy" />
+              </div>
 
-                <div class="min-w-0 w-full grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-x-4 gap-y-2 items-start">
-                  <div class="min-w-0">
-                    <h4 class="text-lg md:text-xl font-bold text-white group-hover:text-[var(--color-green)] transition-colors truncate">
-                      {cert.name}
-                    </h4>
-                  </div>
-                </div>
+              <div class="min-w-0 flex-1">
+                <h4 class="text-sm md:text-base font-semibold text-slate-200 group-hover:text-white transition-colors truncate">
+                  {cert.name}
+                </h4>
               </div>
             </a>
           </div>

@@ -111,23 +111,23 @@ const projectsForModal = projects.map((project) => {
 
               {/* Tech tags */}
               {featuredProject.topskills && featuredProject.topskills.length > 0 && (
-                <div class="flex flex-wrap gap-2 mt-4">
+                <div class="flex flex-wrap gap-1.5 mt-4">
                   {featuredProject.topskills.map((skill: string) => (
-                    <span class="border border-white/[0.08] bg-white/[0.04] text-slate-300 text-xs px-2.5 py-0.5 rounded-full">{skill}</span>
+                    <span class="rounded-md bg-white/[0.08] text-slate-200 text-xs px-2.5 py-1 font-medium">{skill}</span>
                   ))}
                 </div>
               )}
 
               {/* Actions */}
-              <div class="flex flex-wrap gap-3 mt-5">
+              <div class="flex flex-wrap gap-3 mt-6">
                 {featuredVisitLink && (
                   <a
                     href={featuredVisitLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="project-hover-primary inline-flex items-center px-5 py-2.5 rounded-xl bg-[#38BDF8] text-[#0B1120] text-sm font-semibold
-                         transition-all duration-200
-                      hover:bg-[#38BDF8]/90"
+                    class="inline-flex items-center px-6 py-2.5 rounded-full bg-[var(--color-green)] text-slate-950 text-sm font-semibold
+                         transition-all duration-150 shadow-sm
+                      hover:brightness-110"
                   >
                     {featuredLinks[0]?.label ?? visitLabel}
                   </a>
@@ -135,9 +135,9 @@ const projectsForModal = projects.map((project) => {
                 <button
                   type="button"
                   data-project-details={String(featuredProject.id)}
-                  class="inline-flex items-center px-5 py-2.5 rounded-xl border border-[#2A3B5F] text-white text-sm font-medium
-                       transition-all duration-200
-                       hover:border-[#38BDF8]/50 hover:text-[#38BDF8]"
+                  class="inline-flex items-center px-5 py-2.5 rounded-full border border-white/20 bg-white/[0.05] text-white text-sm font-medium
+                       transition-all duration-150
+                       hover:bg-white/10 hover:border-white/30"
                 >
                   {detailsLabel}
                 </button>
@@ -193,21 +193,21 @@ const projectsForModal = projects.map((project) => {
                 {project.topskills && project.topskills.length > 0 && (
                   <div class="flex flex-wrap gap-1.5">
                     {project.topskills.map((skill: string) => (
-                      <span class="border border-white/[0.08] bg-white/[0.04] text-slate-300 text-xs px-2.5 py-0.5 rounded-full">{skill}</span>
+                      <span class="rounded-md bg-white/[0.04] text-slate-300 text-xs px-2.5 py-1 font-medium">{skill}</span>
                     ))}
                   </div>
                 )}
 
                 {/* Actions */}
-                <div class="flex flex-wrap gap-2 pt-1 mt-auto">
+                <div class="flex flex-wrap gap-2 pt-2 mt-auto">
                   {visitLink && (
                     <a
                       href={visitLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="inline-flex items-center px-4 py-2 rounded-lg bg-[#38BDF8]/10 text-[#38BDF8] text-xs font-semibold border border-[#38BDF8]/20
-                             transition-all duration-200
-                             hover:bg-[#38BDF8]/20 hover:border-[#38BDF8]/40"
+                      class="inline-flex items-center px-4 py-1.5 rounded-full bg-[var(--color-green)]/10 text-[var(--color-green)] text-xs font-semibold border border-[var(--color-green)]/20
+                             transition-all duration-150
+                             hover:bg-[var(--color-green)]/20"
                     >
                       {links[0]?.label ?? visitLabel}
                     </a>
@@ -215,9 +215,9 @@ const projectsForModal = projects.map((project) => {
                   <button
                     type="button"
                     data-project-details={String(project.id)}
-                    class="inline-flex items-center px-4 py-2 rounded-lg border border-[#2A3B5F] text-slate-300 text-xs font-medium
-                           transition-all duration-200
-                           hover:border-[#8B5CF6]/40 hover:text-[#8B5CF6]"
+                    class="inline-flex items-center px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.02] text-slate-300 text-xs font-medium
+                           transition-all duration-150
+                           hover:border-white/25 hover:text-white"
                   >
                     {detailsLabel}
                   </button>
@@ -233,41 +233,41 @@ const projectsForModal = projects.map((project) => {
   {/* ── Details Modal ─────────────────────────────────────────────── */}
   <div
     id="project-details-modal"
-    class="fixed inset-0 z-[120] hidden items-center justify-center bg-[#0B1120]/90 p-4 backdrop-blur-sm"
+    class="fixed inset-0 z-[120] hidden items-center justify-center bg-black/80 p-4 backdrop-blur-md"
     role="dialog"
     aria-modal="true"
     aria-label="Project details"
   >
-    <div class="w-full max-w-3xl rounded-2xl border border-[#2A3B5F] bg-[#121A2B] p-6 md:p-8 shadow-2xl">
+    <div class="w-full max-w-3xl rounded-3xl border border-white/[0.08] bg-[#111524] p-6 md:p-8 shadow-2xl">
       <div class="flex items-start justify-between gap-4 mb-4">
         <div class="min-w-0">
-          <h3 id="project-modal-title" class="text-2xl md:text-3xl font-bold text-white"></h3>
+          <h3 id="project-modal-title" class="text-2xl md:text-3xl font-bold text-white tracking-tight"></h3>
           <p id="project-modal-status" class="mt-2"></p>
         </div>
         <button
           id="project-modal-close"
           type="button"
-          class="shrink-0 h-9 w-9 rounded-full border border-[#2A3B5F] text-slate-300
-                 transition-all duration-200
-                 hover:border-[#38BDF8]/50 hover:text-[#38BDF8]"
+          class="shrink-0 h-9 w-9 rounded-full border border-white/10 text-slate-400
+                 transition-all duration-150
+                 hover:border-white/25 hover:text-white"
           aria-label={closeLabel}>✕</button
         >
       </div>
 
-      <div class="mb-5 rounded-xl overflow-hidden border border-[#2A3B5F]">
+      <div class="mb-5 rounded-2xl overflow-hidden border border-white/[0.08]">
         <img id="project-modal-image" src="" alt="" class="w-full h-auto max-h-[320px] object-cover" />
       </div>
 
       <p id="project-modal-description" class="text-slate-300 text-base leading-relaxed"></p>
 
-      <div class="mt-5">
-        <p class="text-xs uppercase tracking-widest font-semibold mb-3 text-[#38BDF8]">
+      <div class="mt-6">
+        <p class="text-xs uppercase tracking-[0.2em] font-semibold mb-3 text-[var(--color-green)] opacity-90">
           {modalSkillsLabel}
         </p>
-        <div id="project-modal-skills" class="flex flex-wrap gap-2"></div>
+        <div id="project-modal-skills" class="flex flex-wrap gap-1.5"></div>
       </div>
 
-      <div id="project-modal-actions" class="mt-6 flex flex-wrap gap-3"></div>
+      <div id="project-modal-actions" class="mt-8 flex flex-wrap gap-3"></div>
     </div>
   </div>
 </section>
@@ -315,7 +315,7 @@ const projectsForModal = projects.map((project) => {
     skillsEl.innerHTML = "";
     [...(project.topskills || []), ...(project.skills || [])].forEach((skill) => {
       const chip = document.createElement("span");
-      chip.className = "bg-[#1E293B] text-slate-300 text-xs px-2.5 py-1 rounded border border-[#2A3B5F]";
+      chip.className = "rounded-md bg-white/[0.04] px-2.5 py-1 text-xs font-medium text-slate-300";
       chip.textContent = skill;
       skillsEl.appendChild(chip);
     });
@@ -328,7 +328,7 @@ const projectsForModal = projects.map((project) => {
       anchor.target = "_blank";
       anchor.rel = "noopener noreferrer";
       anchor.className =
-        "project-hover-primary inline-flex items-center px-5 py-2.5 rounded-xl bg-[#38BDF8] text-[#0B1120] text-sm font-semibold transition-all duration-200 hover:bg-[#38BDF8]/90";
+        "inline-flex items-center px-6 py-2.5 rounded-full bg-[var(--color-green)] text-slate-950 text-sm font-semibold transition-all duration-150 hover:brightness-110 shadow-sm";
       anchor.textContent = link.label || visitLabel || "Visit";
       actionsEl.appendChild(anchor);
     });
@@ -339,7 +339,7 @@ const projectsForModal = projects.map((project) => {
       github.target = "_blank";
       github.rel = "noopener noreferrer";
       github.className =
-        "inline-flex items-center px-5 py-2.5 rounded-xl border border-[#8B5CF6]/40 text-[#8B5CF6] text-sm font-medium transition-all duration-200 hover:bg-[#8B5CF6]/10 hover:border-[#8B5CF6]/60";
+        "inline-flex items-center px-5 py-2.5 rounded-full border border-white/15 bg-white/[0.03] text-white text-sm font-medium transition-all duration-150 hover:bg-white/[0.08] hover:border-white/30";
       github.textContent = "GitHub";
       actionsEl.appendChild(github);
     }
