@@ -22,15 +22,15 @@ const lang: "es" | "en" =
 
 const copyright =
   lang === "en"
-    ? `© ${year} — The source code for this site is public and may be reviewed and reused. The personal and professional information presented is not authorized for copy or redistribution.`
+    ? `© ${year} Jorge A. Falcón A. — Web code is public. Apps, products, and personal info: all rights reserved.`
     : configProject.copyright;
 ---
 
 <footer
-  class="flex items-center justify-center font-sans text-[var(--color-green)]"
+  class="flex flex-col sm:flex-row items-center justify-center gap-3 py-8 px-6 text-xs md:text-sm text-slate-400 border-t border-white/[0.08]"
 >
   <a
-    class="scale-80 hover:scale-120 p-2 rounded-md"
+    class="p-1 rounded-md text-slate-400 hover:text-white transition-all hover:scale-105"
     href="https://github.com/JFEspanolito/jfespanolito.dev"
     title="GitHub"
     target="_blank"
@@ -38,16 +38,16 @@ const copyright =
     aria-label="GitHub"
   >
     <Image
-      class="w-32 h-32 md:w-8 md:h-8"
+      class="w-5 h-5 opacity-70 hover:opacity-100 transition-opacity"
       src={githubLogo}
       alt="GitHub icon"
-      width={32}
-      height={32}
-      loading="eager"
+      width={20}
+      height={20}
+      loading="lazy"
       decoding="async"
     />
   </a>
-  <p class="text-sm md:text-base opacity-80 text-center md:text-right">
+  <p class="text-center">
     {copyright}
   </p>
 </footer>
