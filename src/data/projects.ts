@@ -101,6 +101,30 @@ export const projectsData = {
       imgBgPos: "background-position: 50% 50%; background-size: contain; background-repeat: no-repeat;",
     },
     {
+      id: 9,
+      title: "Patch Note",
+      status: "En Desarrollo",
+      description:
+        "ARPG de acción cooperativo para escuadrones de hasta 5 jugadores ambientado en el mundo de Syntax (proyecto de KiraBelak). Participo activamente como colaborador en el desarrollo de sistemas de juego, combate y arquitectura de red con Godot 4.",
+      skills: [
+        "Godot 4",
+        "GDScript",
+        "Netcode",
+        "Diseño de Sistemas",
+        "Open Source",
+      ],
+      topskills: ["Godot 4", "GDScript", "Netcode"],
+      link: [
+        {
+          url: "https://patch-note-web.vercel.app/",
+          label: "Visítala",
+        },
+      ],
+      github: "https://github.com/KiraBelak/patch-note",
+      image: images["../assets/projects/patchnote.png"].default,
+      imgBgPos: "background-position: 50% 50%; background-size: cover;",
+    },
+    {
       id: 8,
       title: "PuckLife Counter",
       status: "Live",
@@ -276,6 +300,30 @@ export const projectsData = {
       github: "https://github.com/JFEspanolito/Grimoire-Maker",
       image: images["../assets/projects/grimoire.png"].default,
       imgBgPos: "background-position: 50% 50%; background-size: contain; background-repeat: no-repeat;",
+    },
+    {
+      id: 9,
+      title: "Patch Note",
+      status: "In Development",
+      description:
+        "Co-op action RPG for squads of up to 5 players set in the world of Syntax (project by KiraBelak). Actively contributing as a collaborator to gameplay systems, combat mechanics, and netcode architecture in Godot 4.",
+      skills: [
+        "Godot 4",
+        "GDScript",
+        "Netcode",
+        "Systems Design",
+        "Open Source",
+      ],
+      topskills: ["Godot 4", "GDScript", "Netcode"],
+      link: [
+        {
+          url: "https://patch-note-web.vercel.app/",
+          label: "Visit Site",
+        },
+      ],
+      github: "https://github.com/KiraBelak/patch-note",
+      image: images["../assets/projects/patchnote.png"].default,
+      imgBgPos: "background-position: 50% 50%; background-size: cover;",
     },
     {
       id: 8,
