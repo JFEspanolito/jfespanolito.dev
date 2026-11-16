@@ -99,17 +99,18 @@ export const aboutData = {
         url: "https://plantacora.com",
         icon: projectImages["../assets/projects/plantacora.webp"].default,
       },
+      {
+        name: "Grimoire Maker",
+        url: "https://www.jfespanolito.dev/apps/grimoire",
+        icon: projectImages["../assets/projects/grimoire.png"].default,
+      },
+      {
+        name: "Patch Note",
+        url: "https://patch-note-web.vercel.app",
+        icon: projectImages["../assets/projects/patchnote.png"].default,
+      },
     ],
-    supportProjects: [
-      // {
-      //   name: "Ko-Fi",
-      //   url: "https://ko-fi.com/jfespanolito",
-      // },
-      // {
-      //   name: "Patreon",
-      //   url: "https://www.patreon.com/c/jfespanolito",
-      // },
-    ],
+    supportProjects: [] as { name: string; url: string }[],
   },
   avatarUrl: avatar,
   logoUrl: logo,

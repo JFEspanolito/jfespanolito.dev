@@ -1,0 +1,201 @@
+---
+import "@/styles/global.css";
+import Meta from "@/layouts/Meta.astro";
+import Header from "@/layouts/Header.astro";
+import Footer from "@/layouts/Footer.astro";
+import { configProject as config } from "@/data/configProject";
+
+const queryLang = Astro.url.searchParams.get("lang")?.trim().toLowerCase();
+const rawLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
+
+const lang: "en" | "es" =
+  queryLang === "en" || queryLang === "es"
+    ? queryLang
+    : rawLang === "en" || rawLang === "es"
+      ? rawLang
+      : "en";
+
+Astro.locals.lang = lang;
+
+const isEs = lang === "es";
+
+const pageTitle = isEs
+  ? "Política de Privacidad | Grimoire Maker"
+  : "Privacy Policy | Grimoire Maker";
+---
+
+<!doctype html>
+<html lang={lang} class="dark" style="color-scheme: dark;">
+  <head>
+    <Meta title={pageTitle} />
+  </head>
+
+  <body class="antialiased bg-[var(--bg-use)] text-[var(--text-use)] min-h-screen flex flex-col justify-between">
+    <Header />
+
+    <main class="flex-1 w-full max-w-4xl mx-auto px-6 py-10 md:py-16">
+      <nav aria-label="Breadcrumb" class="mb-6 flex items-center gap-2 text-sm">
+        <a
+          href={`/apps/grimoire?lang=${lang}`}
+          class="inline-flex items-center gap-1.5 py-1 font-medium text-[var(--color-green)] hover:underline transition-colors touch-manipulation focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-green)]"
+        >
+          <span aria-hidden="true">←</span>
+          <span translate="no">Grimoire Maker</span>
+        </a>
+        <span aria-hidden="true" class="text-white/20">/</span>
+        <span class="text-white/60">{isEs ? "Privacidad" : "Privacy"}</span>
+      </nav>
+
+      <header class="mb-10 border-b border-white/[0.08] pb-6">
+        <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[var(--color-green)] opacity-90 mb-2">
+          <span translate="no">Desktop</span>
+          <span aria-hidden="true" class="text-white/30">·</span>
+          <span translate="no">Grimoire Maker</span>
+        </div>
+        <h1 class="text-3xl md:text-5xl font-extrabold tracking-[-0.025em] leading-[1.08] text-balance text-white mb-3">
+          {isEs ? "Política de Privacidad" : "Privacy Policy"}
+        </h1>
+        <p class="text-xs md:text-sm text-white/50 font-mono tabular-nums">
+          {isEs ? "Última actualización: " : "Last updated: "}
+          <time datetime="2026-11-15">{isEs ? "15 de noviembre de 2026" : "November 15, 2026"}</time>
+        </p>
+      </header>
+
+      <div class="rounded-3xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-sm shadow-xl p-6 md:p-10 space-y-8 text-white/80 leading-relaxed text-sm md:text-base text-pretty max-w-[72ch]">
+        {isEs ? (
+          <>
+            <section class="space-y-3">
+              <p>
+                <strong class="text-white" translate="no">Grimoire Maker</strong> ("la Aplicación") es un estudio de escritura y maquetación editorial de escritorio desarrollado por <strong class="text-white" translate="no">JFEspanolito</strong>. Esta Política de Privacidad describe cómo se gestionan tus archivos locales y tu privacidad.
+              </p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-bold text-white tracking-[-0.015em] text-balance">1. Recopilación y Uso de Datos</h2>
+              <p>
+                Grimoire Maker <strong class="text-white">no recopila, almacena en la nube, transmite ni comparte ningún dato personal, manuscrito ni telemetría del usuario</strong>.
+              </p>
+              <ul class="list-disc pl-6 space-y-1.5 text-slate-300">
+                <li>La aplicación es 100% local y funciona sin conexión a internet: no requiere cuentas de usuario, registros ni servidores propios en la nube.</li>
+                <li>No integra bibliotecas de análisis (analytics), rastreadores, SDKs de publicidad ni servicios externos de telemetría.</li>
+                <li>Tus manuscritos, archivos Markdown, recursos, temas y configuraciones se guardan única y exclusivamente en el sistema de archivos local de tu equipo.</li>
+              </ul>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-bold text-white tracking-[-0.015em] text-balance">2. Acceso al Sistema de Archivos y Git</h2>
+              <p>La Aplicación interactúa únicamente con los recursos locales que tú autorizas:</p>
+              <ul class="list-disc pl-6 space-y-2 text-slate-300">
+                <li>
+                  <strong class="text-white">Carpetas y archivos de proyecto:</strong> Solo lee y escribe dentro de las carpetas de proyecto o archivos que selecciones explícitamente mediante los diálogos nativos del sistema operativo.
+                </li>
+                <li>
+                  <strong class="text-white">Control de versiones Git:</strong> El historial de commits y ramas se gestiona localmente sobre tu repositorio. Si configuras un repositorio remoto y ejecutas una sincronización (<code class="text-xs bg-white/[0.06] border border-white/10 px-1.5 py-0.5 rounded text-[var(--color-green)] font-mono" translate="no">push</code> / <code class="text-xs bg-white/[0.06] border border-white/10 px-1.5 py-0.5 rounded text-[var(--color-green)] font-mono" translate="no">pull</code>), la comunicación se realiza directamente entre tu equipo y tu proveedor Git bajo tus propias credenciales locales.
+                </li>
+              </ul>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-bold text-white tracking-[-0.015em] text-balance">3. Actualizaciones y Servicios de Terceros</h2>
+              <p>
+                La Aplicación no integra servicios de terceros que recopilen información. Si utilizas la función opcional de búsqueda de actualizaciones, la aplicación consulta únicamente los metadatos públicos de lanzamiento en GitHub Releases sin enviar información personal ni identificadores del usuario.
+              </p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-bold text-white tracking-[-0.015em] text-balance">4. Privacidad de Menores</h2>
+              <p>Dado que Grimoire Maker no recopila ningún tipo de información personal, no recopila datos de menores de 13 años.</p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-bold text-white tracking-[-0.015em] text-balance">5. Cambios en esta Política</h2>
+              <p>Cualquier actualización a esta política se publicará en esta misma dirección web con la fecha de revisión correspondiente.</p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-bold text-white tracking-[-0.015em] text-balance">6. Contacto</h2>
+              <p>Si tienes preguntas o inquietudes sobre esta política de privacidad, puedes contactarnos a través de:</p>
+              <p>
+                <strong class="text-white">Email:</strong>{" "}
+                <a
+                  href={`mailto:${config.support.appsEmail}`}
+                  class="text-[var(--color-green)] hover:underline font-medium underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-green)]"
+                  translate="no"
+                >
+                  {config.support.appsEmail}
+                </a>
+              </p>
+            </section>
+          </>
+        ) : (
+          <>
+            <section class="space-y-3">
+              <p>
+                <strong class="text-white" translate="no">Grimoire Maker</strong> ("the Application") is a local-first desktop writing and publishing studio developed by <strong class="text-white" translate="no">JFEspanolito</strong>. This Privacy Policy explains how your local files and privacy are handled.
+              </p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-bold text-white tracking-[-0.015em] text-balance">1. Information Collection and Use</h2>
+              <p>
+                Grimoire Maker <strong class="text-white">does NOT collect, upload to the cloud, transmit, or share any personal information, manuscripts, or user telemetry</strong>.
+              </p>
+              <ul class="list-disc pl-6 space-y-1.5 text-slate-300">
+                <li>The Application is 100% local and works offline: there are no user accounts, sign-ups, or cloud servers.</li>
+                <li>No analytics frameworks, tracking SDKs, advertising libraries, or external telemetry tools are integrated.</li>
+                <li>Your manuscripts, Markdown files, assets, themes, and preferences are stored strictly on your computer's local file system.</li>
+              </ul>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-bold text-white tracking-[-0.015em] text-balance">2. File System Access and Git</h2>
+              <p>The Application only interacts with local resources you explicitly choose:</p>
+              <ul class="list-disc pl-6 space-y-2 text-slate-300">
+                <li>
+                  <strong class="text-white">Project folders and files:</strong> It only reads and writes inside project directories or files you explicitly open or create through native operating system dialogs.
+                </li>
+                <li>
+                  <strong class="text-white">Git version control:</strong> Commit history and branches are managed locally in your repository. If you configure a remote repository and trigger a sync (<code class="text-xs bg-white/[0.06] border border-white/10 px-1.5 py-0.5 rounded text-[var(--color-green)] font-mono" translate="no">push</code> / <code class="text-xs bg-white/[0.06] border border-white/10 px-1.5 py-0.5 rounded text-[var(--color-green)] font-mono" translate="no">pull</code>), communication happens directly between your machine and your Git provider using your local credentials.
+                </li>
+              </ul>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-bold text-white tracking-[-0.015em] text-balance">3. Updates and Third-Party Services</h2>
+              <p>
+                The Application does not integrate any third-party services that collect data. If you use the optional update check, it only queries public release metadata on GitHub Releases without transmitting any personal data or user identifiers.
+              </p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-bold text-white tracking-[-0.015em] text-balance">4. Children's Privacy</h2>
+              <p>Because Grimoire Maker does not collect any personal information whatsoever, it does not collect or solicit information from children under the age of 13.</p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-bold text-white tracking-[-0.015em] text-balance">5. Changes to This Privacy Policy</h2>
+              <p>Any updates to this policy will be posted on this page with an updated revision date.</p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-bold text-white tracking-[-0.015em] text-balance">6. Contact Us</h2>
+              <p>If you have any questions or feedback regarding this Privacy Policy, please contact:</p>
+              <p>
+                <strong class="text-white">Email:</strong>{" "}
+                <a
+                  href={`mailto:${config.support.appsEmail}`}
+                  class="text-[var(--color-green)] hover:underline font-medium underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-green)]"
+                  translate="no"
+                >
+                  {config.support.appsEmail}
+                </a>
+              </p>
+            </section>
+          </>
+        )}
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>

@@ -113,7 +113,7 @@ const features = [
                 <span aria-hidden="true">→</span>
               </a>
               <a
-                href="#local-files"
+                href={`/apps/grimoire/privacy?lang=${lang}`}
                 class="py-1.5 text-sm text-slate-400 hover:text-white transition-colors underline underline-offset-4 touch-manipulation"
               >
                 {isEs ? "Almacenamiento local y privacidad" : "Local storage & privacy"}
@@ -137,25 +137,34 @@ const features = [
         </div>
       </section>
 
-      <section id="local-files" class="scroll-mt-24 rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6 md:p-8 backdrop-blur-sm shadow-sm">
-        <h2 class="text-xl font-bold text-white tracking-tight text-balance mb-3">
-          {isEs ? "Tus manuscritos, en tu equipo" : "Your manuscripts, on your computer"}
-        </h2>
-        <p class="text-sm text-slate-300 leading-relaxed text-pretty max-w-[65ch]">
-          {isEs
-            ? "Grimoire Maker guarda los manuscritos como archivos Markdown dentro de una carpeta de proyecto local. Puedes abrirlos con otros editores y gestionar su historial con las herramientas Git integradas."
-            : "Grimoire Maker stores manuscripts as Markdown files inside a local project folder. You can open them in other editors and manage their history with the built-in Git tools."}
-        </p>
-        <p class="mt-4 text-sm text-slate-400">
-          {isEs ? "¿Preguntas o comentarios?" : "Questions or feedback?"}{" "}
-          <a
-            href={`mailto:${config.support.appsEmail}`}
-            class="text-[var(--color-green)] hover:underline font-medium underline-offset-4"
-            translate="no"
-          >
-            {config.support.appsEmail}
-          </a>
-        </p>
+      <section id="local-files" class="scroll-mt-24 rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6 md:p-8 backdrop-blur-sm shadow-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h2 class="text-xl font-bold text-white tracking-tight text-balance mb-3">
+            {isEs ? "Tus manuscritos, en tu equipo" : "Your manuscripts, on your computer"}
+          </h2>
+          <p class="text-sm text-slate-300 leading-relaxed text-pretty max-w-[65ch]">
+            {isEs
+              ? "Grimoire Maker guarda los manuscritos como archivos Markdown dentro de una carpeta de proyecto local. Puedes abrirlos con otros editores y gestionar su historial con las herramientas Git integradas."
+              : "Grimoire Maker stores manuscripts as Markdown files inside a local project folder. You can open them in other editors and manage their history with the built-in Git tools."}
+          </p>
+          <p class="mt-4 text-sm text-slate-400">
+            {isEs ? "¿Preguntas o comentarios?" : "Questions or feedback?"}{" "}
+            <a
+              href={`mailto:${config.support.appsEmail}`}
+              class="text-[var(--color-green)] hover:underline font-medium underline-offset-4"
+              translate="no"
+            >
+              {config.support.appsEmail}
+            </a>
+          </p>
+        </div>
+        <a
+          href={`/apps/grimoire/privacy?lang=${lang}`}
+          class="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] active:scale-[0.98] text-white text-sm font-semibold transition-all duration-150 touch-manipulation shrink-0"
+        >
+          <span>{isEs ? "Ver Política de Privacidad" : "View Privacy Policy"}</span>
+          <span aria-hidden="true">→</span>
+        </a>
       </section>
     </main>
     <Footer />
