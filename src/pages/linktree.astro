@@ -27,12 +27,12 @@ const finalLang: "en" | "es" =
 
 let profileInfo = finalLang === "en" ? aboutData.EN[0] : aboutData.ES[0];
 
-const linktree = aboutData.linktree || {};
-const projectsList = linktree.projects || linktree.Projects || [];
-const supportList = linktree.supportProjects || linktree.SupportProjects || [];
-const contactList = linktree.contact || linktree.Contact || [];
-const laboralMediaList = linktree.laboralMedia || linktree.LaboralMedia || [];
-const socialMediaList = linktree.socialMedia || linktree.SocialMedia || [];
+const linktree = aboutData.linktree;
+const projectsList = linktree?.projects ?? [];
+const supportList = linktree?.supportProjects ?? [];
+const contactList = linktree?.contact ?? [];
+const laboralMediaList = linktree?.laboralMedia ?? [];
+const socialMediaList = linktree?.socialMedia ?? [];
 
 const t = {
   backToPortfolio:
@@ -118,48 +118,6 @@ const t = {
                     open_in_new
                   </span>
                 </a>
-              </div>
-            )
-          }
-
-          <!-- Projects Category -->
-          {
-            projectsList.length > 0 && (
-              <div class="link-group">
-                <h2 class="group-title">{t.projects}</h2>
-                <div class="grid gap-3">
-                  {projectsList.map((project) => (
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      class="project-card group relative flex items-center p-4 rounded-xl overflow-hidden border border-white/5 bg-[#24293e]/40 hover:border-[var(--color-blue)]/50 transition-all duration-300"
-                    >
-                      {project.icon && (
-                        <Image
-                          src={project.icon}
-                          alt={project.name}
-                          width={400}
-                          height={100}
-                          class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-45 transition-opacity duration-300 pointer-events-none"
-                        />
-                      )}
-                      <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent z-0" />
-                      <div class="relative z-10 flex w-full justify-between items-center">
-                        <div>
-                          <h3 class="text-base font-bold text-white group-hover:text-[var(--color-blue)] transition-colors">
-                            {project.name}
-                          </h3>
-                          <span class="text-xs text-slate-300 group-hover:text-white transition-colors">
-                            {project.url.replace("https://", "")}
-                          </span>
-                        </div>
-                        <span class="material-symbols-outlined text-white/50 group-hover:text-white transition-colors">
-                          open_in_new
-                        </span>
-                      </div>
-                    </a>
-                  ))}
-                </div>
               </div>
             )
           }
@@ -279,6 +237,48 @@ const t = {
             )
           }
 
+          <!-- Projects Category -->
+          {
+            projectsList.length > 0 && (
+              <div class="link-group">
+                <h2 class="group-title">{t.projects}</h2>
+                <div class="grid gap-3">
+                  {projectsList.map((project) => (
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      class="project-card group relative flex items-center p-4 rounded-xl overflow-hidden border border-white/5 bg-[#24293e]/40 hover:border-[var(--color-blue)]/50 transition-all duration-300"
+                    >
+                      {project.icon && (
+                        <Image
+                          src={project.icon}
+                          alt={project.name}
+                          width={400}
+                          height={100}
+                          class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-45 transition-opacity duration-300 pointer-events-none"
+                        />
+                      )}
+                      <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent z-0" />
+                      <div class="relative z-10 flex w-full justify-between items-center">
+                        <div>
+                          <h3 class="text-base font-bold text-white group-hover:text-[var(--color-blue)] transition-colors">
+                            {project.name}
+                          </h3>
+                          <span class="text-xs text-slate-300 group-hover:text-white transition-colors">
+                            {project.url.replace("https://", "")}
+                          </span>
+                        </div>
+                        <span class="material-symbols-outlined text-white/50 group-hover:text-white transition-colors">
+                          open_in_new
+                        </span>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )
+          }
+
           <!-- Support Projects -->
           {
             supportList.length > 0 && (
@@ -351,8 +351,8 @@ const t = {
     <!-- Footer -->
     <footer class="text-center mt-12 text-xs text-[#9FB0C3]/60">
       <p>
-        &copy; {new Date().getFullYear()}
-        {aboutData.name}. All rights reserved.
+        &copy;{new Date().getFullYear()}{" "}
+        {aboutData.name} All rights reserved.
       </p>
     </footer>
   </body>
