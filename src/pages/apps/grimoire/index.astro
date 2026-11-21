@@ -4,6 +4,7 @@ import Meta from "@/layouts/Meta.astro";
 import Header from "@/layouts/Header.astro";
 import Footer from "@/layouts/Footer.astro";
 import { configProject as config } from "@/data/configProject";
+import { getLatestGrimoireRelease } from "@/libs/grimoireRelease";
 
 const queryLang = Astro.url.searchParams.get("lang")?.trim().toLowerCase();
 const rawLang = Astro.cookies.get("lang")?.value?.trim().toLowerCase();
@@ -16,6 +17,25 @@ const lang: "en" | "es" =
 
 Astro.locals.lang = lang;
 const isEs = lang === "es";
+const release = await getLatestGrimoireRelease();
+const versionSuffix = release.version ? ` (${release.version})` : "";
+const primaryDownloadUrl = release.windowsInstallerUrl ?? release.releaseUrl;
+const primaryDownloadLabel = release.windowsInstallerUrl
+  ? isEs
+    ? `Descargar para Windows${versionSuffix}`
+    : `Download for Windows${versionSuffix}`
+  : isEs
+    ? "Descargar última versión"
+    : "Download latest release";
+const macDownloadLabel = isEs
+  ? `Descargar para macOS${versionSuffix}`
+  : `Download for macOS${versionSuffix}`;
+const fallbackDownloadLabel = isEs
+  ? `Descargar última versión${versionSuffix}`
+  : `Download latest release${versionSuffix}`;
+const hasDirectAssets = Boolean(
+  release.windowsInstallerUrl || release.windowsPortableUrl || release.macUniversalUrl,
+);
 const pageTitle = isEs
   ? "Grimoire Maker | Escritura y maquetación en Markdown"
   : "Grimoire Maker | Markdown Writing & Desktop Publishing";
@@ -95,12 +115,19 @@ const features = [
             </p>
             <div class="mt-6 flex flex-wrap items-center gap-4">
               <a
-                href="https://github.com/JFEspanolito/Grimoire-Maker/releases/latest"
+                id="grimoire-primary-download"
+                href={primaryDownloadUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-win-url={release.windowsInstallerUrl ?? ""}
+                data-mac-url={release.macUniversalUrl ?? ""}
+                data-fallback-url={release.releaseUrl}
+                data-win-label={isEs ? `Descargar para Windows${versionSuffix}` : `Download for Windows${versionSuffix}`}
+                data-mac-label={macDownloadLabel}
+                data-fallback-label={fallbackDownloadLabel}
                 class="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full bg-[var(--color-green)] hover:brightness-110 active:scale-[0.98] text-slate-950 text-sm font-semibold transition-all duration-150 touch-manipulation shadow-sm"
               >
-                <span>{isEs ? "Descargar última versión" : "Download latest release"}</span>
+                <span data-download-label>{primaryDownloadLabel}</span>
                 <span aria-hidden="true">↓</span>
               </a>
               <a
@@ -119,6 +146,53 @@ const features = [
                 {isEs ? "Almacenamiento local y privacidad" : "Local storage & privacy"}
               </a>
             </div>
+            {hasDirectAssets && (
+              <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-slate-400">
+                <span class="font-medium text-slate-300">
+                  {isEs ? "Descargas directas:" : "Direct downloads:"}
+                </span>
+                {release.windowsInstallerUrl && (
+                  <a
+                    href={release.windowsInstallerUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:text-[var(--color-green)] underline underline-offset-4 transition-colors"
+                  >
+                    Windows x64 (.exe)
+                  </a>
+                )}
+                {release.windowsPortableUrl && (
+                  <a
+                    href={release.windowsPortableUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:text-[var(--color-green)] underline underline-offset-4 transition-colors"
+                  >
+                    Windows Portable (.zip)
+                  </a>
+                )}
+                {release.macUniversalUrl && (
+                  <a
+                    href={release.macUniversalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:text-[var(--color-green)] underline underline-offset-4 transition-colors"
+                  >
+                    macOS Universal (.dmg)
+                  </a>
+                )}
+                {release.version && (
+                  <a
+                    href={release.releaseUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-slate-500 hover:text-slate-300 transition-colors"
+                  >
+                    {release.version}
+                  </a>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -168,5 +242,30 @@ const features = [
       </section>
     </main>
     <Footer />
+    <script is:inline>
+      (() => {
+        const link = document.getElementById("grimoire-primary-download");
+        if (!(link instanceof HTMLAnchorElement)) return;
+        const label = link.querySelector("[data-download-label]");
+        const ua = navigator.userAgent || "";
+        const isMac = /Macintosh|Mac OS X/i.test(ua) && !/iPhone|iPad|iPod/i.test(ua);
+        const isWin = /Windows/i.test(ua);
+
+        const macUrl = link.dataset.macUrl;
+        const winUrl = link.dataset.winUrl;
+        const fallbackUrl = link.dataset.fallbackUrl;
+
+        if (isMac && macUrl) {
+          link.href = macUrl;
+          if (label && link.dataset.macLabel) label.textContent = link.dataset.macLabel;
+        } else if (isWin && winUrl) {
+          link.href = winUrl;
+          if (label && link.dataset.winLabel) label.textContent = link.dataset.winLabel;
+        } else if (!isWin && !isMac && fallbackUrl) {
+          link.href = fallbackUrl;
+          if (label && link.dataset.fallbackLabel) label.textContent = link.dataset.fallbackLabel;
+        }
+      })();
+    </script>
   </body>
 </html>
