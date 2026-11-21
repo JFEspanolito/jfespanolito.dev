@@ -148,23 +148,6 @@ export const projectsData = {
       imgBgPos: "background-position: 50% 50%; background-size: cover;",
     },
     {
-      id: 4,
-      title: "Heladería Ocho MX",
-      status: "En Desarrollo",
-      description:
-        "Portal web para marca de helados artesanales con arquitectura static-first. Optimizado para rendimiento y SEO, permite la exploración del menú, gestión de marca y solicitudes de cotización para eventos.",
-      skills: ["Astro", "TypeScript", "Tailwind", "Vercel", "Optimización SEO"],
-      topskills: ["Astro"],
-      link: [
-        {
-          url: "https://ocho-mx.vercel.app/",
-          label: "Visítala",
-        },
-      ],
-      image: images["../assets/projects/ochoBanner.webp"].default,
-      imgBgPos: "background-position: 50% 130%;",
-    },
-    {
       id: 5,
       title: "Veronica Hope 3D",
       status: "Finalizado",
@@ -347,23 +330,6 @@ export const projectsData = {
       ],
       image: images["../assets/projects/pucklife.png"].default,
       imgBgPos: "background-position: 50% 50%; background-size: cover;",
-    },
-    {
-      id: 4,
-      title: "Ocho MX Ice Cream",
-      status: "In Development",
-      description:
-        "Web portal for an artisanal ice cream brand featuring a static-first architecture. Optimized for high performance and SEO, enabling menu exploration, brand management, and event quote requests.",
-      skills: ["Astro", "TypeScript", "Tailwind", "Vercel", "SEO Optimization"],
-      topskills: ["Astro"],
-      link: [
-        {
-          url: "https://ocho-mx.vercel.app/",
-          label: "Visit Site",
-        },
-      ],
-      image: images["../assets/projects/ochoBanner.webp"].default,
-      imgBgPos: "background-position: 50% 130%;",
     },
     {
       id: 5,
